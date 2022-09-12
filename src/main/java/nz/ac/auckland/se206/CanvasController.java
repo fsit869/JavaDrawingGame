@@ -221,14 +221,14 @@ public class CanvasController {
           final double x = e.getX() - size / 2;
           final double y = e.getY() - size / 2;
 
-            // This is the colour of the brush.
-            if (eraserMode) {
-                graphic.setFill(Color.WHITE);
-                graphic.setStroke(Color.WHITE);
-            } else {
-                graphic.setStroke(Color.BLACK);
-                graphic.setFill(Color.BLACK);
-            }
+          // This is the colour of the brush.
+          if (eraserMode) {
+            graphic.setFill(Color.WHITE);
+            graphic.setStroke(Color.WHITE);
+          } else {
+            graphic.setStroke(Color.BLACK);
+            graphic.setFill(Color.BLACK);
+          }
           graphic.setLineWidth(size);
 
           // Create a line that goes from the point (currentX, currentY) and (x,y)
