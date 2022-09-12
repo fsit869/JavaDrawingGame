@@ -2,17 +2,16 @@ package nz.ac.auckland.se206.model;
 
 import ai.djl.modality.Classifications;
 import ai.djl.translate.TranslateException;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.words.CategorySelector;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
 
 /** Game model represents all logic related to a game. */
 public class GameModel {
