@@ -2,10 +2,12 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -36,9 +38,17 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    final Scene scene = new Scene(loadFxml("canvas"), 840, 680);
-
+    final Scene scene = new Scene(loadFxml("canvas"));
     stage.setScene(scene);
+    stage.setResizable(false);
+    // Force close all threads
+    stage.setOnCloseRequest(
+        new EventHandler<WindowEvent>() {
+          @Override
+          public void handle(WindowEvent event) {
+            System.exit(0);
+          }
+        });
     stage.show();
   }
 }
