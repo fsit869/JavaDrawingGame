@@ -216,7 +216,7 @@ public class CanvasController {
     canvas.setOnMouseDragged(
         e -> {
           // Brush size (you can change this, it should not be too small or too large).
-          final double size = 6;
+          double size = 6;
 
           final double x = e.getX() - size / 2;
           final double y = e.getY() - size / 2;
@@ -225,9 +225,11 @@ public class CanvasController {
           if (eraserMode) {
             graphic.setFill(Color.WHITE);
             graphic.setStroke(Color.WHITE);
+            size = 18;
           } else {
             graphic.setStroke(Color.BLACK);
             graphic.setFill(Color.BLACK);
+            size = 6;
           }
           graphic.setLineWidth(size);
 
