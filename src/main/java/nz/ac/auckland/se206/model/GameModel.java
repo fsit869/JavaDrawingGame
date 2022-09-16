@@ -15,6 +15,9 @@ import nz.ac.auckland.se206.words.CategorySelector;
 
 /** Game model represents all logic related to a game. */
 public class GameModel {
+  // Instance of the game. Uses singleton pattern
+  private static GameModel gameModelInstance = new GameModel();
+
   private CategorySelector categorySelector;
   private DoodlePrediction doodlePrediction;
 
@@ -32,16 +35,20 @@ public class GameModel {
   /**
    * Initialize objects and anything needed for a game
    *
-   * @param doodlePrediction The object used to predict doodles
    * @throws URISyntaxException Occurs states invalid
    * @throws IOException Occurs states invalid
    */
-  public GameModel(DoodlePrediction doodlePrediction) throws URISyntaxException, IOException {
-    this.categorySelector = new CategorySelector();
-    this.currentWordToGuess = new SimpleStringProperty();
-    this.currentGameState = new SimpleObjectProperty<>(State.READY);
-    this.doodlePrediction = doodlePrediction;
-    this.playerWon = false;
+  private GameModel() {
+    try {
+      this.categorySelector = new CategorySelector();
+      this.currentWordToGuess = new SimpleStringProperty();
+      this.currentGameState = new SimpleObjectProperty<>(State.READY);
+      this.doodlePrediction = new DoodlePrediction();
+      this.playerWon = false;
+    } catch (Exception e) {
+      System.err.println("FAILED TO INITIALIZE GAME MODEL.");
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -101,5 +108,18 @@ public class GameModel {
 
   public void setPlayerWon(boolean playerWon) {
     this.playerWon = playerWon;
+  }
+
+  ///////////////////////
+  // Singleton pattern //
+  ///////////////////////
+
+  /**
+   * Get the instance of the game model. Using the singleton pattern.
+   *
+   * @return The game model.
+   */
+  public static GameModel getInstance() {
+    return gameModelInstance;
   }
 }

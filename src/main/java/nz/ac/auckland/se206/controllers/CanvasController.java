@@ -21,7 +21,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
-import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
@@ -71,7 +70,7 @@ public class CanvasController {
   public void initialize() throws ModelException, IOException, URISyntaxException {
     // Initialize objects
     graphic = canvas.getGraphicsContext2D();
-    this.gameModel = new GameModel(new DoodlePrediction());
+    this.gameModel = GameModel.getInstance();
     this.textToSpeech = new TextToSpeechTask();
 
     // Configure game settings
