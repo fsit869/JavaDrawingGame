@@ -23,6 +23,10 @@ public class GameModel {
 
   private StringProperty currentWordToGuess;
   private ObjectProperty<State> currentGameState;
+
+  private ObjectProperty<viewState> currentViewState;
+
+//  private Profile currentProfile;
   private boolean playerWon;
 
   /** Represents the different states a game could have */
@@ -30,6 +34,16 @@ public class GameModel {
     READY,
     INGAME,
     FINISHED
+  }
+
+  /** Represents the different view states*/
+  public enum viewState {
+    CANVAS,
+    SELECTPROFILES,
+    NEWPROFILE,
+    SETTINGS,
+    MAINMENU,
+    PROFILESTATS,
   }
 
   /**
@@ -43,6 +57,7 @@ public class GameModel {
       this.categorySelector = new CategorySelector();
       this.currentWordToGuess = new SimpleStringProperty();
       this.currentGameState = new SimpleObjectProperty<>(State.READY);
+      this.currentViewState = new SimpleObjectProperty<>(viewState.MAINMENU);
       this.doodlePrediction = new DoodlePrediction();
       this.playerWon = false;
     } catch (Exception e) {
@@ -94,12 +109,24 @@ public class GameModel {
     return currentGameState.get();
   }
 
+  public viewState getCurrentViewState() {
+    return currentViewState.get();
+  }
+
   public void setCurrentGameState(State currentGameState) {
     this.currentGameState.set(currentGameState);
   }
 
+  public void setCurrentViewState(viewState currentViewState) {
+    this.currentViewState.set(currentViewState);
+  }
+
   public ObjectProperty<State> getCurrentGameStateProperty() {
     return this.currentGameState;
+  }
+
+  public ObjectProperty<viewState> getCurrentViewStateProperty() {
+    return this.currentViewState;
   }
 
   public boolean isPlayerWon() {
