@@ -14,7 +14,7 @@ public class SettingsController {
   }
 
   ///////////////////
-  //Button handlers /
+  // Button handlers /
   ///////////////////
 
   /**
