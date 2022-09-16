@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import nz.ac.auckland.se206.CanvasController;
+import nz.ac.auckland.se206.controllers.CanvasController;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
