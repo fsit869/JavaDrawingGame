@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206;
+package nz.ac.auckland.se206.controllers;
 
 import ai.djl.ModelException;
 import java.awt.Graphics2D;

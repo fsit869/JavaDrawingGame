@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CanvasController">
    <center>
       <VBox alignment="CENTER" maxHeight="604.0" maxWidth="444.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="444.0" spacing="20.0">
         <children>
