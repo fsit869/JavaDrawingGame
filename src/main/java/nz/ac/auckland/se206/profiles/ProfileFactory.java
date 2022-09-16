@@ -4,8 +4,13 @@ package nz.ac.auckland.se206.profiles;
 // rest of the program.
 
 import java.util.ArrayList;
+import nz.ac.auckland.se206.profiles.entities.Profile;
 
 public class ProfileFactory {
+
+  public Profile selectProfile() {
+    return null;
+  }
 
   public boolean createProfile() {
     return true; // successful?

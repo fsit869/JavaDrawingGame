@@ -1,0 +1,53 @@
+{
+  "username": "player1",
+  "profilePicture": "src/resosrudsf/image",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  },
+  "username": "player2",
+  "profilePicture": "src/resosrudsf/image",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  },
+  "username": "my name \\u003e:)",
+  "profilePicture": "src/resosrudsf/image",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  }
+}
