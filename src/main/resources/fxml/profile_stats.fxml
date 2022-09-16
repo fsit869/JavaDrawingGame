@@ -18,26 +18,26 @@
             <Image url="@../images/default_profile_picture.png" />
          </image>
       </ImageView>
-      <Label fx:id="profileNameLabel" layoutX="98.0" layoutY="205.0" prefHeight="36.0" prefWidth="83.0" text="Profile Name" />
-      <TextField alignment="CENTER" layoutX="310.0" layoutY="29.0" prefHeight="25.0" prefWidth="200.0" text="Profile Stats">
+      <Label fx:id="profileNameLabel" focusTraversable="false" layoutX="98.0" layoutY="205.0" prefHeight="36.0" prefWidth="83.0" text="Profile Name" />
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="29.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Profile Stats">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextArea fx:id="profileStatsTextArea" layoutX="310.0" layoutY="60.0" prefHeight="76.0" prefWidth="200.0" text="Games Won:&#10;Games Lost:&#10;Total Games Played:" />
-      <TextArea fx:id="bestRecordsTextArea" layoutX="310.0" layoutY="164.0" prefHeight="76.0" prefWidth="200.0" text="Highest Win Streak:&#10;Total Games Played:&#10;Quickest Win:&#10;" />
-      <TextField alignment="CENTER" layoutX="310.0" layoutY="136.0" prefHeight="25.0" prefWidth="200.0" text="Best Records">
+      <TextArea fx:id="profileStatsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="60.0" mouseTransparent="true" prefHeight="76.0" prefWidth="200.0" text="Games Won:&#10;Games Lost:&#10;Total Games Played:" />
+      <TextArea fx:id="bestRecordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="164.0" mouseTransparent="true" prefHeight="76.0" prefWidth="200.0" text="Highest Win Streak:&#10;Total Games Played:&#10;Quickest Win:&#10;" />
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="136.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Best Records">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField alignment="CENTER" layoutX="310.0" layoutY="240.0" prefHeight="25.0" prefWidth="200.0" text="Past Words">
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="240.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Past Words">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextArea fx:id="pastWordsTextArea" layoutX="310.0" layoutY="271.0" prefHeight="76.0" prefWidth="200.0" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;" />
-      <ComboBox fx:id="fullListComboBox" layoutX="310.0" layoutY="347.0" prefHeight="25.0" prefWidth="200.0" promptText="See Full List" />
-      <Button layoutX="48.0" layoutY="291.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="85.0" prefWidth="144.0" text="Back To Main Menu" />
+      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="271.0" mouseTransparent="true" prefHeight="76.0" prefWidth="200.0" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;" />
+      <ComboBox fx:id="fullListComboBox" focusTraversable="false" layoutX="310.0" layoutY="347.0" prefHeight="25.0" prefWidth="200.0" promptText="See Full List" />
+      <Button focusTraversable="false" layoutX="48.0" layoutY="291.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="85.0" prefWidth="144.0" text="Back To Main Menu" />
    </children>
 </AnchorPane>
