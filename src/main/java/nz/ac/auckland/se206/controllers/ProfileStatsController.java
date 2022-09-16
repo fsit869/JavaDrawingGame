@@ -23,7 +23,7 @@ public class ProfileStatsController {
 
     @FXML private TextArea pastWordsTextArea;
 
-    @FXML private ComboBox fullListComboBox;
+    @FXML private ComboBox<String> fullListComboBox;
 
     public void initialize() {
         fullListComboBox.setItems(fullWordHistory);
