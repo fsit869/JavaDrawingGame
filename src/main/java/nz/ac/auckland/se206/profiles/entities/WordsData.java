@@ -60,7 +60,7 @@ public class WordsData extends Data {
    * @throws IOException IO
    * @throws URISyntaxException Syntax
    */
-  public List<String[]> selector() throws IOException, URISyntaxException {
+  private List<String[]> selector() throws IOException, URISyntaxException {
     File file = new File(WordsData.class.getResource("/category_difficulty.csv").toURI());
     CSVReader reader = new CSVReader(new FileReader(file));
     return reader.readAll();

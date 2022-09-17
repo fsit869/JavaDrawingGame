@@ -16,7 +16,7 @@ public class ProfileRepository {
 
   private final List<Profile> profiles;
 
-  public ProfileRepository() throws IOException {
+  protected ProfileRepository() throws IOException {
     this.profiles = getAllProfiles();
   }
 
@@ -26,7 +26,7 @@ public class ProfileRepository {
    * @param username of profile to select
    * @return Profile object of chosen profile
    */
-  public Profile selectProfile(String username) {
+  protected Profile selectProfile(String username) {
     for (Profile profile : profiles) {
       // Searches for the specified username
       if (profile.getUsername().equals(username)) {
@@ -44,7 +44,7 @@ public class ProfileRepository {
    * @return if the user was successfully created, or user already exists
    * @throws IOException IO
    */
-  public boolean createProfile(String username, String profilePicturePath) throws IOException {
+  protected boolean createProfile(String username, String profilePicturePath) throws IOException {
     username = username.trim();
     // Loop through all the profiles
     for (Profile profile : profiles) {
@@ -73,7 +73,7 @@ public class ProfileRepository {
    * @param saveProfile profile to save into the JSON file
    * @throws IOException IO
    */
-  public void saveProfile(Profile saveProfile) throws IOException {
+  protected void saveProfile(Profile saveProfile) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     StringBuilder json = new StringBuilder("[\n");
     FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
@@ -104,7 +104,7 @@ public class ProfileRepository {
    * @param deleteProfile Profile to be deleted
    * @throws IOException IO
    */
-  public void deleteProfile(Profile deleteProfile) throws IOException {
+  protected void deleteProfile(Profile deleteProfile) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
     StringBuilder json = new StringBuilder("[\n");
@@ -138,7 +138,7 @@ public class ProfileRepository {
    * @return List of all Profiles
    * @throws IOException IO
    */
-  public static List<Profile> getAllProfiles() throws IOException {
+  protected static List<Profile> getAllProfiles() throws IOException {
     List<Profile> profiles = new ArrayList<>();
 
     // Path of the JSON to read from.
