@@ -26,7 +26,7 @@ public class GameModel {
 
   private ObjectProperty<viewState> currentViewState;
 
-//  private Profile currentProfile;
+  //  private Profile currentProfile;
   private boolean playerWon;
 
   /** Represents the different states a game could have */
@@ -36,7 +36,7 @@ public class GameModel {
     FINISHED
   }
 
-  /** Represents the different view states*/
+  /** Represents the different view states */
   public enum viewState {
     CANVAS,
     SELECTPROFILES,
