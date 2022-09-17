@@ -38,11 +38,17 @@ public class Profile {
     this.profilePicturePath = profilePicturePath;
   }
 
-  public void eraseProfile() {
+  /** Resets ALL attributes of a profile, back into a blank one that can be rewritten. */
+  public void resetProfile() {
     this.username = "";
     this.profilePicturePath = "";
-    this.statsData.eraseData();
-    this.wordsData.eraseData();
-    this.settingsData.eraseData();
+    resetData();
+  }
+
+  /** Resets the data of a profile, without touching the username of profile picture path. */
+  public void resetData() {
+    this.statsData.resetData();
+    this.wordsData.resetData();
+    this.settingsData.resetData();
   }
 }

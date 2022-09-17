@@ -46,11 +46,24 @@ public class ProfileFactory {
     return ProfileRepository.getAllProfiles();
   }
 
+  /**
+   * Deletes a Profile, by setting all the attributes to their defaults. Does not remove the object
+   * from JSON
+   *
+   * @param profile the Profile to delete
+   * @throws IOException IO
+   */
   public void deleteProfile(Profile profile) throws IOException {
     profileRepository.deleteProfile(profile);
   }
 
-  public void saveCurrentProfile(Profile profile) throws IOException {
+  /**
+   * Saves a profile that is parsed into the function, rewrites the entire JSON file.
+   *
+   * @param profile the profile to save
+   * @throws IOException IO
+   */
+  public void saveProfile(Profile profile) throws IOException {
     profileRepository.saveProfile(profile);
   }
 }

@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 public class ProfileRepository {
@@ -19,16 +20,30 @@ public class ProfileRepository {
     this.profiles = getAllProfiles();
   }
 
+  /**
+   * Selects the specific profile with the parsed in username
+   *
+   * @param username of profile to select
+   * @return Profile object of chosen profile
+   */
   public Profile selectProfile(String username) {
     for (Profile profile : profiles) {
+      // Searches for the specified username
       if (profile.getUsername().equals(username)) {
         return profile;
       }
     }
-    System.out.println("User not found");
-    return null;
+    throw new NoSuchElementException("Profile not found");
   }
 
+  /**
+   * Creates a new Profile by populating the object with username and picture path.
+   *
+   * @param username of the Profile
+   * @param profilePicturePath path to the profile's picture
+   * @return if the user was successfully created, or user already exists
+   * @throws IOException IO
+   */
   public boolean createProfile(String username, String profilePicturePath) throws IOException {
     username = username.trim();
     // Loop through all the profiles
@@ -52,7 +67,12 @@ public class ProfileRepository {
     throw new IndexOutOfBoundsException("All 5 user slots are taken");
   }
 
-  // should be extended to words, settings and stats.
+  /**
+   * Saves the profile that was parsed into the function into the JSON file.
+   *
+   * @param saveProfile profile to save into the JSON file
+   * @throws IOException IO
+   */
   public void saveProfile(Profile saveProfile) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     StringBuilder json = new StringBuilder("[\n");
@@ -78,6 +98,12 @@ public class ProfileRepository {
     fileWriter.close();
   }
 
+  /**
+   * Deletes a Profile, that was parsed into the function. Empties the contents in the JSON file.
+   *
+   * @param deleteProfile Profile to be deleted
+   * @throws IOException IO
+   */
   public void deleteProfile(Profile deleteProfile) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
@@ -88,7 +114,7 @@ public class ProfileRepository {
 
       // Check if the current profile is the same, if not, write to JSON.
       if (profiles.get(i).getUsername().equals(deleteProfile.getUsername())) {
-        deleteProfile.eraseProfile();
+        deleteProfile.resetProfile();
         json.append(gson.toJson(deleteProfile, Profile.class));
       } else {
         json.append(gson.toJson(profiles.get(i), Profile.class));
@@ -106,6 +132,12 @@ public class ProfileRepository {
     fileWriter.close();
   }
 
+  /**
+   * Returns all the Profiles as a list of profiles. For displaying all the profiles to the user
+   *
+   * @return List of all Profiles
+   * @throws IOException IO
+   */
   public static List<Profile> getAllProfiles() throws IOException {
     List<Profile> profiles = new ArrayList<>();
 
