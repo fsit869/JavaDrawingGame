@@ -2,30 +2,47 @@ package nz.ac.auckland.se206.profiles.entities;
 
 // model of a user profile
 
-import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
-
 public class Profile {
   private String username;
   // links to the file of the pfp
-  private String profilePicture;
+  private String profilePicturePath;
   private StatsData statsData;
   private WordsData wordsData;
   private SettingsData settingsData;
 
-  public Profile(
-      String username,
-      String profilePicture,
-      StatsData statsData,
-      WordsData wordsData,
-      SettingsData settingsData) {
-    this.username = username;
-    this.profilePicture = profilePicture;
-    this.statsData = statsData;
-    this.wordsData = wordsData;
-    this.settingsData = settingsData;
+  public SettingsData getSettingsData() {
+    return settingsData;
   }
 
-  public String getRandomWord(Difficulty difficulty) {
-    return "";
+  public StatsData getStatsData() {
+    return statsData;
+  }
+
+  public WordsData getWordsData() {
+    return wordsData;
+  }
+
+  public String getUsername() {
+    return this.username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getProfilePicturePath() {
+    return this.profilePicturePath;
+  }
+
+  public void setProfilePicturePath(String profilePicturePath) {
+    this.profilePicturePath = profilePicturePath;
+  }
+
+  public void eraseProfile() {
+    this.username = "";
+    this.profilePicturePath = "";
+    this.statsData.eraseData();
+    this.wordsData.eraseData();
+    this.settingsData.eraseData();
   }
 }

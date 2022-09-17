@@ -2,29 +2,112 @@ package nz.ac.auckland.se206.profiles;
 
 // is responsible for accessing the database, and writing to the database. (json file)
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonStreamParser;
+import com.google.gson.*;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 public class ProfileRepository {
 
-  public boolean deleteProfile() {
-    return true;
+  private final List<Profile> profiles;
+
+  public ProfileRepository() throws IOException {
+    this.profiles = getAllProfiles();
+  }
+
+  public Profile selectProfile(String username) {
+    for (Profile profile : profiles) {
+      if (profile.getUsername().equals(username)) {
+        return profile;
+      }
+    }
+    System.out.println("User not found");
+    return null;
+  }
+
+  public boolean createProfile(String username, String profilePicturePath) throws IOException {
+    username = username.trim();
+    // Loop through all the profiles
+    for (Profile profile : profiles) {
+      if (profile.getUsername().equalsIgnoreCase(username)) {
+        System.out.println("User already created");
+        return false;
+      }
+
+      // Overwrite. If profile is empty, default empty profile is ""
+      if (profile.getUsername().equals("")) {
+        profile.setUsername(username);
+        profile.setProfilePicturePath(profilePicturePath);
+        saveProfile(profile);
+        System.out.println("Successfully Created");
+        return true;
+      }
+    }
+
+    // In this case, all 5 slots of users are taken
+    throw new IndexOutOfBoundsException("All 5 user slots are taken");
   }
 
   // should be extended to words, settings and stats.
-  public boolean saveProfile(Profile profile) {
+  public void saveProfile(Profile saveProfile) throws IOException {
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    StringBuilder json = new StringBuilder("[\n");
+    FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
 
-    return true;
+    // Formats the JSON into the proper format.
+    for (int i = 0; i < profiles.size(); i++) {
+
+      // Check if the current profile is the same, if not, write to JSON.
+      if (profiles.get(i).getUsername().equals(saveProfile.getUsername())) {
+        json.append(gson.toJson(saveProfile, Profile.class));
+      } else {
+        json.append(gson.toJson(profiles.get(i), Profile.class));
+      }
+      if (i != profiles.size() - 1) {
+        json.append(",\n");
+      }
+    }
+    json.append("\n]");
+
+    // Save to the JSON file
+    fileWriter.write(String.valueOf(json));
+    fileWriter.close();
   }
 
-  public ArrayList<Profile> getAllProfiles() throws IOException {
-    ArrayList<Profile> profiles = new ArrayList<>();
+  public void deleteProfile(Profile deleteProfile) throws IOException {
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
+    StringBuilder json = new StringBuilder("[\n");
+
+    // Formats the JSON into the proper format.
+    for (int i = 0; i < profiles.size(); i++) {
+
+      // Check if the current profile is the same, if not, write to JSON.
+      if (profiles.get(i).getUsername().equals(deleteProfile.getUsername())) {
+        deleteProfile.eraseProfile();
+        json.append(gson.toJson(deleteProfile, Profile.class));
+      } else {
+        json.append(gson.toJson(profiles.get(i), Profile.class));
+      }
+
+      // End of the file
+      if (i != profiles.size() - 1) {
+        json.append(",\n");
+      }
+    }
+    json.append("\n]");
+
+    // Writes to the JSON file
+    fileWriter.write(String.valueOf(json));
+    fileWriter.close();
+  }
+
+  public static List<Profile> getAllProfiles() throws IOException {
+    List<Profile> profiles = new ArrayList<>();
 
     // Path of the JSON to read from.
     Path profilePath = Path.of("src/main/resources/player_data.json");
@@ -35,21 +118,18 @@ public class ProfileRepository {
 
     // For every JSON object in the file, this will run (until EOF)
     while (streamParser.hasNext()) {
-      JsonElement element = streamParser.next();
+      JsonElement page = streamParser.next();
 
-      // checks if object is valid
-      if (element.isJsonObject()) {
-        Profile profile = new Gson().fromJson(element, Profile.class);
-        profiles.add(profile);
+      // JSON file is an array of elements, so needs to convert into array.
+      if (page.isJsonArray()) {
+        JsonArray elements = (JsonArray) page;
+        for (JsonElement element : elements) {
+          Profile profile = new Gson().fromJson(element, Profile.class);
+          profiles.add(profile);
+        }
       }
     }
 
     return profiles;
-  }
-
-  // purely for testing
-  public static void main(String... args) throws Exception {
-    ProfileRepository yes = new ProfileRepository();
-    ArrayList<Profile> ok = yes.getAllProfiles();
   }
 }

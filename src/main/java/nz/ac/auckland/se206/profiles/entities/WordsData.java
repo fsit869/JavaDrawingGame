@@ -1,18 +1,45 @@
 package nz.ac.auckland.se206.profiles.entities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
+import au.com.bytecode.opencsv.CSVReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.*;
 
 public class WordsData extends Data {
-  private Map<Difficulty, ArrayList<String>> wordsNotPlayed = new HashMap<>();
-  private ArrayList<String> wordsPlayed = new ArrayList<>();
+  private Map<Difficulty, ArrayList<String>> wordsNotPlayed;
+  private List<String> wordsPlayed;
 
-  public WordsData() {
-    wordsNotPlayed.put(Difficulty.H, new ArrayList<>());
-    wordsNotPlayed.put(Difficulty.M, new ArrayList<>());
-    wordsNotPlayed.put(Difficulty.E, new ArrayList<>());
+  public enum Difficulty {
+    E,
+    M,
+    H
+  }
+
+  public List<String> getWordsPlayed() {
+    return wordsPlayed;
+  }
+
+  public String getRandomWord(Difficulty difficulty) throws URISyntaxException, IOException {
+    String random = "";
+    List<String> wordsList = this.wordsNotPlayed.get(difficulty);
+    if (wordsList.isEmpty()) {
+      for (String[] line : selector()) {
+        if (Difficulty.valueOf(line[1]) == difficulty) {
+          wordsList.add(line[0]);
+        }
+      }
+    }
+    random = wordsList.remove(new Random().nextInt(0, wordsList.size()));
+    wordsPlayed.add(random);
+    return random;
+  }
+
+  public List<String[]> selector() throws IOException, URISyntaxException {
+    File file = new File(WordsData.class.getResource("/category_difficulty.csv").toURI());
+    CSVReader reader = new CSVReader(new FileReader(file));
+    return reader.readAll();
   }
 
   @Override

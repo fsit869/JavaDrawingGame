@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 /** Class to extract words from category_difficulty.csv */
+@Deprecated
 public class CategorySelector {
   private HashMap<Difficulty, ArrayList<String>> words;
 
@@ -26,6 +27,7 @@ public class CategorySelector {
    * @throws URISyntaxException Error by invalid file location
    * @throws IOException Error by IO
    */
+  @Deprecated
   public CategorySelector() throws URISyntaxException, IOException {
     words = new HashMap<>();
 
@@ -46,6 +48,7 @@ public class CategorySelector {
    * @param difficulty Enum difficulty/
    * @return A random word based on the difficulty.
    */
+  @Deprecated
   public String getRandomCategory(Difficulty difficulty) {
     return words.get(difficulty).get(new Random().nextInt(words.get(difficulty).size()));
   }
@@ -57,6 +60,7 @@ public class CategorySelector {
    * @throws URISyntaxException File not found
    * @throws IOException IO error.
    */
+  @Deprecated
   protected List<String[]> getLines() throws URISyntaxException, IOException {
     // Read files line by line and return
     File file = new File(CategorySelector.class.getResource("/category_difficulty.csv").toURI());
