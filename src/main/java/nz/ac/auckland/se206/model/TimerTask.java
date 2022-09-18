@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import nz.ac.auckland.se206.controllers.CanvasController;
+import nz.ac.auckland.se206.controllers.GameController;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
@@ -19,7 +19,7 @@ public class TimerTask extends Task<Void> {
   private TextArea predicationTextArea;
   private StringBuilder stringBuilder;
   private GameModel gameModel;
-  private CanvasController canvasController;
+  private GameController canvasController;
 
   /**
    * Initialize a new timer thread and anything related to it
@@ -35,7 +35,7 @@ public class TimerTask extends Task<Void> {
       Label label,
       TextArea predictionTextArea,
       GameModel gameModel,
-      CanvasController canvasController) {
+      GameController canvasController) {
     this.timerTotal = timerTotal;
     this.counter = timerTotal;
     this.timerLabel = label;

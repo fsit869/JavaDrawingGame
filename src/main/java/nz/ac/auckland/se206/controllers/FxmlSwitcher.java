@@ -19,7 +19,7 @@ public class FxmlSwitcher {
 
   private FxmlSwitcher() {
     try {
-      this.rootScene = new Scene(loadFxml("canvas"));
+      this.rootScene = new Scene(loadFxml("game"));
       initialize();
     } catch (IOException e) {
       System.err.println("Failed to initialize fxml switcher. Possible error with loadFxml()");
