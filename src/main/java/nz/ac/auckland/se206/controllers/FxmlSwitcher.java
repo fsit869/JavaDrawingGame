@@ -37,7 +37,7 @@ public class FxmlSwitcher {
    * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
    */
-  public void initialize() throws ModelException, IOException, URISyntaxException {
+  private void initialize() throws ModelException, IOException, URISyntaxException {
     // Initialize objects
     FxmlSwitcher fxmlSwitcher = FxmlSwitcher.getInstance();
     this.gameModel = GameModel.getInstance();
@@ -70,28 +70,22 @@ public class FxmlSwitcher {
               try {
                 switch (newValue) {
                   case CANVAS:
-                    System.out.println("Canvas");
-                    rootScene.setRoot(loadFxml("canvas"));
+                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("canvas"));
                     break;
                   case SELECTPROFILES:
-                    System.out.println("SelectProfiles");
-                    rootScene.setRoot(loadFxml("select_profiles"));
+                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("select_profiles"));
                     break;
                   case NEWPROFILE:
-                    System.out.println("NewProfile");
-                    rootScene.setRoot(loadFxml("new_profile"));
+                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("new_profile"));
                     break;
                   case SETTINGS:
-                    System.out.println("Settings");
-                    rootScene.setRoot(loadFxml("settings"));
+                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("settings"));
                     break;
                   case MAINMENU:
-                    System.out.println("MainMenu");
-                    rootScene.setRoot(loadFxml("main_menu"));
+                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("main_menu"));
                     break;
                   case PROFILESTATS:
-                    System.out.println("ProfileStats");
-                    rootScene.setRoot(loadFxml("profile_stats"));
+                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("profile_stats"));
                     break;
                   default:
                     // Unknown state that is not handled.
@@ -102,8 +96,6 @@ public class FxmlSwitcher {
                 }
               } catch (IOException e) {
                 throw new RuntimeException(e);
-              }
-              {
               }
             });
   }
