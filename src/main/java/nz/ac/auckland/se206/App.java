@@ -41,8 +41,6 @@ public class App extends Application {
     FxmlSwitcher fxmlSwitcher = FxmlSwitcher.getInstance();
     stage.setScene(fxmlSwitcher.getRootScene());
     stage.setResizable(false);
-    //    stage.setMinWidth(444);
-    //    stage.setMinHeight(604);
     // Force close all threads
     stage.setOnCloseRequest(
         new EventHandler<WindowEvent>() {
