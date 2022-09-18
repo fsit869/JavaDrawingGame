@@ -133,7 +133,8 @@ public class ProfileRepository {
   }
 
   /**
-   * Returns all the Profiles as a list of profiles. For displaying all the profiles to the user
+   * Returns all the Profiles as a list of profiles. For displaying all the profiles to the user for
+   * them to select a Profile
    *
    * @return List of all Profiles
    * @throws IOException IO

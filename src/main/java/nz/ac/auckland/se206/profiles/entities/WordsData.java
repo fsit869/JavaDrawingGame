@@ -54,7 +54,7 @@ public class WordsData extends Data {
   }
 
   /**
-   * Selects from the CSV file all the words possible.
+   * Selects all the possible words from the CSV file, all the raw words
    *
    * @return List of all the words
    * @throws IOException IO
