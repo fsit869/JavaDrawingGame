@@ -1,0 +1,116 @@
+[
+{
+  "username": "player1",
+  "profilePicturePath": "okokokokokok",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  }
+},
+{
+  "username": "",
+  "profilePicturePath": "",
+  "statsData": {
+    "best_time": -1,
+    "best_accuracy": -1
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": true
+  }
+},
+{
+  "username": "",
+  "profilePicturePath": "",
+  "statsData": {
+    "best_time": -1,
+    "best_accuracy": -1
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": true
+  }
+},
+{
+  "username": "player4",
+  "profilePicturePath": "okokokokokok",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  }
+},
+{
+  "username": "yes",
+  "profilePicturePath": "no",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  }
+},
+{
+  "username": "Guest",
+  "profilePicturePath": "okokokokokok",
+  "statsData": {
+    "best_time": 10,
+    "best_accuracy": 123
+  },
+  "wordsData": {
+    "wordsNotPlayed": {
+      "E": [],
+      "H": [],
+      "M": []
+    },
+    "wordsPlayed": []
+  },
+  "settingsData": {
+    "tts": false
+  }
+}
+]
