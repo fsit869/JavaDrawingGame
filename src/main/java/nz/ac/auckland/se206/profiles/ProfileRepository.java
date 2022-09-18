@@ -114,7 +114,9 @@ public class ProfileRepository {
 
       // Check if the current profile is the same, if not, write to JSON.
       if (profiles.get(i).getUsername().equals(deleteProfile.getUsername())) {
-        deleteProfile.resetProfile();
+        deleteProfile.setUsername("");
+        deleteProfile.setProfilePicturePath("");
+        deleteProfile.resetData();
         json.append(gson.toJson(deleteProfile, Profile.class));
       } else {
         json.append(gson.toJson(profiles.get(i), Profile.class));
