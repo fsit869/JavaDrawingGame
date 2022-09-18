@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.WordsData;
 
@@ -28,7 +29,6 @@ public class GameModel {
 
   private ObjectProperty<viewState> currentViewState;
 
-  //  private Profile currentProfile;
   private boolean playerWon;
 
   /** Represents the different states a game could have */
@@ -61,6 +61,11 @@ public class GameModel {
       this.currentViewState = new SimpleObjectProperty<>(viewState.MAINMENU);
       this.doodlePrediction = new DoodlePrediction();
       this.playerWon = false;
+
+      // Setup default profile
+      ProfileFactory profileFactory = new ProfileFactory();
+      this.profile = profileFactory.selectProfile("Guest");
+
     } catch (Exception e) {
       System.err.println("FAILED TO INITIALIZE GAME MODEL.");
       e.printStackTrace();
