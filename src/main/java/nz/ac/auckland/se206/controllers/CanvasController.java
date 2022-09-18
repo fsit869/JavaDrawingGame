@@ -23,8 +23,8 @@ import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
+import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
-import nz.ac.auckland.se206.words.CategorySelector;
 
 /**
  * This is the controller of the canvas. You are free to modify this class and the corresponding
@@ -140,7 +140,7 @@ public class CanvasController {
     this.brushTab.setDisable(true);
 
     // Set game variables
-    this.gameModel.generateWord(CategorySelector.Difficulty.E);
+    this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
   }
 
