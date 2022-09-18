@@ -11,14 +11,16 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
-import nz.ac.auckland.se206.words.CategorySelector;
+import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.profiles.entities.WordsData;
 
 /** Game model represents all logic related to a game. */
 public class GameModel {
   // Instance of the game. Uses singleton pattern
   private static GameModel gameModelInstance = new GameModel();
 
-  private CategorySelector categorySelector;
+  private Profile profile;
+
   private DoodlePrediction doodlePrediction;
 
   private StringProperty currentWordToGuess;
@@ -40,7 +42,6 @@ public class GameModel {
    */
   private GameModel() {
     try {
-      this.categorySelector = new CategorySelector();
       this.currentWordToGuess = new SimpleStringProperty();
       this.currentGameState = new SimpleObjectProperty<>(State.READY);
       this.doodlePrediction = new DoodlePrediction();
@@ -57,8 +58,13 @@ public class GameModel {
    * @param difficulty Difficulty of word
    * @return Word that needs to be drawn
    */
-  public String generateWord(CategorySelector.Difficulty difficulty) {
-    setCurrentWordToGuess(categorySelector.getRandomCategory(difficulty));
+  public String generateWord(WordsData.Difficulty difficulty) {
+    try {
+      setCurrentWordToGuess(this.profile.getWordsData().getRandomWord(difficulty));
+    } catch (URISyntaxException | IOException e) {
+      System.err.println("Failed to generate words");
+      throw new RuntimeException(e);
+    }
     return getCurrentWordToGuess();
   }
 
@@ -108,6 +114,14 @@ public class GameModel {
 
   public void setPlayerWon(boolean playerWon) {
     this.playerWon = playerWon;
+  }
+
+  public Profile getProfile() {
+    return profile;
+  }
+
+  public void setProfile(Profile profile) {
+    this.profile = profile;
   }
 
   ///////////////////////
