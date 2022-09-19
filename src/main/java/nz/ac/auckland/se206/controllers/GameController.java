@@ -21,6 +21,8 @@ import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
+import nz.ac.auckland.se206.profiles.ProfileFactory;
+import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
@@ -42,6 +44,7 @@ public class GameController {
   private GameModel gameModel;
   private TextToSpeechTask textToSpeech;
   private Service<Void> timerService;
+  private ProfileFactory profileFactory;
 
   // mouse coordinates
   private double currentX;
@@ -58,6 +61,12 @@ public class GameController {
     graphic = canvas.getGraphicsContext2D();
     this.gameModel = GameModel.getInstance();
     this.textToSpeech = new TextToSpeechTask();
+
+    try {
+      this.profileFactory = new ProfileFactory();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     // Configure game settings
     this.timerService =
@@ -158,6 +167,28 @@ public class GameController {
     // Disable timer
     this.timerService.cancel();
     this.timerService.reset();
+
+    // Handle saving user profile stats
+    try {
+      this.saveProfileStats();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /** Saves the profile information and win/loss */
+  private void saveProfileStats() throws IOException {
+    Profile profile = this.gameModel.getProfile();
+    // Save fastest time only if won.
+    if (gameModel.isPlayerWon()) {
+      profile.getStatsData().setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));
+    } else {
+      // When player loses they run out of time.
+      profile.getStatsData().setBestTime(TIMER_MAX);
+    }
+    System.out.println(profile.getStatsData().getBest_time());
+
+    this.profileFactory.saveProfile(profile);
   }
 
   /**
