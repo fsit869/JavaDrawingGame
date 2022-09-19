@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.File;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,10 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.profiles.ProfileFactory;
 
 /** This class is responsible for creating a new profile */
 public class NewProfileController {
   private GameModel gameModel;
+
+  private ProfileFactory profileFactory;
 
   private String profilePicPath;
 
@@ -22,8 +26,9 @@ public class NewProfileController {
   @FXML private ImageView profileImageView;
   @FXML private Button createButton;
 
-  public void initialize() {
+  public void initialize() throws IOException {
     this.gameModel = GameModel.getInstance();
+    profileFactory = new ProfileFactory();
   }
 
   /////////////////////
@@ -55,11 +60,12 @@ public class NewProfileController {
    * @param actionEvent Event of the button press
    */
   @FXML
-  private void onCreateNewProfile(ActionEvent actionEvent) {
+  private void onCreateNewProfile(ActionEvent actionEvent) throws IOException {
     gameModel.getProfile().setProfilePicturePath(profilePicPath);
     gameModel
         .getProfile()
         .setUsername(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    profileFactory.saveProfile(gameModel.getProfile());
   }
 
   /**
