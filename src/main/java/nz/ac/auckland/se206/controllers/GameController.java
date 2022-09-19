@@ -122,6 +122,8 @@ public class GameController {
     this.timerLabel.setText(String.valueOf(TIMER_MAX));
     this.predictionTextArea.setText("Your predictions will show up here");
     //        this.statusLabel.setText("Ready");
+    this.readyPaneMenu.setVisible(true);
+    this.endGamePaneMenu.setVisible(false);
 
     // Set game variables
     this.gameModel.generateWord(WordsData.Difficulty.E);
@@ -133,7 +135,8 @@ public class GameController {
     // Set UI and timer
     this.canvas.setDisable(false);
     this.textToSpeech.speak(String.format("Start drawing a %s", gameModel.getCurrentWordToGuess()));
-    //        this.statusLabel.setText("InGame");
+    this.readyPaneMenu.setVisible(false);
+    this.inGamePaneMenu.setVisible(true);
     this.timerService.start();
   }
 
@@ -141,7 +144,8 @@ public class GameController {
   private void onFinishedState() {
     // Set UI settings
     this.canvas.setDisable(true);
-
+    this.inGamePaneMenu.setVisible(false);
+    this.endGamePaneMenu.setVisible(true);
     // TTS the end game
     if (this.gameModel.isPlayerWon()) {
       this.textToSpeech.speak("Winner");
@@ -303,6 +307,7 @@ public class GameController {
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+    System.out.println(this.gameModel.getCurrentViewState());
   }
 
   @FXML
