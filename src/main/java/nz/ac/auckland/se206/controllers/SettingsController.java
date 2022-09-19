@@ -1,24 +1,27 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.event.ActionEvent;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.profiles.ProfileFactory;
 
 /** This class is responsible for selecting settings */
 public class SettingsController {
 
   private GameModel gameModel;
+
+  private ProfileFactory profileFactory = new ProfileFactory();
   @FXML private Button ttsButton;
+
+  public SettingsController() throws IOException {}
 
   public void initialize() {
     this.gameModel = GameModel.getInstance();
-    if (gameModel.getProfile().getSettingsData().getTts() == true) {
+    if (gameModel.getProfile().getSettingsData().getTts()) {
       ttsButton.setText("ON");
-      // need to enable tts
     } else {
       ttsButton.setText("OFF");
-      // need to disable tts
     }
   }
 
@@ -38,22 +41,20 @@ public class SettingsController {
   // Button handlers /
   ///////////////////
 
-  /**
-   * This method is called when the text to speech button is pressed
-   *
-   * @param actionEvent Event type of button
-   */
-  public void onTtsButton(ActionEvent actionEvent) {
+  /** This method is called when the text to speech button is pressed */
+  public void onTtsButton() {
     switchTts();
   }
 
-  /**
-   * This method is called when user clicks the main menu button to go back to main menu
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
-  private void onBackToMenuButton(ActionEvent actionEvent) {
+  private void onBackToMenuButton() throws IOException {
+    if (ttsButton.getText().equals("ON")) {
+      gameModel.getProfile().getSettingsData().setTts(true);
+    } else {
+      gameModel.getProfile().getSettingsData().setTts(false);
+    }
+    profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
   }
 }
