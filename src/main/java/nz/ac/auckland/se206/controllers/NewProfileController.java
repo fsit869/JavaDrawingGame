@@ -61,10 +61,8 @@ public class NewProfileController {
    */
   @FXML
   private void onCreateNewProfile(ActionEvent actionEvent) throws IOException {
-    gameModel.getProfile().setProfilePicturePath(profilePicPath);
-    gameModel
-        .getProfile()
-        .setUsername(firstNameTextField.getText() + " " + lastNameTextField.getText());
+    profileFactory.createProfile(
+        firstNameTextField.getText() + " " + lastNameTextField.getText(), profilePicPath);
     profileFactory.saveProfile(gameModel.getProfile());
   }
 
