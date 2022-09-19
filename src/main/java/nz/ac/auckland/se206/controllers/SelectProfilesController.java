@@ -8,9 +8,7 @@ import javafx.scene.control.ButtonBar;
 public class SelectProfilesController {
   @FXML private ButtonBar buttonBar;
 
-  public void initialize() {
-    throw new UnsupportedOperationException("Not yet implemented");
-  }
+  public void initialize() {}
 
   /////////////////////
   // Button handlers //
