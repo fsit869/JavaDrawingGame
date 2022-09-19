@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.net.URISyntaxException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This is the controller for the profile stats view */
 public class ProfileStatsController {
@@ -23,10 +26,25 @@ public class ProfileStatsController {
   private ObservableList<String> fullWordHistory =
       FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
   private GameModel gameModel;
+  private Profile profile;
 
-  public void initialize() {
+  public void initialize() throws URISyntaxException {
     fullListComboBox.setItems(fullWordHistory);
     gameModel = GameModel.getInstance();
+    profile = gameModel.getProfile();
+
+    profileNameLabel.setText(profile.getUsername());
+    try {
+      profileImageView.setImage(new Image(profile.getProfilePicturePath()));
+    } catch (IllegalArgumentException e) {
+      System.err.println("Failed to load image");
+      profileImageView.setImage(
+          new Image(
+              ProfileStatsController.class
+                  .getResource("/images/img_not_found.png")
+                  .toURI()
+                  .toString()));
+    }
   }
 
   /////////////////////
