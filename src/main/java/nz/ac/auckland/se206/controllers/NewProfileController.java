@@ -2,9 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +22,6 @@ public class NewProfileController {
   @FXML private TextField firstNameTextField;
   @FXML private TextField lastNameTextField;
   @FXML private ImageView profileImageView;
-  @FXML private Button createButton;
 
   public void initialize() throws IOException {
     this.gameModel = GameModel.getInstance();
@@ -35,13 +32,9 @@ public class NewProfileController {
   // Button handlers //
   /////////////////////
 
-  /**
-   * This method is called when user clicks to choose a profile picture
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks to choose a profile picture */
   @FXML
-  private void onChooseProfilePicture(ActionEvent actionEvent) {
+  private void onChooseProfilePicture() {
     System.out.println("no function");
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
@@ -54,25 +47,17 @@ public class NewProfileController {
     }
   }
 
-  /**
-   * This method is called when user clicks to create a new profile
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks to create a new profile */
   @FXML
-  private void onCreateNewProfile(ActionEvent actionEvent) throws IOException {
+  private void onCreateNewProfile() throws IOException {
     profileFactory.createProfile(
         firstNameTextField.getText() + " " + lastNameTextField.getText(), profilePicPath);
     profileFactory.saveProfile(gameModel.getProfile());
   }
 
-  /**
-   * This method is called when user clicks to create a new profile
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks to create a new profile */
   @FXML
-  private void onBackToMenu(ActionEvent actionEvent) {
+  private void onBackToMenu() {
     gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
   }
 }
