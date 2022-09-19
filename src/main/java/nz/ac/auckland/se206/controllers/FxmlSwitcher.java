@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.model.GameModel;
 
 public class FxmlSwitcher {
@@ -19,7 +18,6 @@ public class FxmlSwitcher {
 
   private FxmlSwitcher() {
     try {
-      this.rootScene = new Scene(loadFxml("game"));
       initialize();
     } catch (IOException e) {
       System.err.println("Failed to initialize fxml switcher. Possible error with loadFxml()");
@@ -39,10 +37,12 @@ public class FxmlSwitcher {
    */
   private void initialize() throws ModelException, IOException, URISyntaxException {
     // Initialize objects
-    FxmlSwitcher fxmlSwitcher = FxmlSwitcher.getInstance();
     this.gameModel = GameModel.getInstance();
+    this.rootScene = new Scene(loadFxml("select_profiles"));
     this.setupViewStateBindings();
-    gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+
+    // IMPORTANT: Upon end of init. The view according to this state will be displayed.
+    this.gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
   }
 
   /**
@@ -51,10 +51,14 @@ public class FxmlSwitcher {
    *
    * @param fxml The name of the FXML file (without extension).
    * @return The node of the input file.
-   * @throws IOException If the file is not found.
    */
-  private static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+  private Parent loadFxml(final String fxml) {
+    try {
+      return new FXMLLoader(FxmlSwitcher.class.getResource("/fxml/" + fxml + ".fxml")).load();
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   /**
@@ -67,35 +71,30 @@ public class FxmlSwitcher {
         .getCurrentViewStateProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
-              try {
-                switch (newValue) {
-                  case CANVAS:
-                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("canvas"));
-                    break;
-                  case SELECTPROFILES:
-                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("select_profiles"));
-                    break;
-                  case NEWPROFILE:
-                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("new_profile"));
-                    break;
-                  case SETTINGS:
-                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("settings"));
-                    break;
-                  case MAINMENU:
-                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("main_menu"));
-                    break;
-                  case PROFILESTATS:
-                    fxmlSwitcherInstance.rootScene.setRoot(loadFxml("profile_stats"));
-                    break;
-                  default:
-                    // Unknown state that is not handled.
-                    throw new IllegalStateException(
-                        String.format(
-                            "Unknown state [%s]\n Transitioned from [%s] state",
-                            oldValue, newValue));
-                }
-              } catch (IOException e) {
-                throw new RuntimeException(e);
+              switch (newValue) {
+                case CANVAS:
+                  rootScene.setRoot(loadFxml("game"));
+                  break;
+                case SELECTPROFILES:
+                  rootScene.setRoot(loadFxml("select_profiles"));
+                  break;
+                case NEWPROFILE:
+                  rootScene.setRoot(loadFxml("new_profile"));
+                  break;
+                case SETTINGS:
+                  rootScene.setRoot(loadFxml("settings"));
+                  break;
+                case MAINMENU:
+                  rootScene.setRoot(loadFxml("main_menu"));
+                  break;
+                case PROFILESTATS:
+                  rootScene.setRoot(loadFxml("profile_stats"));
+                  break;
+                default:
+                  // Unknown state that is not handled.
+                  throw new IllegalStateException(
+                      String.format(
+                          "Unknown state [%s]\n Transitioned from [%s] state", oldValue, newValue));
               }
             });
   }
