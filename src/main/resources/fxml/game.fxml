@@ -94,14 +94,10 @@
                                        <buttons>
                                           <RadioButton mnemonicParsing="false" onAction="#onBrushToggle" selected="true" text="Brush">
                                              <toggleGroup>
-                                                <ToggleGroup />
+                                                <ToggleGroup fx:id="brushToggle" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" onAction="#onEraserToggle" text="Eraser">
-                                             <toggleGroup>
-                                                <ToggleGroup />
-                                             </toggleGroup>
-                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" onAction="#onEraserToggle" text="Eraser" toggleGroup="$brushToggle" />
                                        </buttons>
                                     </ButtonBar>
                                     <Button layoutX="180.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClear" prefHeight="25.0" prefWidth="100.0" text="Clear canvas" />
