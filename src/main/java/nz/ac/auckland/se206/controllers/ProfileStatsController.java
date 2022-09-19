@@ -8,26 +8,27 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the profile stats view */
 public class ProfileStatsController {
-
-  ObservableList<String> fullWordHistory =
-      FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
+  // Fxml components
   @FXML private Label profileNameLabel;
   @FXML private ImageView profileImageView;
-
   @FXML private TextArea profileStatsTextArea;
-
   @FXML private TextArea bestRecordsTextArea;
-
   @FXML private TextArea pastWordsTextArea;
-
   @FXML private ComboBox<String> fullListComboBox;
+
+  private ObservableList<String> fullWordHistory =
+      FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
+  private GameModel gameModel;
 
   public void initialize() {
     fullListComboBox.setItems(fullWordHistory);
+    gameModel = GameModel.getInstance();
   }
+
   /////////////////////
   // Button handlers //
   /////////////////////
@@ -39,6 +40,6 @@ public class ProfileStatsController {
    */
   @FXML
   private void onBackToMenuButton(ActionEvent actionEvent) {
-    throw new UnsupportedOperationException("Not yet implemented");
+    gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
   }
 }
