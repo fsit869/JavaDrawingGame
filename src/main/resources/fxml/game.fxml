@@ -113,7 +113,7 @@
                                  <children>
                                     <ButtonBar layoutY="15.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="166.0">
                                        <buttons>
-                                          <RadioButton mnemonicParsing="false" onAction="#onBrushToggle" selected="true" text="Brush">
+                                          <RadioButton fx:id="brushRadioButton" mnemonicParsing="false" onAction="#onBrushToggle" selected="true" text="Brush">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="brushToggle" />
                                              </toggleGroup>

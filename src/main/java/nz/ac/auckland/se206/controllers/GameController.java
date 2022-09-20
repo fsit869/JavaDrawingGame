@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -34,8 +35,9 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
 public class GameController {
-  private static final int TIMER_MAX = 60;
+  private static final int TIMER_MAX = 3;
   // FXML Components
+  @FXML private RadioButton brushRadioButton;
   @FXML private AnchorPane winLoseDialogue;
   @FXML private Text winLoseText;
   @FXML private Label timerLabel;
@@ -153,6 +155,11 @@ public class GameController {
     // Set UI and timer
     this.canvas.setDisable(false);
     this.textToSpeech.speak(String.format("Start drawing a %s", gameModel.getCurrentWordToGuess()));
+
+    // Set to brush
+    this.setupBrush(false);
+    this.brushRadioButton.setSelected(true);
+
     this.readyPaneMenu.setVisible(false);
     this.inGamePaneMenu.setVisible(true);
     this.timerService.start();
@@ -164,6 +171,9 @@ public class GameController {
     this.canvas.setDisable(true);
     this.inGamePaneMenu.setVisible(false);
     this.endGamePaneMenu.setVisible(true);
+
+    // Prevent mouse from continue drawing after round ends
+    canvas.setOnMouseDragged(e -> {});
 
     // TTS the end game
     if (this.gameModel.isPlayerWon()) {
