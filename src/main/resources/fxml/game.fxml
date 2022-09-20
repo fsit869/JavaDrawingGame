@@ -75,7 +75,7 @@
                         </Text>
                      </content>
                      <header>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onDragDetected="#onWinLoseClose" prefHeight="27.0" prefWidth="180.0" text="Close" />
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onWinLoseClose" prefHeight="27.0" prefWidth="180.0" text="Close" />
                      </header>
                   </DialogPane>
                </children>
