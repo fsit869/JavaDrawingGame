@@ -19,7 +19,7 @@
          </image>
       </ImageView>
       <Button layoutX="47.0" layoutY="392.0" mnemonicParsing="false" onAction="#onChooseProfilePicture" prefHeight="25.0" prefWidth="210.0" text="Choose Profile Picture" />
-      <Button fx:id="createButton" layoutX="290.0" layoutY="198.0" mnemonicParsing="false" onAction="#onCreateNewProfile" prefHeight="219.0" prefWidth="187.0" text="Create" />
+      <Button layoutX="290.0" layoutY="198.0" mnemonicParsing="false" onAction="#onCreateNewProfile" prefHeight="219.0" prefWidth="187.0" text="Create" />
       <Button layoutX="436.0" layoutY="52.0" mnemonicParsing="false" onAction="#onBackToProfiles" prefHeight="70.0" prefWidth="125.0" text="Back To Profiles" />
    </children>
 </AnchorPane>

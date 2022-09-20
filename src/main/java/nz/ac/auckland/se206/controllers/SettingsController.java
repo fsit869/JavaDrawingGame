@@ -61,6 +61,6 @@ public class SettingsController {
   @FXML
   private void onBackToMenuButton() throws IOException {
     profileFactory.saveProfile(gameModel.getProfile());
-    gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
+    gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 }

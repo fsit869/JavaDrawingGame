@@ -48,12 +48,7 @@ public class GameModel {
 
   private boolean playerWon;
 
-  /**
-   * Initialize objects and anything needed for a game
-   *
-   * @throws URISyntaxException Occurs states invalid
-   * @throws IOException Occurs states invalid
-   */
+  /** Initialize objects and anything needed for a game */
   private GameModel() {
     try {
       this.currentWordToGuess = new SimpleStringProperty();

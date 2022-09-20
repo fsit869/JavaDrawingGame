@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +14,7 @@ public class MainMenuController {
 
   private GameModel gameModel;
 
-  public void initialize() throws IOException {
+  public void initialize() {
     //
     this.gameModel = GameModel.getInstance();
     profileButton.setText(gameModel.getProfile().getUsername());

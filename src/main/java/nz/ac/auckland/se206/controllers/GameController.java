@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import ai.djl.ModelException;
 import ai.djl.modality.Classifications;
 import ai.djl.translate.TranslateException;
 import java.awt.Graphics2D;
@@ -61,9 +60,6 @@ public class GameController {
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
-   *
-   * @throws ModelException If there is an error in reading the input/output of the DL model.
-   * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() {
     // Init objects required objects
@@ -197,7 +193,7 @@ public class GameController {
   /**
    * This method determines the accuracy of the guess and rounds it up
    *
-   * @return
+   * @return int containing accuracy rounded up
    */
   private int determineAccuracy() throws TranslateException {
     List<Classifications.Classification> predictions =

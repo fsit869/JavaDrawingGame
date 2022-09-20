@@ -1,8 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import ai.djl.ModelException;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,25 +13,11 @@ public class FxmlSwitcher {
   private Scene rootScene;
 
   private FxmlSwitcher() {
-    try {
-      initialize();
-    } catch (IOException e) {
-      System.err.println("Failed to initialize fxml switcher. Possible error with loadFxml()");
-      throw new RuntimeException(e);
-    } catch (ModelException e) {
-      throw new RuntimeException(e);
-    } catch (URISyntaxException e) {
-      throw new RuntimeException(e);
-    }
+    initialize();
   }
 
-  /**
-   * constructor calls this function to set up the switcher
-   *
-   * @throws ModelException If there is an error in reading the input/output of the DL model.
-   * @throws IOException If the model cannot be found on the file system.
-   */
-  private void initialize() throws ModelException, IOException, URISyntaxException {
+  /** constructor calls this function to set up the switcher */
+  private void initialize() {
     // Initialize objects
     this.gameModel = GameModel.getInstance();
     this.rootScene = new Scene(loadFxml("select_profiles"));

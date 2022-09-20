@@ -43,7 +43,7 @@ public class TextToSpeechTask {
    * @param wordToSpeak Word to TTS
    */
   public void speak(String wordToSpeak) {
-    if (gameModel.getProfile().getSettingsData().getTts() == true) {
+    if (gameModel.getProfile().getSettingsData().getTts()) {
       this.wordToSpeak = wordToSpeak;
       createThread();
       this.thread.start();
