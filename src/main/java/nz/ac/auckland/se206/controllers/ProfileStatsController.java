@@ -39,9 +39,16 @@ public class ProfileStatsController {
 
     // Set stats view
     profileNameLabel.setText(profile.getUsername());
-    pastWordsTextArea.setText(generatePastWordString(TOTAL_PREDICTIONS_TO_SHOW));
     profileStatsTextArea.setText(generateProfileWordString());
     bestRecordsTextArea.setText(generateBestRecordsString());
+
+    // Display past words
+    int pastWordSize = gameModel.getProfile().getWordsData().getWordsPlayed().size();
+    if (pastWordSize == 0) {
+      pastWordsTextArea.setText("No past words!");
+    } else {
+      pastWordsTextArea.setText(generatePastWordString(TOTAL_PREDICTIONS_TO_SHOW));
+    }
 
     // Display profile picture
     try {
