@@ -69,34 +69,24 @@ public class FxmlSwitcher {
     // Bindings for when view state changed
     gameModel
         .getCurrentViewStateProperty()
+        // Determine which states goto which page
         .addListener(
             (observable, oldValue, newValue) -> {
               switch (newValue) {
-                case CANVAS:
-                  rootScene.setRoot(loadFxml("game"));
-                  break;
-                case SELECTPROFILES:
-                  rootScene.setRoot(loadFxml("select_profiles"));
-                  break;
-                case NEWPROFILE:
-                  rootScene.setRoot(loadFxml("new_profile"));
-                  break;
-                case SETTINGS:
-                  rootScene.setRoot(loadFxml("settings"));
-                  break;
-                case MAINMENU:
-                  rootScene.setRoot(loadFxml("main_menu"));
-                  break;
-                case PROFILESTATS:
-                  rootScene.setRoot(loadFxml("profile_stats"));
-                  break;
-                default:
-                  // Unknown state that is not handled.
-                  throw new IllegalStateException(
-                      String.format(
-                          "Unknown state [%s]\n Transitioned from [%s] state", oldValue, newValue));
+                case CANVAS -> rootScene.setRoot(loadFxml("game"));
+                case SELECTPROFILES -> rootScene.setRoot(loadFxml("select_profiles"));
+                case NEWPROFILE -> rootScene.setRoot(loadFxml("new_profile"));
+                case SETTINGS -> rootScene.setRoot(loadFxml("settings"));
+                case MAINMENU -> rootScene.setRoot(loadFxml("main_menu"));
+                case PROFILESTATS -> rootScene.setRoot(loadFxml("profile_stats"));
+                default ->
+                // Unknown state that is not handled.
+                throw new IllegalStateException(
+                    String.format(
+                        "Unknown state [%s]\n Transitioned from [%s] state", oldValue, newValue));
               }
             });
+    // This likely should be refactored into a hash map
   }
 
   ///////////////////////
