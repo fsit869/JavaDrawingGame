@@ -9,12 +9,12 @@
    <children>
       <ButtonBar fx:id="buttonBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS">
         <buttons>
-            <Button fx:id="profileOne" mnemonicParsing="false" onAction="#onNewProfileButton" prefHeight="160.0" text="Button" />
-            <Button fx:id="profileTwo" mnemonicParsing="false" onAction="#onNewProfileButton" prefHeight="160.0" text="Button" />
-            <Button fx:id="profileThree" mnemonicParsing="false" onAction="#onNewProfileButton" prefHeight="160.0" text="Button" />
-            <Button fx:id="profileFour" mnemonicParsing="false" onAction="#onNewProfileButton" prefHeight="160.0" text="Button" />
-            <Button fx:id="profileFive" mnemonicParsing="false" onAction="#onNewProfileButton" prefHeight="160.0" prefWidth="330.0" text="New Profile" />
-          <Button mnemonicParsing="false" onAction="#onGuestButton" prefHeight="162.0" prefWidth="133.0" text="Guest" />
+            <Button fx:id="profileOne" mnemonicParsing="false" onAction="#onProfileButton" prefHeight="160.0" text="Button" />
+            <Button fx:id="profileTwo" mnemonicParsing="false" onAction="#onProfileButton" prefHeight="160.0" text="Button" />
+            <Button fx:id="profileThree" mnemonicParsing="false" onAction="#onProfileButton" prefHeight="160.0" text="Button" />
+            <Button fx:id="profileFour" mnemonicParsing="false" onAction="#onProfileButton" prefHeight="160.0" text="Button" />
+            <Button fx:id="profileFive" mnemonicParsing="false" onAction="#onProfileButton" prefHeight="160.0" prefWidth="330.0" text="New Profile" />
+          <Button fx:id="Guest" mnemonicParsing="false" onAction="#onProfileButton" prefHeight="162.0" prefWidth="133.0" text="Guest" />
         </buttons>
          <HBox.margin>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
