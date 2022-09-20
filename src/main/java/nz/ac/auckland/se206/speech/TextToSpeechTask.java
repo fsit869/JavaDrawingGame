@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.speech;
 
 import javafx.concurrent.Task;
+import nz.ac.auckland.se206.model.GameModel;
 
 /** Represents a TTS class that is on a different thread */
 public class TextToSpeechTask {
@@ -9,9 +10,12 @@ public class TextToSpeechTask {
   private String wordToSpeak = "";
   private Thread thread;
 
+  private GameModel gameModel;
+
   /** Create a new speech thread */
   public TextToSpeechTask() {
     createThread();
+    this.gameModel = GameModel.getInstance();
   }
 
   /** Create new speech thread */
@@ -39,8 +43,10 @@ public class TextToSpeechTask {
    * @param wordToSpeak Word to TTS
    */
   public void speak(String wordToSpeak) {
-    this.wordToSpeak = wordToSpeak;
-    createThread();
-    this.thread.start();
+    if (gameModel.getProfile().getSettingsData().getTts() == true) {
+      this.wordToSpeak = wordToSpeak;
+      createThread();
+      this.thread.start();
+    }
   }
 }
