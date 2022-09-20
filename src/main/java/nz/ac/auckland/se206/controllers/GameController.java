@@ -186,7 +186,15 @@ public class GameController {
       // When player loses they run out of time.
       profile.getStatsData().setBestTime(TIMER_MAX);
     }
-    System.out.println(profile.getStatsData().getBest_time());
+
+    // Save accuracy
+
+    // Save win/loss
+    if (gameModel.isPlayerWon()) {
+      profile.getStatsData().addWins();
+    } else {
+      profile.getStatsData().addLosses();
+    }
 
     this.profileFactory.saveProfile(profile);
   }
@@ -338,7 +346,6 @@ public class GameController {
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
-    System.out.println(this.gameModel.getCurrentViewState());
   }
 
   @FXML
