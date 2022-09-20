@@ -53,6 +53,7 @@ public class NewProfileController {
     if (firstNameTextField.getText() == "") {
       Alert a = new Alert(Alert.AlertType.NONE);
       a.setAlertType(Alert.AlertType.INFORMATION);
+      a.setHeaderText("");
       a.setContentText("Please enter a first name");
       a.show();
     } else {
@@ -61,11 +62,9 @@ public class NewProfileController {
         profileImageView.setImage(image);
         profilePicPath = profileImageView.getImage().getUrl();
       }
-      profileFactory.createProfile(
-          firstNameTextField.getText() + " " + lastNameTextField.getText(), profilePicPath);
-      gameModel.setProfile(
-          profileFactory.selectProfile(
-              firstNameTextField.getText() + " " + lastNameTextField.getText()));
+      String username = firstNameTextField.getText() + " " + lastNameTextField.getText();
+      profileFactory.createProfile(username, profilePicPath);
+      gameModel.setProfile(profileFactory.selectProfile(username));
     }
   }
 
