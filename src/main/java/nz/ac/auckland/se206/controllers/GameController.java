@@ -268,11 +268,11 @@ public class GameController {
 
           // This is the colour of the brush.
           if (eraserMode) {
-            graphic.setFill(javafx.scene.paint.Color.WHITE);
-            graphic.setStroke(javafx.scene.paint.Color.WHITE);
+            graphic.setFill(Color.WHITE);
+            graphic.setStroke(Color.WHITE);
             size = 18;
           } else {
-            graphic.setStroke(javafx.scene.paint.Color.BLACK);
+            graphic.setStroke(Color.BLACK);
             graphic.setFill(Color.BLACK);
             size = 6;
           }

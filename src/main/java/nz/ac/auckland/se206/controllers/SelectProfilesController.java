@@ -79,7 +79,8 @@ public class SelectProfilesController {
    *
    * @param actionEvent Event type of button
    */
-  public void onProfileButton(ActionEvent actionEvent) {
+  @FXML
+  private void onProfileButton(ActionEvent actionEvent) {
     Button current = (Button) actionEvent.getTarget();
     // Check if button is creating new profile
     if (current.getText().equals("New Profile")) {

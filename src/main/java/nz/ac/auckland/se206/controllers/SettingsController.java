@@ -52,7 +52,8 @@ public class SettingsController {
   ///////////////////
 
   /** This method is called when the text to speech button is pressed */
-  public void onTtsButton() {
+  @FXML
+  private void onTtsButton() {
     switchTts();
   }
 
