@@ -2,12 +2,10 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
-import nz.ac.auckland.se206.profiles.ProfileFactory;
 
 /** This is the controller for the main menu */
 public class MainMenuController {
@@ -16,66 +14,42 @@ public class MainMenuController {
 
   private GameModel gameModel;
 
-  private ProfileFactory profileFactory;
-
   public void initialize() throws IOException {
-    //    profileButton.setText(gameModel.getProfile().getUsername());
     this.gameModel = GameModel.getInstance();
-    profileFactory = new ProfileFactory();
+    profileButton.setText(gameModel.getProfile().getUsername());
   }
 
   /////////////////////
   // Button handlers //
   /////////////////////
 
-  /**
-   * This method is called when user clicks start to switch to the canvas view
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks start to switch to the canvas view */
   @FXML
-  private void onStartButton(ActionEvent actionEvent) {
+  private void onStartButton() {
     gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
   }
 
-  /**
-   * This method is called when user clicks the settings button to go to settings
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks the settings button to go to settings */
   @FXML
-  private void onSettingsButton(ActionEvent actionEvent) {
+  private void onSettingsButton() {
     gameModel.setCurrentViewState(GameModel.viewState.SETTINGS);
   }
 
-  /**
-   * This method is called when user clicks to change profile picture
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks to change profile picture */
   @FXML
-  private void onChangeProfileButton(ActionEvent actionEvent) {
+  private void onChangeProfileButton() {
     gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
   }
 
-  /**
-   * This method is called when user clicks to see their profile
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks to see their profile */
   @FXML
-  private void onProfileButton(ActionEvent actionEvent) {
-    System.out.println("no function");
+  private void onProfileButton() {
+    gameModel.setCurrentViewState(GameModel.viewState.PROFILESTATS);
   }
 
-  /**
-   * This method is called when user clicks to exit the game
-   *
-   * @param actionEvent Event of the button press
-   */
+  /** This method is called when user clicks to exit the game */
   @FXML
-  private void onExitButton(ActionEvent actionEvent) {
-
+  private void onExitButton() {
     Platform.exit();
   }
 }
