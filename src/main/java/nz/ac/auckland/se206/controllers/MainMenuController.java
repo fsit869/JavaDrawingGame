@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
 
@@ -17,6 +18,14 @@ public class MainMenuController {
   public void initialize() throws IOException {
     this.gameModel = GameModel.getInstance();
     profileButton.setText(gameModel.getProfile().getUsername());
+    String defaultUrl = profileImageView.getImage().getUrl();
+    try {
+      Image image = new Image(gameModel.getProfile().getProfilePicturePath());
+      profileImageView.setImage(image);
+    } catch (Exception e) {
+      Image image = new Image(defaultUrl);
+      profileImageView.setImage(image);
+    }
   }
 
   /////////////////////
