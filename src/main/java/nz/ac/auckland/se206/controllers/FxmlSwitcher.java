@@ -10,11 +10,10 @@ import nz.ac.auckland.se206.model.GameModel;
 
 public class FxmlSwitcher {
 
+  private static FxmlSwitcher fxmlSwitcherInstance = new FxmlSwitcher();
   private GameModel gameModel;
 
   private Scene rootScene;
-
-  private static FxmlSwitcher fxmlSwitcherInstance = new FxmlSwitcher();
 
   private FxmlSwitcher() {
     try {

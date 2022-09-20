@@ -20,17 +20,6 @@ public class GameModel {
   // Instance of the game. Uses singleton pattern
   private static GameModel gameModelInstance = new GameModel();
 
-  private Profile profile;
-
-  private DoodlePrediction doodlePrediction;
-
-  private StringProperty currentWordToGuess;
-  private ObjectProperty<State> currentGameState;
-
-  private ObjectProperty<ViewState> currentViewState;
-
-  private boolean playerWon;
-
   /** Represents the different states a game could have */
   public enum State {
     READY,
@@ -47,6 +36,17 @@ public class GameModel {
     MAINMENU,
     PROFILESTATS,
   }
+
+  private Profile profile;
+
+  private DoodlePrediction doodlePrediction;
+  private StringProperty currentWordToGuess;
+
+  private ObjectProperty<State> currentGameState;
+
+  private ObjectProperty<ViewState> currentViewState;
+
+  private boolean playerWon;
 
   /**
    * Initialize objects and anything needed for a game

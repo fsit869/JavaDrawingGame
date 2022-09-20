@@ -11,14 +11,15 @@ import java.util.Map;
 import java.util.Random;
 
 public class WordsData extends Data {
-  private Map<Difficulty, ArrayList<String>> wordsNotPlayed;
-  private List<String> wordsPlayed;
-
   public enum Difficulty {
     E,
     M,
     H
   }
+
+  private Map<Difficulty, ArrayList<String>> wordsNotPlayed;
+
+  private List<String> wordsPlayed;
 
   public List<String> getWordsPlayed() {
     return wordsPlayed;
