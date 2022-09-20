@@ -27,6 +27,7 @@ public class SelectProfilesController {
   private ProfileFactory factory;
   private GameModel gameModel;
 
+  /** Initialises the controller, sets the factory and the profiles */
   public void initialize() {
     setButtonsArray();
     // Initialise the profile factory
@@ -45,6 +46,7 @@ public class SelectProfilesController {
     setButtons();
   }
 
+  /** Sets the text of the buttons, grabbing the usernames from the player data */
   public void setButtons() {
     for (int i = 0; i < this.profiles.size(); i++) {
       // Check if there is a profile in the spot
