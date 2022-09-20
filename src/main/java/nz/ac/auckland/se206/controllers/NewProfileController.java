@@ -24,6 +24,7 @@ public class NewProfileController {
   @FXML private TextField lastNameTextField;
   @FXML private ImageView profileImageView;
 
+  /** Init and loads the create new profile view */
   public void initialize() throws IOException {
     this.gameModel = GameModel.getInstance();
     profileFactory = new ProfileFactory();
