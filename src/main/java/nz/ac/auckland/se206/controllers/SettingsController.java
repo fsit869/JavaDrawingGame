@@ -11,12 +11,16 @@ public class SettingsController {
 
   private GameModel gameModel;
 
-  private ProfileFactory profileFactory = new ProfileFactory();
+  private ProfileFactory profileFactory;
   @FXML private Button ttsButton;
 
-  public SettingsController() throws IOException {}
-
+  /** Init and loads the settings view */
   public void initialize() {
+    try {
+      profileFactory = new ProfileFactory();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
     this.gameModel = GameModel.getInstance();
     if (gameModel.getProfile().getSettingsData().getTts()) {
       ttsButton.setText("ON");
