@@ -31,15 +31,23 @@ public class ProfileStatsController {
   private GameModel gameModel;
   private Profile profile;
 
+  /**
+   * Init and load the stats view
+   *
+   * @throws URISyntaxException Exceptionwhen loading stats
+   */
   public void initialize() throws URISyntaxException {
     fullListComboBox.setItems(fullWordHistory);
     gameModel = GameModel.getInstance();
     profile = gameModel.getProfile();
 
+    // Set stats view
     profileNameLabel.setText(profile.getUsername());
     pastWordsTextArea.setText(generatePastWordString(TOTAL_PREDICTIONS_TO_SHOW));
     profileStatsTextArea.setText(generateProfileWordString());
+    bestRecordsTextArea.setText(generateBestRecordsString());
 
+    // Display profile picture
     try {
       profileImageView.setImage(new Image(profile.getProfilePicturePath()));
     } catch (IllegalArgumentException e) {
@@ -55,12 +63,20 @@ public class ProfileStatsController {
   /////////////////////
   // String builders //
   /////////////////////
+
+  /**
+   * Generate a list of past words
+   *
+   * @param totalToDisplay Total past words to display
+   * @return Multiline string of past words
+   */
   private String generatePastWordString(int totalToDisplay) {
     // Get list of words to display
     List<String> wordsPlayed = this.profile.getWordsData().getWordsPlayed();
     if (wordsPlayed.size() > totalToDisplay) {
       wordsPlayed = wordsPlayed.subList(0, totalToDisplay);
     }
+
     StringBuilder stringBuilder = new StringBuilder();
     // Generate String
     for (String word : wordsPlayed) {
@@ -69,12 +85,37 @@ public class ProfileStatsController {
     return stringBuilder.toString();
   }
 
+  /**
+   * Generate profile statistic string
+   *
+   * @return Multiline string of past words
+   */
   private String generateProfileWordString() {
     StringBuilder stringBuilder = new StringBuilder();
     StatsData statsData = this.gameModel.getProfile().getStatsData();
+    // Show the respective stat
     stringBuilder.append(String.format("%-15s %5d\n", "Games Won:", statsData.getWins()));
     stringBuilder.append(String.format("%-15s %5d\n", "Games Lost:", statsData.getLosses()));
     stringBuilder.append(String.format("%-15s %5d\n", "Total Games:", statsData.getTotalGames()));
+    return stringBuilder.toString();
+  }
+
+  /**
+   * Generate best record string
+   *
+   * @return Multi line string
+   */
+  private String generateBestRecordsString() {
+    StringBuilder stringBuilder = new StringBuilder();
+    StatsData statsData = this.gameModel.getProfile().getStatsData();
+    // Show the respective stat
+    stringBuilder.append(
+        String.format("%-20s %3d\n", "Highest Win Streak:", statsData.getBestStreak()));
+    stringBuilder.append(
+        String.format("%-20s %3d\n", "Current Win Streak:", statsData.getCurrentStreak()));
+    stringBuilder.append(
+        String.format("%-20s %3d\n", "Best Accuracy:", statsData.getBestAccuracy()));
+    stringBuilder.append(String.format("%-20s %3d\n", "Best Time:", statsData.getBestTime()));
     return stringBuilder.toString();
   }
 
