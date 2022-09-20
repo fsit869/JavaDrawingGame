@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.controllers.GameController;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
-  private static final int TOTAL_PREDICTIONS = 10;
+  public static final int TOTAL_PREDICTIONS = 10;
 
   private int timerTotal;
   private int counter;

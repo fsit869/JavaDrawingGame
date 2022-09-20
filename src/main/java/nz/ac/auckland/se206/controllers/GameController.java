@@ -1,10 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
 import ai.djl.ModelException;
+import ai.djl.modality.Classifications;
+import ai.djl.translate.TranslateException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
@@ -22,7 +25,7 @@ import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
-import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.profiles.entities.StatsData;
 import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
@@ -173,30 +176,56 @@ public class GameController {
       this.saveProfileStats();
     } catch (IOException e) {
       e.printStackTrace();
+    } catch (TranslateException e) {
+      e.printStackTrace();
     }
   }
 
   /** Saves the profile information and win/loss */
-  private void saveProfileStats() throws IOException {
-    Profile profile = this.gameModel.getProfile();
+  private void saveProfileStats() throws IOException, TranslateException {
+    StatsData statsData = this.gameModel.getProfile().getStatsData();
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {
-      profile.getStatsData().setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));
+      statsData.setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));
     } else {
       // When player loses they run out of time.
-      profile.getStatsData().setBestTime(TIMER_MAX);
+      statsData.setBestTime(TIMER_MAX);
     }
 
-    // Save accuracy
-
-    // Save win/loss
+    // Save win/loss and also stats accuracy
     if (gameModel.isPlayerWon()) {
-      profile.getStatsData().addWins();
+      statsData.addWins();
+      statsData.setBestAccuracy(determineAccuracy());
     } else {
-      profile.getStatsData().addLosses();
+      statsData.addLosses();
+      statsData.setBestAccuracy(0);
     }
 
-    this.profileFactory.saveProfile(profile);
+    this.profileFactory.saveProfile(gameModel.getProfile());
+  }
+
+  /**
+   * This method determines the accuracy of the guess and rounds it up
+   *
+   * @return
+   */
+  private int determineAccuracy() throws TranslateException {
+    List<Classifications.Classification> predictions =
+        gameModel.getPredictions(this.getCurrentSnapshot(), TimerTask.TOTAL_PREDICTIONS);
+
+    // Find the best probability and round up
+    for (final Classifications.Classification classification : predictions) {
+      if (classification
+          .getClassName()
+          .replace("_", " ")
+          .equals(gameModel.getCurrentWordToGuess())) {
+        return (int) Math.ceil(classification.getProbability() * 100);
+      }
+    }
+    throw new IllegalAccessError(
+        String.format(
+            "Could not find the word to guess in top %d predictions! Unknown accuracy",
+            TimerTask.TOTAL_PREDICTIONS));
   }
 
   /**
