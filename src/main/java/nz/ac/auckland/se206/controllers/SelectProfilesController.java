@@ -40,7 +40,7 @@ public class SelectProfilesController {
 
   public void setButtons() {
     for (int i = 0; i < this.profiles.size(); i++) {
-      if (profiles.get(i).getUsername() != "") {
+      if (!profiles.get(i).getUsername().equals("")) {
         this.arrButtons[i].setText(profiles.get(i).getUsername());
       } else {
         this.arrButtons[i].setText("New Profile");
