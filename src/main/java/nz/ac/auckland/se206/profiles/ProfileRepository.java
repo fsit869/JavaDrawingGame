@@ -2,7 +2,11 @@ package nz.ac.auckland.se206.profiles;
 
 // is responsible for accessing the database, and writing to the database. (json file)
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonStreamParser;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
