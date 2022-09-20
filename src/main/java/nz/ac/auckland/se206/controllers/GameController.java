@@ -343,21 +343,41 @@ public class GameController {
     }
   }
 
+  /**
+   * This button is called when requesting the menu
+   *
+   * @param actionEvent Button event
+   */
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
   }
 
+  /**
+   * This button is called when starting game
+   *
+   * @param actionEvent Button event
+   */
   @FXML
   private void onStartGameButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
+  /**
+   * This button is called when giving up request
+   *
+   * @param actionEvent Button event
+   */
   @FXML
   private void onGiveUpButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
   }
 
+  /**
+   * This button is called when requesting new game
+   *
+   * @param actionEvent Button event
+   */
   @FXML
   private void onNewGameButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
