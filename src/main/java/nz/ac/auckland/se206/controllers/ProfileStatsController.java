@@ -133,7 +133,7 @@ public class ProfileStatsController {
    */
   @FXML
   private void onBackToMenuButton(ActionEvent actionEvent) {
-    gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+    gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
   /**

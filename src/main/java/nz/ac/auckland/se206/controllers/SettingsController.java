@@ -59,6 +59,6 @@ public class SettingsController {
       gameModel.getProfile().getSettingsData().setTts(false);
     }
     profileFactory.saveProfile(gameModel.getProfile());
-    gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
+    gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
 }

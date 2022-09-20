@@ -72,6 +72,6 @@ public class NewProfileController {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onBackToProfiles() {
-    gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
+    gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
 }

@@ -387,7 +387,7 @@ public class GameController {
    */
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
-    this.gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+    this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
   /**
