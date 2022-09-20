@@ -39,14 +39,11 @@ public class StatsData extends Data {
     return bestStreak;
   }
 
-  public void addGames() {
-    this.totalGames += 1;
-  }
-
   /** Will reset the current streak when called. */
   public void addLosses() {
     this.losses += 1;
     this.currentStreak = 0;
+    this.totalGames += 1;
   }
 
   /**
@@ -56,6 +53,7 @@ public class StatsData extends Data {
   public void addWins() {
     this.wins += 1;
     this.currentStreak += 1;
+    this.totalGames += 1;
     // Check if currentStreak is better than best streak
     if (this.currentStreak > this.bestStreak) {
       this.bestStreak = this.currentStreak;
