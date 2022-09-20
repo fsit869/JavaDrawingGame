@@ -80,8 +80,10 @@ public class GameModel {
    */
   public String generateWord(WordsData.Difficulty difficulty) {
     try {
+      // Get the words from the user profile
       setCurrentWordToGuess(this.profile.getWordsData().getRandomWord(difficulty));
     } catch (URISyntaxException | IOException e) {
+      // If unexpected err occurs
       System.err.println("Failed to generate words");
       throw new RuntimeException(e);
     }

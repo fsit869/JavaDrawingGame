@@ -123,13 +123,13 @@
   "username": "Guest",
   "profilePicturePath": "okokokokokok",
   "statsData": {
-    "bestTime": 60,
-    "bestAccuracy": 0,
-    "totalGames": 0,
-    "wins": 0,
-    "losses": 0,
+    "bestTime": 6,
+    "bestAccuracy": 13,
+    "totalGames": 8,
+    "wins": 1,
+    "losses": 7,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 1
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -155,7 +155,6 @@
         "bowtie",
         "bracelet",
         "brain",
-        "bread",
         "bridge",
         "broom",
         "bucket",
@@ -186,7 +185,6 @@
         "ear",
         "eye",
         "face",
-        "fan",
         "feather",
         "finger",
         "fire hydrant",
@@ -200,7 +198,6 @@
         "grapes",
         "grass",
         "guitar",
-        "hamburger",
         "hammer",
         "hand",
         "harp",
@@ -209,7 +206,6 @@
         "hexagon",
         "hot air balloon",
         "hot dog",
-        "hourglass",
         "house",
         "ice cream",
         "key",
@@ -229,7 +225,6 @@
         "paintbrush",
         "palm tree",
         "paper clip",
-        "pear",
         "peas",
         "pencil",
         "pig",
@@ -242,7 +237,6 @@
         "scorpion",
         "screwdriver",
         "sheep",
-        "shoe",
         "shovel",
         "skateboard",
         "skull",
@@ -270,7 +264,6 @@
         "traffic light",
         "tree",
         "triangle",
-        "umbrella",
         "vase",
         "wheel",
         "windmill",
@@ -284,11 +277,18 @@
       "pineapple",
       "drums",
       "octagon",
-      "peanut"
+      "peanut",
+      "shoe",
+      "pear",
+      "hamburger",
+      "hourglass",
+      "umbrella",
+      "fan",
+      "bread"
     ]
   },
   "settingsData": {
-    "tts": false
+    "tts": true
   }
 }
 ]

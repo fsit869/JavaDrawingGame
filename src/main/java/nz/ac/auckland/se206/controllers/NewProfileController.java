@@ -37,10 +37,13 @@ public class NewProfileController {
   /** This method is called when user clicks to choose a profile picture */
   @FXML
   private void onChooseProfilePicture() {
+    // Open file load dialogue
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
     File profilePic = fileChooser.showOpenDialog(null);
+
+    // Load image if valid
     if (profilePic != null) {
       profilePicPath = profilePic.getPath();
       Image image = new Image(profilePic.toURI().toString());
@@ -52,17 +55,20 @@ public class NewProfileController {
   @FXML
   private void onCreateNewProfile() throws IOException {
     if (firstNameTextField.getText() == "") {
+      // Show dialogue if first name is empty
       Alert a = new Alert(Alert.AlertType.NONE);
       a.setAlertType(Alert.AlertType.INFORMATION);
       a.setHeaderText("");
       a.setContentText("Please enter a first name");
       a.show();
     } else {
+      // Load profile picture
       if (profilePicPath == null) {
         Image image = new Image(profileImageView.getImage().getUrl());
         profileImageView.setImage(image);
         profilePicPath = profileImageView.getImage().getUrl();
       }
+      // Save new profile
       String username = firstNameTextField.getText() + " " + lastNameTextField.getText();
       profileFactory.createProfile(username, profilePicPath);
       gameModel.setProfile(profileFactory.selectProfile(username));

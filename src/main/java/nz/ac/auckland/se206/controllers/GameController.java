@@ -66,10 +66,12 @@ public class GameController {
    * @throws IOException If the model cannot be found on the file system.
    */
   public void initialize() {
+    // Init objects required objects
     graphic = canvas.getGraphicsContext2D();
     this.gameModel = GameModel.getInstance();
     this.textToSpeech = new TextToSpeechTask();
 
+    // Initialize the profile saver
     try {
       this.profileFactory = new ProfileFactory();
     } catch (IOException e) {
@@ -105,26 +107,6 @@ public class GameController {
           this.timerLabel.setText("Out of time");
           this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
         });
-  }
-
-  /**
-   * State transition method. Handles which state to transfer next.
-   *
-   * @param actionEvent Event from button
-   */
-  @FXML
-  private void onStateChangeButton(ActionEvent actionEvent) {
-    switch (gameModel.getCurrentGameState()) {
-      case READY:
-        gameModel.setCurrentGameState(GameModel.State.INGAME);
-        break;
-      case INGAME:
-        gameModel.setCurrentGameState(GameModel.State.FINISHED);
-        break;
-      case FINISHED:
-        gameModel.setCurrentGameState(GameModel.State.READY);
-        break;
-    }
   }
 
   /////////////////////
@@ -225,11 +207,15 @@ public class GameController {
     for (final Classifications.Classification classification : predictions) {
       if (classification
           .getClassName()
+          // Cleaning data
           .replace("_", " ")
           .equals(gameModel.getCurrentWordToGuess())) {
+        // Convert to a percentage. Currently in decimal form
         return (int) Math.ceil(classification.getProbability() * 100);
       }
     }
+
+    // Error occurs if the expected word is not within top prediction
     throw new IllegalAccessError(
         String.format(
             "Could not find the word to guess in top %d predictions! Unknown accuracy",

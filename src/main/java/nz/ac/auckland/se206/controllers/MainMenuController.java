@@ -16,13 +16,17 @@ public class MainMenuController {
   private GameModel gameModel;
 
   public void initialize() throws IOException {
+    //
     this.gameModel = GameModel.getInstance();
     profileButton.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
+
+    // Try load profile picture
     try {
       Image image = new Image(gameModel.getProfile().getProfilePicturePath());
       profileImageView.setImage(image);
     } catch (Exception e) {
+      // Unexpected err while loading image. Display default img not found.
       Image image = new Image(defaultUrl);
       profileImageView.setImage(image);
     }
