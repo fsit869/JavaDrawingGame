@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -36,7 +35,7 @@
          </font>
       </TextField>
       <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="291.0" mouseTransparent="true" prefHeight="99.0" prefWidth="200.0" style="-fx-font-family: monospace;" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;Example Word4:&#10;Example Word5:&#10;" />
-      <ComboBox fx:id="fullListComboBox" focusTraversable="false" layoutX="310.0" layoutY="391.0" prefHeight="25.0" prefWidth="200.0" promptText="See Full List" />
       <Button focusTraversable="false" layoutX="58.0" layoutY="332.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="85.0" prefWidth="144.0" text="Back To Main Menu" />
+      <Button layoutX="310.0" layoutY="390.0" mnemonicParsing="false" onAction="#onFullListButton" prefHeight="25.0" prefWidth="200.0" text="See full list" />
    </children>
 </AnchorPane>

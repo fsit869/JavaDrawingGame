@@ -2,15 +2,15 @@ package nz.ac.auckland.se206.controllers;
 
 import java.net.URISyntaxException;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
@@ -24,10 +24,7 @@ public class ProfileStatsController {
   @FXML private TextArea profileStatsTextArea;
   @FXML private TextArea bestRecordsTextArea;
   @FXML private TextArea pastWordsTextArea;
-  @FXML private ComboBox<String> fullListComboBox;
 
-  private ObservableList<String> fullWordHistory =
-      FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
   private GameModel gameModel;
   private Profile profile;
 
@@ -37,7 +34,6 @@ public class ProfileStatsController {
    * @throws URISyntaxException Exceptionwhen loading stats
    */
   public void initialize() throws URISyntaxException {
-    fullListComboBox.setItems(fullWordHistory);
     gameModel = GameModel.getInstance();
     profile = gameModel.getProfile();
 
@@ -131,5 +127,40 @@ public class ProfileStatsController {
   @FXML
   private void onBackToMenuButton(ActionEvent actionEvent) {
     gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+  }
+
+  /**
+   * This method is called when requesting to see all words
+   *
+   * @param actionEvent Event of button
+   */
+  @FXML
+  private void onFullListButton(ActionEvent actionEvent) {
+    // Box info
+    Alert fullWordDialogue = new Alert(Alert.AlertType.INFORMATION);
+    fullWordDialogue.setTitle("Past words");
+    fullWordDialogue.setHeaderText("Below is your full past word history from newest to oldest");
+
+    // Config textarea settings. Influenced from
+    // https://code.makery.ch/blog/javafx-dialogs-official/
+    TextArea textArea = new TextArea();
+    textArea.setEditable(false);
+    textArea.setWrapText(true);
+    textArea.setMaxWidth(Double.MAX_VALUE);
+    textArea.setMaxHeight(Double.MAX_VALUE);
+    GridPane.setVgrow(textArea, Priority.ALWAYS);
+    GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+    // Show past words
+    int pastWordSize = gameModel.getProfile().getWordsData().getWordsPlayed().size();
+    if (pastWordSize == 0) {
+      textArea.setText("No past words!");
+    } else {
+      textArea.setText(generatePastWordString(pastWordSize));
+    }
+
+    // Display
+    fullWordDialogue.getDialogPane().setContent(textArea);
+    fullWordDialogue.showAndWait();
   }
 }
