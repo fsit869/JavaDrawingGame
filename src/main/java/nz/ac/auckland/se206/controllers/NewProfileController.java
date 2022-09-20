@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.File;
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,7 +36,6 @@ public class NewProfileController {
   /** This method is called when user clicks to choose a profile picture */
   @FXML
   private void onChooseProfilePicture() {
-    System.out.println("no function");
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
@@ -50,14 +50,28 @@ public class NewProfileController {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onCreateNewProfile() throws IOException {
-    profileFactory.createProfile(
-        firstNameTextField.getText() + " " + lastNameTextField.getText(), profilePicPath);
-    profileFactory.saveProfile(gameModel.getProfile());
+    if (firstNameTextField.getText() == "") {
+      Alert a = new Alert(Alert.AlertType.NONE);
+      a.setAlertType(Alert.AlertType.INFORMATION);
+      a.setContentText("Please enter a first name");
+      a.show();
+    } else {
+      if (profilePicPath == null) {
+        Image image = new Image(profileImageView.getImage().getUrl());
+        profileImageView.setImage(image);
+        profilePicPath = profileImageView.getImage().getUrl();
+      }
+      profileFactory.createProfile(
+          firstNameTextField.getText() + " " + lastNameTextField.getText(), profilePicPath);
+      gameModel.setProfile(
+          profileFactory.selectProfile(
+              firstNameTextField.getText() + " " + lastNameTextField.getText()));
+    }
   }
 
   /** This method is called when user clicks to create a new profile */
   @FXML
-  private void onBackToMenu() {
-    gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
+  private void onBackToProfiles() {
+    gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
   }
 }
