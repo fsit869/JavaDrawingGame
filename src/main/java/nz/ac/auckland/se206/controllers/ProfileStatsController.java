@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.net.URISyntaxException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This is the controller for the profile stats view */
 public class ProfileStatsController {
+  public static final int TOTAL_PREDICTIONS_TO_SHOW = 5;
   // Fxml components
   @FXML private Label profileNameLabel;
   @FXML private ImageView profileImageView;
@@ -34,6 +36,8 @@ public class ProfileStatsController {
     profile = gameModel.getProfile();
 
     profileNameLabel.setText(profile.getUsername());
+    pastWordsTextArea.setText(generatePastWordString(TOTAL_PREDICTIONS_TO_SHOW));
+
     try {
       profileImageView.setImage(new Image(profile.getProfilePicturePath()));
     } catch (IllegalArgumentException e) {
@@ -45,6 +49,22 @@ public class ProfileStatsController {
                   .toURI()
                   .toString()));
     }
+  }
+  /////////////////////
+  // String builders //
+  /////////////////////
+  private String generatePastWordString(int totalToDisplay) {
+    // Get list of words to display
+    List<String> wordsPlayed = this.profile.getWordsData().getWordsPlayed();
+    if (wordsPlayed.size() > totalToDisplay) {
+      wordsPlayed = wordsPlayed.subList(0, totalToDisplay);
+    }
+    StringBuilder stringBuilder = new StringBuilder();
+    // Generate String
+    for (String word : wordsPlayed) {
+      stringBuilder.append(word + System.getProperty("line.separator"));
+    }
+    return stringBuilder.toString();
   }
 
   /////////////////////

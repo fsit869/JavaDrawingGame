@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ProfileStatsController">
+<AnchorPane prefHeight="449.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ProfileStatsController">
    <children>
-      <ImageView fx:id="profileImageView" fitHeight="200.0" fitWidth="210.0" layoutX="36.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profileImageView" fitHeight="200.0" fitWidth="210.0" layoutX="34.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/default_profile_picture.png" />
          </image>
       </ImageView>
-      <Label fx:id="profileNameLabel" focusTraversable="false" layoutX="98.0" layoutY="205.0" prefHeight="36.0" prefWidth="83.0" text="Profile Name" />
+      <Label fx:id="profileNameLabel" focusTraversable="false" layoutX="96.0" layoutY="246.0" prefHeight="36.0" prefWidth="83.0" text="Profile Name" />
       <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="24.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Profile Stats">
          <font>
             <Font size="15.0" />
@@ -35,8 +35,8 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="278.0" mouseTransparent="true" prefHeight="76.0" prefWidth="200.0" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;" />
-      <ComboBox fx:id="fullListComboBox" focusTraversable="false" layoutX="310.0" layoutY="361.0" prefHeight="25.0" prefWidth="200.0" promptText="See Full List" />
-      <Button focusTraversable="false" layoutX="48.0" layoutY="291.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="85.0" prefWidth="144.0" text="Back To Main Menu" />
+      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="278.0" mouseTransparent="true" prefHeight="107.0" prefWidth="200.0" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;Example Word4:&#10;Example Word5:&#10;" />
+      <ComboBox fx:id="fullListComboBox" focusTraversable="false" layoutX="310.0" layoutY="391.0" prefHeight="25.0" prefWidth="200.0" promptText="See Full List" />
+      <Button focusTraversable="false" layoutX="58.0" layoutY="332.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="85.0" prefWidth="144.0" text="Back To Main Menu" />
    </children>
 </AnchorPane>
