@@ -19,7 +19,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.model.GameModel;
@@ -33,6 +36,8 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController {
   private static final int TIMER_MAX = 60;
   // FXML Components
+  @FXML private AnchorPane winLoseDialogue;
+  @FXML private Text winLoseText;
   @FXML private Label timerLabel;
   @FXML private Label wordLabel;
   @FXML private Canvas canvas;
@@ -136,6 +141,7 @@ public class GameController {
     //        this.statusLabel.setText("Ready");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);
+    this.winLoseDialogue.setVisible(false);
 
     // Set game variables
     this.gameModel.generateWord(WordsData.Difficulty.E);
@@ -158,14 +164,16 @@ public class GameController {
     this.canvas.setDisable(true);
     this.inGamePaneMenu.setVisible(false);
     this.endGamePaneMenu.setVisible(true);
+
     // TTS the end game
     if (this.gameModel.isPlayerWon()) {
       this.textToSpeech.speak("Winner");
-      //            this.statusLabel.setText("You Win");
+      this.winLoseText.setText("You Win!");
     } else {
       this.textToSpeech.speak("Haha loser");
-      //            this.statusLabel.setText("You Lose");
+      this.winLoseText.setText("You Lose");
     }
+    this.winLoseDialogue.setVisible(true);
 
     // Disable timer
     this.timerService.cancel();
@@ -410,5 +418,15 @@ public class GameController {
   @FXML
   private void onNewGameButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
+  }
+
+  /**
+   * Closes the win/loss menu
+   *
+   * @param mouseEvent Button event
+   */
+  @FXML
+  private void onWinLoseClose(MouseEvent mouseEvent) {
+    this.winLoseDialogue.setVisible(false);
   }
 }
