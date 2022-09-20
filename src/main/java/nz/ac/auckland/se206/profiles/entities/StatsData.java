@@ -3,15 +3,20 @@ package nz.ac.auckland.se206.profiles.entities;
 // model of what will be stored as user data in a profile
 
 public class StatsData extends Data {
-  private int best_time;
-  private int best_accuracy;
+  private int bestTime;
+  private int bestAccuracy;
+  private int totalGames;
+  private int wins;
+  private int losses;
+  private int currentStreak;
+  private int bestStreak;
 
-  public int getBest_accuracy() {
-    return best_accuracy;
+  public int getBestAccuracy() {
+    return bestAccuracy;
   }
 
-  public int getBest_time() {
-    return best_time;
+  public int getBestTime() {
+    return bestTime;
   }
 
   /**
@@ -20,8 +25,8 @@ public class StatsData extends Data {
    * @param roundTime current round's time
    */
   public void setBestTime(int roundTime) {
-    if (this.best_time < roundTime) {
-      this.best_time = roundTime;
+    if (this.bestTime < roundTime) {
+      this.bestTime = roundTime;
     }
   }
 
@@ -31,14 +36,14 @@ public class StatsData extends Data {
    * @param roundAccuracy current round's accuracy
    */
   public void setBestAccuracy(int roundAccuracy) {
-    if (this.best_accuracy < roundAccuracy) {
-      this.best_accuracy = roundAccuracy;
+    if (this.bestAccuracy < roundAccuracy) {
+      this.bestAccuracy = roundAccuracy;
     }
   }
 
   @Override
   public void resetData() {
-    this.best_accuracy = -1;
-    this.best_time = -1;
+    this.bestAccuracy = -1;
+    this.bestTime = -1;
   }
 }
