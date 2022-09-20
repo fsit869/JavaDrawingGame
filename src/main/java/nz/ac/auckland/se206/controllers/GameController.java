@@ -296,7 +296,7 @@ public class GameController {
             graphic.setStroke(javafx.scene.paint.Color.WHITE);
             size = 18;
           } else {
-            graphic.setStroke(Color.BLUE);
+            graphic.setStroke(Color.BLACK);
             graphic.setFill(Color.BLACK);
             size = 6;
           }
