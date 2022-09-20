@@ -35,7 +35,7 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
 public class GameController {
-  private static final int TIMER_MAX = 3;
+  private static final int TIMER_MAX = 60;
   // FXML Components
   @FXML private RadioButton brushRadioButton;
   @FXML private AnchorPane winLoseDialogue;
@@ -296,7 +296,7 @@ public class GameController {
             graphic.setStroke(javafx.scene.paint.Color.WHITE);
             size = 18;
           } else {
-            graphic.setStroke(javafx.scene.paint.Color.BLACK);
+            graphic.setStroke(Color.BLUE);
             graphic.setFill(Color.BLACK);
             size = 6;
           }
