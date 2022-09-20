@@ -1,17 +1,27 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.profiles.ProfileFactory;
 
 /** This is the controller for the main menu */
 public class MainMenuController {
   @FXML private Button profileButton;
   @FXML private ImageView profileImageView;
 
-  public void initialize() {
-    throw new UnsupportedOperationException("Not yet implemented");
+  private GameModel gameModel;
+
+  private ProfileFactory profileFactory;
+
+  public void initialize() throws IOException {
+    //    profileButton.setText(gameModel.getProfile().getUsername());
+    this.gameModel = GameModel.getInstance();
+    profileFactory = new ProfileFactory();
   }
 
   /////////////////////
@@ -25,7 +35,7 @@ public class MainMenuController {
    */
   @FXML
   private void onStartButton(ActionEvent actionEvent) {
-    throw new UnsupportedOperationException("Not yet implemented");
+    gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
   }
 
   /**
@@ -35,7 +45,7 @@ public class MainMenuController {
    */
   @FXML
   private void onSettingsButton(ActionEvent actionEvent) {
-    throw new UnsupportedOperationException("Not yet implemented");
+    gameModel.setCurrentViewState(GameModel.viewState.SETTINGS);
   }
 
   /**
@@ -45,7 +55,7 @@ public class MainMenuController {
    */
   @FXML
   private void onChangeProfileButton(ActionEvent actionEvent) {
-    throw new UnsupportedOperationException("Not yet implemented");
+    gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
   }
 
   /**
@@ -55,7 +65,7 @@ public class MainMenuController {
    */
   @FXML
   private void onProfileButton(ActionEvent actionEvent) {
-    throw new UnsupportedOperationException("Not yet implemented");
+    System.out.println("no function");
   }
 
   /**
@@ -65,6 +75,7 @@ public class MainMenuController {
    */
   @FXML
   private void onExitButton(ActionEvent actionEvent) {
-    throw new UnsupportedOperationException("Not yet implemented");
+
+    Platform.exit();
   }
 }
