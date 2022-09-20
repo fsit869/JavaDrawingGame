@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.profiles.entities.StatsData;
 
 /** This is the controller for the profile stats view */
 public class ProfileStatsController {
@@ -37,6 +38,7 @@ public class ProfileStatsController {
 
     profileNameLabel.setText(profile.getUsername());
     pastWordsTextArea.setText(generatePastWordString(TOTAL_PREDICTIONS_TO_SHOW));
+    profileStatsTextArea.setText(generateProfileWordString());
 
     try {
       profileImageView.setImage(new Image(profile.getProfilePicturePath()));
@@ -64,6 +66,15 @@ public class ProfileStatsController {
     for (String word : wordsPlayed) {
       stringBuilder.append(word + System.getProperty("line.separator"));
     }
+    return stringBuilder.toString();
+  }
+
+  private String generateProfileWordString() {
+    StringBuilder stringBuilder = new StringBuilder();
+    StatsData statsData = this.gameModel.getProfile().getStatsData();
+    stringBuilder.append(String.format("%-15s %5d\n", "Games Won:", statsData.getWins()));
+    stringBuilder.append(String.format("%-15s %5d\n", "Games Lost:", statsData.getLosses()));
+    stringBuilder.append(String.format("%-15s %5d\n", "Total Games:", statsData.getTotalGames()));
     return stringBuilder.toString();
   }
 
