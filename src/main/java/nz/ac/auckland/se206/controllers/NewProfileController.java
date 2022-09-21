@@ -66,6 +66,7 @@ public class NewProfileController {
       String username = firstNameTextField.getText() + " " + lastNameTextField.getText();
       profileFactory.createProfile(username, profilePicPath);
       gameModel.setProfile(profileFactory.selectProfile(username));
+      gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
     }
   }
 
