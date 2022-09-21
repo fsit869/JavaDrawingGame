@@ -20,8 +20,8 @@ public class NewProfileController {
   private String profilePicPath;
 
   // FXML components
-  @FXML private TextField firstNameTextField;
-  @FXML private TextField lastNameTextField;
+  @FXML private TextField usernameTextField;
+
   @FXML private ImageView profileImageView;
 
   /** Init and loads the create new profile view */
@@ -54,12 +54,12 @@ public class NewProfileController {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onCreateNewProfile() throws IOException {
-    if (firstNameTextField.getText() == "") {
-      // Show dialogue if first name is empty
+    if (usernameTextField.getText() == "") {
+      // Show dialogue if no username entered
       Alert a = new Alert(Alert.AlertType.NONE);
       a.setAlertType(Alert.AlertType.INFORMATION);
       a.setHeaderText("");
-      a.setContentText("Please enter a first name");
+      a.setContentText("Please enter a username");
       a.show();
     } else {
       // Load profile picture
@@ -69,9 +69,10 @@ public class NewProfileController {
         profilePicPath = profileImageView.getImage().getUrl();
       }
       // Save new profile
-      String username = firstNameTextField.getText() + " " + lastNameTextField.getText();
+      String username = usernameTextField.getText();
       profileFactory.createProfile(username, profilePicPath);
       gameModel.setProfile(profileFactory.selectProfile(username));
+      gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     }
   }
 

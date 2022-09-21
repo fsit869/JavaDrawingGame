@@ -15,7 +15,7 @@ public class MainMenuController {
   private GameModel gameModel;
 
   public void initialize() {
-    //
+    // Setup requierd objects
     this.gameModel = GameModel.getInstance();
     profileButton.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
@@ -62,6 +62,6 @@ public class MainMenuController {
   /** This method is called when user clicks to exit the game */
   @FXML
   private void onExitButton() {
-    Platform.exit();
+    System.exit(0);
   }
 }

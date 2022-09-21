@@ -7,19 +7,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="453.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.NewProfileController">
+<AnchorPane prefHeight="389.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.NewProfileController">
    <children>
-      <Label layoutX="47.0" layoutY="35.0" text="First Name" />
-      <TextField fx:id="firstNameTextField" layoutX="47.0" layoutY="52.0" prefHeight="25.0" prefWidth="371.0" promptText="First Name" />
-      <Label layoutX="48.0" layoutY="97.0" text="Last Name" />
-      <TextField fx:id="lastNameTextField" layoutX="47.0" layoutY="114.0" prefHeight="25.0" prefWidth="371.0" promptText="Last Name" />
-      <ImageView fx:id="profileImageView" fitHeight="200.0" fitWidth="210.0" layoutX="47.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="47.0" layoutY="35.0" text="username" />
+      <TextField fx:id="usernameTextField" layoutX="47.0" layoutY="52.0" prefHeight="25.0" prefWidth="371.0" promptText="Username" />
+      <ImageView fx:id="profileImageView" fitHeight="200.0" fitWidth="210.0" layoutX="47.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/default_profile_picture.png" />
          </image>
       </ImageView>
-      <Button layoutX="47.0" layoutY="392.0" mnemonicParsing="false" onAction="#onChooseProfilePicture" prefHeight="25.0" prefWidth="210.0" text="Choose Profile Picture" />
-      <Button layoutX="290.0" layoutY="198.0" mnemonicParsing="false" onAction="#onCreateNewProfile" prefHeight="219.0" prefWidth="187.0" text="Create" />
-      <Button layoutX="436.0" layoutY="52.0" mnemonicParsing="false" onAction="#onBackToProfiles" prefHeight="70.0" prefWidth="125.0" text="Back To Profiles" />
+      <Button layoutX="47.0" layoutY="338.0" mnemonicParsing="false" onAction="#onChooseProfilePicture" prefHeight="25.0" prefWidth="210.0" text="Choose Profile Picture" />
+      <Button layoutX="313.0" layoutY="122.0" mnemonicParsing="false" onAction="#onCreateNewProfile" prefHeight="191.0" prefWidth="210.0" text="Create" />
+      <Button layoutX="458.0" layoutY="39.0" mnemonicParsing="false" onAction="#onBackToProfiles" prefHeight="52.0" prefWidth="100.0" text="Back To Profiles" />
    </children>
 </AnchorPane>

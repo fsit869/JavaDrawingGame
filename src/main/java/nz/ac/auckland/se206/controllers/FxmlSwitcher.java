@@ -24,7 +24,7 @@ public class FxmlSwitcher {
     this.setupViewStateBindings();
 
     // IMPORTANT: Upon end of init. The view according to this state will be displayed.
-    this.gameModel.setCurrentViewState(GameModel.ViewState.PROFILESTATS);
+    this.gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
 
   /**
