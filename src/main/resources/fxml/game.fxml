@@ -59,10 +59,13 @@
       </GridPane>
       <StackPane maxHeight="277.0" maxWidth="513.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="513.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: white;">
          <children>
-              <Canvas fx:id="canvas" height="277.0" width="513.0">
+              <Canvas fx:id="canvas" height="266.0" width="500.0">
                  <cursor>
                      <Cursor fx:constant="HAND" />
                  </cursor>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
               </Canvas>
             <AnchorPane fx:id="winLoseDialogue" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0">
                <children>
@@ -81,6 +84,9 @@
                </children>
             </AnchorPane>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </StackPane>
       <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="522.0" spacing="10.0">
          <children>
@@ -113,7 +119,7 @@
                                  <children>
                                     <ButtonBar layoutY="15.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="166.0">
                                        <buttons>
-                                          <RadioButton mnemonicParsing="false" onAction="#onBrushToggle" selected="true" text="Brush">
+                                          <RadioButton fx:id="brushRadioButton" mnemonicParsing="false" onAction="#onBrushToggle" selected="true" text="Brush">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="brushToggle" />
                                              </toggleGroup>
