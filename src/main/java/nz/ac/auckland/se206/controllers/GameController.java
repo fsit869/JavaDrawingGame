@@ -20,7 +20,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -430,13 +429,8 @@ public class GameController {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
   }
 
-  /**
-   * Closes the win/loss menu
-   *
-   * @param mouseEvent Button event
-   */
   @FXML
-  private void onWinLoseClose(MouseEvent mouseEvent) {
+  private void onWinLoseClose(ActionEvent actionEvent) {
     this.winLoseDialogue.setVisible(false);
   }
 }
