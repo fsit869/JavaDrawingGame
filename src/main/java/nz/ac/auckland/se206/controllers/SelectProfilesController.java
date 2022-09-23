@@ -6,12 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ToggleButton;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for selecting which profile to play */
 public class SelectProfilesController {
+  @FXML private ToggleButton deleteButton;
   @FXML private Button Guest;
   @FXML private Button profileOne;
   @FXML private Button profileTwo;
@@ -21,15 +23,15 @@ public class SelectProfilesController {
   @FXML private ButtonBar buttonBar;
 
   private List<Profile> profiles;
-
   private Button[] arrButtons;
-
+  private boolean deleteMode;
   private ProfileFactory factory;
   private GameModel gameModel;
 
   /** Initialises the controller, sets the factory and the profiles */
   public void initialize() {
     setButtonsArray();
+    this.deleteMode = false;
     // Initialise the profile factory
     try {
       this.factory = new ProfileFactory();
@@ -48,12 +50,16 @@ public class SelectProfilesController {
 
   /** Sets the text of the buttons, grabbing the usernames from the player data */
   public void setButtons() {
+    String prepend = "";
+    if (this.deleteMode) {
+      prepend = "DELETE ";
+    }
     for (int i = 0; i < this.profiles.size(); i++) {
       // Check if there is a profile in the spot
       if (!profiles.get(i).getUsername().equals("")) {
-        this.arrButtons[i].setText(profiles.get(i).getUsername());
+        this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
       } else {
-        this.arrButtons[i].setText("New Profile");
+        this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
       }
     }
   }
@@ -95,5 +101,11 @@ public class SelectProfilesController {
       gameModel.setProfile(factory.selectProfile(current.getText()));
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
     }
+  }
+
+  /** Changes the page into deleteMode or toggles it off */
+  public void toggleDeleteMode() {
+    this.deleteMode = !deleteMode;
+    setButtons();
   }
 }
