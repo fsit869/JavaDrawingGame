@@ -61,9 +61,11 @@ public class SelectProfilesController {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
       } else {
         this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
+        this.arrButtons[i].setDisable(this.deleteMode);
       }
     }
     this.arrButtons[5].setText(profiles.get(5).getUsername());
+    this.arrButtons[5].setDisable(this.deleteMode);
   }
 
   /** Configures the buttons into an array */
@@ -93,6 +95,7 @@ public class SelectProfilesController {
     // Check if button is creating new profile
     if (this.deleteMode) {
       onDeleteProfile(current.getText());
+      current.setDisable(true);
     } else {
       onSelectedProfile(current.getText());
     }
@@ -110,6 +113,8 @@ public class SelectProfilesController {
       // Attempt to delete selected profile to delete
       try {
         factory.deleteProfile(factory.selectProfile(profile));
+        this.profiles = factory.getAllProfiles();
+        setButtons();
       } catch (IOException e) {
         throw new RuntimeException("Error deleting the profile");
       }
