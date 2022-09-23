@@ -24,7 +24,7 @@ public class App extends Application {
   public void start(final Stage stage) {
     FxmlSwitcher fxmlSwitcher = FxmlSwitcher.getInstance();
     stage.setScene(fxmlSwitcher.getRootScene());
-    stage.setResizable(true);
+    stage.setResizable(false);
     // Force close all threads
     stage.setOnCloseRequest(
         new EventHandler<WindowEvent>() {
