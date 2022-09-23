@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="389.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.NewProfileController">
+<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.NewProfileController">
    <children>
       <Label layoutX="47.0" layoutY="35.0" text="username" />
       <TextField fx:id="usernameTextField" layoutX="47.0" layoutY="52.0" prefHeight="25.0" prefWidth="371.0" promptText="Username" />

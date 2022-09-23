@@ -20,7 +20,7 @@ public class FxmlSwitcher {
   private void initialize() {
     // Initialize objects
     this.gameModel = GameModel.getInstance();
-    this.rootScene = new Scene(loadFxml("select_profiles"));
+    this.rootScene = new Scene(loadFxml("select_profiles"), 642, 702);
     this.setupViewStateBindings();
 
     // IMPORTANT: Upon end of init. The view according to this state will be displayed.
