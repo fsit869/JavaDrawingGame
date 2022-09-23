@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,7 +55,7 @@ public class SelectProfilesController {
     if (this.deleteMode) {
       prepend = "DELETE ";
     }
-    for (int i = 0; i < this.profiles.size(); i++) {
+    for (int i = 0; i < this.profiles.size() - 1; i++) {
       // Check if there is a profile in the spot
       if (!profiles.get(i).getUsername().equals("")) {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
@@ -62,6 +63,7 @@ public class SelectProfilesController {
         this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
       }
     }
+    this.arrButtons[5].setText(profiles.get(5).getUsername());
   }
 
   /** Configures the buttons into an array */
@@ -89,16 +91,42 @@ public class SelectProfilesController {
   private void onProfileButton(ActionEvent actionEvent) {
     Button current = (Button) actionEvent.getTarget();
     // Check if button is creating new profile
-    if (current.getText().equals("New Profile")) {
+    if (this.deleteMode) {
+      onDeleteProfile(current.getText());
+    } else {
+      onSelectedProfile(current.getText());
+    }
+  }
+
+  public void onDeleteProfile(String profile) {
+    profile = profile.substring(7);
+    if (profile.equals("Empty Profile!")) {
+      // Cannot delete an empty profile slot
+      throw new NoSuchElementException("Profile doesn't exist");
+    } else if (profile.equals("Guest")) {
+      // Guest profile should not be able to be deleted
+      throw new NoSuchElementException("Cannot delete the Guest profile");
+    } else {
+      // Attempt to delete selected profile to delete
+      try {
+        factory.deleteProfile(factory.selectProfile(profile));
+      } catch (IOException e) {
+        throw new RuntimeException("Error deleting the profile");
+      }
+    }
+  }
+
+  public void onSelectedProfile(String profile) {
+    if (profile.equals("New Profile")) {
       gameModel.setCurrentViewState(GameModel.ViewState.NEWPROFILE);
-    } else if (current.getText().equals("Guest")) {
-      // In the case that profile already exists
-      gameModel.setProfile(factory.selectProfile(current.getText()));
+    } else if (profile.equals("Guest")) {
+      // Selects the guest profile, and resets the data to it.
+      gameModel.setProfile(factory.selectProfile(profile));
       gameModel.getProfile().resetData();
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
     } else {
-      // In the case that profile already exists
-      gameModel.setProfile(factory.selectProfile(current.getText()));
+      // Selects the chosen profile and changes to the page.
+      gameModel.setProfile(factory.selectProfile(profile));
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
     }
   }

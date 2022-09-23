@@ -364,8 +364,8 @@
   }
 },
 {
-  "username": "player4",
-  "profilePicturePath": "okokokokokok",
+  "username": "",
+  "profilePicturePath": "",
   "statsData": {
     "bestTime": 60,
     "bestAccuracy": 0,
@@ -384,7 +384,7 @@
     "wordsPlayed": []
   },
   "settingsData": {
-    "tts": false
+    "tts": true
   }
 },
 {
