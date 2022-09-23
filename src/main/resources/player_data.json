@@ -3,13 +3,13 @@
   "username": "player1",
   "profilePicturePath": "okokokokokok",
   "statsData": {
-    "bestTime": 60,
-    "bestAccuracy": 0,
-    "totalGames": 5,
-    "wins": 0,
-    "losses": 5,
-    "currentStreak": 0,
-    "bestStreak": 0
+    "bestTime": 3,
+    "bestAccuracy": 50,
+    "totalGames": 9,
+    "wins": 1,
+    "losses": 8,
+    "currentStreak": 1,
+    "bestStreak": 1
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -23,7 +23,6 @@
         "banana",
         "bed",
         "bee",
-        "belt",
         "bench",
         "bicycle",
         "binoculars",
@@ -36,7 +35,6 @@
         "brain",
         "bread",
         "bridge",
-        "broom",
         "bucket",
         "bush",
         "butterfly",
@@ -77,7 +75,6 @@
         "fork",
         "giraffe",
         "grapes",
-        "grass",
         "guitar",
         "hammer",
         "hand",
@@ -122,7 +119,6 @@
         "scorpion",
         "screwdriver",
         "sheep",
-        "shoe",
         "shovel",
         "skateboard",
         "skull",
@@ -162,7 +158,11 @@
     },
     "wordsPlayed": [
       "hamburger",
-      "bird"
+      "bird",
+      "belt",
+      "broom",
+      "shoe",
+      "grass"
     ]
   },
   "settingsData": {
