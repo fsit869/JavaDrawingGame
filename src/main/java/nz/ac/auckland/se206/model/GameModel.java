@@ -20,17 +20,6 @@ public class GameModel {
   // Instance of the game. Uses singleton pattern
   private static GameModel gameModelInstance = new GameModel();
 
-  private Profile profile;
-
-  private DoodlePrediction doodlePrediction;
-
-  private StringProperty currentWordToGuess;
-  private ObjectProperty<State> currentGameState;
-
-  private ObjectProperty<viewState> currentViewState;
-
-  private boolean playerWon;
-
   /** Represents the different states a game could have */
   public enum State {
     READY,
@@ -39,7 +28,7 @@ public class GameModel {
   }
 
   /** Represents the different view states */
-  public enum viewState {
+  public enum ViewState {
     CANVAS,
     SELECTPROFILES,
     NEWPROFILE,
@@ -48,17 +37,23 @@ public class GameModel {
     PROFILESTATS,
   }
 
-  /**
-   * Initialize objects and anything needed for a game
-   *
-   * @throws URISyntaxException Occurs states invalid
-   * @throws IOException Occurs states invalid
-   */
+  private Profile profile;
+
+  private DoodlePrediction doodlePrediction;
+  private StringProperty currentWordToGuess;
+
+  private ObjectProperty<State> currentGameState;
+
+  private ObjectProperty<ViewState> currentViewState;
+
+  private boolean playerWon;
+
+  /** Initialize objects and anything needed for a game */
   private GameModel() {
     try {
       this.currentWordToGuess = new SimpleStringProperty();
       this.currentGameState = new SimpleObjectProperty<>(State.READY);
-      this.currentViewState = new SimpleObjectProperty<>(viewState.MAINMENU);
+      this.currentViewState = new SimpleObjectProperty<>(ViewState.MAINMENU);
       this.doodlePrediction = new DoodlePrediction();
       this.playerWon = false;
 
@@ -80,8 +75,10 @@ public class GameModel {
    */
   public String generateWord(WordsData.Difficulty difficulty) {
     try {
+      // Get the words from the user profile
       setCurrentWordToGuess(this.profile.getWordsData().getRandomWord(difficulty));
     } catch (URISyntaxException | IOException e) {
+      // If unexpected err occurs
       System.err.println("Failed to generate words");
       throw new RuntimeException(e);
     }
@@ -120,7 +117,7 @@ public class GameModel {
     return currentGameState.get();
   }
 
-  public viewState getCurrentViewState() {
+  public ViewState getCurrentViewState() {
     return currentViewState.get();
   }
 
@@ -128,7 +125,7 @@ public class GameModel {
     this.currentGameState.set(currentGameState);
   }
 
-  public void setCurrentViewState(viewState currentViewState) {
+  public void setCurrentViewState(ViewState currentViewState) {
     this.currentViewState.set(currentViewState);
   }
 
@@ -136,7 +133,7 @@ public class GameModel {
     return this.currentGameState;
   }
 
-  public ObjectProperty<viewState> getCurrentViewStateProperty() {
+  public ObjectProperty<ViewState> getCurrentViewStateProperty() {
     return this.currentViewState;
   }
 

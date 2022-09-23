@@ -79,20 +79,21 @@ public class SelectProfilesController {
    *
    * @param actionEvent Event type of button
    */
-  public void onProfileButton(ActionEvent actionEvent) {
+  @FXML
+  private void onProfileButton(ActionEvent actionEvent) {
     Button current = (Button) actionEvent.getTarget();
     // Check if button is creating new profile
     if (current.getText().equals("New Profile")) {
-      gameModel.setCurrentViewState(GameModel.viewState.NEWPROFILE);
+      gameModel.setCurrentViewState(GameModel.ViewState.NEWPROFILE);
     } else if (current.getText().equals("Guest")) {
       // In the case that profile already exists
       gameModel.setProfile(factory.selectProfile(current.getText()));
       gameModel.getProfile().resetData();
-      gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+      gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
     } else {
       // In the case that profile already exists
       gameModel.setProfile(factory.selectProfile(current.getText()));
-      gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+      gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
     }
   }
 }

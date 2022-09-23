@@ -109,13 +109,17 @@ public class ProfileStatsController {
    * @return Multi line string
    */
   private String generateBestRecordsString() {
+    // Get required objects
     StringBuilder stringBuilder = new StringBuilder();
     StatsData statsData = this.gameModel.getProfile().getStatsData();
-    // Show the respective stat
+
+    // Best win streak
     stringBuilder.append(
         String.format("%-20s %3d\n", "Highest Win Streak:", statsData.getBestStreak()));
+    // Current win streak
     stringBuilder.append(
         String.format("%-20s %3d\n", "Current Win Streak:", statsData.getCurrentStreak()));
+    // Accuracy
     stringBuilder.append(
         String.format("%-20s %3d\n", "Best Accuracy:", statsData.getBestAccuracy()));
     stringBuilder.append(String.format("%-20s %3d\n", "Best Time:", statsData.getBestTime()));
@@ -133,7 +137,7 @@ public class ProfileStatsController {
    */
   @FXML
   private void onBackToMenuButton(ActionEvent actionEvent) {
-    gameModel.setCurrentViewState(GameModel.viewState.MAINMENU);
+    gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
   /**

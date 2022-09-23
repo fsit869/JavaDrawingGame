@@ -16,12 +16,18 @@ public class SettingsController {
 
   /** Init and loads the settings view */
   public void initialize() {
+
+    // Create instance of object saving
     try {
       profileFactory = new ProfileFactory();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+
+    // Get game settings
     this.gameModel = GameModel.getInstance();
+
+    // Set initial state of TTS button
     if (gameModel.getProfile().getSettingsData().getTts()) {
       ttsButton.setText("ON");
     } else {
@@ -46,19 +52,15 @@ public class SettingsController {
   ///////////////////
 
   /** This method is called when the text to speech button is pressed */
-  public void onTtsButton() {
+  @FXML
+  private void onTtsButton() {
     switchTts();
   }
 
   /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
   private void onBackToMenuButton() throws IOException {
-    if (ttsButton.getText().equals("ON")) {
-      gameModel.getProfile().getSettingsData().setTts(true);
-    } else {
-      gameModel.getProfile().getSettingsData().setTts(false);
-    }
     profileFactory.saveProfile(gameModel.getProfile());
-    gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
+    gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 }

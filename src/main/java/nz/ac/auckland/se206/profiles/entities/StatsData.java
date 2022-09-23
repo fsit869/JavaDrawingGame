@@ -85,10 +85,15 @@ public class StatsData extends Data {
   @Override
   public void resetData() {
     this.bestAccuracy = 0;
+    // Since worst time is when timer runs out. Default 60
     this.bestTime = 60;
     this.totalGames = 0;
+
+    // Winner or lost games
     this.wins = 0;
     this.losses = 0;
+
+    // Concurrent wins
     this.currentStreak = 0;
     this.bestStreak = 0;
   }

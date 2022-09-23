@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
    <children>
       <Button layoutX="59.0" layoutY="34.0" mnemonicParsing="false" onAction="#onStartButton" prefHeight="103.0" prefWidth="194.0" text="Start">
@@ -28,7 +27,7 @@
       <Button layoutX="357.0" layoutY="296.0" mnemonicParsing="false" onAction="#onExitButton" prefHeight="83.0" prefWidth="193.0" text="Exit" />
       <ImageView fx:id="profileImageView" fitHeight="175.0" fitWidth="229.0" layoutX="358.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/default_profile_picture.png" />
+            <Image url="@../images/img_not_found.png" />
          </image>
       </ImageView>
    </children>

@@ -1,6 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -14,14 +14,18 @@ public class MainMenuController {
 
   private GameModel gameModel;
 
-  public void initialize() throws IOException {
+  public void initialize() {
+    // Setup requierd objects
     this.gameModel = GameModel.getInstance();
     profileButton.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
+
+    // Try load profile picture
     try {
       Image image = new Image(gameModel.getProfile().getProfilePicturePath());
       profileImageView.setImage(image);
     } catch (Exception e) {
+      // Unexpected err while loading image. Display default img not found.
       Image image = new Image(defaultUrl);
       profileImageView.setImage(image);
     }
@@ -34,25 +38,25 @@ public class MainMenuController {
   /** This method is called when user clicks start to switch to the canvas view */
   @FXML
   private void onStartButton() {
-    gameModel.setCurrentViewState(GameModel.viewState.CANVAS);
+    gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
 
   /** This method is called when user clicks the settings button to go to settings */
   @FXML
   private void onSettingsButton() {
-    gameModel.setCurrentViewState(GameModel.viewState.SETTINGS);
+    gameModel.setCurrentViewState(GameModel.ViewState.SETTINGS);
   }
 
   /** This method is called when user clicks to change profile picture */
   @FXML
   private void onChangeProfileButton() {
-    gameModel.setCurrentViewState(GameModel.viewState.SELECTPROFILES);
+    gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
 
   /** This method is called when user clicks to see their profile */
   @FXML
   private void onProfileButton() {
-    gameModel.setCurrentViewState(GameModel.viewState.PROFILESTATS);
+    gameModel.setCurrentViewState(GameModel.ViewState.PROFILESTATS);
   }
 
   /** This method is called when user clicks to exit the game */
