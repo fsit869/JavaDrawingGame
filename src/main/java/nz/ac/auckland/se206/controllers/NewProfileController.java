@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
+import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for creating a new profile */
 public class NewProfileController {
@@ -54,15 +55,7 @@ public class NewProfileController {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onCreateNewProfile() throws IOException {
-    if (usernameTextField.getText() == "") {
-      // Show dialogue if no username entered
-      Alert a = new Alert(Alert.AlertType.NONE);
-      a.setAlertType(Alert.AlertType.INFORMATION);
-      a.setHeaderText("");
-      a.setContentText("Please enter a username");
-      a.show();
-    } else {
-      // Load profile picture
+    if (verifyUsername(usernameTextField.getText())) {
       if (profilePicPath == null) {
         Image image = new Image(profileImageView.getImage().getUrl());
         profileImageView.setImage(image);
@@ -74,6 +67,34 @@ public class NewProfileController {
       gameModel.setProfile(profileFactory.selectProfile(username));
       gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     }
+  }
+
+  private boolean verifyUsername(String create) {
+    if (create.equals("")) {
+      // Show dialogue if no username entered
+      Alert a = new Alert(Alert.AlertType.NONE);
+      a.setAlertType(Alert.AlertType.INFORMATION);
+      a.setHeaderText("");
+      a.setContentText("Please enter a username");
+      a.show();
+      return false;
+    }
+    try {
+      for (Profile profile : profileFactory.getAllProfiles()) {
+        if (profile.getUsername().equals(create)) {
+          Alert a = new Alert(Alert.AlertType.NONE);
+          a.setAlertType(Alert.AlertType.INFORMATION);
+          a.setHeaderText("");
+          a.setContentText("Username already taken!");
+          a.show();
+          return false;
+        }
+        ;
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    return true;
   }
 
   /** This method is called when user clicks to create a new profile */
