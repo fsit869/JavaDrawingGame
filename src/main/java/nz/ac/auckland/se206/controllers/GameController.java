@@ -173,7 +173,9 @@ public class GameController {
 
     // Handle saving user profile stats
     try {
-      this.saveProfileStats();
+      if (this.textToSpeech.getFirstThread()) {
+        this.saveProfileStats();
+      }
     } catch (IOException e) {
       e.printStackTrace();
     } catch (TranslateException e) {
@@ -184,6 +186,7 @@ public class GameController {
   /** Saves the profile information and win/loss */
   private void saveProfileStats() throws IOException, TranslateException {
     StatsData statsData = this.gameModel.getProfile().getStatsData();
+    System.out.println("saveing");
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {
       statsData.setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));

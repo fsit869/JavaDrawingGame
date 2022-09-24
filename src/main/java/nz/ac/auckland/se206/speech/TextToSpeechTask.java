@@ -56,4 +56,8 @@ public class TextToSpeechTask {
   public void setFirstThreadFalse() {
     isFirstThread = false;
   }
+
+  public Boolean getFirstThread() {
+    return isFirstThread;
+  }
 }
