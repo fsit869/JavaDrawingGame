@@ -89,7 +89,7 @@ public class NewProfileController {
     try {
       // loops through existing profiles and checks if usernames are taken
       for (Profile profile : profileFactory.getAllProfiles()) {
-        if (profile.getUsername().equals(create)) {
+        if (profile.getUsername().equalsIgnoreCase(create)) {
           // Sends an alert if there is already existing a profile.
           Alert a = new Alert(Alert.AlertType.NONE);
           a.setAlertType(Alert.AlertType.INFORMATION);
