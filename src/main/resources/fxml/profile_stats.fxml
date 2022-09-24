@@ -4,38 +4,97 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ProfileStatsController">
+<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" style="-fx-background-color: #e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ProfileStatsController">
    <children>
-      <ImageView fx:id="profileImageView" fitHeight="200.0" fitWidth="210.0" layoutX="34.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="718.0" fitWidth="660.0" layoutX="24.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" rotate="10.0">
+         <image>
+            <Image url="@../images/road.png" />
+         </image>
+         <effect>
+            <GaussianBlur />
+         </effect>
+      </ImageView>
+      <Label fx:id="profileNameLabel" alignment="TOP_CENTER" focusTraversable="false" layoutX="55.0" layoutY="400.0" prefHeight="150.0" prefWidth="249.0" text="Profile Name" wrapText="true">
+         <font>
+            <Font name="Eras Medium ITC" size="33.0" />
+         </font></Label>
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="352.0" layoutY="166.0" mouseTransparent="true" prefHeight="31.0" prefWidth="224.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Profile Stats">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="profileStatsTextArea" editable="false" focusTraversable="false" layoutX="352.0" layoutY="196.0" mouseTransparent="true" prefHeight="70.0" prefWidth="224.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Games Won:&#10;Games Lost:&#10;Total Games Played:" />
+      <TextArea fx:id="bestRecordsTextArea" editable="false" focusTraversable="false" layoutX="352.0" layoutY="308.0" mouseTransparent="true" prefHeight="85.0" prefWidth="224.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Highest Win Streak:&#10;Quickest Win:&#10;Best Accuracyt&#10;Best Time&#10;" />
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="352.0" layoutY="278.0" mouseTransparent="true" prefHeight="31.0" prefWidth="224.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Best Records">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="352.0" layoutY="404.0" mouseTransparent="true" prefHeight="31.0" prefWidth="224.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Past Words">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="383.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/book.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="352.0" layoutY="435.0" mouseTransparent="true" prefHeight="99.0" prefWidth="224.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;Example Word4:&#10;Example Word5:&#10;" />
+      <Button focusTraversable="false" layoutX="63.0" layoutY="599.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="49.0" prefWidth="249.0" style="-fx-background-color: #51BBFE; -fx-border-color: black; -fx-border-radius: 2em; -fx-background-radius: 2em;" text="MAIN MENU" />
+      <Button layoutX="352.0" layoutY="531.0" mnemonicParsing="false" onAction="#onFullListButton" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="See full list" />
+      <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="93.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alphabet/letter-s.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="170.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alphabet/letter-t.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="258.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alphabet/letter-a.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="330.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alphabet/letter-t.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="416.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alphabet/letter-s.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="profileImageView" fitHeight="226.0" fitWidth="271.0" layoutX="55.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/default_profile_picture.png" />
          </image>
       </ImageView>
-      <Label fx:id="profileNameLabel" focusTraversable="false" layoutX="96.0" layoutY="246.0" prefHeight="36.0" prefWidth="83.0" text="Profile Name" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="24.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Profile Stats">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextArea fx:id="profileStatsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="55.0" mouseTransparent="true" prefHeight="70.0" prefWidth="200.0" style="-fx-font-family: monospace;" text="Games Won:&#10;Games Lost:&#10;Total Games Played:" />
-      <TextArea fx:id="bestRecordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="169.0" mouseTransparent="true" prefHeight="85.0" prefWidth="200.0" style="-fx-font-family: monospace;" text="Highest Win Streak:&#10;Quickest Win:&#10;Best Accuracyt&#10;Best Time&#10;" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="138.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Best Records">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="310.0" layoutY="260.0" mouseTransparent="true" prefHeight="25.0" prefWidth="200.0" text="Past Words">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="310.0" layoutY="291.0" mouseTransparent="true" prefHeight="99.0" prefWidth="200.0" style="-fx-font-family: monospace;" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;Example Word4:&#10;Example Word5:&#10;" />
-      <Button focusTraversable="false" layoutX="58.0" layoutY="332.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="85.0" prefWidth="144.0" text="Back To Main Menu" />
-      <Button layoutX="310.0" layoutY="390.0" mnemonicParsing="false" onAction="#onFullListButton" prefHeight="25.0" prefWidth="200.0" text="See full list" />
+      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="383.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/medal.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="383.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/girl.png" />
+         </image>
+      </ImageView>
+      <Circle fill="DODGERBLUE" layoutX="77.0" layoutY="619.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="55.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

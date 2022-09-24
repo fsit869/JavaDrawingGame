@@ -190,7 +190,7 @@ public class GameController {
     // Save win/loss and also stats accuracy
     if (gameModel.isPlayerWon()) {
       statsData.addWins();
-      statsData.setBestAccuracy(determineAccuracy());
+      statsData.setBestAccuracy(accuracyValue);
     } else {
       statsData.addLosses();
       statsData.setBestAccuracy(0);
@@ -199,6 +199,11 @@ public class GameController {
     this.profileFactory.saveProfile(gameModel.getProfile());
   }
 
+  private int accuracyValue = 0;
+
+  public void setAccuracyValue(int accuracyValue) {
+    this.accuracyValue = accuracyValue;
+  }
   /**
    * This method determines the accuracy of the guess and rounds it up
    *

@@ -53,7 +53,7 @@ public class WordsData extends Data {
 
     // Removes the word from the wordslist,
     random = wordsList.remove(new Random().nextInt(0, wordsList.size()));
-    wordsPlayed.add(random);
+    wordsPlayed.add(0, random);
     return random;
   }
 
