@@ -55,20 +55,26 @@ public class NewProfileController {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onCreateNewProfile() throws IOException {
-    if (verifyUsername(usernameTextField.getText())) {
+    String username = usernameTextField.getText().trim();
+    if (verifyUsername(username)) {
       if (profilePicPath == null) {
         Image image = new Image(profileImageView.getImage().getUrl());
         profileImageView.setImage(image);
         profilePicPath = profileImageView.getImage().getUrl();
       }
       // Save new profile
-      String username = usernameTextField.getText();
       profileFactory.createProfile(username, profilePicPath);
       gameModel.setProfile(profileFactory.selectProfile(username));
       gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     }
   }
 
+  /**
+   * Verifies if the new username is valid to be created into another profile
+   *
+   * @param create string of username
+   * @return validity of username
+   */
   private boolean verifyUsername(String create) {
     if (create.equals("")) {
       // Show dialogue if no username entered
