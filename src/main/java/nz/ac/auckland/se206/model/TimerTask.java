@@ -154,6 +154,8 @@ public class TimerTask extends Task<Void> {
 
       String predictedWord = classification.getClassName().replace("_", " ");
       if (predictedWord.equals(wordToDraw)) {
+        this.canvasController.setAccuracyValue(
+            (int) Math.ceil(classification.getProbability() * 100));
         return true;
       }
 
