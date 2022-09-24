@@ -12,6 +12,8 @@ public class TextToSpeechTask {
 
   private GameModel gameModel;
 
+  private Boolean isFirstThread = true;
+
   /** Create a new speech thread */
   public TextToSpeechTask() {
     createThread();
@@ -43,10 +45,13 @@ public class TextToSpeechTask {
    * @param wordToSpeak Word to TTS
    */
   public void speak(String wordToSpeak) {
-    if (gameModel.getProfile().getSettingsData().getTts()) {
-      this.wordToSpeak = wordToSpeak;
-      createThread();
-      this.thread.start();
+    if (isFirstThread == true) {
+      if (gameModel.getProfile().getSettingsData().getTts()) {
+        this.wordToSpeak = wordToSpeak;
+        createThread();
+        this.thread.start();
+        isFirstThread = false;
+      }
     }
   }
 }
