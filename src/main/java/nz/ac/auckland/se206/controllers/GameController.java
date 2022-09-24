@@ -54,6 +54,7 @@ public class GameController {
   private TextToSpeechTask textToSpeech;
   private Service<Void> timerService;
   private ProfileFactory profileFactory;
+  private boolean startedDrawing;
 
   // mouse coordinates
   private double currentX;
@@ -88,6 +89,8 @@ public class GameController {
     this.setupStateBindings();
     this.setTimerBindings();
     this.setupBrush(false);
+    this.startedDrawing = false;
+
     onReadyState();
   }
 
@@ -126,6 +129,7 @@ public class GameController {
     // Set game variables
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
+    this.startedDrawing = false;
   }
 
   /** This method is called when the ingame state is started */
@@ -298,6 +302,7 @@ public class GameController {
     } else {
       graphic.setStroke(Color.BLACK);
       graphic.setFill(Color.BLACK);
+      setStartedDrawing(true);
       size = 6;
     }
     graphic.setLineWidth(size);
@@ -365,6 +370,7 @@ public class GameController {
   /** This method is called when the "Clear" button is pressed. */
   @FXML
   private void onClear() {
+    setStartedDrawing(false);
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
@@ -433,5 +439,13 @@ public class GameController {
   @FXML
   private void onWinLoseClose(ActionEvent actionEvent) {
     this.winLoseDialogue.setVisible(false);
+  }
+
+  public boolean isStartedDrawing() {
+    return startedDrawing;
+  }
+
+  public void setStartedDrawing(boolean startedDrawing) {
+    this.startedDrawing = startedDrawing;
   }
 }
