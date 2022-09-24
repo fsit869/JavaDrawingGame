@@ -383,6 +383,7 @@ public class GameController {
    */
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
+    this.textToSpeech.setFirstThreadFalse();
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
