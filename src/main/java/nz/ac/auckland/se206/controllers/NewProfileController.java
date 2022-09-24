@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
+import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for creating a new profile */
 public class NewProfileController {
@@ -40,7 +41,9 @@ public class NewProfileController {
     // Open file load dialogue
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
-    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+    fileChooser
+        .getExtensionFilters()
+        .addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
     File profilePic = fileChooser.showOpenDialog(null);
 
     // Load image if valid
@@ -54,26 +57,56 @@ public class NewProfileController {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onCreateNewProfile() throws IOException {
-    if (usernameTextField.getText() == "") {
-      // Show dialogue if no username entered
-      Alert a = new Alert(Alert.AlertType.NONE);
-      a.setAlertType(Alert.AlertType.INFORMATION);
-      a.setHeaderText("");
-      a.setContentText("Please enter a username");
-      a.show();
-    } else {
-      // Load profile picture
+    String username = usernameTextField.getText().trim();
+    if (verifyUsername(username)) {
+      // Obtain the profile path
       if (profilePicPath == null) {
         Image image = new Image(profileImageView.getImage().getUrl());
         profileImageView.setImage(image);
         profilePicPath = profileImageView.getImage().getUrl();
       }
       // Save new profile
-      String username = usernameTextField.getText();
       profileFactory.createProfile(username, profilePicPath);
       gameModel.setProfile(profileFactory.selectProfile(username));
       gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     }
+  }
+
+  /**
+   * Verifies if the new username is valid to be created into another profile
+   *
+   * @param create string of username
+   * @return validity of username
+   */
+  private boolean verifyUsername(String create) {
+    if (create.equals("")) {
+      // Show dialogue if no username entered
+      Alert a = new Alert(Alert.AlertType.NONE);
+      a.setAlertType(Alert.AlertType.INFORMATION);
+      a.setHeaderText("");
+      a.setContentText("Please enter a username");
+      a.show();
+      return false;
+    }
+    try {
+      // loops through existing profiles and checks if usernames are taken
+      for (Profile profile : profileFactory.getAllProfiles()) {
+        if (profile.getUsername().equalsIgnoreCase(create)) {
+          // Sends an alert if there is already existing a profile.
+          Alert a = new Alert(Alert.AlertType.NONE);
+          a.setAlertType(Alert.AlertType.INFORMATION);
+          a.setHeaderText("");
+          a.setContentText("Username already taken!");
+          a.show();
+          return false;
+        }
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    // Returns true if there are no problems, and the profile can be saved.
+    return true;
   }
 
   /** This method is called when user clicks to create a new profile */

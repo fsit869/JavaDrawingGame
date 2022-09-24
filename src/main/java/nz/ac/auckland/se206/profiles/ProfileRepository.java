@@ -52,7 +52,7 @@ public class ProfileRepository {
     username = username.trim();
     // Loop through all the profiles
     for (Profile profile : profiles) {
-      if (profile.getUsername().equalsIgnoreCase(username)) {
+      if (profile.getUsername().equals(username)) {
         System.out.println("User already created");
         return false;
       }
@@ -80,7 +80,7 @@ public class ProfileRepository {
   protected void saveProfile(Profile saveProfile) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     StringBuilder json = new StringBuilder("[\n");
-    FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
+    FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json");
 
     // Formats the JSON into the proper format.
     for (int i = 0; i < profiles.size(); i++) {
@@ -110,7 +110,7 @@ public class ProfileRepository {
    */
   protected void deleteProfile(Profile deleteProfile) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    FileWriter fileWriter = new FileWriter("src/main/resources/player_data.json");
+    FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json");
     StringBuilder json = new StringBuilder("[\n");
 
     // Formats the JSON into the proper format.
@@ -149,7 +149,7 @@ public class ProfileRepository {
     List<Profile> profiles = new ArrayList<>();
 
     // Path of the JSON to read from.
-    Path profilePath = Path.of("src/main/resources/player_data.json");
+    Path profilePath = Path.of("src/main/java/data/player_data.json");
     String rawProfiles = Files.readString(profilePath);
 
     // This streamer will parse in all the JSONs in the file.

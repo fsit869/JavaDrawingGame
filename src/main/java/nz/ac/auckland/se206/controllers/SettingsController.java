@@ -12,7 +12,8 @@ public class SettingsController {
   private GameModel gameModel;
 
   private ProfileFactory profileFactory;
-  @FXML private Button ttsButton;
+  @FXML private Button ttsOnButton;
+  @FXML private Button ttsOffButton;
 
   /** Init and loads the settings view */
   public void initialize() {
@@ -27,21 +28,25 @@ public class SettingsController {
     // Get game settings
     this.gameModel = GameModel.getInstance();
 
-    // Set initial state of TTS button
+    // Set initial state of TTS buttons
     if (gameModel.getProfile().getSettingsData().getTts()) {
-      ttsButton.setText("ON");
+      ttsOnButton.setStyle("-fx-background-color: #00FF00;-fx-background-radius: 2em");
+      ttsOffButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
     } else {
-      ttsButton.setText("OFF");
+      ttsOnButton.setStyle("-fx-background-color: #FF0000;-fx-background-radius: 2em");
+      ttsOffButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
     }
   }
 
   private void switchTts() {
-    if (ttsButton.getText().equals("ON")) {
-      ttsButton.setText("OFF");
+    if (gameModel.getProfile().getSettingsData().getTts() == true) {
+      ttsOffButton.setStyle("-fx-background-color: #FF0000;-fx-background-radius: 2em");
+      ttsOnButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
       // need to disable tts
       gameModel.getProfile().getSettingsData().setTts(false);
     } else {
-      ttsButton.setText("ON");
+      ttsOnButton.setStyle("-fx-background-color: #00FF00;-fx-background-radius: 2em");
+      ttsOffButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
       // need to enable tts
       gameModel.getProfile().getSettingsData().setTts(true);
     }
@@ -53,8 +58,17 @@ public class SettingsController {
 
   /** This method is called when the text to speech button is pressed */
   @FXML
-  private void onTtsButton() {
-    switchTts();
+  private void onTtsOnButton() {
+    if (gameModel.getProfile().getSettingsData().getTts() == false) {
+      switchTts();
+    }
+  }
+
+  @FXML
+  private void onTtsOffButton() {
+    if (gameModel.getProfile().getSettingsData().getTts() == true) {
+      switchTts();
+    }
   }
 
   /** This method is called when user clicks the main menu button to go back to main menu */
