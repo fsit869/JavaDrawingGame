@@ -52,7 +52,7 @@ public class ProfileRepository {
     username = username.trim();
     // Loop through all the profiles
     for (Profile profile : profiles) {
-      if (profile.getUsername().equalsIgnoreCase(username)) {
+      if (profile.getUsername().equals(username)) {
         System.out.println("User already created");
         return false;
       }
