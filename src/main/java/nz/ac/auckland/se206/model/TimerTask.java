@@ -121,12 +121,13 @@ public class TimerTask extends Task<Void> {
     // Generate string
     stringBuilder.setLength(0);
     stringBuilder.append("Current Predictions\n");
+
     List<Classifications.Classification> predictions =
         gameModel.getPredictions(canvasController.getCurrentSnapshot(), TOTAL_PREDICTIONS);
     generatePredictionString(predictions);
 
     // Check won
-    if (getWinCondition(predictions, 3)) {
+    if (getWinCondition(predictions, 3) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
       gameModel.setCurrentGameState(GameModel.State.FINISHED);
     }
@@ -170,14 +171,19 @@ public class TimerTask extends Task<Void> {
    * @param predictions List of predictions to generate string of predictions.
    */
   private void generatePredictionString(List<Classifications.Classification> predictions) {
-    // Iterate through each prediction and add to string
-    for (final Classifications.Classification classification : predictions) {
-      // Generate for textarea
-      stringBuilder.append(
-          String.format(
-              "[%3.2f%%] %-20s\n",
-              100 * classification.getProbability(),
-              classification.getClassName().replace("_", " ")));
+    // Stop prediction text if player has not started drawing
+    if (!canvasController.isStartedDrawing()) {
+      stringBuilder.append("Nothing. Start drawing!");
+    } else {
+      // Iterate through each prediction and add to string
+      for (final Classifications.Classification classification : predictions) {
+        // Generate for textarea
+        stringBuilder.append(
+            String.format(
+                "[%3.2f%%] %-20s\n",
+                100 * classification.getProbability(),
+                classification.getClassName().replace("_", " ")));
+      }
     }
   }
 }
