@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.FxmlSwitcher;
@@ -24,6 +25,8 @@ public class App extends Application {
   public void start(final Stage stage) {
     FxmlSwitcher fxmlSwitcher = FxmlSwitcher.getInstance();
     stage.setScene(fxmlSwitcher.getRootScene());
+    stage.setTitle("Quick Draw 206 version!");
+    stage.getIcons().add(new Image("images/pencil.png"));
     stage.setResizable(false);
     // Force close all threads
     stage.setOnCloseRequest(
