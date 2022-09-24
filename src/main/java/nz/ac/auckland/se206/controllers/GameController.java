@@ -19,6 +19,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -270,36 +271,48 @@ public class GameController {
         e -> {
           currentX = e.getX();
           currentY = e.getY();
+
+          setBrush(e, eraserMode);
         });
 
     canvas.setOnMouseDragged(
         e -> {
-          // Brush size (you can change this, it should not be too small or too large).
-          double size = 6;
-
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
-
-          // This is the colour of the brush.
-          if (eraserMode) {
-            graphic.setFill(Color.WHITE);
-            graphic.setStroke(Color.WHITE);
-            size = 18;
-          } else {
-            graphic.setStroke(Color.BLACK);
-            graphic.setFill(Color.BLACK);
-            setStartedDrawing(true);
-            size = 6;
-          }
-          graphic.setLineWidth(size);
-
-          // Create a line that goes from the point (currentX, currentY) and (x,y)
-          graphic.strokeLine(currentX, currentY, x, y);
-
-          // update the coordinates
-          currentX = x;
-          currentY = y;
+          setBrush(e, eraserMode);
         });
+  }
+
+  /**
+   * Set up brush settings
+   *
+   * @param e Event of clicky
+   * @param eraserMode Toggle eraser
+   */
+  private void setBrush(MouseEvent e, boolean eraserMode) {
+    // Brush size (you can change this, it should not be too small or too large).
+    double size = 6;
+
+    final double x = e.getX() - size / 2;
+    final double y = e.getY() - size / 2;
+
+    // This is the colour of the brush.
+    if (eraserMode) {
+      graphic.setFill(Color.WHITE);
+      graphic.setStroke(Color.WHITE);
+      size = 18;
+    } else {
+      graphic.setStroke(Color.BLACK);
+      graphic.setFill(Color.BLACK);
+      setStartedDrawing(true);
+      size = 6;
+    }
+    graphic.setLineWidth(size);
+
+    // Create a line that goes from the point (currentX, currentY) and (x,y)
+    graphic.strokeLine(currentX, currentY, x, y);
+
+    // update the coordinates
+    currentX = x;
+    currentY = y;
   }
 
   /**
@@ -389,6 +402,7 @@ public class GameController {
    */
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
+    this.textToSpeech.setFirstThreadFalse();
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
