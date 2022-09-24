@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -9,15 +8,29 @@ import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the main menu */
 public class MainMenuController {
-  @FXML private Button profileButton;
+  //  @FXML private Button profileNameLabel;
   @FXML private ImageView profileImageView;
+
+  @FXML private Button startButton;
+
+  @FXML private Button statsButton;
+
+  @FXML private Button changeProfileButton;
+  @FXML private Button settingsButton;
+
+  @FXML private Button exitButton;
 
   private GameModel gameModel;
 
   public void initialize() {
-    // Setup requierd objects
+    startButton.toBack();
+    statsButton.toBack();
+    changeProfileButton.toBack();
+    settingsButton.toBack();
+    exitButton.toBack();
+    // Setup required objects
     this.gameModel = GameModel.getInstance();
-    profileButton.setText(gameModel.getProfile().getUsername());
+    //    profileNameLabel.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
 
     // Try load profile picture
@@ -53,9 +66,9 @@ public class MainMenuController {
     gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
 
-  /** This method is called when user clicks to see their profile */
+  /** This method is called when user clicks to see their stats */
   @FXML
-  private void onProfileButton() {
+  private void onStatsButton() {
     gameModel.setCurrentViewState(GameModel.ViewState.PROFILESTATS);
   }
 
