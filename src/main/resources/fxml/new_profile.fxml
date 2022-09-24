@@ -14,24 +14,15 @@
          <font>
             <Font size="30.0" />
          </font></Label>
-      <TextField fx:id="usernameTextField" layoutX="47.0" layoutY="96.0" prefHeight="25.0" prefWidth="371.0" promptText="Username">
+      <TextField fx:id="usernameTextField" layoutX="47.0" layoutY="96.0" prefHeight="25.0" prefWidth="371.0" promptText="Username" style="-fx-background-color: #F7FE72;">
          <font>
-            <Font size="24.0" />
+            <Font name="System Italic" size="24.0" />
          </font></TextField>
-      <ImageView fx:id="profileImageView" fitHeight="361.0" fitWidth="350.0" layoutX="47.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/default_profile_picture.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="47.0" layoutY="516.0" mnemonicParsing="false" onAction="#onChooseProfilePicture" prefHeight="98.0" prefWidth="350.0" text="Choose Profile Picture">
+      <Button layoutX="448.0" layoutY="198.0" mnemonicParsing="false" onAction="#onCreateNewProfile" prefHeight="337.0" prefWidth="165.0" style="-fx-background-color: #51bbfe; -fx-background-radius: 20;" text="Create">
          <font>
             <Font size="30.0" />
          </font></Button>
-      <Button layoutX="418.0" layoutY="198.0" mnemonicParsing="false" onAction="#onCreateNewProfile" prefHeight="415.0" prefWidth="210.0" text="Create">
-         <font>
-            <Font size="40.0" />
-         </font></Button>
-      <Button layoutX="462.0" layoutY="26.0" maxHeight="140.0" maxWidth="140.0" minHeight="140.0" minWidth="140.0" mnemonicParsing="false" onAction="#onBackToProfiles" prefHeight="140.0" prefWidth="140.0" style="-fx-background-radius: 100000;">
+      <Button layoutX="462.0" layoutY="26.0" maxHeight="140.0" maxWidth="140.0" minHeight="140.0" minWidth="140.0" mnemonicParsing="false" onAction="#onBackToProfiles" prefHeight="140.0" prefWidth="140.0" style="-fx-background-radius: 100000; -fx-background-color: #757761;">
          <font>
             <Font name="Eras Medium ITC" size="22.0" />
          </font>
@@ -42,6 +33,20 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <ImageView fx:id="profileImageView" fitHeight="342.0" fitWidth="371.0" layoutX="42.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/default_profile_picture.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="39.0" layoutY="567.0" mnemonicParsing="false" onAction="#onChooseProfilePicture" prefHeight="74.0" prefWidth="378.0" style="-fx-background-color: #51bbfe; -fx-background-radius: 25;" text="Choose Profile Picture">
+         <font>
+            <Font size="25.0" />
+         </font></Button>
+      <ImageView fitHeight="124.0" fitWidth="165.0" layoutX="447.0" layoutY="549.0">
+         <image>
+            <Image url="@../images/icons/star.png" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>
