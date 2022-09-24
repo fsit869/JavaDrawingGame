@@ -40,7 +40,9 @@ public class NewProfileController {
     // Open file load dialogue
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
-    fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+    fileChooser
+        .getExtensionFilters()
+        .addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
     File profilePic = fileChooser.showOpenDialog(null);
 
     // Load image if valid
