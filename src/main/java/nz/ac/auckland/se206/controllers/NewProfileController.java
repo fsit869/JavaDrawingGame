@@ -57,6 +57,7 @@ public class NewProfileController {
   private void onCreateNewProfile() throws IOException {
     String username = usernameTextField.getText().trim();
     if (verifyUsername(username)) {
+      // Obtain the profile path
       if (profilePicPath == null) {
         Image image = new Image(profileImageView.getImage().getUrl());
         profileImageView.setImage(image);
@@ -86,8 +87,10 @@ public class NewProfileController {
       return false;
     }
     try {
+      // loops through existing profiles and checks if usernames are taken
       for (Profile profile : profileFactory.getAllProfiles()) {
         if (profile.getUsername().equals(create)) {
+          // Sends an alert if there is already existing a profile.
           Alert a = new Alert(Alert.AlertType.NONE);
           a.setAlertType(Alert.AlertType.INFORMATION);
           a.setHeaderText("");
@@ -95,11 +98,12 @@ public class NewProfileController {
           a.show();
           return false;
         }
-        ;
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+
+    // Returns true if there are no problems, and the profile can be saved.
     return true;
   }
 
