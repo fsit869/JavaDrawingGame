@@ -18,6 +18,40 @@ import nz.ac.auckland.se206.profiles.entities.Profile;
 
 public class ProfileRepository {
 
+  /**
+   * Returns all the Profiles as a list of profiles. For displaying all the profiles to the user for
+   * them to select a Profile
+   *
+   * @return List of all Profiles
+   * @throws IOException IO
+   */
+  protected static List<Profile> getAllProfiles() throws IOException {
+    List<Profile> profiles = new ArrayList<>();
+
+    // Path of the JSON to read from.
+    Path profilePath = Path.of("src/main/java/data/player_data.json");
+    String rawProfiles = Files.readString(profilePath);
+
+    // This streamer will parse in all the JSONs in the file.
+    JsonStreamParser streamParser = new JsonStreamParser(rawProfiles);
+
+    // For every JSON object in the file, this will run (until EOF)
+    while (streamParser.hasNext()) {
+      JsonElement page = streamParser.next();
+
+      // JSON file is an array of elements, so needs to convert into array.
+      if (page.isJsonArray()) {
+        JsonArray elements = (JsonArray) page;
+        for (JsonElement element : elements) {
+          Profile profile = new Gson().fromJson(element, Profile.class);
+          profiles.add(profile);
+        }
+      }
+    }
+
+    return profiles;
+  }
+
   private final List<Profile> profiles;
 
   protected ProfileRepository() throws IOException {
@@ -136,39 +170,5 @@ public class ProfileRepository {
     // Writes to the JSON file
     fileWriter.write(String.valueOf(json));
     fileWriter.close();
-  }
-
-  /**
-   * Returns all the Profiles as a list of profiles. For displaying all the profiles to the user for
-   * them to select a Profile
-   *
-   * @return List of all Profiles
-   * @throws IOException IO
-   */
-  protected static List<Profile> getAllProfiles() throws IOException {
-    List<Profile> profiles = new ArrayList<>();
-
-    // Path of the JSON to read from.
-    Path profilePath = Path.of("src/main/java/data/player_data.json");
-    String rawProfiles = Files.readString(profilePath);
-
-    // This streamer will parse in all the JSONs in the file.
-    JsonStreamParser streamParser = new JsonStreamParser(rawProfiles);
-
-    // For every JSON object in the file, this will run (until EOF)
-    while (streamParser.hasNext()) {
-      JsonElement page = streamParser.next();
-
-      // JSON file is an array of elements, so needs to convert into array.
-      if (page.isJsonArray()) {
-        JsonArray elements = (JsonArray) page;
-        for (JsonElement element : elements) {
-          Profile profile = new Gson().fromJson(element, Profile.class);
-          profiles.add(profile);
-        }
-      }
-    }
-
-    return profiles;
   }
 }

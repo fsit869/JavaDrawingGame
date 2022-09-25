@@ -122,7 +122,7 @@ public class SelectProfilesController {
     this.arrButtons[2] = profileThree;
     this.arrButtons[3] = profileFour;
     this.arrButtons[4] = profileFive;
-    this.arrButtons[5] = Guest;
+    this.arrButtons[5] = guest;
   }
 
   /////////////////////
@@ -181,8 +181,9 @@ public class SelectProfilesController {
     }
   }
 
-  /** Changes the page into deleteMode or toggles it off */
-  public void toggleDeleteMode() {
+  /** On toggle changes the page into deleteMode or toggles it off */
+  @FXML
+  private void onDeleteModeToggle() {
     this.deleteMode = !deleteMode;
     promptText.setText(this.deleteMode ? "Delete a Profile!" : "Select a Profile!");
     setButtons();
