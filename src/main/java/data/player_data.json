@@ -510,8 +510,8 @@
   }
 },
 {
-  "username": "yes",
-  "profilePicturePath": "file:/C:/Users/kapst/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
+  "username": "",
+  "profilePicturePath": "",
   "statsData": {
     "bestTime": 60,
     "bestAccuracy": 0,

@@ -81,12 +81,18 @@ public class SelectProfilesController {
           this.arrCircles[i].setFill(new ImagePattern(image));
         }
       } else {
-        Image image = new Image("file:src/main/resources/images/icons/add.png");
+        // If the profile doesn't exist, default images are shown.
+        Image image =
+            new Image(
+                this.deleteMode
+                    ? "file:src/main/resources/images/icons/invalid.png"
+                    : "file:src/main/resources/images/icons/add.png");
         this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
         this.arrCircles[i].setFill(new ImagePattern(image));
         this.arrButtons[i].setDisable(this.deleteMode);
       }
     }
+    // Configuring the guest profile
     this.arrButtons[5].setText(profiles.get(5).getUsername());
     this.arrButtons[5].setDisable(this.deleteMode);
     this.arrCircles[5].setFill(

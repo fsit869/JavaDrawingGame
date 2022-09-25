@@ -23,7 +23,7 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Text layoutX="25.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Profile!" wrappingWidth="182.421875">
+                              <Text fx:id="promptText" layoutX="25.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Profile!" wrappingWidth="182.421875">
                                  <font>
                                     <Font name="System Bold Italic" size="24.0" />
                                  </font>
