@@ -26,7 +26,7 @@ public class SelectProfilesController {
 
   @FXML private Circle circleSix;
   @FXML private ToggleButton deleteButton;
-  @FXML private Button Guest;
+  @FXML private Button guest;
   @FXML private Button profileOne;
   @FXML private Button profileTwo;
   @FXML private Button profileThree;
@@ -98,7 +98,11 @@ public class SelectProfilesController {
     this.arrButtons[5].setText(profiles.get(5).getUsername());
     this.arrButtons[5].setDisable(this.deleteMode);
     this.arrCircles[5].setFill(
-        new ImagePattern(new Image("file:src/main/resources/images/default_profile_picture.png")));
+        new ImagePattern(
+            new Image(
+                this.deleteMode
+                    ? "file:src/main/resources/images/icons/invalid.png"
+                    : "file:src/main/resources/images/default_profile_picture.png")));
   }
 
   /** Configures the circles for the profiles into an array */
