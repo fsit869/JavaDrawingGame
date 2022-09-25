@@ -35,7 +35,7 @@
                               </ToggleButton>
                               <AnchorPane layoutX="-1.0" layoutY="230.0" prefHeight="464.0" prefWidth="456.0">
                                  <children>
-                                            <Button fx:id="profileOne" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="26.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.51" prefHeight="51.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
+                                            <Button fx:id="profileOne" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="26.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="51.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
                                                 <font>
                                                     <Font size="24.0" />
                                                 </font>
@@ -53,7 +53,7 @@
                                        </padding>
                                             </Button>
                                     <Circle fx:id="circleTwo" fill="DODGERBLUE" layoutX="54.0" layoutY="117.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                            <Button fx:id="profileThree" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="162.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.51" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
+                                            <Button fx:id="profileThree" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="162.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
                                                 <font>
                                                     <Font size="24.0" />
                                                 </font>
@@ -71,7 +71,7 @@
                                        </padding>
                                             </Button>
                                     <Circle fx:id="circleFour" fill="DODGERBLUE" layoutX="54.0" layoutY="256.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                            <Button fx:id="profileFive" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="301.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.49" prefHeight="51.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="New Profile">
+                                            <Button fx:id="profileFive" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="301.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="51.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="New Profile">
                                                 <font>
                                                     <Font size="24.0" />
                                                 </font>
