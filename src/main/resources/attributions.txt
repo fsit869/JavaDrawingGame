@@ -1,0 +1,24 @@
+Attributions to icons used in .fxml views:
+<a href="https://www.flaticon.com/free-icons/letter-s" title="Letter s icons">Letter s icons created by Omen Media - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/start" title="start icons">Start icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/rabbit" title="rabbit icons">Rabbit icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/back" title="back icons">Back icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/rubber" title="rubber icons">Rubber icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/save" title="save icons">Save icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Smashicons - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/woman" title="woman icons">Woman icons created by Icon Pond - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/medal" title="medal icons">Medal icons created by Pixel Buddha - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/statistics" title="statistics icons">Statistics icons created by Saepul Nahwan - Flaticon</a>
+<a href="https://www.flaticon.com/free-stickers/wrong" title="wrong stickers">Wrong stickers created by aslaiart - Flaticon</a>
+<a href="https://www.flaticon.com/free-stickers/gear" title="gear stickers">Gear stickers created by Gohsantosadrive - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/dog" title="dog icons">Dog icons created by Zlatko Najdenovski - Flaticon</a> 
+<a href="https://www.flaticon.com/free-icons/emoji" title="emoji icons">Emoji icons created by Ruslan Babkin - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/speaker" title="speaker icons">Speaker icons created by Pixel perfect - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by Dave Gandy - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/barn" title="barn icons">Barn icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/minus" title="minus icons">Minus icons created by Muhammad_Usman - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by kliwir art - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by hqrloveq - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/timer" title="timer icons">Timer icons created by Freepik - Flaticon</a>

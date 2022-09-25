@@ -1,71 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane style="-fx-background-color: linear-gradient(to right, red, blue);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SelectProfilesController">
+<AnchorPane style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SelectProfilesController">
     <children>
         <VBox prefHeight="702.0" prefWidth="642.0">
             <children>
-                <HBox prefHeight="563.0" prefWidth="642.0">
+                <HBox prefHeight="649.0" prefWidth="642.0">
                     <children>
                         <VBox prefHeight="563.0" prefWidth="100.0" />
-                        <VBox prefHeight="563.0" prefWidth="456.0">
-                            <children>
-                                <VBox prefHeight="176.0" prefWidth="456.0">
-                                    <children>
-                                        <HBox prefHeight="100.0" prefWidth="200.0">
-                                            <children>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Profile!">
-                                                    <font>
-                                                        <Font size="36.0" />
-                                                    </font>
-                                                </Text>
-                                                <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" />
-                                            </children>
-                                        </HBox>
-                                        <ToggleButton fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteModeToggle" opacity="0.67" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: yellow;" text="Delete Mode" />
-                                    </children>
-                                </VBox>
-                                <Button fx:id="profileOne" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.51" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Button">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                                <Button fx:id="profileTwo" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Button">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                                <Button fx:id="profileThree" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.51" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Button">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                                <Button fx:id="profileFour" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Button">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                                <Button fx:id="profileFive" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.49" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="New Profile">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                                <Button fx:id="guest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.68" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Guest">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                        </VBox>
+                  <AnchorPane>
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <Text fx:id="promptText" layoutX="31.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Profile!" wrappingWidth="214.421875">
+                                 <font>
+                                    <Font name="System Bold Italic" size="24.0" />
+                                 </font>
+                              </Text>
+                                        <ToggleButton fx:id="deleteButton" alignment="BASELINE_LEFT" layoutX="308.0" layoutY="195.0" mnemonicParsing="false" onAction="#onDeleteModeToggle" opacity="0.51" prefHeight="51.0" prefWidth="101.0" style="-fx-background-color: red; -fx-background-radius: 200;" text="Delete">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </ToggleButton>
+                              <AnchorPane layoutX="-1.0" layoutY="230.0" prefHeight="464.0" prefWidth="456.0">
+                                 <children>
+                                            <Button fx:id="profileOne" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="26.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="51.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
+                                                <font>
+                                                    <Font size="24.0" />
+                                                </font>
+                                       <padding>
+                                          <Insets left="80.0" />
+                                       </padding>
+                                            </Button>
+                                    <Circle fx:id="circleOne" fill="DODGERBLUE" layoutX="54.0" layoutY="51.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                            <Button fx:id="profileTwo" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="92.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
+                                                <font>
+                                                    <Font size="24.0" />
+                                                </font>
+                                       <padding>
+                                          <Insets left="80.0" />
+                                       </padding>
+                                            </Button>
+                                    <Circle fx:id="circleTwo" fill="DODGERBLUE" layoutX="54.0" layoutY="117.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                            <Button fx:id="profileThree" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="162.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
+                                                <font>
+                                                    <Font size="24.0" />
+                                                </font>
+                                       <padding>
+                                          <Insets left="80.0" />
+                                       </padding>
+                                            </Button>
+                                    <Circle fx:id="circleThree" fill="DODGERBLUE" layoutX="54.0" layoutY="187.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                            <Button fx:id="profileFour" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="231.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Button">
+                                                <font>
+                                                    <Font size="24.0" />
+                                                </font>
+                                       <padding>
+                                          <Insets left="80.0" />
+                                       </padding>
+                                            </Button>
+                                    <Circle fx:id="circleFour" fill="DODGERBLUE" layoutX="54.0" layoutY="256.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                            <Button fx:id="profileFive" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="301.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.67" prefHeight="51.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="New Profile">
+                                                <font>
+                                                    <Font size="24.0" />
+                                                </font>
+                                       <padding>
+                                          <Insets left="80.0" />
+                                       </padding>
+                                            </Button>
+                                    <Circle fx:id="circleFive" fill="DODGERBLUE" layoutX="54.0" layoutY="326.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                            <Button fx:id="guest" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="369.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.68" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Guest">
+                                                <font>
+                                                    <Font size="24.0" />
+                                                </font>
+                                       <padding>
+                                          <Insets left="80.0" />
+                                       </padding>
+                                            </Button>
+                                    <Circle fx:id="circleSix" fill="DODGERBLUE" layoutX="54.0" layoutY="394.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                 </children>
+                              </AnchorPane>
+                              <ImageView fitHeight="60.0" fitWidth="70.0" layoutX="78.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/pencil.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="182.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-k.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="140.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-c.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="108.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-i.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="33.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-q.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="73.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-u.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="190.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-d.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="315.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-w.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="232.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-r.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="271.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alphabet/letter-a.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                         <VBox layoutX="10.0" layoutY="10.0" prefHeight="563.0" prefWidth="100.0" />
                     </children>
                 </HBox>

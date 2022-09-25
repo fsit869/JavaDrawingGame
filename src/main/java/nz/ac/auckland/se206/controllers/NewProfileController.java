@@ -85,7 +85,16 @@ public class NewProfileController {
       a.setAlertType(Alert.AlertType.INFORMATION);
       a.setHeaderText("");
       a.setContentText("Please enter a username");
-      a.show();
+      a.showAndWait();
+      return false;
+    }
+    if (create.length() > 20) {
+      // Show dialogue if username is too long
+      Alert a = new Alert(Alert.AlertType.NONE);
+      a.setAlertType(Alert.AlertType.INFORMATION);
+      a.setHeaderText("");
+      a.setContentText("Username is too long!");
+      a.showAndWait();
       return false;
     }
     try {
@@ -97,7 +106,7 @@ public class NewProfileController {
           a.setAlertType(Alert.AlertType.INFORMATION);
           a.setHeaderText("");
           a.setContentText("Username already taken!");
-          a.show();
+          a.showAndWait();
           return false;
         }
       }
