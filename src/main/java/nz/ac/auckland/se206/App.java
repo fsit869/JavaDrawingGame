@@ -25,6 +25,7 @@ public class App extends Application {
   public void start(final Stage stage) {
     FxmlSwitcher fxmlSwitcher = FxmlSwitcher.getInstance();
     stage.setScene(fxmlSwitcher.getRootScene());
+    // set stage title and icon
     stage.setTitle("Quick Draw 206 version!");
     stage.getIcons().add(new Image("images/pencil.png"));
     stage.setResizable(false);
