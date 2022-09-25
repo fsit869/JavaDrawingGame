@@ -33,8 +33,8 @@ public class SettingsController {
       ttsOnButton.setStyle("-fx-background-color: #00FF00;-fx-background-radius: 2em");
       ttsOffButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
     } else {
-      ttsOnButton.setStyle("-fx-background-color: #FF0000;-fx-background-radius: 2em");
-      ttsOffButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
+      ttsOffButton.setStyle("-fx-background-color: #FF0000;-fx-background-radius: 2em");
+      ttsOnButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
     }
   }
 
