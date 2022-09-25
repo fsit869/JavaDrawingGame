@@ -10,12 +10,14 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for selecting which profile to play */
 public class SelectProfilesController {
+  @FXML private Text promptText;
   @FXML private Circle circleOne;
   @FXML private Circle circleTwo;
   @FXML private Circle circleThree;
@@ -182,6 +184,7 @@ public class SelectProfilesController {
   /** Changes the page into deleteMode or toggles it off */
   public void toggleDeleteMode() {
     this.deleteMode = !deleteMode;
+    promptText.setText(this.deleteMode ? "Delete a Profile!" : "Select a Profile!");
     setButtons();
   }
 }
