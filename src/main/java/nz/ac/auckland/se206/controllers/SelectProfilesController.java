@@ -6,22 +6,19 @@ import java.util.NoSuchElementException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ToggleButton;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for selecting which profile to play */
 public class SelectProfilesController {
-  @FXML private ToggleButton deleteButton;
-  @FXML private Button Guest;
+
+  @FXML private Button guest;
   @FXML private Button profileOne;
   @FXML private Button profileTwo;
   @FXML private Button profileThree;
   @FXML private Button profileFour;
   @FXML private Button profileFive;
-  @FXML private ButtonBar buttonBar;
 
   private List<Profile> profiles;
   private Button[] arrButtons;
@@ -60,6 +57,7 @@ public class SelectProfilesController {
       if (!profiles.get(i).getUsername().equals("")) {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
       } else {
+        // check if in delete mode.
         this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
         this.arrButtons[i].setDisable(this.deleteMode);
       }
@@ -77,7 +75,7 @@ public class SelectProfilesController {
     this.arrButtons[2] = profileThree;
     this.arrButtons[3] = profileFour;
     this.arrButtons[4] = profileFive;
-    this.arrButtons[5] = Guest;
+    this.arrButtons[5] = guest;
   }
 
   /////////////////////
@@ -136,8 +134,9 @@ public class SelectProfilesController {
     }
   }
 
-  /** Changes the page into deleteMode or toggles it off */
-  public void toggleDeleteMode() {
+  /** On toggle changes the page into deleteMode or toggles it off */
+  @FXML
+  private void onDeleteModeToggle() {
     this.deleteMode = !deleteMode;
     setButtons();
   }

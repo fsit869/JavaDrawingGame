@@ -8,7 +8,6 @@ import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the main menu */
 public class MainMenuController {
-  //  @FXML private Button profileNameLabel;
   @FXML private ImageView profileImageView;
 
   @FXML private Button startButton;

@@ -31,7 +31,7 @@
                                                 <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" />
                                             </children>
                                         </HBox>
-                                        <ToggleButton fx:id="deleteButton" mnemonicParsing="false" onAction="#toggleDeleteMode" opacity="0.67" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: yellow;" text="Delete Mode" />
+                                        <ToggleButton fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteModeToggle" opacity="0.67" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: yellow;" text="Delete Mode" />
                                     </children>
                                 </VBox>
                                 <Button fx:id="profileOne" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.51" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Button">
@@ -59,7 +59,7 @@
                                         <Font size="24.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="Guest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.68" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Guest">
+                                <Button fx:id="guest" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.68" prefHeight="50.0" prefWidth="501.0" style="-fx-background-color: yellow;" text="Guest">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
