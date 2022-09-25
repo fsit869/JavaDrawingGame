@@ -6,14 +6,23 @@ import java.util.NoSuchElementException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for selecting which profile to play */
 public class SelectProfilesController {
+  @FXML private Circle circleOne;
+  @FXML private Circle circleTwo;
+  @FXML private Circle circleThree;
+  @FXML private Circle circleFour;
+  @FXML private Circle circleFive;
+
+  @FXML private Circle circleSix;
   @FXML private ToggleButton deleteButton;
   @FXML private Button Guest;
   @FXML private Button profileOne;
@@ -21,9 +30,8 @@ public class SelectProfilesController {
   @FXML private Button profileThree;
   @FXML private Button profileFour;
   @FXML private Button profileFive;
-  @FXML private ButtonBar buttonBar;
-
   private List<Profile> profiles;
+  private Circle[] arrCircles;
   private Button[] arrButtons;
   private boolean deleteMode;
   private ProfileFactory factory;
@@ -32,6 +40,7 @@ public class SelectProfilesController {
   /** Initialises the controller, sets the factory and the profiles */
   public void initialize() {
     setButtonsArray();
+    setCirclesArray();
     this.deleteMode = false;
     // Initialise the profile factory
     try {
@@ -59,6 +68,12 @@ public class SelectProfilesController {
       // Check if there is a profile in the spot
       if (!profiles.get(i).getUsername().equals("")) {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
+        try {
+          Image image = new Image(profiles.get(i).getProfilePicturePath());
+          this.arrCircles[i].setFill(new ImagePattern(image));
+        } catch (Exception e) {
+          // Unexpected err while loading image. Display default
+        }
       } else {
         this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
         this.arrButtons[i].setDisable(this.deleteMode);
@@ -66,6 +81,18 @@ public class SelectProfilesController {
     }
     this.arrButtons[5].setText(profiles.get(5).getUsername());
     this.arrButtons[5].setDisable(this.deleteMode);
+  }
+
+  /** Configures the circles for the profiles into an array */
+  public void setCirclesArray() {
+    this.arrCircles = new Circle[6];
+    // All the circles are put into this array
+    this.arrCircles[0] = circleOne;
+    this.arrCircles[1] = circleTwo;
+    this.arrCircles[2] = circleThree;
+    this.arrCircles[3] = circleFour;
+    this.arrCircles[4] = circleFive;
+    this.arrCircles[5] = circleSix;
   }
 
   /** Configures the buttons into an array */
