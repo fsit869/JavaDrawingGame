@@ -8,6 +8,16 @@ import nz.ac.auckland.se206.model.GameModel;
 public class FxmlSwitcher {
 
   private static FxmlSwitcher fxmlSwitcherInstance = new FxmlSwitcher();
+
+  /**
+   * Get the instance of the fxml switcher. Using the singleton pattern.
+   *
+   * @return The game model.
+   */
+  public static FxmlSwitcher getInstance() {
+    return fxmlSwitcherInstance;
+  }
+
   private GameModel gameModel;
 
   private Scene rootScene;
@@ -69,19 +79,6 @@ public class FxmlSwitcher {
               }
             });
     // This likely should be refactored into a hash map
-  }
-
-  ///////////////////////
-  // Singleton pattern //
-  ///////////////////////
-
-  /**
-   * Get the instance of the fxml switcher. Using the singleton pattern.
-   *
-   * @return The game model.
-   */
-  public static FxmlSwitcher getInstance() {
-    return fxmlSwitcherInstance;
   }
 
   public Scene getRootScene() {

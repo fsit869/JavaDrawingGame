@@ -17,9 +17,6 @@ import nz.ac.auckland.se206.profiles.entities.WordsData;
 
 /** Game model represents all logic related to a game. */
 public class GameModel {
-  // Instance of the game. Uses singleton pattern
-  private static GameModel gameModelInstance = new GameModel();
-
   /** Represents the different states a game could have */
   public enum State {
     READY,
@@ -35,6 +32,18 @@ public class GameModel {
     SETTINGS,
     MAINMENU,
     PROFILESTATS,
+  }
+
+  // Instance of the game. Uses singleton pattern
+  private static GameModel gameModelInstance = new GameModel();
+
+  /**
+   * Get the instance of the game model. Using the singleton pattern.
+   *
+   * @return The game model.
+   */
+  public static GameModel getInstance() {
+    return gameModelInstance;
   }
 
   private Profile profile;
@@ -151,18 +160,5 @@ public class GameModel {
 
   public void setProfile(Profile profile) {
     this.profile = profile;
-  }
-
-  ///////////////////////
-  // Singleton pattern //
-  ///////////////////////
-
-  /**
-   * Get the instance of the game model. Using the singleton pattern.
-   *
-   * @return The game model.
-   */
-  public static GameModel getInstance() {
-    return gameModelInstance;
   }
 }

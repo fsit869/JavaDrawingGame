@@ -59,6 +59,7 @@ public class GameController {
   // mouse coordinates
   private double currentX;
   private double currentY;
+  private int accuracyValue = 0;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -173,7 +174,9 @@ public class GameController {
 
     // Handle saving user profile stats
     try {
-      this.saveProfileStats();
+      if (this.textToSpeech.getFirstThread()) {
+        this.saveProfileStats();
+      }
     } catch (IOException e) {
       e.printStackTrace();
     } catch (TranslateException e) {
@@ -184,6 +187,7 @@ public class GameController {
   /** Saves the profile information and win/loss */
   private void saveProfileStats() throws IOException, TranslateException {
     StatsData statsData = this.gameModel.getProfile().getStatsData();
+    System.out.println("saving");
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {
       statsData.setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));
@@ -203,8 +207,6 @@ public class GameController {
 
     this.profileFactory.saveProfile(gameModel.getProfile());
   }
-
-  private int accuracyValue = 0;
 
   public void setAccuracyValue(int accuracyValue) {
     this.accuracyValue = accuracyValue;
