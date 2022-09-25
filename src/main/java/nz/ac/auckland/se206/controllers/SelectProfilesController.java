@@ -69,18 +69,28 @@ public class SelectProfilesController {
       if (!profiles.get(i).getUsername().equals("")) {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
         try {
-          Image image = new Image(profiles.get(i).getProfilePicturePath());
+          Image image =
+              new Image(
+                  this.deleteMode
+                      ? "file:src/main/resources/images/icons/minus.png"
+                      : profiles.get(i).getProfilePicturePath());
           this.arrCircles[i].setFill(new ImagePattern(image));
         } catch (Exception e) {
           // Unexpected err while loading image. Display default
+          Image image = new Image("file:src/main/resources/images/img_not_found.png");
+          this.arrCircles[i].setFill(new ImagePattern(image));
         }
       } else {
+        Image image = new Image("file:src/main/resources/images/icons/add.png");
         this.arrButtons[i].setText(this.deleteMode ? "Empty Slot!" : "New Profile");
+        this.arrCircles[i].setFill(new ImagePattern(image));
         this.arrButtons[i].setDisable(this.deleteMode);
       }
     }
     this.arrButtons[5].setText(profiles.get(5).getUsername());
     this.arrButtons[5].setDisable(this.deleteMode);
+    this.arrCircles[5].setFill(
+        new ImagePattern(new Image("file:src/main/resources/images/default_profile_picture.png")));
   }
 
   /** Configures the circles for the profiles into an array */
