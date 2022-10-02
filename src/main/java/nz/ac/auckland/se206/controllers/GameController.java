@@ -182,9 +182,7 @@ public class GameController implements ControllerInterface {
 
     // Handle saving user profile stats
     try {
-      if (this.textToSpeech.getFirstThread()) {
-        this.saveProfileStats();
-      }
+      this.saveProfileStats();
     } catch (IOException e) {
       e.printStackTrace();
     } catch (TranslateException e) {
@@ -387,7 +385,6 @@ public class GameController implements ControllerInterface {
    */
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
-    this.textToSpeech.setFirstThreadFalse();
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
