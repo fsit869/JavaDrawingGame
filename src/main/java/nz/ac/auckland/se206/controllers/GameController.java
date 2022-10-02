@@ -33,7 +33,7 @@ import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
-public class GameController {
+public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
   @FXML private RadioButton brushRadioButton;
@@ -93,6 +93,14 @@ public class GameController {
     this.startedDrawing = false;
 
     onReadyState();
+  }
+
+  /**
+   * Reset the view to ready game state
+   */
+  @Override
+  public void refresh() {
+    this.gameModel.setCurrentGameState(GameModel.State.READY);
   }
 
   /** Handles bindings for the timer thread. */
@@ -450,4 +458,6 @@ public class GameController {
   public void setStartedDrawing(boolean startedDrawing) {
     this.startedDrawing = startedDrawing;
   }
+
+
 }

@@ -31,6 +31,8 @@ public class FxmlSwitcher {
 
     // Initialize objects and views
     this.gameModel = GameModel.getInstance();
+
+    // Initalize all the views with their view state
     this.addView(GameModel.ViewState.CANVAS, new FxmlLoaderData(loadFxml("game")));
     this.addView(GameModel.ViewState.SELECTPROFILES, new FxmlLoaderData(loadFxml("select_profiles")));
     this.addView(GameModel.ViewState.NEWPROFILE, new FxmlLoaderData(loadFxml("new_profile")));
@@ -38,8 +40,9 @@ public class FxmlSwitcher {
     this.addView(GameModel.ViewState.MAINMENU, new FxmlLoaderData(loadFxml("main_menu")));
     this.addView(GameModel.ViewState.PROFILESTATS, new FxmlLoaderData(loadFxml("profile_stats")));
 
-
+    // Setup inital view
     this.rootScene = new Scene(this.viewMap.get(GameModel.ViewState.SELECTPROFILES).getRoot(), 642, 702);
+    this.gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     this.setupViewStateBindings();
   }
 
@@ -75,20 +78,36 @@ public class FxmlSwitcher {
             });
   }
 
+
   public Scene getRootScene() {
     return rootScene;
   }
 
+  /**
+   * Add a view to the hashmap
+   * @param viewState The key of hashmap
+   * @param fxmlLoaderData The value of the hashmap
+   */
   private void addView(GameModel.ViewState viewState, FxmlLoaderData fxmlLoaderData) {
     this.viewMap.put(viewState, fxmlLoaderData);
   }
 
+  /**
+   * Display the view based on viewState
+   * @param viewState
+   */
   private void activateView(GameModel.ViewState viewState) {
     FxmlLoaderData fxmlLoaderData = viewMap.get(viewState);
     Parent root = fxmlLoaderData.getRoot();
+
+    // Debug print controller instance
     System.out.println((fxmlLoaderData.getFxmlLoader().getController().toString()));
+    // Debug print controller class
     System.out.println((fxmlLoaderData.getFxmlLoader().getController().getClass().toString()));
-//      viewFxmlLoader.setController(viewFxmlLoader.getControllerFactory().call(viewFxmlLoader.getController().getClass()));
+
+    // Get view controller and refresh it.
+    ControllerInterface controller =  ((ControllerInterface) fxmlLoaderData.getFxmlLoader().getController());
+    controller.refresh();
     this.rootScene.setRoot(root);
   }
 }

@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the main menu */
-public class MainMenuController {
+public class MainMenuController implements ControllerInterface {
   @FXML private ImageView profileImageView;
 
   @FXML private Button startButton;
@@ -43,6 +43,11 @@ public class MainMenuController {
     }
   }
 
+  @Override
+  public void refresh() {
+    System.out.println("maion men ref");
+  }
+
   /////////////////////
   // Button handlers //
   /////////////////////
@@ -76,4 +81,6 @@ public class MainMenuController {
   private void onExitButton() {
     System.exit(0);
   }
+
+
 }

@@ -5,12 +5,21 @@ import javafx.scene.Parent;
 
 import java.io.IOException;
 
+/**
+ * This class is for storing the views and controller
+ */
 public class FxmlLoaderData {
     private Parent root;
     private FXMLLoader fxmlLoader;
 
+    /**
+     * Create a new data object
+     * @param fxmlLoader Fxml view loader
+     */
     public FxmlLoaderData(FXMLLoader fxmlLoader) {
+        // Store fxmlLoader
         this.fxmlLoader = fxmlLoader;
+        // Load the root
         try {
             this.root = fxmlLoader.load();
         } catch (IOException e) {
@@ -18,10 +27,18 @@ public class FxmlLoaderData {
         }
     }
 
+    /**
+     * Get the root
+     * @return Parent root view
+     */
     public Parent getRoot() {
         return root;
     }
 
+    /**
+     * Fxml Loader obj
+     * @return loader obj
+     */
     public FXMLLoader getFxmlLoader() {
         return fxmlLoader;
     }
