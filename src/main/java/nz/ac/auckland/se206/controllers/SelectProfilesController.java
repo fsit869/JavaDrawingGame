@@ -63,6 +63,8 @@ public class SelectProfilesController implements ControllerInterface {
   @Override
   public void refresh() {
     // todo Fix loading/deleting profiles.
+    setButtons();
+    setCirclesArray();
     initialize();
   }
 
