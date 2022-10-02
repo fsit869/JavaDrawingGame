@@ -5,6 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import nz.ac.auckland.se206.model.GameModel;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 public class FxmlSwitcher {
 
   private static FxmlSwitcher fxmlSwitcherInstance = new FxmlSwitcher();
@@ -22,20 +25,24 @@ public class FxmlSwitcher {
 
   private Scene rootScene;
 
+  private HashMap<GameModel.ViewState, FxmlLoaderData> viewMap = new HashMap<>();
+
   private FxmlSwitcher() {
-    initialize();
-  }
 
-  /** constructor calls this function to set up the switcher */
-  private void initialize() {
-    // Initialize objects
+    // Initialize objects and views
     this.gameModel = GameModel.getInstance();
-    this.rootScene = new Scene(loadFxml("select_profiles"), 642, 702);
-    this.setupViewStateBindings();
+    this.addView(GameModel.ViewState.CANVAS, new FxmlLoaderData(loadFxml("game")));
+    this.addView(GameModel.ViewState.SELECTPROFILES, new FxmlLoaderData(loadFxml("select_profiles")));
+    this.addView(GameModel.ViewState.NEWPROFILE, new FxmlLoaderData(loadFxml("new_profile")));
+    this.addView(GameModel.ViewState.SETTINGS, new FxmlLoaderData(loadFxml("settings")));
+    this.addView(GameModel.ViewState.MAINMENU, new FxmlLoaderData(loadFxml("main_menu")));
+    this.addView(GameModel.ViewState.PROFILESTATS, new FxmlLoaderData(loadFxml("profile_stats")));
 
-    // IMPORTANT: Upon end of init. The view according to this state will be displayed.
-    this.gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
+
+    this.rootScene = new Scene(this.viewMap.get(GameModel.ViewState.SELECTPROFILES).getRoot(), 642, 702);
+    this.setupViewStateBindings();
   }
+
 
   /**
    * Returns the node associated to the input file. The method expects that the file is located in
@@ -44,9 +51,9 @@ public class FxmlSwitcher {
    * @param fxml The name of the FXML file (without extension).
    * @return The node of the input file.
    */
-  private Parent loadFxml(final String fxml) {
+  private FXMLLoader loadFxml(final String fxml) {
     try {
-      return new FXMLLoader(FxmlSwitcher.class.getResource("/fxml/" + fxml + ".fxml")).load();
+      return new FXMLLoader(getClass().getResource("/fxml/" + fxml + ".fxml"));
     } catch (Exception e) {
       e.printStackTrace();
       throw new RuntimeException();
@@ -64,24 +71,24 @@ public class FxmlSwitcher {
         // Determine which states goto which page
         .addListener(
             (observable, oldValue, newValue) -> {
-              switch (newValue) {
-                case CANVAS -> rootScene.setRoot(loadFxml("game"));
-                case SELECTPROFILES -> rootScene.setRoot(loadFxml("select_profiles"));
-                case NEWPROFILE -> rootScene.setRoot(loadFxml("new_profile"));
-                case SETTINGS -> rootScene.setRoot(loadFxml("settings"));
-                case MAINMENU -> rootScene.setRoot(loadFxml("main_menu"));
-                case PROFILESTATS -> rootScene.setRoot(loadFxml("profile_stats"));
-                default ->
-                // Unknown state that is not handled.
-                throw new IllegalStateException(
-                    String.format(
-                        "Unknown state [%s]\n Transitioned from [%s] state", oldValue, newValue));
-              }
+              activateView(newValue);
             });
-    // This likely should be refactored into a hash map
   }
 
   public Scene getRootScene() {
     return rootScene;
+  }
+
+  private void addView(GameModel.ViewState viewState, FxmlLoaderData fxmlLoaderData) {
+    this.viewMap.put(viewState, fxmlLoaderData);
+  }
+
+  private void activateView(GameModel.ViewState viewState) {
+    FxmlLoaderData fxmlLoaderData = viewMap.get(viewState);
+    Parent root = fxmlLoaderData.getRoot();
+    System.out.println((fxmlLoaderData.getFxmlLoader().getController().toString()));
+    System.out.println((fxmlLoaderData.getFxmlLoader().getController().getClass().toString()));
+//      viewFxmlLoader.setController(viewFxmlLoader.getControllerFactory().call(viewFxmlLoader.getController().getClass()));
+    this.rootScene.setRoot(root);
   }
 }
