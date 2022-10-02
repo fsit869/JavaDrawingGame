@@ -219,33 +219,7 @@ public class GameController implements ControllerInterface {
   public void setAccuracyValue(int accuracyValue) {
     this.accuracyValue = accuracyValue;
   }
-  /**
-   * This method determines the accuracy of the guess and rounds it up
-   *
-   * @return int containing accuracy rounded up
-   */
-  private int determineAccuracy() throws TranslateException {
-    List<Classifications.Classification> predictions =
-        gameModel.getPredictions(this.getCurrentSnapshot(), TimerTask.TOTAL_PREDICTIONS);
 
-    // Find the best probability and round up
-    for (final Classifications.Classification classification : predictions) {
-      if (classification
-          .getClassName()
-          // Cleaning data
-          .replace("_", " ")
-          .equals(gameModel.getCurrentWordToGuess())) {
-        // Convert to a percentage. Currently in decimal form
-        return (int) Math.ceil(classification.getProbability() * 100);
-      }
-    }
-
-    // Error occurs if the expected word is not within top prediction
-    throw new IllegalAccessError(
-        String.format(
-            "Could not find the word to guess in top %d predictions! Unknown accuracy",
-            TimerTask.TOTAL_PREDICTIONS));
-  }
 
   /**
    * Get the current snapshot of the canvas.
@@ -285,6 +259,7 @@ public class GameController implements ControllerInterface {
           setBrush(e, eraserMode);
         });
 
+    // Allow for click painting
     canvas.setOnMouseDragged(
         e -> {
           setBrush(e, eraserMode);

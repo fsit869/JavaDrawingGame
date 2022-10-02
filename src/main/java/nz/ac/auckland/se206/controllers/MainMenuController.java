@@ -45,7 +45,6 @@ public class MainMenuController implements ControllerInterface {
 
   @Override
   public void refresh() {
-    System.out.println("maion men ref");
   }
 
   /////////////////////

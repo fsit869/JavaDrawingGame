@@ -40,7 +40,7 @@ public class SettingsController implements ControllerInterface {
 
   @Override
   public void refresh() {
-    System.out.println("Set ref");
+
   }
 
   private void switchTts() {

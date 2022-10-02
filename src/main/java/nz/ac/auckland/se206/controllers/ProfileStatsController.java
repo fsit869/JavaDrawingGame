@@ -67,6 +67,9 @@ public class ProfileStatsController implements ControllerInterface {
     }
   }
 
+  /**
+   * When view is loaded again. Refresh the stats
+   */
   @Override
   public void refresh() {
     this.initialize();

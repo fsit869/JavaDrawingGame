@@ -62,7 +62,8 @@ public class SelectProfilesController implements ControllerInterface {
 
   @Override
   public void refresh() {
-    System.out.println("Sel pro ref");
+    // todo Fix loading/deleting profiles.
+    initialize();
   }
 
   /** Sets the text of the buttons, grabbing the usernames from the player data */

@@ -38,7 +38,6 @@ public class NewProfileController implements ControllerInterface {
   @Override
   public void refresh() {
     // todo Clear profile from prev
-    System.out.println("new prof ref");
   }
   /////////////////////
   // Button handlers //
