@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.controllers.GameController;
 public class TimerTask extends Task<Void> {
   public static final int TOTAL_PREDICTIONS = 10;
 
+  private int accuracy;
   private int timerTotal;
   private int counter;
   private Label timerLabel;
@@ -126,8 +127,15 @@ public class TimerTask extends Task<Void> {
         gameModel.getPredictions(canvasController.getCurrentSnapshot(), TOTAL_PREDICTIONS);
     generatePredictionString(predictions);
 
+    // Setup accuracy based on game
+    switch (this.gameModel.getProfile().getSettingsData().getAccuracy()) {
+      case EASY -> this.accuracy = 3;
+      case MEDIUM -> this.accuracy = 2;
+      case HARD -> this.accuracy = 1;
+    }
+
     // Check won
-    if (getWinCondition(predictions, 3) && canvasController.isStartedDrawing()) {
+    if (getWinCondition(predictions,  this.accuracy) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
       gameModel.setCurrentGameState(GameModel.State.FINISHED);
     }
