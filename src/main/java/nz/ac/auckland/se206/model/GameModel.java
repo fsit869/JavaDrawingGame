@@ -23,7 +23,12 @@ public class GameModel {
     INGAME,
     FINISHED
   }
-
+  /** Represents the different gamemodes */
+  public enum GameMode {
+    ZEN,
+    CLASSIC,
+    HIDDEN
+  }
   /** Represents the different view states */
   public enum ViewState {
     CANVAS,
@@ -54,6 +59,8 @@ public class GameModel {
   private ObjectProperty<State> currentGameState;
 
   private ObjectProperty<ViewState> currentViewState;
+
+  private GameMode currentGameMode;
 
   private boolean playerWon;
 
@@ -130,12 +137,20 @@ public class GameModel {
     return currentViewState.get();
   }
 
+  public GameMode getCurrentGameMode() {
+    return this.currentGameMode;
+  }
+
   public void setCurrentGameState(State currentGameState) {
     this.currentGameState.set(currentGameState);
   }
 
   public void setCurrentViewState(ViewState currentViewState) {
     this.currentViewState.set(currentViewState);
+  }
+
+  public void setCurrentGameMode(GameMode gameMode) {
+    this.currentGameMode = gameMode;
   }
 
   public ObjectProperty<State> getCurrentGameStateProperty() {
