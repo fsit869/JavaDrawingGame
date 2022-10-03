@@ -74,10 +74,19 @@ public class TimerTask extends Task<Void> {
             } catch (TranslateException e) {
               e.printStackTrace();
             }
-            timerLabel.setText(String.valueOf(counter));
+            // If zen mode dont show timer label
+            if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+              timerLabel.setText("Zen mode!");
+            } else {
+              timerLabel.setText(String.valueOf(counter));
+            }
             predicationTextArea.setText(stringBuilder.toString());
           });
-      counter--;
+
+      // If zen mode dont decrement timer.
+      if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+        counter--;
+      }
 
       try {
         Thread.sleep(1000);

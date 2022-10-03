@@ -128,7 +128,13 @@ public class GameController implements ControllerInterface {
     // Set UI
     this.canvas.setDisable(true);
     this.onClear();
-    this.timerLabel.setText(String.valueOf(TIMER_MAX));
+
+    // If zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.timerLabel.setText("Zen mode!");
+    } else {
+      this.timerLabel.setText(String.valueOf(TIMER_MAX));
+    }
     this.predictionTextArea.setText("Your predictions will show up here");
     //        this.statusLabel.setText("Ready");
     this.readyPaneMenu.setVisible(true);

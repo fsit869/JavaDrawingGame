@@ -74,7 +74,7 @@ public class GameModel {
       this.playerWon = false;
 
       // Setup default profile
-      this.currentGameMode = GameMode.CLASSIC;
+      this.currentGameMode = GameMode.ZEN;
       ProfileFactory profileFactory = new ProfileFactory();
       this.profile = profileFactory.selectProfile("Guest");
 
