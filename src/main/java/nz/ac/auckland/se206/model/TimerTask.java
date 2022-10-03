@@ -14,6 +14,8 @@ public class TimerTask extends Task<Void> {
   public static final int TOTAL_PREDICTIONS = 10;
 
   private int accuracy;
+  private int confidence;
+
   private int timerTotal;
   private int counter;
   private Label timerLabel;
@@ -162,9 +164,19 @@ public class TimerTask extends Task<Void> {
       }
 
       String predictedWord = classification.getClassName().replace("_", " ");
-      if (predictedWord.equals(wordToDraw)) {
-        this.canvasController.setAccuracyValue(
-            (int) Math.ceil(classification.getProbability() * 100));
+      int probabilityValue = (int) Math.ceil(classification.getProbability() * 100);
+
+      // Find confidence required to win
+      switch (this.gameModel.getProfile().getSettingsData().getConfidence()) {
+        case EASY -> this.confidence = 1;
+        case MEDIUM -> this.confidence = 10;
+        case HARD -> this.confidence = 25;
+        case MASTER -> this.confidence = 50;
+      }
+
+      // Check if win
+      if (predictedWord.equals(wordToDraw) && probabilityValue>=this.confidence) {
+        this.canvasController.setAccuracyValue(probabilityValue);
         return true;
       }
 
