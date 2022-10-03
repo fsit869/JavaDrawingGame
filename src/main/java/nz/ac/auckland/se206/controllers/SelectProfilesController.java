@@ -16,7 +16,7 @@ import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for selecting which profile to play */
-public class SelectProfilesController {
+public class SelectProfilesController implements ControllerInterface {
   @FXML private Text promptText;
   @FXML private Circle circleOne;
   @FXML private Circle circleTwo;
@@ -58,6 +58,14 @@ public class SelectProfilesController {
       throw new RuntimeException(e);
     }
     setButtons();
+  }
+
+  @Override
+  public void refresh() {
+    // todo Fix loading/deleting profiles.
+    setButtons();
+    setCirclesArray();
+    initialize();
   }
 
   /** Sets the text of the buttons, grabbing the usernames from the player data */
@@ -192,4 +200,6 @@ public class SelectProfilesController {
     promptText.setText(this.deleteMode ? "Delete a Profile!" : "Select a Profile!");
     setButtons();
   }
+
+
 }

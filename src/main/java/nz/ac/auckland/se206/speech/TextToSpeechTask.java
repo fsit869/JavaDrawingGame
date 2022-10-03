@@ -9,10 +9,8 @@ public class TextToSpeechTask {
   private TextToSpeech textToSpeech;
   private String wordToSpeak = "";
   private Thread thread;
-
   private GameModel gameModel;
 
-  private Boolean isFirstThread = true;
 
   /** Create a new speech thread */
   public TextToSpeechTask() {
@@ -44,20 +42,11 @@ public class TextToSpeechTask {
    * @param wordToSpeak Word to TTS
    */
   public void speak(String wordToSpeak) {
-    if (isFirstThread) {
-      if (gameModel.getProfile().getSettingsData().getTts()) {
-        this.wordToSpeak = wordToSpeak;
-        createThread();
-        this.thread.start();
-      }
+    if (gameModel.getProfile().getSettingsData().getTts()) {
+      this.wordToSpeak = wordToSpeak;
+      createThread();
+      this.thread.start();
     }
   }
 
-  public void setFirstThreadFalse() {
-    isFirstThread = false;
-  }
-
-  public Boolean getFirstThread() {
-    return isFirstThread;
-  }
 }

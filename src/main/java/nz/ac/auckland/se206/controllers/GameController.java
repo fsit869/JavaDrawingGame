@@ -33,7 +33,7 @@ import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
-public class GameController {
+public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
   @FXML private RadioButton brushRadioButton;
@@ -93,6 +93,14 @@ public class GameController {
     this.startedDrawing = false;
 
     onReadyState();
+  }
+
+  /**
+   * Reset the view to ready game state
+   */
+  @Override
+  public void refresh() {
+    this.gameModel.setCurrentGameState(GameModel.State.READY);
   }
 
   /** Handles bindings for the timer thread. */
@@ -174,9 +182,7 @@ public class GameController {
 
     // Handle saving user profile stats
     try {
-      if (this.textToSpeech.getFirstThread()) {
-        this.saveProfileStats();
-      }
+      this.saveProfileStats();
     } catch (IOException e) {
       e.printStackTrace();
     } catch (TranslateException e) {
@@ -211,33 +217,7 @@ public class GameController {
   public void setAccuracyValue(int accuracyValue) {
     this.accuracyValue = accuracyValue;
   }
-  /**
-   * This method determines the accuracy of the guess and rounds it up
-   *
-   * @return int containing accuracy rounded up
-   */
-  private int determineAccuracy() throws TranslateException {
-    List<Classifications.Classification> predictions =
-        gameModel.getPredictions(this.getCurrentSnapshot(), TimerTask.TOTAL_PREDICTIONS);
 
-    // Find the best probability and round up
-    for (final Classifications.Classification classification : predictions) {
-      if (classification
-          .getClassName()
-          // Cleaning data
-          .replace("_", " ")
-          .equals(gameModel.getCurrentWordToGuess())) {
-        // Convert to a percentage. Currently in decimal form
-        return (int) Math.ceil(classification.getProbability() * 100);
-      }
-    }
-
-    // Error occurs if the expected word is not within top prediction
-    throw new IllegalAccessError(
-        String.format(
-            "Could not find the word to guess in top %d predictions! Unknown accuracy",
-            TimerTask.TOTAL_PREDICTIONS));
-  }
 
   /**
    * Get the current snapshot of the canvas.
@@ -277,6 +257,7 @@ public class GameController {
           setBrush(e, eraserMode);
         });
 
+    // Allow for click painting
     canvas.setOnMouseDragged(
         e -> {
           setBrush(e, eraserMode);
@@ -404,7 +385,6 @@ public class GameController {
    */
   @FXML
   private void onMenuButton(ActionEvent actionEvent) {
-    this.textToSpeech.setFirstThreadFalse();
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
@@ -450,4 +430,6 @@ public class GameController {
   public void setStartedDrawing(boolean startedDrawing) {
     this.startedDrawing = startedDrawing;
   }
+
+
 }

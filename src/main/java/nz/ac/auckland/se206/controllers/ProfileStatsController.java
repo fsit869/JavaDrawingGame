@@ -16,7 +16,7 @@ import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
 
 /** This is the controller for the profile stats view */
-public class ProfileStatsController {
+public class ProfileStatsController implements ControllerInterface {
   public static final int TOTAL_PREDICTIONS_TO_SHOW = 5;
   // Fxml components
   @FXML private Label profileNameLabel;
@@ -31,9 +31,8 @@ public class ProfileStatsController {
   /**
    * Init and load the stats view
    *
-   * @throws URISyntaxException Exceptionwhen loading stats
    */
-  public void initialize() throws URISyntaxException {
+  public void initialize() {
     gameModel = GameModel.getInstance();
     profile = gameModel.getProfile();
 
@@ -55,14 +54,27 @@ public class ProfileStatsController {
       profileImageView.setImage(new Image(profile.getProfilePicturePath()));
     } catch (IllegalArgumentException e) {
       System.err.println("Failed to load image");
-      profileImageView.setImage(
-          new Image(
-              ProfileStatsController.class
-                  .getResource("/images/img_not_found.png")
-                  .toURI()
-                  .toString()));
+      try {
+        profileImageView.setImage(
+            new Image(
+                ProfileStatsController.class
+                    .getResource("/images/img_not_found.png")
+                    .toURI()
+                    .toString()));
+      } catch (URISyntaxException ex) {
+        ex.printStackTrace();
+      }
     }
   }
+
+  /**
+   * When view is loaded again. Refresh the stats
+   */
+  @Override
+  public void refresh() {
+    this.initialize();
+  }
+
   /////////////////////
   // String builders //
   /////////////////////
@@ -174,4 +186,6 @@ public class ProfileStatsController {
     fullWordDialogue.getDialogPane().setContent(textArea);
     fullWordDialogue.showAndWait();
   }
+
+
 }

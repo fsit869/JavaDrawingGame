@@ -7,7 +7,7 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 
 /** This class is responsible for selecting settings */
-public class SettingsController {
+public class SettingsController implements ControllerInterface {
 
   private GameModel gameModel;
 
@@ -36,6 +36,11 @@ public class SettingsController {
       ttsOffButton.setStyle("-fx-background-color: #FF0000;-fx-background-radius: 2em");
       ttsOnButton.setStyle("-fx-background-color: grey;-fx-background-radius: 2em");
     }
+  }
+
+  @Override
+  public void refresh() {
+
   }
 
   private void switchTts() {
@@ -77,4 +82,5 @@ public class SettingsController {
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
+
 }

@@ -13,7 +13,7 @@ import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 
 /** This class is responsible for creating a new profile */
-public class NewProfileController {
+public class NewProfileController implements ControllerInterface {
   private GameModel gameModel;
 
   private ProfileFactory profileFactory;
@@ -26,11 +26,19 @@ public class NewProfileController {
   @FXML private ImageView profileImageView;
 
   /** Init and loads the create new profile view */
-  public void initialize() throws IOException {
+  public void initialize() {
     this.gameModel = GameModel.getInstance();
-    profileFactory = new ProfileFactory();
+    try {
+      profileFactory = new ProfileFactory();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
+  @Override
+  public void refresh() {
+    // todo Clear profile from prev
+  }
   /////////////////////
   // Button handlers //
   /////////////////////
@@ -123,4 +131,6 @@ public class NewProfileController {
   private void onBackToProfiles() {
     gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
+
+
 }
