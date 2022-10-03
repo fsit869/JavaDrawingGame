@@ -44,8 +44,7 @@ public class MainMenuController implements ControllerInterface {
   }
 
   @Override
-  public void refresh() {
-  }
+  public void refresh() {}
 
   /////////////////////
   // Button handlers //
@@ -54,7 +53,7 @@ public class MainMenuController implements ControllerInterface {
   /** This method is called when user clicks start to switch to the canvas view */
   @FXML
   private void onStartButton() {
-    gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
+    gameModel.setCurrentViewState(GameModel.ViewState.GAMEMODESETTINGS);
   }
 
   /** This method is called when user clicks the settings button to go to settings */
@@ -80,6 +79,4 @@ public class MainMenuController implements ControllerInterface {
   private void onExitButton() {
     System.exit(0);
   }
-
-
 }

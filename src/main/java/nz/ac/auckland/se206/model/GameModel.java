@@ -37,6 +37,8 @@ public class GameModel {
     SETTINGS,
     MAINMENU,
     PROFILESTATS,
+
+    GAMEMODESETTINGS,
   }
 
   // Instance of the game. Uses singleton pattern
