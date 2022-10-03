@@ -38,6 +38,7 @@ public class NewProfileController implements ControllerInterface {
   @Override
   public void refresh() {
     // todo Clear profile from prev
+    initialize();
   }
   /////////////////////
   // Button handlers //
@@ -131,6 +132,4 @@ public class NewProfileController implements ControllerInterface {
   private void onBackToProfiles() {
     gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
-
-
 }
