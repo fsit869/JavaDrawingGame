@@ -51,7 +51,11 @@ public class ProfileStatsController implements ControllerInterface {
 
     // Display profile picture
     try {
-      profileImageView.setImage(new Image(profile.getProfilePicturePath()));
+      Image image = new Image(profile.getProfilePicturePath());
+      if (image.isError()) {
+        throw new IllegalArgumentException("Image not valid");
+      }
+      profileImageView.setImage(image);
     } catch (IllegalArgumentException e) {
       System.err.println("Failed to load image");
       try {
@@ -62,6 +66,7 @@ public class ProfileStatsController implements ControllerInterface {
                     .toURI()
                     .toString()));
       } catch (URISyntaxException ex) {
+        System.out.println("Wtf");
         ex.printStackTrace();
       }
     }
