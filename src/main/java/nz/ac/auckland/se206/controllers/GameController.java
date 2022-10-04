@@ -189,14 +189,15 @@ public class GameController implements ControllerInterface {
     this.timerService.cancel();
     this.timerService.reset();
 
-    // Handle saving user profile stats
-    try {
-      this.saveProfileStats();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (TranslateException e) {
-      e.printStackTrace();
+    // Handle saving user profile stats. If zen mode dont save
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      try {
+        this.saveProfileStats();
+      } catch (IOException | TranslateException e) {
+        e.printStackTrace();
+      }
     }
+
   }
 
   /** Saves the profile information and win/loss */

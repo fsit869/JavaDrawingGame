@@ -149,8 +149,13 @@ public class TimerTask extends Task<Void> {
     // Check won
     if (getWinCondition(predictions,  this.accuracy) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
-      gameModel.setCurrentGameState(GameModel.State.FINISHED);
+
+      // If zen mode dont transition
+      if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+        gameModel.setCurrentGameState(GameModel.State.FINISHED);
+      }
     }
+    this.gameModel.setPlayerWon(false);
   }
 
   /**
@@ -203,6 +208,7 @@ public class TimerTask extends Task<Void> {
       counter++;
     }
     this.canvasController.setAccuracyLabelMet(false);
+    this.canvasController.setConfidenceLabelMet(false);
     return false;
   }
 
