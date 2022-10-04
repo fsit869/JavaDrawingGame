@@ -50,7 +50,7 @@
                    </image>
                </ImageView>
            </graphic></Button>
-      <ComboBox fx:id="confidenceComboBox" layoutX="19.0" layoutY="423.0" onAction="#onConfidenceComboBox" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
+      <ComboBox fx:id="confidenceComboBox" layoutX="19.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
       <ComboBox fx:id="timeComboBox" layoutX="174.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
       <ComboBox fx:id="accuracyComboBox" layoutX="329.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
       <ComboBox fx:id="wordDifficultyComboBox" layoutX="484.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />

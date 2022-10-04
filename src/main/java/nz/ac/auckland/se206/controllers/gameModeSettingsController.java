@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
+import nz.ac.auckland.se206.profiles.entities.SettingsData;
 
 public class gameModeSettingsController implements ControllerInterface {
 
@@ -94,8 +95,60 @@ public class gameModeSettingsController implements ControllerInterface {
     //    initialize();
   }
 
+  private void setGameSettings() {
+    switch (confidenceComboBox.getValue()) {
+      case "Easy" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setConfidence(SettingsData.Levels.EASY);
+      case "Medium" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setConfidence(SettingsData.Levels.MEDIUM);
+      case "Hard" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setConfidence(SettingsData.Levels.HARD);
+      case "Master" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setConfidence(SettingsData.Levels.MASTER);
+    }
+
+    switch (accuracyComboBox.getValue()) {
+      case "Easy" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.EASY);
+      case "Medium" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setAccuracy(SettingsData.Levels.MEDIUM);
+      case "Hard" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.HARD);
+    }
+
+    switch (wordDifficultyComboBox.getValue()) {
+      case "Easy" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.EASY);
+      case "Medium" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setSetting(SettingsData.Levels.MEDIUM);
+      case "Hard" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.HARD);
+      case "Master" -> gameModel
+          .getProfile()
+          .getSettingsData()
+          .setSetting(SettingsData.Levels.MASTER);
+    }
+
+    switch (timeComboBox.getValue()) {
+      case "Easy" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.EASY);
+      case "Medium" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MEDIUM);
+      case "Hard" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.HARD);
+      case "Master" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MASTER);
+    }
+  }
+
   @FXML
-  public void onStartButton() {
+  public void onStartButton() throws IOException {
+    setGameSettings();
+    profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
 
@@ -204,6 +257,7 @@ public class gameModeSettingsController implements ControllerInterface {
   /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
   private void onBackToMenuButton() throws IOException {
+    setGameSettings();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
