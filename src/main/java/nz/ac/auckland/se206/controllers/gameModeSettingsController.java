@@ -34,7 +34,7 @@ public class gameModeSettingsController implements ControllerInterface {
   @FXML private TextArea instructionsTextArea;
 
   @FXML private Button gameModeButton;
-
+  /** Init and loads the gamemode settings view */
   public void initialize() {
 
     // Create instance of object saving
@@ -94,8 +94,9 @@ public class gameModeSettingsController implements ControllerInterface {
   public void refresh() {
     //    initialize();
   }
-
+  /** Sets the game settings into the players profile */
   private void setGameSettings() {
+    // sets confidence settings depending on users choice
     switch (confidenceComboBox.getValue()) {
       case "Easy" -> gameModel
           .getProfile()
@@ -114,7 +115,7 @@ public class gameModeSettingsController implements ControllerInterface {
           .getSettingsData()
           .setConfidence(SettingsData.Levels.MASTER);
     }
-
+    // sets accuracy settings depending on users choice
     switch (accuracyComboBox.getValue()) {
       case "Easy" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
@@ -123,7 +124,7 @@ public class gameModeSettingsController implements ControllerInterface {
           .setAccuracy(SettingsData.Levels.MEDIUM);
       case "Hard" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.HARD);
     }
-
+    // sets word difficulty settings depending on users choice
     switch (wordDifficultyComboBox.getValue()) {
       case "Easy" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
@@ -136,7 +137,7 @@ public class gameModeSettingsController implements ControllerInterface {
           .getSettingsData()
           .setSetting(SettingsData.Levels.MASTER);
     }
-
+    // sets time settings depending on users choice
     switch (timeComboBox.getValue()) {
       case "Easy" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.EASY);
       case "Medium" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MEDIUM);
@@ -144,14 +145,14 @@ public class gameModeSettingsController implements ControllerInterface {
       case "Master" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MASTER);
     }
   }
-
+  /** This method is called when user presses the start game button */
   @FXML
   public void onStartButton() throws IOException {
     setGameSettings();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
-
+  /** This method is called when user presses the right change gamemode button */
   @FXML
   public void onRightButton() {
     switch (gameModeButton.getText()) {
@@ -160,7 +161,7 @@ public class gameModeSettingsController implements ControllerInterface {
       case "Zen Mode" -> gameModeButton.setText("Classic Mode");
     }
   }
-
+  /** This method is called when user presses the left change gamemode button */
   @FXML
   public void onLeftButton() {
     switch (gameModeButton.getText()) {
@@ -169,7 +170,7 @@ public class gameModeSettingsController implements ControllerInterface {
       case "Zen Mode" -> gameModeButton.setText("Hidden-Word Mode");
     }
   }
-
+  /** This method is called when user mouse enters the confidence info area */
   @FXML
   public void onConfidenceInfoEnter() {
     instructionsTextArea.setText(
@@ -183,7 +184,7 @@ public class gameModeSettingsController implements ControllerInterface {
             + "Level master: You win the game if the computer is at least 50% confident\n"
             + "that your image is the word to guess.");
   }
-
+  /** This method is called when user mouse enters the time info area */
   @FXML
   public void onTimeInfoEnter() {
     instructionsTextArea.setText(
@@ -193,7 +194,7 @@ public class gameModeSettingsController implements ControllerInterface {
             + "Level hard: You gets 30 seconds to draw the picture correctly.\n"
             + "Level master: You gets 15 seconds to draw the picture correctly.");
   }
-
+  /** This method is called when user mouse enters the accuracy info area */
   @FXML
   public void onAccuracyInfoEnter() {
     instructionsTextArea.setText(
@@ -205,7 +206,7 @@ public class gameModeSettingsController implements ControllerInterface {
             + "Level hard: You win the game if the word to draw is the computer’s best\n"
             + "guess.");
   }
-
+  /** This method is called when user mouse enters the word difficulty info area */
   @FXML
   public void onWordDifficultyInfoEnter() {
     instructionsTextArea.setText(
@@ -215,7 +216,7 @@ public class gameModeSettingsController implements ControllerInterface {
             + "Level hard: You will get given EASY or MEDIUM or HARD words\n"
             + "Level master: You will only get given HARD words.");
   }
-
+  /** This method is called when user mouse enters the gamemode info area */
   @FXML
   public void onGameModeInfoEnter() {
 
