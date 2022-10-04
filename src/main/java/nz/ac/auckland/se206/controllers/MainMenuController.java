@@ -35,6 +35,9 @@ public class MainMenuController implements ControllerInterface {
     // Try load profile picture
     try {
       Image image = new Image(gameModel.getProfile().getProfilePicturePath());
+      if (image.isError()) {
+        throw new Exception("Image invalid");
+      }
       profileImageView.setImage(image);
     } catch (Exception e) {
       // Unexpected err while loading image. Display default img not found.
@@ -44,7 +47,9 @@ public class MainMenuController implements ControllerInterface {
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    initialize();
+  }
 
   /////////////////////
   // Button handlers //
@@ -53,7 +58,7 @@ public class MainMenuController implements ControllerInterface {
   /** This method is called when user clicks start to switch to the canvas view */
   @FXML
   private void onStartButton() {
-    gameModel.setCurrentViewState(GameModel.ViewState.GAMEMODESETTINGS);
+    gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
 
   /** This method is called when user clicks the settings button to go to settings */

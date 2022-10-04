@@ -28,10 +28,7 @@ public class ProfileStatsController implements ControllerInterface {
   private GameModel gameModel;
   private Profile profile;
 
-  /**
-   * Init and load the stats view
-   *
-   */
+  /** Init and load the stats view */
   public void initialize() {
     gameModel = GameModel.getInstance();
     profile = gameModel.getProfile();
@@ -51,7 +48,11 @@ public class ProfileStatsController implements ControllerInterface {
 
     // Display profile picture
     try {
-      profileImageView.setImage(new Image(profile.getProfilePicturePath()));
+      Image image = new Image(profile.getProfilePicturePath());
+      if (image.isError()) {
+        throw new IllegalArgumentException("Image not valid");
+      }
+      profileImageView.setImage(image);
     } catch (IllegalArgumentException e) {
       System.err.println("Failed to load image");
       try {
@@ -62,14 +63,13 @@ public class ProfileStatsController implements ControllerInterface {
                     .toURI()
                     .toString()));
       } catch (URISyntaxException ex) {
+        System.out.println("Wtf");
         ex.printStackTrace();
       }
     }
   }
 
-  /**
-   * When view is loaded again. Refresh the stats
-   */
+  /** When view is loaded again. Refresh the stats */
   @Override
   public void refresh() {
     this.initialize();
@@ -186,6 +186,4 @@ public class ProfileStatsController implements ControllerInterface {
     fullWordDialogue.getDialogPane().setContent(textArea);
     fullWordDialogue.showAndWait();
   }
-
-
 }
