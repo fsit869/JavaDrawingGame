@@ -175,15 +175,17 @@ public class GameController implements ControllerInterface {
     // Prevent mouse from continue drawing after round ends
     canvas.setOnMouseDragged(e -> {});
 
-    // TTS the end game
-    if (this.gameModel.isPlayerWon()) {
-      this.textToSpeech.speak("Winner");
-      this.winLoseText.setText("You Win!");
-    } else {
-      this.textToSpeech.speak("Haha loser");
-      this.winLoseText.setText("You Lose");
+    // TTS the end game and win/lose diagoue only if not zen mode
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      if (this.gameModel.isPlayerWon()) {
+        this.textToSpeech.speak("Winner");
+        this.winLoseText.setText("You Win!");
+      } else {
+        this.textToSpeech.speak("Haha loser");
+        this.winLoseText.setText("You Lose");
+      }
+      this.winLoseDialogue.setVisible(true);
     }
-    this.winLoseDialogue.setVisible(true);
 
     // Disable timer
     this.timerService.cancel();
