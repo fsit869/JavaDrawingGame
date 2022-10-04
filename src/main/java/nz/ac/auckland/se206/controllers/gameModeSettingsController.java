@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.model.GameModel;
@@ -20,6 +21,8 @@ public class gameModeSettingsController implements ControllerInterface {
 
   private String[] difficultyDifficulties = {"Easy", "Medium", "Hard", "Master"};
 
+  private String[] gameModes = {"Classic", "Hidden-word Mode", "Zen Mode"};
+
   @FXML private ComboBox<String> confidenceComboBox;
 
   @FXML private ComboBox<String> timeComboBox;
@@ -28,6 +31,8 @@ public class gameModeSettingsController implements ControllerInterface {
 
   @FXML private ComboBox<String> wordDifficultyComboBox;
   @FXML private TextArea instructionsTextArea;
+
+  @FXML private Button gameModeButton;
 
   public void initialize() {
 
@@ -42,33 +47,74 @@ public class gameModeSettingsController implements ControllerInterface {
     // Get game settings
     this.gameModel = GameModel.getInstance();
 
+    // init comboboxes items
     confidenceComboBox.getItems().addAll(confidenceDifficulties);
     timeComboBox.getItems().addAll(timeDifficulties);
     accuracyComboBox.getItems().addAll(accuracyDifficulties);
     wordDifficultyComboBox.getItems().addAll(difficultyDifficulties);
+
+    // init gameMode
+    switch (this.gameModel.getCurrentGameMode()) {
+      case CLASSIC -> gameModeButton.setText("Classic Mode");
+      case HIDDEN -> gameModeButton.setText("Hidden-Word Mode");
+      case ZEN -> gameModeButton.setText("Zen Mode");
+    }
+
+    // init accuracy combobox
+    switch (this.gameModel.getProfile().getSettingsData().getAccuracy()) {
+      case EASY -> accuracyComboBox.setValue("Easy");
+      case MEDIUM -> accuracyComboBox.setValue("Medium");
+      case HARD -> accuracyComboBox.setValue("Hard");
+    }
+    // init time combobox
+    switch (this.gameModel.getProfile().getSettingsData().getTime()) {
+      case EASY -> timeComboBox.setValue("Easy");
+      case MEDIUM -> timeComboBox.setValue("Medium");
+      case HARD -> timeComboBox.setValue("Hard");
+      case MASTER -> timeComboBox.setValue("Master");
+    }
+    // init confidence combobox
+    switch (this.gameModel.getProfile().getSettingsData().getConfidence()) {
+      case EASY -> confidenceComboBox.setValue("Easy");
+      case MEDIUM -> accuracyComboBox.setValue("Medium");
+      case HARD -> accuracyComboBox.setValue("Hard");
+      case MASTER -> accuracyComboBox.setValue("Master");
+    }
+    // init word difficulty combobox
+    switch (this.gameModel.getProfile().getSettingsData().getSetting()) {
+      case EASY -> wordDifficultyComboBox.setValue("Easy");
+      case MEDIUM -> wordDifficultyComboBox.setValue("Medium");
+      case HARD -> wordDifficultyComboBox.setValue("Hard");
+      case MASTER -> wordDifficultyComboBox.setValue("Master");
+    }
   }
 
   @Override
-  public void refresh() {}
-
-  @FXML
-  public void onStartButton() {
-    System.out.println("Not implemented yet");
+  public void refresh() {
+    //    initialize();
   }
 
   @FXML
-  public void onGameModeButton() {
-    System.out.println("Not implemented yet");
+  public void onStartButton() {
+    gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
 
   @FXML
   public void onRightButton() {
-    System.out.println("Not implemented yet");
+    switch (gameModeButton.getText()) {
+      case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
+      case "Hidden-Word Mode" -> gameModeButton.setText("Zen Mode");
+      case "Zen Mode" -> gameModeButton.setText("Classic Mode");
+    }
   }
 
   @FXML
   public void onLeftButton() {
-    System.out.println("Not implemented yet");
+    switch (gameModeButton.getText()) {
+      case "Classic Mode" -> gameModeButton.setText("Zen Mode");
+      case "Hidden-Word Mode" -> gameModeButton.setText("Classic Mode");
+      case "Zen Mode" -> gameModeButton.setText("Hidden-Word Mode");
+    }
   }
 
   @FXML
@@ -118,6 +164,19 @@ public class gameModeSettingsController implements ControllerInterface {
   }
 
   @FXML
+  public void onGameModeInfoEnter() {
+
+    switch (this.gameModeButton.getText()) {
+      case "Classic Mode" -> instructionsTextArea.setText(
+          "Instructions-Classic Gamemode:\n" + "The rules are ....");
+      case "Hidden-Word Mode" -> instructionsTextArea.setText(
+          "Instructions-Hidden-Word Gamemode:\n" + "The rules are ....");
+      case "Zen Mode" -> instructionsTextArea.setText(
+          "Instructions-Zen Gamemode:\n" + "The rules are ....");
+    }
+  }
+
+  @FXML
   public void onConfidenceInfoExit() {
     instructionsTextArea.setText("Instructions");
   }
@@ -134,6 +193,11 @@ public class gameModeSettingsController implements ControllerInterface {
 
   @FXML
   public void onWordDifficultyInfoExit() {
+    instructionsTextArea.setText("Instructions");
+  }
+
+  @FXML
+  public void onGameModeInfoExit() {
     instructionsTextArea.setText("Instructions");
   }
 
