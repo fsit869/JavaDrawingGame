@@ -11,13 +11,11 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +34,9 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
+  @FXML private Button zenNextWordButton;
+  @FXML private Button giveUpButton;
+  @FXML private ColorPicker colourPicker;
   @FXML private Label confidenceLabel;
   @FXML private Label accuracyLabel;
   @FXML private RadioButton brushRadioButton;
@@ -94,6 +95,13 @@ public class GameController implements ControllerInterface {
     this.setupBrush(false);
     this.startedDrawing = false;
 
+    // Setup colour picker for zen
+    this.colourPicker.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        setupBrush(false);
+      }
+    });
     onReadyState();
   }
 
@@ -103,6 +111,17 @@ public class GameController implements ControllerInterface {
   @Override
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
+
+    // Setup zenmode settings
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.giveUpButton.setText("End");
+      this.zenNextWordButton.setVisible(true);
+      this.colourPicker.setVisible(true);
+    } else {
+      this.colourPicker.setVisible(false);
+      this.zenNextWordButton.setVisible(false);
+      this.giveUpButton.setText("Give up");
+    }
   }
 
   /** Handles bindings for the timer thread. */
@@ -295,8 +314,15 @@ public class GameController implements ControllerInterface {
       graphic.setStroke(Color.WHITE);
       size = 18;
     } else {
-      graphic.setStroke(Color.BLACK);
-      graphic.setFill(Color.BLACK);
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+        // If zen mode enable colour picker
+        graphic.setStroke(this.colourPicker.getValue());
+        graphic.setFill(this.colourPicker.getValue());
+      } else {
+        // If not zen mode only black
+        graphic.setStroke(Color.BLACK);
+        graphic.setFill(Color.BLACK);
+      }
       setStartedDrawing(true);
       size = 6;
     }
@@ -465,5 +491,9 @@ public class GameController implements ControllerInterface {
     } else {
       this.confidenceLabel.setTextFill(Color.RED);
     }
+  }
+
+  @FXML
+  private void onZenNextWord(ActionEvent actionEvent) {
   }
 }
