@@ -9,7 +9,7 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.SettingsData;
 
-public class gameModeSettingsController implements ControllerInterface {
+public class GameModeSettingsController implements ControllerInterface {
 
   private GameModel gameModel;
 

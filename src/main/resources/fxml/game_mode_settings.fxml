@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.gameModeSettingsController">
+<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameModeSettingsController">
    <children>
       <Button layoutX="242.0" layoutY="28.0" mnemonicParsing="false" onAction="#onStartButton" prefHeight="155.0" prefWidth="175.0" text="Start?" />
       <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="19.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="116.0" text="Confidence" />
