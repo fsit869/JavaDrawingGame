@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -85,6 +86,9 @@ public class SelectProfilesController implements ControllerInterface {
                       ? "file:src/main/resources/images/icons/minus.png"
                       : profiles.get(i).getProfilePicturePath());
           this.arrCircles[i].setFill(new ImagePattern(image));
+          if (image.isError()) {
+            throw new FileNotFoundException();
+          }
         } catch (Exception e) {
           // Unexpected err while loading image. Display default
           Image image = new Image("file:src/main/resources/images/img_not_found.png");
@@ -200,6 +204,4 @@ public class SelectProfilesController implements ControllerInterface {
     promptText.setText(this.deleteMode ? "Delete a Profile!" : "Select a Profile!");
     setButtons();
   }
-
-
 }
