@@ -8,10 +8,14 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.controllers.GameController;
+import nz.ac.auckland.se206.profiles.entities.SettingsData;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
   public static final int TOTAL_PREDICTIONS = 10;
+
+  private int accuracy;
+  private int confidence;
 
   private int timerTotal;
   private int counter;
@@ -135,8 +139,15 @@ public class TimerTask extends Task<Void> {
         gameModel.getPredictions(canvasController.getCurrentSnapshot(), TOTAL_PREDICTIONS);
     generatePredictionString(predictions);
 
+    // Setup accuracy based on game
+    switch (this.gameModel.getProfile().getSettingsData().getAccuracy()) {
+      case EASY -> this.accuracy = 3;
+      case MEDIUM -> this.accuracy = 2;
+      case HARD -> this.accuracy = 1;
+    }
+
     // Check won
-    if (getWinCondition(predictions, 3) && canvasController.isStartedDrawing()) {
+    if (getWinCondition(predictions,  this.accuracy) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
       gameModel.setCurrentGameState(GameModel.State.FINISHED);
     }
@@ -163,14 +174,35 @@ public class TimerTask extends Task<Void> {
       }
 
       String predictedWord = classification.getClassName().replace("_", " ");
+      int probabilityValue = (int) Math.ceil(classification.getProbability() * 100);
+
+      // Find confidence required to win
+      switch (this.gameModel.getProfile().getSettingsData().getConfidence()) {
+        case EASY -> this.confidence = 1;
+        case MEDIUM -> this.confidence = 10;
+        case HARD -> this.confidence = 25;
+        case MASTER -> this.confidence = 50;
+      }
+
+      // Check if win
       if (predictedWord.equals(wordToDraw)) {
-        this.canvasController.setAccuracyValue(
-            (int) Math.ceil(classification.getProbability() * 100));
-        return true;
+        // The word is met
+        this.canvasController.setAccuracyLabelMet(true);
+
+        // Check if confidence is met
+        if (probabilityValue>=this.confidence) {
+          this.canvasController.setConfidenceLabelMet(true);
+          this.canvasController.setAccuracyValue(probabilityValue);
+          return true;
+        } else {
+          this.canvasController.setConfidenceLabelMet(false);
+          return false;
+        }
       }
 
       counter++;
     }
+    this.canvasController.setAccuracyLabelMet(false);
     return false;
   }
 
