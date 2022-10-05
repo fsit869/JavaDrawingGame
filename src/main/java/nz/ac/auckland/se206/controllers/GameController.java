@@ -1,12 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
-import ai.djl.modality.Classifications;
 import ai.djl.translate.TranslateException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
@@ -97,9 +95,7 @@ public class GameController implements ControllerInterface {
     onReadyState();
   }
 
-  /**
-   * Reset the view to ready game state
-   */
+  /** Reset the view to ready game state */
   @Override
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
@@ -220,7 +216,6 @@ public class GameController implements ControllerInterface {
   public void setAccuracyValue(int accuracyValue) {
     this.accuracyValue = accuracyValue;
   }
-
 
   /**
    * Get the current snapshot of the canvas.
@@ -436,6 +431,7 @@ public class GameController implements ControllerInterface {
 
   /**
    * Set colour of accuracy label if met
+   *
    * @param isMet Boolean met
    */
   public void setAccuracyLabelMet(boolean isMet) {
@@ -448,6 +444,7 @@ public class GameController implements ControllerInterface {
 
   /**
    * Set the colour of confidence if met
+   *
    * @param isMet Boolean met
    */
   public void setConfidenceLabelMet(boolean isMet) {

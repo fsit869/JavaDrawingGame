@@ -37,6 +37,8 @@ public class GameModel {
     SETTINGS,
     MAINMENU,
     PROFILESTATS,
+
+    GAMEMODESETTINGS,
   }
 
   // Instance of the game. Uses singleton pattern
@@ -72,7 +74,7 @@ public class GameModel {
       this.currentViewState = new SimpleObjectProperty<>(ViewState.MAINMENU);
       this.doodlePrediction = new DoodlePrediction();
       this.playerWon = false;
-
+      this.currentGameMode = GameMode.CLASSIC;
       // Setup default profile
       ProfileFactory profileFactory = new ProfileFactory();
       this.profile = profileFactory.selectProfile("Guest");

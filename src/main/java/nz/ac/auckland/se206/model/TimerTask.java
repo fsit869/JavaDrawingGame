@@ -8,7 +8,6 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.controllers.GameController;
-import nz.ac.auckland.se206.profiles.entities.SettingsData;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
@@ -138,7 +137,7 @@ public class TimerTask extends Task<Void> {
     }
 
     // Check won
-    if (getWinCondition(predictions,  this.accuracy) && canvasController.isStartedDrawing()) {
+    if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
       gameModel.setCurrentGameState(GameModel.State.FINISHED);
     }
@@ -181,7 +180,7 @@ public class TimerTask extends Task<Void> {
         this.canvasController.setAccuracyLabelMet(true);
 
         // Check if confidence is met
-        if (probabilityValue>=this.confidence) {
+        if (probabilityValue >= this.confidence) {
           this.canvasController.setConfidenceLabelMet(true);
           this.canvasController.setAccuracyValue(probabilityValue);
           return true;

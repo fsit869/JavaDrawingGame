@@ -28,10 +28,7 @@ public class ProfileStatsController implements ControllerInterface {
   private GameModel gameModel;
   private Profile profile;
 
-  /**
-   * Init and load the stats view
-   *
-   */
+  /** Init and load the stats view */
   public void initialize() {
     gameModel = GameModel.getInstance();
     profile = gameModel.getProfile();
@@ -72,9 +69,7 @@ public class ProfileStatsController implements ControllerInterface {
     }
   }
 
-  /**
-   * When view is loaded again. Refresh the stats
-   */
+  /** When view is loaded again. Refresh the stats */
   @Override
   public void refresh() {
     this.initialize();
@@ -191,6 +186,4 @@ public class ProfileStatsController implements ControllerInterface {
     fullWordDialogue.getDialogPane().setContent(textArea);
     fullWordDialogue.showAndWait();
   }
-
-
 }
