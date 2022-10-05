@@ -17,6 +17,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -34,6 +35,8 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
+  @FXML private  ImageView correctImage;
+  @FXML private  ImageView wrongImage;
   @FXML private Button zenNextWordButton;
   @FXML private Button giveUpButton;
   @FXML private ColorPicker colourPicker;
@@ -164,10 +167,14 @@ public class GameController implements ControllerInterface {
     this.setAccuracyLabelMet(false);
     this.setConfidenceLabelMet(false);
 
+    this.correctImage.setVisible(false);
+    this.wrongImage.setVisible(false);
+
     // Set game variables
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
+
   }
 
   /** This method is called when the ingame state is started */
@@ -200,9 +207,13 @@ public class GameController implements ControllerInterface {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
+        this.correctImage.setVisible(true);
+        this.wrongImage.setVisible(false);
       } else {
         this.textToSpeech.speak("Haha loser");
         this.winLoseText.setText("You Lose");
+        this.correctImage.setVisible(false);
+        this.wrongImage.setVisible(true);
       }
       this.winLoseDialogue.setVisible(true);
     }
@@ -501,4 +512,22 @@ public class GameController implements ControllerInterface {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
+
+
+  /**
+   * Set whether correct icon is visible
+   * @param isVisible Condition if visible
+   */
+  public void setCorrectImageVisible(boolean isVisible) {
+    this.correctImage.setVisible(isVisible);
+  }
+
+  /**
+   * Set whether wrong icon is visible
+   * @param isVisible Condition if visible
+   */
+  public void setWrongImageVisible(boolean isVisible) {
+    this.wrongImage.setVisible(isVisible);
+  }
+
 }

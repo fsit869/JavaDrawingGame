@@ -198,9 +198,16 @@ public class TimerTask extends Task<Void> {
         if (probabilityValue>=this.confidence) {
           this.canvasController.setConfidenceLabelMet(true);
           this.canvasController.setAccuracyValue(probabilityValue);
+          this.canvasController.setCorrectImageVisible(true);
+          this.canvasController.setWrongImageVisible(false);
           return true;
         } else {
           this.canvasController.setConfidenceLabelMet(false);
+          // If in zen mode show the wrong/correct
+          if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+            this.canvasController.setCorrectImageVisible(false);
+            this.canvasController.setWrongImageVisible(true);
+          }
           return false;
         }
       }
@@ -209,6 +216,14 @@ public class TimerTask extends Task<Void> {
     }
     this.canvasController.setAccuracyLabelMet(false);
     this.canvasController.setConfidenceLabelMet(false);
+
+    // If in zen mode show the wrong/correct
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.canvasController.setCorrectImageVisible(false);
+      this.canvasController.setWrongImageVisible(true);
+    }
+
+    // If zen mode show the wrong/right in game live
     return false;
   }
 

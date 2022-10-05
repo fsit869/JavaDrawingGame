@@ -221,6 +221,16 @@
             </ImageView>
             <Label fx:id="confidenceLabel" layoutX="471.0" layoutY="280.0" text="Confidence Met" />
             <Label fx:id="accuracyLabel" layoutX="357.0" layoutY="280.0" text="Accuracy Met" />
+            <ImageView fx:id="correctImage" fitHeight="60.0" fitWidth="55.0" layoutX="468.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/correct.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="wrongImage" fitHeight="60.0" fitWidth="60.0" layoutX="467.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cross.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="522.0" spacing="10.0">
