@@ -114,9 +114,10 @@ public class GameController implements ControllerInterface {
 
     // Setup zenmode settings
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-      this.giveUpButton.setText("End");
+      this.giveUpButton.setText("Menu");
       this.zenNextWordButton.setVisible(true);
       this.colourPicker.setVisible(true);
+      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
     } else {
       this.colourPicker.setVisible(false);
       this.zenNextWordButton.setVisible(false);
@@ -418,11 +419,9 @@ public class GameController implements ControllerInterface {
 
   /**
    * This button is called when requesting the menu
-   *
-   * @param actionEvent Button event
    */
   @FXML
-  private void onMenuButton(ActionEvent actionEvent) {
+  private void onMenuButton() {
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
@@ -444,6 +443,9 @@ public class GameController implements ControllerInterface {
   @FXML
   private void onGiveUpButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.onMenuButton();
+    }
   }
 
   /**
@@ -495,5 +497,8 @@ public class GameController implements ControllerInterface {
 
   @FXML
   private void onZenNextWord(ActionEvent actionEvent) {
+    this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
+    this.gameModel.setCurrentGameState(GameModel.State.READY);
+    this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 }
