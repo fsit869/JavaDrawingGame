@@ -15,13 +15,13 @@ public class SettingsData extends Data {
   private Levels confidence;
   private Levels setting;
 
-
   public Levels getAccuracy() {
     return accuracy;
   }
 
   /**
    * Set accuracy of the difficulty
+   *
    * @param accuracy Only easy, medium or hard
    */
   public void setAccuracy(Levels accuracy) {

@@ -1,12 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.HashMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import nz.ac.auckland.se206.model.GameModel;
-
-import java.io.IOException;
-import java.util.HashMap;
 
 public class FxmlSwitcher {
 
@@ -34,18 +32,21 @@ public class FxmlSwitcher {
 
     // Initalize all the views with their view state
     this.addView(GameModel.ViewState.CANVAS, new FxmlLoaderData(loadFxml("game")));
-    this.addView(GameModel.ViewState.SELECTPROFILES, new FxmlLoaderData(loadFxml("select_profiles")));
+    this.addView(
+        GameModel.ViewState.SELECTPROFILES, new FxmlLoaderData(loadFxml("select_profiles")));
     this.addView(GameModel.ViewState.NEWPROFILE, new FxmlLoaderData(loadFxml("new_profile")));
     this.addView(GameModel.ViewState.SETTINGS, new FxmlLoaderData(loadFxml("settings")));
     this.addView(GameModel.ViewState.MAINMENU, new FxmlLoaderData(loadFxml("main_menu")));
     this.addView(GameModel.ViewState.PROFILESTATS, new FxmlLoaderData(loadFxml("profile_stats")));
+    this.addView(
+        GameModel.ViewState.GAMEMODESETTINGS, new FxmlLoaderData(loadFxml("game_mode_settings")));
 
     // Setup inital view
-    this.rootScene = new Scene(this.viewMap.get(GameModel.ViewState.SELECTPROFILES).getRoot(), 642, 702);
+    this.rootScene =
+        new Scene(this.viewMap.get(GameModel.ViewState.SELECTPROFILES).getRoot(), 642, 702);
     this.gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     this.setupViewStateBindings();
   }
-
 
   /**
    * Returns the node associated to the input file. The method expects that the file is located in
@@ -78,13 +79,13 @@ public class FxmlSwitcher {
             });
   }
 
-
   public Scene getRootScene() {
     return rootScene;
   }
 
   /**
    * Add a view to the hashmap
+   *
    * @param viewState The key of hashmap
    * @param fxmlLoaderData The value of the hashmap
    */
@@ -94,6 +95,7 @@ public class FxmlSwitcher {
 
   /**
    * Display the view based on viewState
+   *
    * @param viewState
    */
   private void activateView(GameModel.ViewState viewState) {
@@ -106,7 +108,8 @@ public class FxmlSwitcher {
     System.out.println((fxmlLoaderData.getFxmlLoader().getController().getClass().toString()));
 
     // Get view controller and refresh it.
-    ControllerInterface controller =  ((ControllerInterface) fxmlLoaderData.getFxmlLoader().getController());
+    ControllerInterface controller =
+        ((ControllerInterface) fxmlLoaderData.getFxmlLoader().getController());
     controller.refresh();
     this.rootScene.setRoot(root);
   }
