@@ -145,10 +145,22 @@ public class GameModeSettingsController implements ControllerInterface {
       case "Master" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MASTER);
     }
   }
+
+  /** Sets the game mode into the game model */
+  private void setGameMode() {
+    // depending on text of button set gamemode
+    switch (gameModeButton.getText()) {
+      case "Classic Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.CLASSIC);
+      case "Hidden-Word Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.HIDDEN);
+      case "Zen Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.ZEN);
+    }
+  }
+
   /** This method is called when user presses the start game button */
   @FXML
   public void onStartButton() throws IOException {
     setGameSettings();
+    setGameMode();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
@@ -258,6 +270,7 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
   private void onBackToMenuButton() throws IOException {
+    setGameMode();
     setGameSettings();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
