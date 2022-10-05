@@ -77,10 +77,19 @@ public class TimerTask extends Task<Void> {
             } catch (TranslateException e) {
               e.printStackTrace();
             }
-            timerLabel.setText(String.valueOf(counter));
+            // If zen mode dont show timer label
+            if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+              timerLabel.setText("Zen mode!");
+            } else {
+              timerLabel.setText(String.valueOf(counter));
+            }
             predicationTextArea.setText(stringBuilder.toString());
           });
-      counter--;
+
+      // If zen mode dont decrement timer.
+      if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+        counter--;
+      }
 
       try {
         Thread.sleep(1000);
@@ -139,8 +148,13 @@ public class TimerTask extends Task<Void> {
     // Check won
     if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
-      gameModel.setCurrentGameState(GameModel.State.FINISHED);
+
+      // If zen mode dont transition
+      if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+        gameModel.setCurrentGameState(GameModel.State.FINISHED);
+      }
     }
+    this.gameModel.setPlayerWon(false);
   }
 
   /**
@@ -183,9 +197,16 @@ public class TimerTask extends Task<Void> {
         if (probabilityValue >= this.confidence) {
           this.canvasController.setConfidenceLabelMet(true);
           this.canvasController.setAccuracyValue(probabilityValue);
+          this.canvasController.setCorrectImageVisible(true);
+          this.canvasController.setWrongImageVisible(false);
           return true;
         } else {
           this.canvasController.setConfidenceLabelMet(false);
+          // If in zen mode show the wrong/correct
+          if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+            this.canvasController.setCorrectImageVisible(false);
+            this.canvasController.setWrongImageVisible(true);
+          }
           return false;
         }
       }
@@ -193,6 +214,15 @@ public class TimerTask extends Task<Void> {
       counter++;
     }
     this.canvasController.setAccuracyLabelMet(false);
+    this.canvasController.setConfidenceLabelMet(false);
+
+    // If in zen mode show the wrong/correct
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.canvasController.setCorrectImageVisible(false);
+      this.canvasController.setWrongImageVisible(true);
+    }
+
+    // If zen mode show the wrong/right in game live
     return false;
   }
 

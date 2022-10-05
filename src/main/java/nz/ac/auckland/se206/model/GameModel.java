@@ -74,8 +74,9 @@ public class GameModel {
       this.currentViewState = new SimpleObjectProperty<>(ViewState.MAINMENU);
       this.doodlePrediction = new DoodlePrediction();
       this.playerWon = false;
-      this.currentGameMode = GameMode.CLASSIC;
+
       // Setup default profile
+      this.currentGameMode = GameMode.CLASSIC;
       ProfileFactory profileFactory = new ProfileFactory();
       this.profile = profileFactory.selectProfile("Guest");
 

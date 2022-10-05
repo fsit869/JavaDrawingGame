@@ -9,14 +9,13 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -34,6 +33,11 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
+  @FXML private  ImageView correctImage;
+  @FXML private  ImageView wrongImage;
+  @FXML private Button zenNextWordButton;
+  @FXML private Button giveUpButton;
+  @FXML private ColorPicker colourPicker;
   @FXML private Label confidenceLabel;
   @FXML private Label accuracyLabel;
   @FXML private RadioButton brushRadioButton;
@@ -92,6 +96,13 @@ public class GameController implements ControllerInterface {
     this.setupBrush(false);
     this.startedDrawing = false;
 
+    // Setup colour picker for zen
+    this.colourPicker.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        setupBrush(false);
+      }
+    });
     onReadyState();
   }
 
@@ -99,6 +110,18 @@ public class GameController implements ControllerInterface {
   @Override
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
+
+    // Setup zenmode settings
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.giveUpButton.setText("Menu");
+      this.zenNextWordButton.setVisible(true);
+      this.colourPicker.setVisible(true);
+      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+    } else {
+      this.colourPicker.setVisible(false);
+      this.zenNextWordButton.setVisible(false);
+      this.giveUpButton.setText("Give up");
+    }
   }
 
   /** Handles bindings for the timer thread. */
@@ -126,7 +149,13 @@ public class GameController implements ControllerInterface {
     // Set UI
     this.canvas.setDisable(true);
     this.onClear();
-    this.timerLabel.setText(String.valueOf(TIMER_MAX));
+
+    // If zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.timerLabel.setText("Zen mode!");
+    } else {
+      this.timerLabel.setText(String.valueOf(TIMER_MAX));
+    }
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);
@@ -134,10 +163,14 @@ public class GameController implements ControllerInterface {
     this.setAccuracyLabelMet(false);
     this.setConfidenceLabelMet(false);
 
+    this.correctImage.setVisible(false);
+    this.wrongImage.setVisible(false);
+
     // Set game variables
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
+
   }
 
   /** This method is called when the ingame state is started */
@@ -165,28 +198,35 @@ public class GameController implements ControllerInterface {
     // Prevent mouse from continue drawing after round ends
     canvas.setOnMouseDragged(e -> {});
 
-    // TTS the end game
-    if (this.gameModel.isPlayerWon()) {
-      this.textToSpeech.speak("Winner");
-      this.winLoseText.setText("You Win!");
-    } else {
-      this.textToSpeech.speak("Haha loser");
-      this.winLoseText.setText("You Lose");
+    // TTS the end game and win/lose diagoue only if not zen mode
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      if (this.gameModel.isPlayerWon()) {
+        this.textToSpeech.speak("Winner");
+        this.winLoseText.setText("You Win!");
+        this.correctImage.setVisible(true);
+        this.wrongImage.setVisible(false);
+      } else {
+        this.textToSpeech.speak("Haha loser");
+        this.winLoseText.setText("You Lose");
+        this.correctImage.setVisible(false);
+        this.wrongImage.setVisible(true);
+      }
+      this.winLoseDialogue.setVisible(true);
     }
-    this.winLoseDialogue.setVisible(true);
 
     // Disable timer
     this.timerService.cancel();
     this.timerService.reset();
 
-    // Handle saving user profile stats
-    try {
-      this.saveProfileStats();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (TranslateException e) {
-      e.printStackTrace();
+    // Handle saving user profile stats. If zen mode dont save
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      try {
+        this.saveProfileStats();
+      } catch (IOException | TranslateException e) {
+        e.printStackTrace();
+      }
     }
+
   }
 
   /** Saves the profile information and win/loss */
@@ -281,8 +321,15 @@ public class GameController implements ControllerInterface {
       graphic.setStroke(Color.WHITE);
       size = 18;
     } else {
-      graphic.setStroke(Color.BLACK);
-      graphic.setFill(Color.BLACK);
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+        // If zen mode enable colour picker
+        graphic.setStroke(this.colourPicker.getValue());
+        graphic.setFill(this.colourPicker.getValue());
+      } else {
+        // If not zen mode only black
+        graphic.setStroke(Color.BLACK);
+        graphic.setFill(Color.BLACK);
+      }
       setStartedDrawing(true);
       size = 6;
     }
@@ -378,11 +425,9 @@ public class GameController implements ControllerInterface {
 
   /**
    * This button is called when requesting the menu
-   *
-   * @param actionEvent Button event
    */
   @FXML
-  private void onMenuButton(ActionEvent actionEvent) {
+  private void onMenuButton() {
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
@@ -404,6 +449,9 @@ public class GameController implements ControllerInterface {
   @FXML
   private void onGiveUpButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.onMenuButton();
+    }
   }
 
   /**
@@ -454,4 +502,29 @@ public class GameController implements ControllerInterface {
       this.confidenceLabel.setTextFill(Color.RED);
     }
   }
+
+  @FXML
+  private void onZenNextWord(ActionEvent actionEvent) {
+    this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
+    this.gameModel.setCurrentGameState(GameModel.State.READY);
+    this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+  }
+
+
+  /**
+   * Set whether correct icon is visible
+   * @param isVisible Condition if visible
+   */
+  public void setCorrectImageVisible(boolean isVisible) {
+    this.correctImage.setVisible(isVisible);
+  }
+
+  /**
+   * Set whether wrong icon is visible
+   * @param isVisible Condition if visible
+   */
+  public void setWrongImageVisible(boolean isVisible) {
+    this.wrongImage.setVisible(isVisible);
+  }
+
 }
