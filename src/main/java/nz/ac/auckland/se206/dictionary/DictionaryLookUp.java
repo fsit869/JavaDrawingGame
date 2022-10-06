@@ -27,8 +27,7 @@ public class DictionaryLookUp {
     try {
       JSONObject jsonObj = (JSONObject) new JSONTokener(jsonString).nextValue();
       String title = jsonObj.getString("title");
-      //            String subMessage = jsonObj.getString("message");
-      //            throw new WordNotFoundException(query, title, subMessage);
+
       throw new WordNotFoundException(query, title);
     } catch (ClassCastException e) {
     }
@@ -36,41 +35,21 @@ public class DictionaryLookUp {
     JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
     List<WordEntry> entries = new ArrayList<WordEntry>();
 
-    for (int e = 0; e < jArray.length(); e++) {
-      JSONObject jsonEntryObj = jArray.getJSONObject(e);
-      JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
+    JSONObject jsonEntryObj = jArray.getJSONObject(0);
+    JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
+    List<String> definitions = new ArrayList<String>();
 
-      //            String partOfSpeech = "[not specified]";
-      List<String> definitions = new ArrayList<String>();
+    JSONObject jsonMeaningObj = jsonMeanings.getJSONObject(0);
 
-      //                JSONObject jsonMeaningObj = jsonMeanings.getJSONObject(m);
-      JSONObject jsonMeaningObj = jsonMeanings.getJSONObject(0);
-      //                String pos = jsonMeaningObj.getString("partOfSpeech");
-
-      //                if (!pos.isEmpty()) {
-      //                    partOfSpeech = pos;
-      //                }
-
-      JSONArray jsonDefinitions = jsonMeaningObj.getJSONArray("definitions");
-      //                for (int d = 0; d < jsonDefinitions.length(); d++) {
-      //                    JSONObject jsonDefinitionObj = jsonDefinitions.getJSONObject(d);
-      //
-      //                    String definition = jsonDefinitionObj.getString("definition");
-      //                    if (!definition.isEmpty()) {
-      //                        definitions.add(definition);
-      //                    }
-      //                }
-      JSONObject jsonDefinitionObj = jsonDefinitions.getJSONObject(0);
-
-      String definition = jsonDefinitionObj.getString("definition");
-      if (!definition.isEmpty()) {
-        definitions.add(definition);
-      }
-
-      //            WordEntry wordEntry = new WordEntry(partOfSpeech, definitions);
-      WordEntry wordEntry = new WordEntry(definitions);
-      entries.add(wordEntry);
+    JSONArray jsonDefinitions = jsonMeaningObj.getJSONArray("definitions");
+    JSONObject jsonDefinitionObj = jsonDefinitions.getJSONObject(0);
+    String definition = jsonDefinitionObj.getString("definition");
+    if (!definition.isEmpty()) {
+      definitions.add(definition);
     }
+
+    WordEntry wordEntry = new WordEntry(definitions);
+    entries.add(wordEntry);
 
     return new WordInfo(query, entries);
   }

@@ -116,28 +116,6 @@ public class GameController implements ControllerInterface {
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
 
-    //    // Setup zenmode settings
-    //    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-    //      this.giveUpButton.setText("Menu");
-    //      this.zenNextWordButton.setVisible(true);
-    //      this.colourPicker.setVisible(true);
-    //      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
-    //    } else {
-    //      this.colourPicker.setVisible(false);
-    //      this.zenNextWordButton.setVisible(false);
-    //      this.giveUpButton.setText("Give up");
-    //      this.definitionTextArea.setVisible(true);
-    //    }
-    //    // Setup Hidden mode settings
-    //    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
-    //      this.definitionTextArea.setVisible(true);
-    //    } else {
-    //      this.colourPicker.setVisible(false);
-    //      this.zenNextWordButton.setVisible(false);
-    //      this.giveUpButton.setText("Give up");
-    //      this.definitionTextArea.setVisible(true);
-    //    }
-
     switch (this.gameModel.getCurrentGameMode()) {
       case ZEN -> {
         this.giveUpButton.setText("Menu");
@@ -155,6 +133,8 @@ public class GameController implements ControllerInterface {
         this.colourPicker.setVisible(false);
         this.zenNextWordButton.setVisible(false);
         this.giveUpButton.setText("Give up");
+        this.definitionTextArea.setText(gameModel.getCurrentWordDefinition());
+        //        this.wordLabel.setText("Draw the object with the definition:");
       }
       case CLASSIC -> {
         this.colourPicker.setVisible(false);

@@ -2,15 +2,18 @@ package nz.ac.auckland.se206.dictionary;
 
 import java.io.IOException;
 import javafx.concurrent.Task;
+import nz.ac.auckland.se206.model.GameModel;
 
 public class DictionaryThread {
 
   private String wordToDefine;
+
+  private GameModel gameModel = GameModel.getInstance();
   Task<Void> backgroundTask =
       new Task<Void>() {
 
         @Override
-        protected Void call() throws Exception {
+        protected Void call() {
 
           String query = wordToDefine;
           try {
@@ -21,6 +24,8 @@ public class DictionaryThread {
                     + "\" has "
                     + wordResult.getNumberOfEntries()
                     + " dictionary entries.");
+            gameModel.setCurrentWordDefinition(
+                wordResult.getWordEntries().get(0).getDefinitions().get(0));
             for (int x = 0; x < wordResult.getWordEntries().get(0).getDefinitions().size(); x++) {
               System.out.println(
                   "\""

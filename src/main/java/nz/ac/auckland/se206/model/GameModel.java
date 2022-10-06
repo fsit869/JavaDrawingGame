@@ -66,6 +66,8 @@ public class GameModel {
 
   private boolean playerWon;
 
+  private String currentWordDefinition;
+
   /** Initialize objects and anything needed for a game */
   private GameModel() {
     try {
@@ -178,5 +180,13 @@ public class GameModel {
 
   public void setProfile(Profile profile) {
     this.profile = profile;
+  }
+
+  public void setCurrentWordDefinition(String word) {
+    this.currentWordDefinition = word;
+  }
+
+  public String getCurrentWordDefinition() {
+    return currentWordDefinition;
   }
 }
