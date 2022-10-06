@@ -36,7 +36,20 @@ public class GameModeSettingsController implements ControllerInterface {
   @FXML private Button gameModeButton;
   /** Init and loads the gamemode settings view */
   public void initialize() {
+    doRefresh();
+    // init comboboxes items
+    confidenceComboBox.getItems().addAll(confidenceDifficulties);
+    timeComboBox.getItems().addAll(timeDifficulties);
+    accuracyComboBox.getItems().addAll(accuracyDifficulties);
+    wordDifficultyComboBox.getItems().addAll(difficultyDifficulties);
+  }
 
+  @Override
+  public void refresh() {
+    doRefresh();
+  }
+
+  public void doRefresh() {
     // Create instance of object saving
     try {
       profileFactory = new ProfileFactory();
@@ -47,12 +60,6 @@ public class GameModeSettingsController implements ControllerInterface {
 
     // Get game settings
     this.gameModel = GameModel.getInstance();
-
-    // init comboboxes items
-    confidenceComboBox.getItems().addAll(confidenceDifficulties);
-    timeComboBox.getItems().addAll(timeDifficulties);
-    accuracyComboBox.getItems().addAll(accuracyDifficulties);
-    wordDifficultyComboBox.getItems().addAll(difficultyDifficulties);
 
     // init gameMode
     switch (this.gameModel.getCurrentGameMode()) {
@@ -77,9 +84,9 @@ public class GameModeSettingsController implements ControllerInterface {
     // init confidence combobox
     switch (this.gameModel.getProfile().getSettingsData().getConfidence()) {
       case EASY -> confidenceComboBox.setValue("Easy");
-      case MEDIUM -> accuracyComboBox.setValue("Medium");
-      case HARD -> accuracyComboBox.setValue("Hard");
-      case MASTER -> accuracyComboBox.setValue("Master");
+      case MEDIUM -> confidenceComboBox.setValue("Medium");
+      case HARD -> confidenceComboBox.setValue("Hard");
+      case MASTER -> confidenceComboBox.setValue("Master");
     }
     // init word difficulty combobox
     switch (this.gameModel.getProfile().getSettingsData().getSetting()) {
@@ -90,10 +97,6 @@ public class GameModeSettingsController implements ControllerInterface {
     }
   }
 
-  @Override
-  public void refresh() {
-    //    initialize();
-  }
   /** Sets the game settings into the players profile */
   private void setGameSettings() {
     // sets confidence settings depending on users choice
