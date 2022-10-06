@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.profiles.entities;
 
 // model of what will be stored as user data in a profile
 
+import nz.ac.auckland.se206.profiles.entities.badges.StatsBadges;
+
 public class StatsData extends Data {
   private int bestTime;
   private int bestAccuracy;
@@ -10,6 +12,8 @@ public class StatsData extends Data {
   private int losses;
   private int currentStreak;
   private int bestStreak;
+
+  private StatsBadges statsBadges;
 
   public int getCurrentStreak() {
     return currentStreak;
