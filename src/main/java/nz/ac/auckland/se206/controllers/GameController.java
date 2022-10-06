@@ -73,6 +73,7 @@ public class GameController implements ControllerInterface {
     // Init objects required objects
     graphic = canvas.getGraphicsContext2D();
     this.gameModel = GameModel.getInstance();
+    setClock();
     this.textToSpeech = new TextToSpeechTask();
 
     // Initialize the profile saver
@@ -83,7 +84,6 @@ public class GameController implements ControllerInterface {
     }
 
     // Configure game settings
-    setClock();
     this.timerService =
         new Service<Void>() {
           @Override
@@ -111,6 +111,7 @@ public class GameController implements ControllerInterface {
   /** Reset the view to ready game state */
   @Override
   public void refresh() {
+    setClock();
     this.gameModel.setCurrentGameState(GameModel.State.READY);
 
     // Setup zenmode settings
@@ -124,7 +125,9 @@ public class GameController implements ControllerInterface {
       this.zenNextWordButton.setVisible(false);
       this.giveUpButton.setText("Give up");
     }
-    setClock();
+
+    // setup timer starting number
+    this.timerLabel.setText(String.valueOf(timerMax));
   }
 
   /** Handles bindings for the timer thread. */
