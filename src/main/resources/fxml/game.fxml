@@ -109,7 +109,7 @@
                   <Font name="Eras Medium ITC" size="21.0" />
                </font>
             </Label>
-            <TextArea fx:id="definitionTextArea" layoutX="22.0" layoutY="106.0" prefHeight="60.0" prefWidth="575.0" />
+            <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" wrapText="true" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="304.0" prefWidth="602.0">

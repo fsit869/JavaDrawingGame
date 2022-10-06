@@ -133,8 +133,8 @@ public class GameController implements ControllerInterface {
         this.colourPicker.setVisible(false);
         this.zenNextWordButton.setVisible(false);
         this.giveUpButton.setText("Give up");
-        this.definitionTextArea.setText(gameModel.getCurrentWordDefinition());
-        //        this.wordLabel.setText("Draw the object with the definition:");
+        this.definitionTextArea.setText(
+            "Draw the object with the definition: " + gameModel.getCurrentWordDefinition());
       }
       case CLASSIC -> {
         this.colourPicker.setVisible(false);
