@@ -31,10 +31,10 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
 public class GameController implements ControllerInterface {
-  private static final int TIMER_MAX = 60;
+  private int timerMax;
   // FXML Components
-  @FXML private  ImageView correctImage;
-  @FXML private  ImageView wrongImage;
+  @FXML private ImageView correctImage;
+  @FXML private ImageView wrongImage;
   @FXML private Button zenNextWordButton;
   @FXML private Button giveUpButton;
   @FXML private ColorPicker colourPicker;
@@ -83,12 +83,13 @@ public class GameController implements ControllerInterface {
     }
 
     // Configure game settings
+    setClock();
     this.timerService =
         new Service<Void>() {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
-                TIMER_MAX, timerLabel, predictionTextArea, gameModel, GameController.this);
+                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this);
           }
         };
     this.setupStateBindings();
@@ -97,12 +98,13 @@ public class GameController implements ControllerInterface {
     this.startedDrawing = false;
 
     // Setup colour picker for zen
-    this.colourPicker.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        setupBrush(false);
-      }
-    });
+    this.colourPicker.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            setupBrush(false);
+          }
+        });
     onReadyState();
   }
 
@@ -122,6 +124,7 @@ public class GameController implements ControllerInterface {
       this.zenNextWordButton.setVisible(false);
       this.giveUpButton.setText("Give up");
     }
+    setClock();
   }
 
   /** Handles bindings for the timer thread. */
@@ -140,6 +143,16 @@ public class GameController implements ControllerInterface {
         });
   }
 
+  private void setClock() {
+    // set how long game should be depending on time difficulty
+    switch (this.gameModel.getProfile().getSettingsData().getTime()) {
+      case EASY -> timerMax = 60;
+      case MEDIUM -> timerMax = 45;
+      case HARD -> timerMax = 30;
+      case MASTER -> timerMax = 15;
+    }
+  }
+
   /////////////////////
   // Button handlers //
   /////////////////////
@@ -154,7 +167,7 @@ public class GameController implements ControllerInterface {
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       this.timerLabel.setText("Zen mode!");
     } else {
-      this.timerLabel.setText(String.valueOf(TIMER_MAX));
+      this.timerLabel.setText(String.valueOf(timerMax));
     }
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
@@ -170,7 +183,6 @@ public class GameController implements ControllerInterface {
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
-
   }
 
   /** This method is called when the ingame state is started */
@@ -226,7 +238,6 @@ public class GameController implements ControllerInterface {
         e.printStackTrace();
       }
     }
-
   }
 
   /** Saves the profile information and win/loss */
@@ -235,10 +246,10 @@ public class GameController implements ControllerInterface {
     System.out.println("saving");
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {
-      statsData.setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));
+      statsData.setBestTime(timerMax - Integer.parseInt(this.timerLabel.getText()));
     } else {
       // When player loses they run out of time.
-      statsData.setBestTime(TIMER_MAX);
+      statsData.setBestTime(timerMax);
     }
 
     // Save win/loss and also stats accuracy
@@ -423,9 +434,7 @@ public class GameController implements ControllerInterface {
     }
   }
 
-  /**
-   * This button is called when requesting the menu
-   */
+  /** This button is called when requesting the menu */
   @FXML
   private void onMenuButton() {
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
@@ -510,9 +519,9 @@ public class GameController implements ControllerInterface {
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
-
   /**
    * Set whether correct icon is visible
+   *
    * @param isVisible Condition if visible
    */
   public void setCorrectImageVisible(boolean isVisible) {
@@ -521,10 +530,10 @@ public class GameController implements ControllerInterface {
 
   /**
    * Set whether wrong icon is visible
+   *
    * @param isVisible Condition if visible
    */
   public void setWrongImageVisible(boolean isVisible) {
     this.wrongImage.setVisible(isVisible);
   }
-
 }
