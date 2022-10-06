@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.dictionary.DictionaryThread;
 import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the main menu */
@@ -20,6 +21,8 @@ public class MainMenuController implements ControllerInterface {
   @FXML private Button exitButton;
 
   private GameModel gameModel;
+
+  private DictionaryThread dictionaryThread = new DictionaryThread();
 
   public void initialize() {
     startButton.toBack();
@@ -59,6 +62,8 @@ public class MainMenuController implements ControllerInterface {
   @FXML
   private void onStartButton() {
     gameModel.setCurrentViewState(GameModel.ViewState.GAMEMODESETTINGS);
+    dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
+    dictionaryThread.startDefining();
   }
 
   /** This method is called when user clicks the settings button to go to settings */
