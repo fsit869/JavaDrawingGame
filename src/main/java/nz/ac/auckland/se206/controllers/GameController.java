@@ -33,8 +33,8 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
-  @FXML private  ImageView correctImage;
-  @FXML private  ImageView wrongImage;
+  @FXML private ImageView correctImage;
+  @FXML private ImageView wrongImage;
   @FXML private Button zenNextWordButton;
   @FXML private Button giveUpButton;
   @FXML private ColorPicker colourPicker;
@@ -50,6 +50,10 @@ public class GameController implements ControllerInterface {
   @FXML private TabPane inGamePaneMenu;
   @FXML private TabPane endGamePaneMenu;
   @FXML private TextArea predictionTextArea;
+
+  @FXML private AnchorPane topAnchorPane;
+
+  @FXML private TextArea definitionTextArea;
 
   private GraphicsContext graphic;
 
@@ -97,12 +101,13 @@ public class GameController implements ControllerInterface {
     this.startedDrawing = false;
 
     // Setup colour picker for zen
-    this.colourPicker.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        setupBrush(false);
-      }
-    });
+    this.colourPicker.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            setupBrush(false);
+          }
+        });
     onReadyState();
   }
 
@@ -111,16 +116,54 @@ public class GameController implements ControllerInterface {
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
 
-    // Setup zenmode settings
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-      this.giveUpButton.setText("Menu");
-      this.zenNextWordButton.setVisible(true);
-      this.colourPicker.setVisible(true);
-      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
-    } else {
-      this.colourPicker.setVisible(false);
-      this.zenNextWordButton.setVisible(false);
-      this.giveUpButton.setText("Give up");
+    //    // Setup zenmode settings
+    //    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    //      this.giveUpButton.setText("Menu");
+    //      this.zenNextWordButton.setVisible(true);
+    //      this.colourPicker.setVisible(true);
+    //      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+    //    } else {
+    //      this.colourPicker.setVisible(false);
+    //      this.zenNextWordButton.setVisible(false);
+    //      this.giveUpButton.setText("Give up");
+    //      this.definitionTextArea.setVisible(true);
+    //    }
+    //    // Setup Hidden mode settings
+    //    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+    //      this.definitionTextArea.setVisible(true);
+    //    } else {
+    //      this.colourPicker.setVisible(false);
+    //      this.zenNextWordButton.setVisible(false);
+    //      this.giveUpButton.setText("Give up");
+    //      this.definitionTextArea.setVisible(true);
+    //    }
+
+    switch (this.gameModel.getCurrentGameMode()) {
+      case ZEN -> {
+        this.giveUpButton.setText("Menu");
+        this.zenNextWordButton.setVisible(true);
+        this.colourPicker.setVisible(true);
+        this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+        this.definitionTextArea.setVisible(false);
+        this.topAnchorPane.setMaxHeight(167);
+        this.definitionTextArea.setLayoutY(0);
+      }
+      case HIDDEN -> {
+        this.definitionTextArea.setVisible(true);
+        this.topAnchorPane.setPrefHeight(190);
+        this.definitionTextArea.setLayoutY(170);
+        this.colourPicker.setVisible(false);
+        this.zenNextWordButton.setVisible(false);
+        this.giveUpButton.setText("Give up");
+      }
+      case CLASSIC -> {
+        this.colourPicker.setVisible(false);
+        this.zenNextWordButton.setVisible(false);
+        this.giveUpButton.setText("Give up");
+        this.definitionTextArea.setVisible(false);
+        this.topAnchorPane.setMaxHeight(167);
+        this.definitionTextArea.setLayoutY(0);
+      }
     }
   }
 
@@ -170,7 +213,6 @@ public class GameController implements ControllerInterface {
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
-
   }
 
   /** This method is called when the ingame state is started */
@@ -226,7 +268,6 @@ public class GameController implements ControllerInterface {
         e.printStackTrace();
       }
     }
-
   }
 
   /** Saves the profile information and win/loss */
@@ -423,9 +464,7 @@ public class GameController implements ControllerInterface {
     }
   }
 
-  /**
-   * This button is called when requesting the menu
-   */
+  /** This button is called when requesting the menu */
   @FXML
   private void onMenuButton() {
     this.gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
@@ -510,9 +549,9 @@ public class GameController implements ControllerInterface {
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
-
   /**
    * Set whether correct icon is visible
+   *
    * @param isVisible Condition if visible
    */
   public void setCorrectImageVisible(boolean isVisible) {
@@ -521,10 +560,10 @@ public class GameController implements ControllerInterface {
 
   /**
    * Set whether wrong icon is visible
+   *
    * @param isVisible Condition if visible
    */
   public void setWrongImageVisible(boolean isVisible) {
     this.wrongImage.setVisible(isVisible);
   }
-
 }

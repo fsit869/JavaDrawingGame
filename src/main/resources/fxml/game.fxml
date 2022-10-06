@@ -29,7 +29,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameController">
    <children>
-      <AnchorPane prefHeight="168.0" prefWidth="602.0">
+      <AnchorPane fx:id="topAnchorPane" prefHeight="168.0" prefWidth="602.0">
          <children>
             <Label fx:id="wordLabel" layoutX="342.0" layoutY="120.0" text="wordToDraw" textAlignment="CENTER">
                <graphic>
@@ -109,6 +109,7 @@
                   <Font name="Eras Medium ITC" size="21.0" />
                </font>
             </Label>
+            <TextArea fx:id="definitionTextArea" layoutX="22.0" layoutY="106.0" prefHeight="60.0" prefWidth="575.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="304.0" prefWidth="602.0">
