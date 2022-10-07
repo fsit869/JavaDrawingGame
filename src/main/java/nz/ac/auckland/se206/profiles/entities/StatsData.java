@@ -2,7 +2,9 @@ package nz.ac.auckland.se206.profiles.entities;
 
 // model of what will be stored as user data in a profile
 
-import nz.ac.auckland.se206.profiles.entities.badges.StatsBadges;
+import java.util.List;
+import nz.ac.auckland.se206.profiles.entities.badges.Badge;
+import nz.ac.auckland.se206.profiles.entities.badges.BadgeFactory;
 
 public class StatsData extends Data {
   private int bestTime;
@@ -13,7 +15,7 @@ public class StatsData extends Data {
   private int currentStreak;
   private int bestStreak;
 
-  private StatsBadges statsBadges;
+  private List<Badge> badgeList;
 
   public int getCurrentStreak() {
     return currentStreak;
@@ -41,6 +43,16 @@ public class StatsData extends Data {
 
   public int getBestStreak() {
     return bestStreak;
+  }
+
+  public List<Badge> getBadgeList() {
+    return badgeList;
+  }
+
+  /** Adds a badge to the profile */
+  public void addBadge(BadgeFactory.BadgeEnum badge) {
+    BadgeFactory factory = new BadgeFactory();
+    badgeList.add(factory.createBadge(badge));
   }
 
   /** Will reset the current streak when called. */

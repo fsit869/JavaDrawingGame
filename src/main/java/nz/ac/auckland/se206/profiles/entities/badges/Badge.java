@@ -1,15 +1,22 @@
 package nz.ac.auckland.se206.profiles.entities.badges;
 
-
-public abstract class Badge {
-  protected boolean status;
-
+public class Badge {
+  protected String name;
+  protected String description;
+  protected String imageLocation;
   protected Tier tier;
 
   protected enum Tier {
     NONE,
-    ONE,
-    TWO,
-    THREE
+    BRONZE,
+    SILVER,
+    GOLD
+  }
+
+  public Badge(String name, Tier tier, String description, String imageLocation) {
+    this.name = name;
+    this.tier = tier;
+    this.description = description;
+    this.imageLocation = imageLocation;
   }
 }
