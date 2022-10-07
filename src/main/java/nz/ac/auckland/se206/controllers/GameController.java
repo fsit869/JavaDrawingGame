@@ -58,6 +58,8 @@ public class GameController implements ControllerInterface {
 
   @FXML private Label drawLabel;
 
+  @FXML private Label wordSizeLabel;
+
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread = new DictionaryThread();
@@ -191,6 +193,18 @@ public class GameController implements ControllerInterface {
     } else {
       this.timerLabel.setText(String.valueOf(TIMER_MAX));
     }
+
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      String dashes = "";
+      for (int i = 0; i < gameModel.getCurrentWordToGuess().length(); i++) {
+        dashes = dashes + "-";
+      }
+      wordSizeLabel.setText(dashes);
+      wordSizeLabel.setVisible(true);
+    } else {
+      wordSizeLabel.setVisible(false);
+    }
+
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);

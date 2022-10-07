@@ -232,7 +232,7 @@
                   <Image url="@../images/cross.png" />
                </image>
             </ImageView>
-            <Label alignment="TOP_CENTER" layoutX="-54.0" layoutY="263.0" maxHeight="35.0" maxWidth="447.0" minHeight="35.0" minWidth="170.0" prefHeight="35.0" prefWidth="447.0" text="-----">
+            <Label fx:id="wordSizeLabel" alignment="TOP_CENTER" layoutX="-54.0" layoutY="263.0" maxHeight="35.0" maxWidth="447.0" minHeight="35.0" minWidth="170.0" prefHeight="35.0" prefWidth="447.0" text="-----">
                <font>
                   <Font size="40.0" />
                </font>
