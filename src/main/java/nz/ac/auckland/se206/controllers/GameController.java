@@ -189,7 +189,7 @@ public class GameController implements ControllerInterface {
 
     // If zen mode dont show timer
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-      this.timerLabel.setText("Zen mode!");
+      this.timerLabel.setText("Zen mode!a");
     } else {
       this.timerLabel.setText(String.valueOf(TIMER_MAX));
     }
@@ -485,6 +485,16 @@ public class GameController implements ControllerInterface {
   private void onStartGameButton(ActionEvent actionEvent) {
     this.definitionTextArea.setText(
         "Draw the object with the definition: " + gameModel.getCurrentWordDefinition());
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      String dashes = "";
+      for (int i = 0; i < gameModel.getCurrentWordToGuess().length(); i++) {
+        dashes = dashes + "-";
+      }
+      wordSizeLabel.setText(dashes);
+      wordSizeLabel.setVisible(true);
+    } else {
+      wordSizeLabel.setVisible(false);
+    }
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
