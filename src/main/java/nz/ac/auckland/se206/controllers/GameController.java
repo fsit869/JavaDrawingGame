@@ -34,6 +34,7 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
+  @FXML private  Button playButton;
   @FXML private ImageView correctImage;
   @FXML private ImageView wrongImage;
   @FXML private Button zenNextWordButton;
@@ -80,7 +81,7 @@ public class GameController implements ControllerInterface {
     graphic = canvas.getGraphicsContext2D();
     this.gameModel = GameModel.getInstance();
     this.textToSpeech = new TextToSpeechTask();
-    this.dictionaryThread = new DictionaryThread(this.definitionTextArea);
+    this.dictionaryThread = new DictionaryThread(this.definitionTextArea, GameController.this);
 
     // Initialize the profile saver
     try {
@@ -202,8 +203,11 @@ public class GameController implements ControllerInterface {
     // If hidden mode find definition of word
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
+      this.disablePlayButton(true);
       dictionaryThread.startDefining();
       // Todo unbind the wordLabel and show the _ _ _ _ for words
+    } else {
+      this.disablePlayButton(false);
     }
 
   }
@@ -559,5 +563,13 @@ public class GameController implements ControllerInterface {
    */
   public void setWrongImageVisible(boolean isVisible) {
     this.wrongImage.setVisible(isVisible);
+  }
+
+  /**
+   * Determines whether play button is disabled.
+   * @param isDisabled
+   */
+  public void disablePlayButton(boolean isDisabled) {
+    this.playButton.setDisable(isDisabled);
   }
 }

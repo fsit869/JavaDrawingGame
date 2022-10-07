@@ -51,7 +51,6 @@
         "giraffe",
         "grapes",
         "grass",
-        "hammer",
         "hat",
         "helicopter",
         "hexagon",
@@ -104,6 +103,7 @@
       "M": []
     },
     "wordsPlayed": [
+      "hammer",
       "book",
       "calculator",
       "pig",

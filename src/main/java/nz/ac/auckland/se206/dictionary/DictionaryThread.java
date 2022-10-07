@@ -1,11 +1,10 @@
 package nz.ac.auckland.se206.dictionary;
 
-import java.io.IOException;
-
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
+import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.model.GameModel;
 
 public class DictionaryThread {
@@ -13,7 +12,7 @@ public class DictionaryThread {
   private TextArea definitionTextArea;
   private Service<Void> backgroundService;
 
-  public DictionaryThread(TextArea definitionTextArea) {
+  public DictionaryThread(TextArea definitionTextArea, GameController gameController) {
     this.gameModel = GameModel.getInstance();
     this.definitionTextArea = definitionTextArea;
 
@@ -35,14 +34,14 @@ public class DictionaryThread {
             Platform.runLater(() -> {
               try {
                 WordInfo wordResult = DictionaryLookUp.searchWordInfo(query);
-                System.out.println(wordResult.getWordEntries().get(0).getDefinitions().get(0));
-                System.out.println("ww");
-
-
                 definitionTextArea.setText(wordResult.getWordEntries().get(0).getDefinitions().get(0));
+                gameController.disablePlayButton(false);
+              } catch (WordNotFoundException e) {
+                e.printStackTrace();
+                definitionTextArea.setText("No definition found :(");
               } catch (Exception e) {
                 e.printStackTrace();
-                definitionTextArea.setText("Unable to load word. ");
+                definitionTextArea.setText("Unexpected error :(");
               }
             });
             updateProgress(1, 1);
