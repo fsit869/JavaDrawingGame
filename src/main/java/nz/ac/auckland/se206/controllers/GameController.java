@@ -145,7 +145,7 @@ public class GameController implements ControllerInterface {
           this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
         });
   }
-
+  /** sets the time allowed depending on time difficulty. */
   private void setClock() {
     // set how long game should be depending on time difficulty
     switch (this.gameModel.getProfile().getSettingsData().getTime()) {
