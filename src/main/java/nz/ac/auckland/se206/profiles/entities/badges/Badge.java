@@ -1,16 +1,20 @@
 package nz.ac.auckland.se206.profiles.entities.badges;
 
 public class Badge {
-  protected String name;
-  protected String description;
-  protected String imageLocation;
-  protected Tier tier;
+  private String name;
+  private String description;
+  private String imageLocation;
+  private Tier tier;
 
-  protected enum Tier {
+  public enum Tier {
     NONE,
     BRONZE,
     SILVER,
     GOLD
+  }
+
+  public String getName() {
+    return name;
   }
 
   public Badge(String name, Tier tier, String description, String imageLocation) {

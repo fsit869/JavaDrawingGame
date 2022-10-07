@@ -50,9 +50,15 @@ public class StatsData extends Data {
   }
 
   /** Adds a badge to the profile */
-  public void addBadge(BadgeFactory.BadgeEnum badge) {
+  public void addBadge(BadgeFactory.BadgeEnum badgeEnum) {
     BadgeFactory factory = new BadgeFactory();
-    badgeList.add(factory.createBadge(badge));
+    Badge badge = factory.createBadge(badgeEnum);
+    for (Badge badges : badgeList) {
+      if (badges.getName().equals(badge.getName())) {
+        return;
+      }
+    }
+    badgeList.add(badge);
   }
 
   /** Will reset the current streak when called. */
