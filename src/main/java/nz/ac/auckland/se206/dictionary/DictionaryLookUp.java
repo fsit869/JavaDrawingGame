@@ -50,7 +50,6 @@ public class DictionaryLookUp {
 
     WordEntry wordEntry = new WordEntry(definitions);
     entries.add(wordEntry);
-
     return new WordInfo(query, entries);
   }
 }

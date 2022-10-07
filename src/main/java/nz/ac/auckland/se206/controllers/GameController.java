@@ -53,16 +53,11 @@ public class GameController implements ControllerInterface {
   @FXML private TextArea predictionTextArea;
 
   @FXML private AnchorPane topAnchorPane;
-
   @FXML private TextArea definitionTextArea;
-
-  @FXML private Label drawLabel;
-
-  @FXML private Label wordSizeLabel;
 
   private GraphicsContext graphic;
 
-  private DictionaryThread dictionaryThread = new DictionaryThread();
+  private DictionaryThread dictionaryThread;
 
   // Model layer objects
   private GameModel gameModel;
@@ -85,6 +80,7 @@ public class GameController implements ControllerInterface {
     graphic = canvas.getGraphicsContext2D();
     this.gameModel = GameModel.getInstance();
     this.textToSpeech = new TextToSpeechTask();
+    this.dictionaryThread = new DictionaryThread(this.definitionTextArea);
 
     // Initialize the profile saver
     try {
@@ -123,8 +119,8 @@ public class GameController implements ControllerInterface {
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
 
-    switch (this.gameModel.getCurrentGameMode()) {
-      case ZEN -> {
+    if(this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      // If zen mode setup view
         this.giveUpButton.setText("Menu");
         this.zenNextWordButton.setVisible(true);
         this.colourPicker.setVisible(true);
@@ -132,33 +128,27 @@ public class GameController implements ControllerInterface {
         this.definitionTextArea.setVisible(false);
         this.topAnchorPane.setMaxHeight(167);
         this.definitionTextArea.setLayoutY(0);
-        this.wordLabel.setVisible(true);
-        this.drawLabel.setVisible(true);
-      }
-      case HIDDEN -> {
-        dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
-        dictionaryThread.startDefining();
+    } else {
+      // If classic/Hidden mode setup view
+      this.colourPicker.setVisible(false);
+      this.zenNextWordButton.setVisible(false);
+      this.giveUpButton.setText("Give up");
+      this.definitionTextArea.setVisible(false);
+      this.topAnchorPane.setMaxHeight(167);
+      this.definitionTextArea.setLayoutY(0);
+
+      // Enable dictonary textfield for hidden mode
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
         this.definitionTextArea.setVisible(true);
         this.topAnchorPane.setPrefHeight(190);
         this.definitionTextArea.setLayoutY(170);
-        this.colourPicker.setVisible(false);
-        this.zenNextWordButton.setVisible(false);
-        this.giveUpButton.setText("Give up");
-        this.definitionTextArea.setText("Draw the object with the definition: ");
-        this.wordLabel.setVisible(true);
-        this.drawLabel.setVisible(true);
-      }
-      case CLASSIC -> {
-        this.colourPicker.setVisible(false);
-        this.zenNextWordButton.setVisible(false);
-        this.giveUpButton.setText("Give up");
+      } else {
         this.definitionTextArea.setVisible(false);
-        this.topAnchorPane.setMaxHeight(167);
-        this.definitionTextArea.setLayoutY(0);
-        this.wordLabel.setVisible(true);
-        this.drawLabel.setVisible(true);
       }
     }
+
+    // Force refresh onReadyState. Since if changing gamemodes, still in readyState.
+    onReadyState();
   }
 
   /** Handles bindings for the timer thread. */
@@ -189,20 +179,9 @@ public class GameController implements ControllerInterface {
 
     // If zen mode dont show timer
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-      this.timerLabel.setText("Zen mode!a");
+      this.timerLabel.setText("Zen mode!");
     } else {
       this.timerLabel.setText(String.valueOf(TIMER_MAX));
-    }
-
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
-      String dashes = "";
-      for (int i = 0; i < gameModel.getCurrentWordToGuess().length(); i++) {
-        dashes = dashes + "-";
-      }
-      wordSizeLabel.setText(dashes);
-      wordSizeLabel.setVisible(true);
-    } else {
-      wordSizeLabel.setVisible(false);
     }
 
     this.predictionTextArea.setText("Your predictions will show up here");
@@ -219,6 +198,14 @@ public class GameController implements ControllerInterface {
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
+    System.out.println(this.gameModel.getCurrentGameMode());
+    // If hidden mode find definition of word
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      this.definitionTextArea.setText("Searching for definition. Please wait");
+      dictionaryThread.startDefining();
+      // Todo unbind the wordLabel and show the _ _ _ _ for words
+    }
+
   }
 
   /** This method is called when the ingame state is started */
@@ -396,6 +383,7 @@ public class GameController implements ControllerInterface {
    */
   private void setupStateBindings() {
     // Bind word label
+    // Todo remove this binding
     wordLabel.textProperty().bind(gameModel.getCurrentWordToGuessProperty());
 
     // Bindings for when game state changed
@@ -483,18 +471,6 @@ public class GameController implements ControllerInterface {
    */
   @FXML
   private void onStartGameButton(ActionEvent actionEvent) {
-    this.definitionTextArea.setText(
-        "Draw the object with the definition: " + gameModel.getCurrentWordDefinition());
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
-      String dashes = "";
-      for (int i = 0; i < gameModel.getCurrentWordToGuess().length(); i++) {
-        dashes = dashes + "-";
-      }
-      wordSizeLabel.setText(dashes);
-      wordSizeLabel.setVisible(true);
-    } else {
-      wordSizeLabel.setVisible(false);
-    }
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
@@ -519,9 +495,6 @@ public class GameController implements ControllerInterface {
   @FXML
   private void onNewGameButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
-
-    dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
-    dictionaryThread.startDefining();
   }
 
   @FXML

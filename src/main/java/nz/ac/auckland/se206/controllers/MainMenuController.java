@@ -22,8 +22,6 @@ public class MainMenuController implements ControllerInterface {
 
   private GameModel gameModel;
 
-  private DictionaryThread dictionaryThread = new DictionaryThread();
-
   public void initialize() {
     startButton.toBack();
     statsButton.toBack();

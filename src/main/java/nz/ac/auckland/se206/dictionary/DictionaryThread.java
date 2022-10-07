@@ -1,58 +1,63 @@
 package nz.ac.auckland.se206.dictionary;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
+import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.model.GameModel;
 
 public class DictionaryThread {
+  private GameModel gameModel;
+  private TextArea definitionTextArea;
+  private Service<Void> backgroundService;
 
-  private String wordToDefine;
+  public DictionaryThread(TextArea definitionTextArea) {
+    this.gameModel = GameModel.getInstance();
+    this.definitionTextArea = definitionTextArea;
 
-  private GameModel gameModel = GameModel.getInstance();
-  Task<Void> backgroundTask =
-      new Task<Void>() {
-
-        @Override
-        protected Void call() {
-
-          String query = wordToDefine;
-          try {
-            WordInfo wordResult = DictionaryLookUp.searchWordInfo(query);
-            System.out.println(
-                "\""
-                    + wordResult.getWord()
-                    + "\" has "
-                    + wordResult.getNumberOfEntries()
-                    + " dictionary entries.");
-            gameModel.setCurrentWordDefinition(
-                wordResult.getWordEntries().get(0).getDefinitions().get(0));
-            for (int x = 0; x < wordResult.getWordEntries().get(0).getDefinitions().size(); x++) {
-              System.out.println(
-                  "\""
-                      + wordResult.getWord()
-                      + "\" means "
-                      + wordResult.getWordEntries().get(0).getDefinitions().get(x));
+    this.backgroundService = new Service<Void>() {
+      @Override
+      protected Task<Void> createTask() {
+        return new Task<Void>() {
+          @Override
+          protected Void call() {
+            System.out.println("Thread started");
+            updateProgress(0, 1);
+            String query = gameModel.getCurrentWordToGuess();
+            System.out.println("Searching for " + query);
+            try {
+              Thread.sleep(2000);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
             }
-          } catch (IOException e) {
-            e.printStackTrace();
-          } catch (WordNotFoundException e) {
-            System.out.println("\"" + e.getWord() + "\" has problems: " + e.getMessage());
-          }
+            Platform.runLater(() -> {
+              try {
+                WordInfo wordResult = DictionaryLookUp.searchWordInfo(query);
+                System.out.println(wordResult.getWordEntries().get(0).getDefinitions().get(0));
+                System.out.println("ww");
 
-          return null;
-        }
-      };
+
+                definitionTextArea.setText(wordResult.getWordEntries().get(0).getDefinitions().get(0));
+              } catch (Exception e) {
+                e.printStackTrace();
+                definitionTextArea.setText("Unable to load word. ");
+              }
+            });
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+      }
+    };
+
+  }
 
   public void startDefining() {
-    try {
-      Thread backgroundPerson = new Thread(backgroundTask);
-      backgroundPerson.start();
-    } catch (Exception e) {
-      System.out.println("no word set to define");
-    }
+    this.backgroundService.cancel();
+    this.backgroundService.reset();
+    this.backgroundService.start();
   }
 
-  public void setWordToDefine(String wordToDefine) {
-    this.wordToDefine = wordToDefine;
-  }
 }
