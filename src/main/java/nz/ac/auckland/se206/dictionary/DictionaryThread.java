@@ -31,22 +31,28 @@ public class DictionaryThread {
             updateProgress(0, 1);
             String query = gameModel.getCurrentWordToGuess();
 
+            String textToDisplay;
+            try {
+              // Search for word and update to label
+              WordInfo wordResult = DictionaryLookUp.searchWordInfo(query);
+              textToDisplay = wordResult.getWordEntries().get(0).getDefinitions().get(0);
+              gameController.disablePlayButton(false);
+            } catch (WordNotFoundException e) {
+              // Word not found
+              e.printStackTrace();
+              textToDisplay = "No definitions found for " + query;
+            } catch (Exception e) {
+              // Unknown error
+              e.printStackTrace();
+              textToDisplay = "Unexpected err querying  " + query;
+            }
+
+            String finalTextToDisplay = textToDisplay;
             Platform.runLater(() -> {
-              try {
-                // Search for word and update to label
-                WordInfo wordResult = DictionaryLookUp.searchWordInfo(query);
-                definitionTextArea.setText(wordResult.getWordEntries().get(0).getDefinitions().get(0));
-                gameController.disablePlayButton(false);
-              } catch (WordNotFoundException e) {
-                // Word not found
-                e.printStackTrace();
-                definitionTextArea.setText("No definition found :(");
-              } catch (Exception e) {
-                // Unknown error
-                e.printStackTrace();
-                definitionTextArea.setText("Unexpected error :(");
-              }
+              definitionTextArea.setText(finalTextToDisplay);
             });
+
+
             updateProgress(1, 1);
             return null;
           }
