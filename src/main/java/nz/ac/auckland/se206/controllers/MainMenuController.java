@@ -62,8 +62,8 @@ public class MainMenuController implements ControllerInterface {
   @FXML
   private void onStartButton() {
     gameModel.setCurrentViewState(GameModel.ViewState.GAMEMODESETTINGS);
-    dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
-    dictionaryThread.startDefining();
+    //    dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
+    //    dictionaryThread.startDefining();
   }
 
   /** This method is called when user clicks the settings button to go to settings */

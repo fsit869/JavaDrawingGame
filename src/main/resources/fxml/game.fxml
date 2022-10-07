@@ -33,9 +33,9 @@
          <children>
             <Label fx:id="wordLabel" layoutX="342.0" layoutY="120.0" text="wordToDraw" textAlignment="CENTER">
                <graphic>
-                  <Label text="Draw ">
+                  <Label fx:id="drawLabel" text="Draw ">
                      <graphic>
-                        <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="drawHintImageView" fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/pencil.png" />
                            </image>
@@ -109,7 +109,7 @@
                   <Font name="Eras Medium ITC" size="21.0" />
                </font>
             </Label>
-            <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" wrapText="true" />
+            <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="304.0" prefWidth="602.0">
@@ -232,6 +232,14 @@
                   <Image url="@../images/cross.png" />
                </image>
             </ImageView>
+            <Label alignment="TOP_CENTER" layoutX="-54.0" layoutY="263.0" maxHeight="35.0" maxWidth="447.0" minHeight="35.0" minWidth="170.0" prefHeight="35.0" prefWidth="447.0" text="-----">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
          </children>
       </AnchorPane>
       <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="522.0" spacing="10.0">

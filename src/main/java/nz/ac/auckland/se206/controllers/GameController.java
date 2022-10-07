@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
+import nz.ac.auckland.se206.dictionary.DictionaryThread;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
@@ -55,7 +56,11 @@ public class GameController implements ControllerInterface {
 
   @FXML private TextArea definitionTextArea;
 
+  @FXML private Label drawLabel;
+
   private GraphicsContext graphic;
+
+  private DictionaryThread dictionaryThread = new DictionaryThread();
 
   // Model layer objects
   private GameModel gameModel;
@@ -125,16 +130,21 @@ public class GameController implements ControllerInterface {
         this.definitionTextArea.setVisible(false);
         this.topAnchorPane.setMaxHeight(167);
         this.definitionTextArea.setLayoutY(0);
+        this.wordLabel.setVisible(true);
+        this.drawLabel.setVisible(true);
       }
       case HIDDEN -> {
+        dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
+        dictionaryThread.startDefining();
         this.definitionTextArea.setVisible(true);
         this.topAnchorPane.setPrefHeight(190);
         this.definitionTextArea.setLayoutY(170);
         this.colourPicker.setVisible(false);
         this.zenNextWordButton.setVisible(false);
         this.giveUpButton.setText("Give up");
-        this.definitionTextArea.setText(
-            "Draw the object with the definition: " + gameModel.getCurrentWordDefinition());
+        this.definitionTextArea.setText("Draw the object with the definition: ");
+        this.wordLabel.setVisible(true);
+        this.drawLabel.setVisible(true);
       }
       case CLASSIC -> {
         this.colourPicker.setVisible(false);
@@ -143,6 +153,8 @@ public class GameController implements ControllerInterface {
         this.definitionTextArea.setVisible(false);
         this.topAnchorPane.setMaxHeight(167);
         this.definitionTextArea.setLayoutY(0);
+        this.wordLabel.setVisible(true);
+        this.drawLabel.setVisible(true);
       }
     }
   }
@@ -457,6 +469,8 @@ public class GameController implements ControllerInterface {
    */
   @FXML
   private void onStartGameButton(ActionEvent actionEvent) {
+    this.definitionTextArea.setText(
+        "Draw the object with the definition: " + gameModel.getCurrentWordDefinition());
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
@@ -481,6 +495,9 @@ public class GameController implements ControllerInterface {
   @FXML
   private void onNewGameButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
+
+    dictionaryThread.setWordToDefine(gameModel.getCurrentWordToGuess());
+    dictionaryThread.startDefining();
   }
 
   @FXML
