@@ -13,6 +13,18 @@ public class Badge {
     GOLD
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public String getImageLocation() {
+    return imageLocation;
+  }
+
+  public Tier getTier() {
+    return tier;
+  }
+
   public String getName() {
     return name;
   }
