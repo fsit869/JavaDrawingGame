@@ -200,7 +200,8 @@ public class GameController implements ControllerInterface {
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
     System.out.println(this.gameModel.getCurrentGameMode());
-    // If hidden mode find definition of word
+
+    // If hidden mode search for definition
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
       this.disablePlayButton(true);
