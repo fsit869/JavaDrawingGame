@@ -321,6 +321,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
+                                    <Button fx:id="hintButton" layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#onHintButton" prefHeight="40.0" prefWidth="107.0" text="Hint" />
                                  </children>
                               </AnchorPane>
                            </content>

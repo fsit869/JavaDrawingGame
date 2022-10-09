@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
@@ -34,7 +35,7 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private static final int TIMER_MAX = 60;
   // FXML Components
-  @FXML private  Button playButton;
+  @FXML private Button playButton;
   @FXML private ImageView correctImage;
   @FXML private ImageView wrongImage;
   @FXML private Button zenNextWordButton;
@@ -55,6 +56,8 @@ public class GameController implements ControllerInterface {
 
   @FXML private AnchorPane topAnchorPane;
   @FXML private TextArea definitionTextArea;
+
+  @FXML private Button hintButton;
 
   private GraphicsContext graphic;
 
@@ -120,15 +123,17 @@ public class GameController implements ControllerInterface {
   public void refresh() {
     this.gameModel.setCurrentGameState(GameModel.State.READY);
 
-    if(this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       // If zen mode setup view
-        this.giveUpButton.setText("Menu");
-        this.zenNextWordButton.setVisible(true);
-        this.colourPicker.setVisible(true);
-        this.gameModel.setCurrentGameState(GameModel.State.INGAME);
-        this.definitionTextArea.setVisible(false);
-        this.topAnchorPane.setMaxHeight(167);
-        this.definitionTextArea.setLayoutY(0);
+      this.giveUpButton.setText("Menu");
+      this.zenNextWordButton.setVisible(true);
+      this.colourPicker.setVisible(true);
+      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+      this.definitionTextArea.setVisible(false);
+      this.topAnchorPane.setMaxHeight(167);
+      this.definitionTextArea.setLayoutY(0);
+      this.hintButton.setVisible(false);
+      this.wordLabel.setFont(Font.font("System", 20));
     } else {
       // If classic/Hidden mode setup view
       this.colourPicker.setVisible(false);
@@ -137,12 +142,16 @@ public class GameController implements ControllerInterface {
       this.definitionTextArea.setVisible(false);
       this.topAnchorPane.setMaxHeight(167);
       this.definitionTextArea.setLayoutY(0);
+      this.hintButton.setVisible(false);
+      this.wordLabel.setFont(Font.font("System", 20));
 
       // Enable dictonary textfield for hidden mode
       if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
         this.definitionTextArea.setVisible(true);
         this.topAnchorPane.setPrefHeight(190);
         this.definitionTextArea.setLayoutY(170);
+        this.hintButton.setVisible(true);
+        this.wordLabel.setFont(Font.font("System", 25));
       } else {
         this.definitionTextArea.setVisible(false);
       }
@@ -178,13 +187,6 @@ public class GameController implements ControllerInterface {
     this.canvas.setDisable(true);
     this.onClear();
 
-    // If zen mode dont show timer
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-      this.timerLabel.setText("Zen mode!");
-    } else {
-      this.timerLabel.setText(String.valueOf(TIMER_MAX));
-    }
-
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);
@@ -199,25 +201,38 @@ public class GameController implements ControllerInterface {
     this.gameModel.generateWord(WordsData.Difficulty.E);
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
-    System.out.println(this.gameModel.getCurrentGameMode());
 
+    // If zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.timerLabel.setText("Zen mode!");
+      this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+    } else {
+      this.timerLabel.setText(String.valueOf(TIMER_MAX));
+    }
+    this.wordLabel.setText(gameModel.getCurrentWordToGuess());
     // If hidden mode search for definition
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
       this.disablePlayButton(true);
       dictionaryThread.startDefining();
-      // Todo unbind the wordLabel and show the _ _ _ _ for words
+      this.wordLabel.setText("???");
+
     } else {
       this.disablePlayButton(false);
     }
-
   }
 
   /** This method is called when the ingame state is started */
   private void onInGameState() {
     // Set UI and timer
     this.canvas.setDisable(false);
-    this.textToSpeech.speak(String.format("Start drawing a %s", gameModel.getCurrentWordToGuess()));
+
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      this.textToSpeech.speak(
+          String.format("Start drawing a %s", gameModel.getCurrentWordToGuess()));
+    } else {
+      this.textToSpeech.speak(String.format("Start drawing"));
+    }
 
     // Set to brush
     this.setupBrush(false);
@@ -387,9 +402,6 @@ public class GameController implements ControllerInterface {
    * Also handles binding of the word label.
    */
   private void setupStateBindings() {
-    // Bind word label
-    // Todo remove this binding
-    wordLabel.textProperty().bind(gameModel.getCurrentWordToGuessProperty());
 
     // Bindings for when game state changed
     gameModel
@@ -548,6 +560,12 @@ public class GameController implements ControllerInterface {
     this.gameModel.setCurrentGameState(GameModel.State.INGAME);
   }
 
+  @FXML
+  private void onHintButton(ActionEvent actionEvent) {
+    String dashe = "-";
+    this.wordLabel.setText(dashe.repeat(gameModel.getCurrentWordToGuess().length()));
+  }
+
   /**
    * Set whether correct icon is visible
    *
@@ -568,6 +586,7 @@ public class GameController implements ControllerInterface {
 
   /**
    * Determines whether play button is disabled.
+   *
    * @param isDisabled
    */
   public void disablePlayButton(boolean isDisabled) {
