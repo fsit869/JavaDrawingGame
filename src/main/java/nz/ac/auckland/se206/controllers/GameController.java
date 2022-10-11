@@ -161,9 +161,6 @@ public class GameController implements ControllerInterface {
 
     // Force refresh onReadyState. Since if changing gamemodes, still in readyState.
     onReadyState();
-
-    //    // setup timer starting number
-    //    this.timerLabel.setText(String.valueOf(timerMax));
   }
 
   /** Handles bindings for the timer thread. */
