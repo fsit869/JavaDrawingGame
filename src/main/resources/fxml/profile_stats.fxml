@@ -26,39 +26,39 @@
          <font>
             <Font name="Eras Medium ITC" size="33.0" />
          </font></Label>
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="379.0" layoutY="130.0" mouseTransparent="true" prefHeight="33.0" prefWidth="222.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Profile Stats">
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="366.0" layoutY="142.0" mouseTransparent="true" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Profile Stats">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextArea fx:id="profileStatsTextArea" editable="false" focusTraversable="false" layoutX="379.0" layoutY="160.0" mouseTransparent="true" prefHeight="70.0" prefWidth="222.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Games Won:&#10;Games Lost:&#10;Total Games Played:">
+      <TextArea fx:id="profileStatsTextArea" editable="false" focusTraversable="false" layoutX="366.0" layoutY="171.0" mouseTransparent="true" prefHeight="121.0" prefWidth="251.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Games Won:&#10;Games Lost:&#10;Total Games Played:">
          <font>
             <Font size="15.0" />
          </font></TextArea>
-      <TextArea fx:id="bestRecordsTextArea" editable="false" focusTraversable="false" layoutX="379.0" layoutY="272.0" mouseTransparent="true" prefHeight="108.0" prefWidth="222.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Highest Win Streak:&#10;Quickest Win:&#10;Best Accuracyt&#10;Best Time&#10;">
+      <TextArea fx:id="bestRecordsTextArea" editable="false" focusTraversable="false" layoutX="366.0" layoutY="335.0" mouseTransparent="true" prefHeight="135.0" prefWidth="251.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Highest Win Streak:&#10;Quickest Win:&#10;Best Accuracyt&#10;Best Time&#10;">
          <font>
             <Font size="15.0" />
          </font></TextArea>
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="379.0" layoutY="242.0" mouseTransparent="true" prefHeight="33.0" prefWidth="222.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Best Records">
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="366.0" layoutY="303.0" mouseTransparent="true" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Best Records">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="379.0" layoutY="393.0" mouseTransparent="true" prefHeight="33.0" prefWidth="222.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Past Words">
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="365.0" layoutY="481.0" mouseTransparent="true" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="Past Words">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="394.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="395.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/book.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="379.0" layoutY="424.0" mouseTransparent="true" prefHeight="132.0" prefWidth="222.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;Example Word4:&#10;Example Word5:&#10;">
+      <TextArea fx:id="pastWordsTextArea" editable="false" focusTraversable="false" layoutX="366.0" layoutY="512.0" mouseTransparent="true" prefHeight="158.0" prefWidth="251.0" style="-fx-font-family: monospace; -fx-background-color: #757761;" stylesheets="@../css/textarea.css" text="Example Word1:&#10;Example Word2:&#10;Example Word3:&#10;Example Word4:&#10;Example Word5:&#10;">
          <font>
             <Font size="15.0" />
          </font></TextArea>
-      <Button layoutX="379.0" layoutY="555.0" mnemonicParsing="false" onAction="#onFullListButton" prefHeight="27.0" prefWidth="222.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="See full list" />
+      <Button layoutX="366.0" layoutY="669.0" mnemonicParsing="false" onAction="#onFullListButton" prefHeight="27.0" prefWidth="251.0" style="-fx-background-color: #51BBFE; -fx-border-color: #757761;" text="See full list" />
       <ImageView fitHeight="92.0" fitWidth="92.0" layoutX="93.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/alphabet/letter-s.png" />
@@ -89,12 +89,12 @@
             <Image url="@../images/default_profile_picture.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="394.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="396.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/medal.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="394.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="395.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/girl.png" />
          </image>
