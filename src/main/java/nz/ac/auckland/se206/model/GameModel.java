@@ -66,6 +66,7 @@ public class GameModel {
 
   private boolean playerWon;
 
+
   /** Initialize objects and anything needed for a game */
   private GameModel() {
     try {

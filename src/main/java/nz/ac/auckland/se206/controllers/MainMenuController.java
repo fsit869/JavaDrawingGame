@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.dictionary.DictionaryThread;
 import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the main menu */
