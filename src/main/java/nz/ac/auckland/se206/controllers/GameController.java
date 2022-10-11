@@ -28,7 +28,6 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
-import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
@@ -210,7 +209,7 @@ public class GameController implements ControllerInterface {
     this.wrongImage.setVisible(false);
 
     // Set game variables
-    this.gameModel.generateWord(WordsData.Difficulty.E);
+    this.gameModel.generateWord();
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
 
