@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Random;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -86,13 +87,33 @@ public class GameModel {
     }
   }
 
-  /**
-   * Generate a new word for the game
-   *
-   * @param difficulty Difficulty of word
-   * @return Word that needs to be drawn
-   */
-  public String generateWord(WordsData.Difficulty difficulty) {
+  /** Generate a new word for the game */
+  public void generateWord() {
+    // Need a random number for randomisation of difficulty
+    Random random = new Random();
+    WordsData.Difficulty difficulty;
+    int generated = random.nextInt(2);
+
+    // Creates random difficulties depending on the setting of the user
+    switch (this.profile.getSettingsData().getSetting()) {
+      case EASY -> difficulty = WordsData.Difficulty.E;
+      case MEDIUM -> difficulty = generated == 1 ? WordsData.Difficulty.E : WordsData.Difficulty.M;
+      case HARD -> {
+        // Hard must be able to get letters from all difficulties
+        generated = random.nextInt(3);
+        if (generated == 1) {
+          difficulty = WordsData.Difficulty.E;
+        } else if (generated == 2) {
+          difficulty = WordsData.Difficulty.M;
+        } else {
+          difficulty = WordsData.Difficulty.H;
+        }
+      }
+      case MASTER -> difficulty = WordsData.Difficulty.H;
+        // In the case that settings data is null
+      default -> difficulty = null;
+    }
+    ;
     try {
       // Get the words from the user profile
       setCurrentWordToGuess(this.profile.getWordsData().getRandomWord(difficulty));
@@ -101,7 +122,7 @@ public class GameModel {
       System.err.println("Failed to generate words");
       throw new RuntimeException(e);
     }
-    return getCurrentWordToGuess();
+    getCurrentWordToGuess();
   }
 
   /**
