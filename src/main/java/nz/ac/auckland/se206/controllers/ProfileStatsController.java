@@ -14,10 +14,25 @@ import javafx.scene.layout.Priority;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
+import nz.ac.auckland.se206.profiles.entities.badges.Badge;
 
 /** This is the controller for the profile stats view */
 public class ProfileStatsController implements ControllerInterface {
   public static final int TOTAL_PREDICTIONS_TO_SHOW = 5;
+
+  // Fxml badges
+  @FXML private ImageView badgeThreeBronze;
+  @FXML private ImageView badgeThreeSilver;
+  @FXML private ImageView badgeThreeGold;
+  @FXML private ImageView badgeTwoBronze;
+  @FXML private ImageView badgeTwoSilver;
+  @FXML private ImageView badgeTwoGold;
+  @FXML private ImageView badgeOneBronze;
+  @FXML private ImageView badgeOneGold;
+  @FXML private ImageView badgeOneSilver;
+  @FXML private Label badgeThreeLabel;
+  @FXML private Label badgeOneLabel;
+  @FXML private Label badgeTwoLabel;
   // Fxml components
   @FXML private Label profileNameLabel;
   @FXML private ImageView profileImageView;
@@ -67,6 +82,16 @@ public class ProfileStatsController implements ControllerInterface {
         ex.printStackTrace();
       }
     }
+
+    // Load badges
+    loadBadges();
+  }
+
+  /**
+   * This method loads all the badges
+   */
+  private void loadBadges() {
+    List<Badge> badgesToRender = this.gameModel.getProfile().getStatsData().getBadgeList();
   }
 
   /** When view is loaded again. Refresh the stats */
