@@ -286,6 +286,9 @@ public class GameController implements ControllerInterface {
         this.wrongImage.setVisible(true);
       }
       this.winLoseDialogue.setVisible(true);
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+        this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+      }
     }
 
     // Disable timer
