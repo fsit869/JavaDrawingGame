@@ -33,7 +33,7 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
 public class GameController implements ControllerInterface {
-  private static final int TIMER_MAX = 60;
+  private int timerMax;
   // FXML Components
   @FXML private Button playButton;
   @FXML private ImageView correctImage;
@@ -83,6 +83,7 @@ public class GameController implements ControllerInterface {
     // Init objects required objects
     graphic = canvas.getGraphicsContext2D();
     this.gameModel = GameModel.getInstance();
+    setClock();
     this.textToSpeech = new TextToSpeechTask();
     this.dictionaryThread = new DictionaryThread(this.definitionTextArea, GameController.this);
 
@@ -99,7 +100,7 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
-                TIMER_MAX, timerLabel, predictionTextArea, gameModel, GameController.this);
+                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this);
           }
         };
     this.setupStateBindings();
@@ -121,6 +122,7 @@ public class GameController implements ControllerInterface {
   /** Reset the view to ready game state */
   @Override
   public void refresh() {
+    setClock();
     this.gameModel.setCurrentGameState(GameModel.State.READY);
 
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
@@ -159,6 +161,9 @@ public class GameController implements ControllerInterface {
 
     // Force refresh onReadyState. Since if changing gamemodes, still in readyState.
     onReadyState();
+
+    //    // setup timer starting number
+    //    this.timerLabel.setText(String.valueOf(timerMax));
   }
 
   /** Handles bindings for the timer thread. */
@@ -176,6 +181,16 @@ public class GameController implements ControllerInterface {
           this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
         });
   }
+  /** sets the time allowed depending on time difficulty. */
+  private void setClock() {
+    // set how long game should be depending on time difficulty
+    switch (this.gameModel.getProfile().getSettingsData().getTime()) {
+      case EASY -> timerMax = 60;
+      case MEDIUM -> timerMax = 45;
+      case HARD -> timerMax = 30;
+      case MASTER -> timerMax = 15;
+    }
+  }
 
   /////////////////////
   // Button handlers //
@@ -187,6 +202,12 @@ public class GameController implements ControllerInterface {
     this.canvas.setDisable(true);
     this.onClear();
 
+    // If zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.timerLabel.setText("Zen mode!");
+    } else {
+      this.timerLabel.setText(String.valueOf(timerMax));
+    }
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);
@@ -207,7 +228,7 @@ public class GameController implements ControllerInterface {
       this.timerLabel.setText("Zen mode!");
       this.wordLabel.setText(gameModel.getCurrentWordToGuess());
     } else {
-      this.timerLabel.setText(String.valueOf(TIMER_MAX));
+      this.timerLabel.setText(String.valueOf(timerMax));
     }
     this.wordLabel.setText(gameModel.getCurrentWordToGuess());
     // If hidden mode search for definition
@@ -289,10 +310,10 @@ public class GameController implements ControllerInterface {
     System.out.println("saving");
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {
-      statsData.setBestTime(TIMER_MAX - Integer.parseInt(this.timerLabel.getText()));
+      statsData.setBestTime(timerMax - Integer.parseInt(this.timerLabel.getText()));
     } else {
       // When player loses they run out of time.
-      statsData.setBestTime(TIMER_MAX);
+      statsData.setBestTime(timerMax);
     }
 
     // Save win/loss and also stats accuracy
