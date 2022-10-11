@@ -63,7 +63,7 @@ public class GameModeSettingsController implements ControllerInterface {
       throw new RuntimeException(e);
     }
     instructionsTextArea.setText(
-        "Hover over the i to see instructions for certain gamemodes or game difficulties");
+        "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
 
     // Get game settings
     this.gameModel = GameModel.getInstance();
@@ -251,31 +251,31 @@ public class GameModeSettingsController implements ControllerInterface {
   @FXML
   public void onConfidenceInfoExit() {
     instructionsTextArea.setText(
-        "Hover over the i to see instructions for certain gamemodes or game difficulties");
+        "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onTimeInfoExit() {
     instructionsTextArea.setText(
-        "Hover over the i to see instructions for certain gamemodes or game difficulties");
+        "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onAccuracyInfoExit() {
     instructionsTextArea.setText(
-        "Hover over the i to see instructions for certain gamemodes or game difficulties");
+        "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onWordDifficultyInfoExit() {
     instructionsTextArea.setText(
-        "Hover over the i to see instructions for certain gamemodes or game difficulties");
+        "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onGameModeInfoExit() {
     instructionsTextArea.setText(
-        "Hover over the i to see instructions for certain gamemodes or game difficulties");
+        "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   /** This method is called when user clicks the main menu button to go back to main menu */
