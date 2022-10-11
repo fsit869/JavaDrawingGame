@@ -11,7 +11,6 @@ public class TextToSpeechTask {
   private Thread thread;
   private GameModel gameModel;
 
-
   /** Create a new speech thread */
   public TextToSpeechTask() {
     this.gameModel = GameModel.getInstance();
@@ -48,5 +47,4 @@ public class TextToSpeechTask {
       this.thread.start();
     }
   }
-
 }

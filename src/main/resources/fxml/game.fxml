@@ -29,13 +29,13 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameController">
    <children>
-      <AnchorPane prefHeight="168.0" prefWidth="602.0">
+      <AnchorPane fx:id="topAnchorPane" prefHeight="168.0" prefWidth="602.0">
          <children>
             <Label fx:id="wordLabel" layoutX="342.0" layoutY="120.0" text="wordToDraw" textAlignment="CENTER">
                <graphic>
                   <Label text="Draw ">
                      <graphic>
-                        <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="drawHintImageView" fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/pencil.png" />
                            </image>
@@ -109,6 +109,7 @@
                   <Font name="Eras Medium ITC" size="21.0" />
                </font>
             </Label>
+            <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="304.0" prefWidth="602.0">
@@ -259,7 +260,7 @@
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
-                                    <Button layoutX="14.0" layoutY="45.0" maxHeight="80.0" maxWidth="182.0" minHeight="80.0" minWidth="130.0" mnemonicParsing="false" onAction="#onStartGameButton" prefHeight="80.0" prefWidth="182.0" style="-fx-background-radius: 2em;" text="PLAY">
+                                    <Button fx:id="playButton" layoutX="14.0" layoutY="45.0" maxHeight="80.0" maxWidth="182.0" minHeight="80.0" minWidth="130.0" mnemonicParsing="false" onAction="#onStartGameButton" prefHeight="80.0" prefWidth="182.0" style="-fx-background-radius: 2em;" text="PLAY">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -320,6 +321,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
+                                    <Button fx:id="hintButton" layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#onHintButton" prefHeight="40.0" prefWidth="107.0" text="Hint" />
                                  </children>
                               </AnchorPane>
                            </content>
