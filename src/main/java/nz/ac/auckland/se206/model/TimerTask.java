@@ -77,6 +77,7 @@ public class TimerTask extends Task<Void> {
             } catch (TranslateException e) {
               e.printStackTrace();
             }
+            generatePredictionRating();
             // If zen mode dont show timer label
             if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
               timerLabel.setText("Zen mode!");
@@ -224,6 +225,34 @@ public class TimerTask extends Task<Void> {
 
     // If zen mode show the wrong/right in game live
     return false;
+  }
+
+  /**
+   * Generates a rating, 1-10 1 being in the top 10, to how close it to the top 10.
+   *
+   * @return prediction rating of how close
+   */
+  private int generatePredictionRating() {
+    List<Classifications.Classification> yes;
+    // default if not found (above 100)
+    int distance = 10;
+
+    try {
+      // get the top 100 predictions
+      yes = gameModel.getPredictions(canvasController.getCurrentSnapshot(), 100);
+    } catch (TranslateException e) {
+      throw new RuntimeException(e);
+    }
+
+    // loops through the top 100 and sees if word is in it
+    for (Classifications.Classification i : yes) {
+      if (i.getClassName().equals(gameModel.getCurrentWordToGuess())) {
+        System.out.println(yes.indexOf(i) / 10 + 1);
+        return yes.indexOf(i) / 10 + 1;
+      }
+    }
+
+    return distance;
   }
 
   /**
