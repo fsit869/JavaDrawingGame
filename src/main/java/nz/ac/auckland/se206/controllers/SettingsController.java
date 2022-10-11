@@ -39,9 +39,7 @@ public class SettingsController implements ControllerInterface {
   }
 
   @Override
-  public void refresh() {
-
-  }
+  public void refresh() {}
 
   private void switchTts() {
     if (gameModel.getProfile().getSettingsData().getTts() == true) {
@@ -82,5 +80,4 @@ public class SettingsController implements ControllerInterface {
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
-
 }
