@@ -42,6 +42,12 @@ public class GameModeSettingsController implements ControllerInterface {
     timeComboBox.getItems().addAll(timeDifficulties);
     accuracyComboBox.getItems().addAll(accuracyDifficulties);
     wordDifficultyComboBox.getItems().addAll(difficultyDifficulties);
+    confidenceComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    timeComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    accuracyComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    wordDifficultyComboBox.setStyle(
+        "-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    instructionsTextArea.setStyle("-fx-text-fill: white;");
   }
 
   @Override
@@ -56,7 +62,8 @@ public class GameModeSettingsController implements ControllerInterface {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    instructionsTextArea.setText("Instructions");
+    instructionsTextArea.setText(
+        "Hover over the i to see instructions for certain gamemodes or game difficulties");
 
     // Get game settings
     this.gameModel = GameModel.getInstance();
@@ -190,14 +197,10 @@ public class GameModeSettingsController implements ControllerInterface {
   public void onConfidenceInfoEnter() {
     instructionsTextArea.setText(
         "Instructions-Confidence:\n"
-            + "Level easy: You win the game if the computer is at least 1% confident\n"
-            + "that your image is the word to guess.\n"
-            + "Level medium: You win the game if the computer is at least 10% confident\n"
-            + "that your image is the word to guess.\n"
-            + "Level hard: You win the game if the computer is at least 25% confident\n"
-            + "that your image is the word to guess.\n"
-            + "Level master: You win the game if the computer is at least 50% confident\n"
-            + "that your image is the word to guess.");
+            + "Level easy: You win the game if the computer is at least 1% confident that your image is the word to guess.\n"
+            + "Level medium: You win the game if the computer is at least 10% confident that your image is the word to guess.\n"
+            + "Level hard: You win the game if the computer is at least 25% confident that your image is the word to guess.\n"
+            + "Level master: You win the game if the computer is at least 50% confident that your image is the word to guess.");
   }
   /** This method is called when user mouse enters the time info area */
   @FXML
@@ -214,12 +217,9 @@ public class GameModeSettingsController implements ControllerInterface {
   public void onAccuracyInfoEnter() {
     instructionsTextArea.setText(
         "Instructions-Accuracy:\n"
-            + "Level easy: You win the game if the word to draw is in the computer's top 3\n"
-            + "guesses.\n"
-            + "Level medium: You win the game if the word to draw is in the computer's top\n"
-            + "2 guesses.\n"
-            + "Level hard: You win the game if the word to draw is the computer’s best\n"
-            + "guess.");
+            + "Level easy: You win the game if the word to draw is in the computer's top 3 guesses.\n"
+            + "Level medium: You win the game if the word to draw is in the computer's top 2 guesses.\n"
+            + "Level hard: You win the game if the word to draw is the computer’s best guess.");
   }
   /** This method is called when user mouse enters the word difficulty info area */
   @FXML

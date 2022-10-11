@@ -9,15 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameModeSettingsController">
-   <children>
-      <Button layoutX="242.0" layoutY="28.0" mnemonicParsing="false" onAction="#onStartButton" prefHeight="155.0" prefWidth="175.0" text="Start?" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="19.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="116.0" text="Confidence" />
-      <Button fx:id="gameModeButton" layoutX="179.0" layoutY="196.0" mnemonicParsing="false" prefHeight="148.0" prefWidth="300.0" text="Hidden Word Mode">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Button>        <Button layoutX="531.0" layoutY="44.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em;">
+<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameModeSettingsController">
+   <children>        <Button layoutX="543.0" layoutY="14.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em; -fx-background-color: dodgerblue; -fx-border-color: #318db2; -fx-border-radius: 2em; -fx-border-width: 1;">
        <font>
            <Font name="Eras Medium ITC" size="22.0" />
        </font>
@@ -28,7 +21,16 @@
                </image>
            </ImageView>
        </graphic></Button>
-       <Button layoutX="502.0" layoutY="230.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onRightButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em;">
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="20.0" layoutY="395.0" mouseTransparent="true" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #51BBFE;" text="Confidence">
+         <font>
+            <Font name="Monospace 821 Bold BT" size="12.0" />
+         </font></TextField>
+      <Button fx:id="gameModeButton" layoutX="175.0" layoutY="232.0" mnemonicParsing="false" onAction="#onStartButton" prefHeight="101.0" prefWidth="310.0" style="-fx-background-color: #00ff2f; -fx-background-radius: 2000; -fx-border-color: black; -fx-border-radius: 2000;" text="Hidden Word Mode">
+         <font>
+            <Font name="Monospaced Bold" size="28.0" />
+         </font>
+      </Button>
+       <Button layoutX="502.0" layoutY="242.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onRightButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em; -fx-background-color: lightblue; -fx-border-radius: 2em; -fx-border-color: #318db2; -fx-border-width: 1;">
            <font>
                <Font name="Eras Medium ITC" size="22.0" />
            </font>
@@ -39,7 +41,7 @@
                    </image>
                </ImageView>
            </graphic></Button>
-       <Button layoutX="77.0" layoutY="230.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onLeftButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em;">
+       <Button layoutX="78.0" layoutY="242.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onLeftButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em; -fx-background-color: lightblue; -fx-border-radius: 2em; -fx-border-color: #318db2; -fx-border-width: 1;">
            <font>
                <Font name="Eras Medium ITC" size="22.0" />
            </font>
@@ -50,47 +52,118 @@
                    </image>
                </ImageView>
            </graphic></Button>
-      <ComboBox fx:id="confidenceComboBox" layoutX="19.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
-      <ComboBox fx:id="timeComboBox" layoutX="174.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
-      <ComboBox fx:id="accuracyComboBox" layoutX="329.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
-      <ComboBox fx:id="wordDifficultyComboBox" layoutX="484.0" layoutY="423.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="174.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="116.0" text="Time" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="329.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="116.0" text="Accuracy" />
-      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="484.0" layoutY="398.0" mouseTransparent="true" prefHeight="25.0" prefWidth="116.0" text="Word Difficulty" />
-      <Button layoutX="134.0" layoutY="398.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onConfidenceInfoEnter" onMouseExited="#onConfidenceInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000;" />
-      <Button layoutX="289.0" layoutY="398.0" maxHeight="52.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onTimeInfoEnter" onMouseExited="#onTimeInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000;" />
-      <Button layoutX="444.0" layoutY="398.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onAccuracyInfoEnter" onMouseExited="#onAccuracyInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000;" />
-      <Button layoutX="599.0" layoutY="398.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onWordDifficultyInfoEnter" onMouseExited="#onWordDifficultyInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000;" />
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="134.0" layoutY="398.0" onMouseEntered="#onConfidenceInfoEnter" onMouseExited="#onConfidenceInfoExit">
-         <image>
-            <Image url="@../images/icons/info.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="599.0" layoutY="398.0" onMouseEntered="#onWordDifficultyInfoEnter" onMouseExited="#onWordDifficultyInfoExit">
-         <image>
-            <Image url="@../images/icons/info.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="444.0" layoutY="398.0" onMouseEntered="#onAccuracyInfoEnter" onMouseExited="#onAccuracyInfoExit">
-         <image>
-            <Image url="@../images/icons/info.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="289.0" layoutY="398.0" onMouseEntered="#onTimeInfoEnter" onMouseExited="#onTimeInfoExit">
-         <image>
-            <Image url="@../images/icons/info.png" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="instructionsTextArea" editable="false" focusTraversable="false" layoutX="16.0" layoutY="468.0" mouseTransparent="true" prefHeight="278.0" prefWidth="609.0" text="Words">
+      <ComboBox fx:id="confidenceComboBox" layoutX="20.0" layoutY="420.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" style="-fx-background-color: #8ff7a7;" />
+      <ComboBox fx:id="timeComboBox" layoutX="175.0" layoutY="420.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" style="-fx-background-color: #8ff7a7;" />
+      <ComboBox fx:id="accuracyComboBox" layoutX="330.0" layoutY="420.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" style="-fx-background-color: #8ff7a7;" />
+      <ComboBox fx:id="wordDifficultyComboBox" layoutX="485.0" layoutY="420.0" prefHeight="25.0" prefWidth="140.0" promptText="easy" style="-fx-background-color: #8ff7a7;" />
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="175.0" layoutY="395.0" mouseTransparent="true" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #51BBFE;" text="Time">
          <font>
-            <Font size="17.0" />
+            <Font name="Monospace 821 Bold BT" size="12.0" />
+         </font></TextField>
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="330.0" layoutY="395.0" mouseTransparent="true" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #51BBFE;" text="Accuracy">
+         <font>
+            <Font name="Monospace 821 Bold BT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="485.0" layoutY="395.0" mouseTransparent="true" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #51BBFE;" text="Difficulty">
+         <font>
+            <Font name="Monospace 821 Bold BT" size="12.0" />
+         </font>
+      </TextField>
+      <Button layoutX="135.0" layoutY="395.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onConfidenceInfoEnter" onMouseExited="#onConfidenceInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000; -fx-background-color: #51BBFE;" />
+      <Button layoutX="290.0" layoutY="395.0" maxHeight="52.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onTimeInfoEnter" onMouseExited="#onTimeInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000; -fx-background-color: #51BBFE;" />
+      <Button layoutX="445.0" layoutY="395.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onAccuracyInfoEnter" onMouseExited="#onAccuracyInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000; -fx-background-color: #51BBFE;" />
+      <Button layoutX="600.0" layoutY="395.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseEntered="#onWordDifficultyInfoEnter" onMouseExited="#onWordDifficultyInfoExit" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 2000; -fx-background-color: #51BBFE;" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="135.0" layoutY="395.0" onMouseEntered="#onConfidenceInfoEnter" onMouseExited="#onConfidenceInfoExit">
+         <image>
+            <Image url="@../images/icons/info.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="600.0" layoutY="395.0" onMouseEntered="#onWordDifficultyInfoEnter" onMouseExited="#onWordDifficultyInfoExit">
+         <image>
+            <Image url="@../images/icons/info.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="445.0" layoutY="395.0" onMouseEntered="#onAccuracyInfoEnter" onMouseExited="#onAccuracyInfoExit">
+         <image>
+            <Image url="@../images/icons/info.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="290.0" layoutY="395.0" onMouseEntered="#onTimeInfoEnter" onMouseExited="#onTimeInfoExit">
+         <image>
+            <Image url="@../images/icons/info.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="433.0" layoutY="224.0" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onMouseEntered="#onGameModeInfoEnter" onMouseExited="#onGameModeInfoExit" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 2000; -fx-background-color: #00ff2f;" />
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="433.0" layoutY="224.0" onMouseEntered="#onGameModeInfoEnter" onMouseExited="#onGameModeInfoExit">
+         <image>
+            <Image url="@../images/icons/info.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="193.0" layoutY="14.0">
+         <image>
+            <Image url="@../images/alphabet/letter-g.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="258.0" layoutY="14.0">
+         <image>
+            <Image url="@../images/alphabet/letter-a.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="323.0" layoutY="14.0">
+         <image>
+            <Image url="@../images/alphabet/letter-m.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="388.0" layoutY="14.0">
+         <image>
+            <Image url="@../images/alphabet/letter-e.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="83.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-s.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="143.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-e.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="203.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-t.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="258.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-t.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="321.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-i.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="386.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="503.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-s.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="65.0" layoutX="447.0" layoutY="104.0">
+         <image>
+            <Image url="@../images/alphabet/letter-g.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="instructionsTextArea" editable="false" focusTraversable="false" layoutX="17.0" layoutY="465.0" mouseTransparent="true" prefHeight="278.0" prefWidth="609.0" style="-fx-background-color: orange;" stylesheets="@../css/gamesettingstextarea.css" text="Words" wrapText="true">
+         <font>
+            <Font name="System Bold" size="17.0" />
          </font>
       </TextArea>
-      <Button layoutX="428.0" layoutY="196.0" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onMouseEntered="#onGameModeInfoEnter" onMouseExited="#onGameModeInfoExit" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 2000;" />
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="428.0" layoutY="196.0" onMouseEntered="#onGameModeInfoEnter" onMouseExited="#onGameModeInfoExit">
-         <image>
-            <Image url="@../images/icons/info.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
