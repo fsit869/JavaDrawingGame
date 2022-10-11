@@ -162,7 +162,7 @@
       </ImageView>
       <TextArea fx:id="instructionsTextArea" editable="false" focusTraversable="false" layoutX="17.0" layoutY="465.0" mouseTransparent="true" prefHeight="278.0" prefWidth="609.0" style="-fx-background-color: orange;" stylesheets="@../css/gamesettingstextarea.css" text="Words" wrapText="true">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </TextArea>
    </children>

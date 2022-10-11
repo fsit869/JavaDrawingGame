@@ -247,27 +247,32 @@ public class GameModeSettingsController implements ControllerInterface {
 
   @FXML
   public void onConfidenceInfoExit() {
-    instructionsTextArea.setText("Instructions");
+    instructionsTextArea.setText(
+        "Hover over the i to see instructions for certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onTimeInfoExit() {
-    instructionsTextArea.setText("Instructions");
+    instructionsTextArea.setText(
+        "Hover over the i to see instructions for certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onAccuracyInfoExit() {
-    instructionsTextArea.setText("Instructions");
+    instructionsTextArea.setText(
+        "Hover over the i to see instructions for certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onWordDifficultyInfoExit() {
-    instructionsTextArea.setText("Instructions");
+    instructionsTextArea.setText(
+        "Hover over the i to see instructions for certain gamemodes or game difficulties");
   }
 
   @FXML
   public void onGameModeInfoExit() {
-    instructionsTextArea.setText("Instructions");
+    instructionsTextArea.setText(
+        "Hover over the i to see instructions for certain gamemodes or game difficulties");
   }
 
   /** This method is called when user clicks the main menu button to go back to main menu */
