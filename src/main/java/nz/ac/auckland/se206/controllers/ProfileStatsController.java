@@ -21,15 +21,9 @@ public class ProfileStatsController implements ControllerInterface {
   public static final int TOTAL_PREDICTIONS_TO_SHOW = 5;
 
   // Fxml badges
-  @FXML private ImageView badgeThreeBronze;
-  @FXML private ImageView badgeThreeSilver;
-  @FXML private ImageView badgeThreeGold;
-  @FXML private ImageView badgeTwoBronze;
-  @FXML private ImageView badgeTwoSilver;
-  @FXML private ImageView badgeTwoGold;
-  @FXML private ImageView badgeOneBronze;
-  @FXML private ImageView badgeOneGold;
-  @FXML private ImageView badgeOneSilver;
+  @FXML private ImageView badgeThreeImage;
+  @FXML private ImageView badgeTwoImage;
+  @FXML private ImageView badgeOneImage;
   @FXML private Label badgeThreeLabel;
   @FXML private Label badgeOneLabel;
   @FXML private Label badgeTwoLabel;
