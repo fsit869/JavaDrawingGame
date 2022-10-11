@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameModeSettingsController">
+<AnchorPane maxHeight="750.0" maxWidth="642.0" minHeight="750.0" minWidth="642.0" prefHeight="750.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GameModeSettingsController">
    <children>        <Button layoutX="543.0" layoutY="14.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onBackToMenuButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em; -fx-background-color: dodgerblue; -fx-border-color: #318db2; -fx-border-radius: 2em; -fx-border-width: 1;">
        <font>
            <Font name="Eras Medium ITC" size="22.0" />
