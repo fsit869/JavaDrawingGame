@@ -237,11 +237,14 @@ public class GameModeSettingsController implements ControllerInterface {
 
     switch (this.gameModeButton.getText()) {
       case "Classic Mode" -> instructionsTextArea.setText(
-          "Instructions-Classic Gamemode:\n" + "The rules are ....");
+          "Instructions-Classic Gamemode:\n"
+              + "The aim is to draw the image that you are told in the prompt so that the computer is able to guess that what you have drawn is the prompt. You need to achieve this before the timer runs out.");
       case "Hidden-Word Mode" -> instructionsTextArea.setText(
-          "Instructions-Hidden-Word Gamemode:\n" + "The rules are ....");
+          "Instructions-Hidden-Word Gamemode:\n"
+              + "The word to draw will not be show to you. Instead you will be provided the definition of the word to draw. If you get stuck and can't figure out the word use the Hint button to show the number of characters in the word.");
       case "Zen Mode" -> instructionsTextArea.setText(
-          "Instructions-Zen Gamemode:\n" + "The rules are ....");
+          "Instructions-Zen Gamemode:\n"
+              + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
     }
   }
 
