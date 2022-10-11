@@ -130,7 +130,6 @@ public class GameController implements ControllerInterface {
       this.giveUpButton.setText("Menu");
       this.zenNextWordButton.setVisible(true);
       this.colourPicker.setVisible(true);
-      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
       this.definitionTextArea.setVisible(false);
       this.topAnchorPane.setMaxHeight(167);
       this.definitionTextArea.setLayoutY(0);
@@ -178,6 +177,7 @@ public class GameController implements ControllerInterface {
           this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
         });
   }
+
   /** sets the time allowed depending on time difficulty. */
   private void setClock() {
     // set how long game should be depending on time difficulty
@@ -199,12 +199,6 @@ public class GameController implements ControllerInterface {
     this.canvas.setDisable(true);
     this.onClear();
 
-    // If zen mode dont show timer
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
-      this.timerLabel.setText("Zen mode!");
-    } else {
-      this.timerLabel.setText(String.valueOf(timerMax));
-    }
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);
@@ -237,6 +231,14 @@ public class GameController implements ControllerInterface {
 
     } else {
       this.disablePlayButton(false);
+    }
+
+    // If zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.timerLabel.setText("Zen mode!");
+      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+    } else {
+      this.timerLabel.setText(String.valueOf(timerMax));
     }
   }
 
