@@ -54,7 +54,8 @@ public class StatsData extends Data {
     BadgeFactory factory = new BadgeFactory();
     Badge badge = factory.createBadge(badgeEnum);
     for (Badge badges : badgeList) {
-      if (badges.getName().equals(badge.getName())) {
+      // Check if duplicate badge. If true ignore.
+      if (badges.getName().equals(badge.getName()) && badges.getTier().equals(badge.getTier())) {
         return;
       }
     }
