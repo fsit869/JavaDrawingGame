@@ -58,6 +58,10 @@ public class GameController implements ControllerInterface {
 
   @FXML private Button hintButton;
 
+  @FXML private ImageView accuracyTick;
+
+  @FXML private ImageView confidenceTick;
+
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread;
@@ -559,8 +563,10 @@ public class GameController implements ControllerInterface {
   public void setAccuracyLabelMet(boolean isMet) {
     if (isMet) {
       this.accuracyLabel.setTextFill(Color.GREEN);
+      this.accuracyTick.setVisible(true);
     } else {
       this.accuracyLabel.setTextFill(Color.RED);
+      this.accuracyTick.setVisible(false);
     }
   }
 
@@ -572,8 +578,10 @@ public class GameController implements ControllerInterface {
   public void setConfidenceLabelMet(boolean isMet) {
     if (isMet) {
       this.confidenceLabel.setTextFill(Color.GREEN);
+      this.confidenceTick.setVisible(true);
     } else {
       this.confidenceLabel.setTextFill(Color.RED);
+      this.confidenceTick.setVisible(false);
     }
   }
 
