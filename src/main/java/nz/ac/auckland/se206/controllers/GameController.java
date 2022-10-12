@@ -277,11 +277,13 @@ public class GameController implements ControllerInterface {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
+        this.winLoseText.setFill(Color.GREEN);
         this.correctImage.setVisible(true);
         this.wrongImage.setVisible(false);
       } else {
         this.textToSpeech.speak("Haha loser");
         this.winLoseText.setText("You Lose");
+        this.winLoseText.setFill(Color.RED);
         this.correctImage.setVisible(false);
         this.wrongImage.setVisible(true);
       }
