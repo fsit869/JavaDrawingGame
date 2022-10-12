@@ -124,7 +124,6 @@ public class ProfileStatsController implements ControllerInterface {
     Tooltip badgeTwoTooltip;
     Tooltip badgeThreeTooltip;
 
-
     // Load badge for Win streak
     if (checkBadgeAchieved("Win Streak", Badge.Tier.GOLD, badgesToRender)) {
       // Gold achieved
@@ -147,42 +146,42 @@ public class ProfileStatsController implements ControllerInterface {
     // Load badge for Games played
     if (checkBadgeAchieved("Games Played", Badge.Tier.GOLD, badgesToRender)) {
       // Gold achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/gold-cup.png").toURI().toString()));
+     badgeTwoImage.setImage(new Image(ProfileStatsController.class.getResource("/images/gold-cup.png").toURI().toString()));
       badgeTwoTooltip = new Tooltip("20+ Games played!");
-
+      System.out.println("A");
     } else if (checkBadgeAchieved("Games Played", Badge.Tier.SILVER, badgesToRender)) {
       // Silver achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/silver-cup.png").toURI().toString()));
+      badgeTwoImage.setImage(new Image(ProfileStatsController.class.getResource("/images/silver-cup.png").toURI().toString()));
       badgeTwoTooltip = new Tooltip("10+ games played! Play 20+ games to get next cup!");
-
+      System.out.println("B");
     } else if (checkBadgeAchieved("Games Played", Badge.Tier.BRONZE, badgesToRender)) {
       // Bronze achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/bronze-cup.png").toURI().toString()));
+      badgeTwoImage.setImage(new Image(ProfileStatsController.class.getResource("/images/bronze-cup.png").toURI().toString()));
       badgeTwoTooltip = new Tooltip("5+ games played! Get 10+ games to get next cup");
-
+      System.out.println("C");
     } else {
       // Badge not achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/blank-cup.png").toURI().toString()));
+      badgeTwoImage.setImage(new Image(ProfileStatsController.class.getResource("/images/blank-cup.png").toURI().toString()));
       badgeTwoTooltip = new Tooltip("Play 5 games to get the next cup!");
-
+      System.out.println("D");
     }
 
     // Load boadge for games played
     if (checkBadgeAchieved("Best Time", Badge.Tier.GOLD, badgesToRender)) {
       // Gold achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/gold-cup.png").toURI().toString()));
+      badgeThreeImage.setImage(new Image(ProfileStatsController.class.getResource("/images/gold-cup.png").toURI().toString()));
       badgeThreeTooltip = new Tooltip("<5 seconds to win");
     } else if (checkBadgeAchieved("Best Time", Badge.Tier.SILVER, badgesToRender)) {
       // Silver achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/silver-cup.png").toURI().toString()));
+      badgeThreeImage.setImage(new Image(ProfileStatsController.class.getResource("/images/silver-cup.png").toURI().toString()));
       badgeThreeTooltip = new Tooltip("<20 secs to win. Get <5 secs to get next cup");
     } else if (checkBadgeAchieved("Best Time", Badge.Tier.BRONZE, badgesToRender)) {
       // Bronze achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/bronze-cup.png").toURI().toString()));
+      badgeThreeImage.setImage(new Image(ProfileStatsController.class.getResource("/images/bronze-cup.png").toURI().toString()));
       badgeThreeTooltip = new Tooltip("<30 secs to win. Get <20 secs to get next cup!");
     } else {
       // Badge not achieved
-      badgeOneImage.setImage(new Image(ProfileStatsController.class.getResource("/images/blank-cup.png").toURI().toString()));
+      badgeThreeImage.setImage(new Image(ProfileStatsController.class.getResource("/images/blank-cup.png").toURI().toString()));
       badgeThreeTooltip = new Tooltip("Get <30 seconds to win to get the first cup!");
     }
 
