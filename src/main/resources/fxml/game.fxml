@@ -129,14 +129,14 @@
                     </Canvas>
                   <AnchorPane fx:id="winLoseDialogue" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="491.0">
                      <children>
-                        <DialogPane layoutX="66.0" layoutY="26.0" prefHeight="105.0" prefWidth="264.0" style="-fx-background-color: rgba(214, 214, 214, 0.5);">
+                        <DialogPane layoutX="66.0" layoutY="26.0" prefHeight="47.0" prefWidth="266.0" style="-fx-background-color: rgba(214, 214, 214, 0.5);">
                            <header>
                               <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onWinLoseClose" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: #51bbfe;" text="Close" />
                            </header>
                            <content>
-                              <Text fx:id="winLoseText" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lose" textAlignment="CENTER" wrappingWidth="265.13671875">
+                              <Text fx:id="winLoseText" fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lose" textAlignment="CENTER" wrappingWidth="265.13671875">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="50.0" />
                                  </font>
                               </Text>
                            </content>

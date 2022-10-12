@@ -9,7 +9,8 @@
     "wins": 0,
     "losses": 9,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -183,7 +184,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -211,7 +213,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -239,7 +242,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -267,7 +271,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -295,7 +300,8 @@
     "wins": 0,
     "losses": 1,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {

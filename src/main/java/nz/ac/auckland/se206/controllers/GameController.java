@@ -28,7 +28,6 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
-import nz.ac.auckland.se206.profiles.entities.WordsData;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
@@ -210,7 +209,7 @@ public class GameController implements ControllerInterface {
     this.wrongImage.setVisible(false);
 
     // Set game variables
-    this.gameModel.generateWord(WordsData.Difficulty.E);
+    this.gameModel.generateWord();
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
 
@@ -278,15 +277,20 @@ public class GameController implements ControllerInterface {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
+        this.winLoseText.setFill(Color.GREEN);
         this.correctImage.setVisible(true);
         this.wrongImage.setVisible(false);
       } else {
         this.textToSpeech.speak("Haha loser");
         this.winLoseText.setText("You Lose");
+        this.winLoseText.setFill(Color.RED);
         this.correctImage.setVisible(false);
         this.wrongImage.setVisible(true);
       }
       this.winLoseDialogue.setVisible(true);
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+        this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+      }
     }
 
     // Disable timer

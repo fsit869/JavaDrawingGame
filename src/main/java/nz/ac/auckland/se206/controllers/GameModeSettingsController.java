@@ -47,7 +47,7 @@ public class GameModeSettingsController implements ControllerInterface {
     accuracyComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
     wordDifficultyComboBox.setStyle(
         "-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
-    instructionsTextArea.setStyle("-fx-text-fill: white;");
+    instructionsTextArea.setStyle("-fx-text-fill: black;");
   }
 
   @Override
@@ -197,39 +197,39 @@ public class GameModeSettingsController implements ControllerInterface {
   public void onConfidenceInfoEnter() {
     instructionsTextArea.setText(
         "Instructions-Confidence:\n"
-            + "Level easy: You win the game if the computer is at least 1% confident that your image is the word to guess.\n"
-            + "Level medium: You win the game if the computer is at least 10% confident that your image is the word to guess.\n"
-            + "Level hard: You win the game if the computer is at least 25% confident that your image is the word to guess.\n"
-            + "Level master: You win the game if the computer is at least 50% confident that your image is the word to guess.");
+            + "Level EASY: You win the game if the computer is at least 1% confident that your image is the word to guess.\n"
+            + "Level MEDIUM: You win the game if the computer is at least 10% confident that your image is the word to guess.\n"
+            + "Level HARD: You win the game if the computer is at least 25% confident that your image is the word to guess.\n"
+            + "Level MASTER: You win the game if the computer is at least 50% confident that your image is the word to guess.");
   }
   /** This method is called when user mouse enters the time info area */
   @FXML
   public void onTimeInfoEnter() {
     instructionsTextArea.setText(
         "Instructions-Time limit:\n"
-            + "Level easy: You gets 60 seconds to draw the picture correctly.\n"
-            + "Level medium: You gets 45 seconds to draw the picture correctly.\n"
-            + "Level hard: You gets 30 seconds to draw the picture correctly.\n"
-            + "Level master: You gets 15 seconds to draw the picture correctly.");
+            + "Level EASY: You gets 60 seconds to draw the picture correctly.\n"
+            + "Level MEDIUM: You gets 45 seconds to draw the picture correctly.\n"
+            + "Level HARD: You gets 30 seconds to draw the picture correctly.\n"
+            + "Level MASTER: You gets 15 seconds to draw the picture correctly.");
   }
   /** This method is called when user mouse enters the accuracy info area */
   @FXML
   public void onAccuracyInfoEnter() {
     instructionsTextArea.setText(
         "Instructions-Accuracy:\n"
-            + "Level easy: You win the game if the word to draw is in the computer's top 3 guesses.\n"
-            + "Level medium: You win the game if the word to draw is in the computer's top 2 guesses.\n"
-            + "Level hard: You win the game if the word to draw is the computer’s best guess.");
+            + "Level EASY: You win the game if the word to draw is in the computer's top 3 guesses.\n"
+            + "Level MEDIUM: You win the game if the word to draw is in the computer's top 2 guesses.\n"
+            + "Level HARD: You win the game if the word to draw is the computer’s best guess.");
   }
   /** This method is called when user mouse enters the word difficulty info area */
   @FXML
   public void onWordDifficultyInfoEnter() {
     instructionsTextArea.setText(
         "Instructions-Word Difficulty:\n"
-            + "Level easy: You will only get given EASY words.\n"
-            + "Level medium: You will get given EASY or MEDIUM words.\n"
-            + "Level hard: You will get given EASY or MEDIUM or HARD words\n"
-            + "Level master: You will only get given HARD words.");
+            + "Level EASY: You will only get given EASY words.\n"
+            + "Level MEDIUM: You will get given EASY or MEDIUM words.\n"
+            + "Level HARD: You will get given EASY or MEDIUM or HARD words\n"
+            + "Level MASTER: You will only get given HARD words.");
   }
   /** This method is called when user mouse enters the gamemode info area */
   @FXML
@@ -241,7 +241,7 @@ public class GameModeSettingsController implements ControllerInterface {
               + "The aim is to draw the image that you are told in the prompt so that the computer is able to guess that what you have drawn is the prompt. You need to achieve this before the timer runs out.");
       case "Hidden-Word Mode" -> instructionsTextArea.setText(
           "Instructions-Hidden-Word Gamemode:\n"
-              + "The word to draw will not be show to you. Instead you will be provided the definition of the word to draw. If you get stuck and can't figure out the word use the Hint button to show the number of characters in the word.");
+              + "The word to draw will not be shown to you. Instead you will be provided the definition of the word to draw. If you get stuck and can't figure out the word use the Hint button to show the number of characters in the word.");
       case "Zen Mode" -> instructionsTextArea.setText(
           "Instructions-Zen Gamemode:\n"
               + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
