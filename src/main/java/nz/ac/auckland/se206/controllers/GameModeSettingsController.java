@@ -42,11 +42,11 @@ public class GameModeSettingsController implements ControllerInterface {
     timeComboBox.getItems().addAll(timeDifficulties);
     accuracyComboBox.getItems().addAll(accuracyDifficulties);
     wordDifficultyComboBox.getItems().addAll(difficultyDifficulties);
-    confidenceComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
-    timeComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
-    accuracyComboBox.setStyle("-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    confidenceComboBox.setStyle("-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    timeComboBox.setStyle("-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+    accuracyComboBox.setStyle("-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
     wordDifficultyComboBox.setStyle(
-        "-fx-font: 12px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+        "-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
     instructionsTextArea.setStyle("-fx-text-fill: black;");
   }
 

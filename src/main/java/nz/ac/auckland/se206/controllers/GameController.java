@@ -281,7 +281,7 @@ public class GameController implements ControllerInterface {
         this.correctImage.setVisible(true);
         this.wrongImage.setVisible(false);
       } else {
-        this.textToSpeech.speak("Haha loser");
+        this.textToSpeech.speak("Nice Try");
         this.winLoseText.setText("You Lose");
         this.winLoseText.setFill(Color.RED);
         this.correctImage.setVisible(false);
