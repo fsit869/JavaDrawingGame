@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
@@ -189,6 +190,10 @@ public class ProfileStatsController implements ControllerInterface {
     Tooltip.install(badgeOneImage, badgeOneTooltip);
     Tooltip.install(badgeTwoImage, badgeTwoTooltip);
     Tooltip.install(badgeThreeImage, badgeThreeTooltip);
+
+    badgeOneTooltip.setShowDelay(Duration.seconds(0));
+    badgeTwoTooltip.setShowDelay(Duration.seconds(0));
+    badgeThreeTooltip.setShowDelay(Duration.seconds(0));
   }
 
   /**
