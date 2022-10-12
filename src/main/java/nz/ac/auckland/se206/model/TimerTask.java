@@ -270,8 +270,8 @@ public class TimerTask extends Task<Void> {
         // Generate for textarea
         stringBuilder.append(
             String.format(
-                "[%3.2f%%] %-20s\n",
-                100 * classification.getProbability(),
+                "[%d%%] %-20s\n",
+                Math.round(100 * classification.getProbability()),
                 classification.getClassName().replace("_", " ")));
       }
     }
