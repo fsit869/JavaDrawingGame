@@ -134,7 +134,7 @@
                               <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onWinLoseClose" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: #51bbfe;" text="Close" />
                            </header>
                            <content>
-                              <Text fx:id="winLoseText" fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lose" textAlignment="CENTER" wrappingWidth="265.13671875">
+                              <Text fx:id="winLoseText" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lose" textAlignment="CENTER" wrappingWidth="265.13671875">
                                  <font>
                                     <Font size="50.0" />
                                  </font>
@@ -230,6 +230,26 @@
             <ImageView fx:id="wrongImage" fitHeight="60.0" fitWidth="60.0" layoutX="467.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/cross.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="436.0" layoutY="280.0">
+               <image>
+                  <Image url="@../images/icons/remove.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="accuracyTick" fitHeight="17.0" fitWidth="15.0" layoutX="436.0" layoutY="280.0">
+               <image>
+                  <Image url="@../images/icons/check.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="562.0" layoutY="280.0">
+               <image>
+                  <Image url="@../images/icons/remove.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="confidenceTick" fitHeight="17.0" fitWidth="15.0" layoutX="562.0" layoutY="280.0">
+               <image>
+                  <Image url="@../images/icons/check.png" />
                </image>
             </ImageView>
          </children>
