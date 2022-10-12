@@ -4,12 +4,13 @@
   "profilePicturePath": "file:/D:/Files/UniWork/Workspace/206/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
   "statsData": {
     "bestTime": 15,
-    "bestAccuracy": 8,
-    "totalGames": 15,
-    "wins": 1,
-    "losses": 14,
-    "currentStreak": 1,
-    "bestStreak": 1
+    "bestAccuracy": 0,
+    "totalGames": 9,
+    "wins": 0,
+    "losses": 9,
+    "currentStreak": 0,
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -21,6 +22,7 @@
         "bed",
         "bee",
         "bench",
+        "binoculars",
         "birthday cake",
         "bowtie",
         "bracelet",
@@ -28,6 +30,7 @@
         "bread",
         "bridge",
         "broom",
+        "bucket",
         "cannon",
         "car",
         "carrot",
@@ -55,6 +58,7 @@
         "hot air balloon",
         "house",
         "ice cream",
+        "key",
         "knife",
         "lantern",
         "light bulb",
@@ -62,6 +66,7 @@
         "line",
         "microphone",
         "octagon",
+        "paintbrush",
         "palm tree",
         "paper clip",
         "peanut",
@@ -73,21 +78,25 @@
         "scorpion",
         "sheep",
         "shoe",
+        "skull",
         "snail",
         "snake",
         "snowman",
         "stairs",
+        "star",
         "strawberry",
         "syringe",
         "table",
         "teddy-bear",
         "telephone",
+        "television",
         "tennis racquet",
         "traffic light",
         "tree",
         "triangle",
         "umbrella",
         "vase",
+        "wheel",
         "windmill",
         "wine bottle"
       ],
@@ -95,14 +104,6 @@
       "M": []
     },
     "wordsPlayed": [
-      "key",
-      "star",
-      "paintbrush",
-      "binoculars",
-      "television",
-      "bucket",
-      "wheel",
-      "skull",
       "hammer",
       "book",
       "calculator",
@@ -183,7 +184,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -211,7 +213,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -239,7 +242,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -267,7 +271,8 @@
     "wins": 0,
     "losses": 0,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -295,7 +300,8 @@
     "wins": 0,
     "losses": 1,
     "currentStreak": 0,
-    "bestStreak": 0
+    "bestStreak": 0,
+    "badgeList": []
   },
   "wordsData": {
     "wordsNotPlayed": {

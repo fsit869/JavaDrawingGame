@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="702.0" maxWidth="642.0" minHeight="702.0" minWidth="642.0" prefHeight="702.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
+<AnchorPane maxHeight="750.0" maxWidth="642.0" minHeight="750.0" minWidth="642.0" prefHeight="750.0" prefWidth="642.0" style="-fx-background-color: e0ca3c;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainMenuController">
    <children>
       <ImageView fx:id="profileImageView" fitHeight="143.0" fitWidth="195.0" layoutX="219.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -55,50 +55,50 @@
             <Image url="@../images/alphabet/letter-u.png" />
          </image>
       </ImageView>
+      <Button fx:id="exitButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="629.0" mnemonicParsing="false" onAction="#onExitButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: yellow; -fx-border-radius: 2000; -fx-background-radius: 2000;" text="Exit">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+      </Button>
+      <Button fx:id="startButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="337.0" mnemonicParsing="false" onAction="#onStartButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: yellow; -fx-border-radius: 2000; -fx-background-radius: 2000;" text="Start">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+      </Button>
+      <Button fx:id="statsButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="410.0" mnemonicParsing="false" onAction="#onStatsButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: yellow; -fx-border-radius: 2000; -fx-background-radius: 2000;" text="Stats">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+      </Button>
+      <Button fx:id="changeProfileButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="483.0" mnemonicParsing="false" onAction="#onChangeProfileButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: yellow; -fx-border-radius: 2000; -fx-background-radius: 2000;" text="Change Profile">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+      </Button>
+      <Button fx:id="settingsButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="556.0" mnemonicParsing="false" onAction="#onSettingsButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: yellow; -fx-border-radius: 2000; -fx-background-radius: 2000;" text="Settings">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+      </Button>
       <Circle fill="#ff6e00" layoutX="172.0" layoutY="651.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="exitButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="629.0" mnemonicParsing="false" onAction="#onExitButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-radius: 2000; -fx-background-color: ff6e00;" text="Exit">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <padding>
-            <Insets left="80.0" />
-         </padding>
-      </Button>
-      <Button fx:id="startButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="337.0" mnemonicParsing="false" onAction="#onStartButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-radius: 2000; -fx-background-color: #00ff2f;" text="Start">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <padding>
-            <Insets left="80.0" />
-         </padding>
-      </Button>
-      <Circle fill="#08ffdc" layoutX="171.0" layoutY="429.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="statsButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="410.0" mnemonicParsing="false" onAction="#onStatsButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-radius: 2000; -fx-background-color: #08ffdc;" text="Stats">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <padding>
-            <Insets left="80.0" />
-         </padding>
-      </Button>
+      <Circle fill="#0affda" layoutX="171.0" layoutY="429.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fill="#0075ff" layoutX="172.0" layoutY="503.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="changeProfileButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="483.0" mnemonicParsing="false" onAction="#onChangeProfileButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-radius: 2000; -fx-background-color: #0075ff;" text="Change Profile">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <padding>
-            <Insets left="80.0" />
-         </padding>
-      </Button>
       <Circle fill="WHITE" layoutX="172.0" layoutY="577.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="settingsButton" alignment="BASELINE_LEFT" layoutX="141.0" layoutY="556.0" mnemonicParsing="false" onAction="#onSettingsButton" opacity="0.51" prefHeight="51.0" prefWidth="333.0" style="-fx-background-color: white; -fx-background-radius: 2000;" text="Settings">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <padding>
-            <Insets left="80.0" />
-         </padding>
-      </Button>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="146.0" layoutY="404.0">
          <image>
             <Image url="@../images/icons/chart.png" />
