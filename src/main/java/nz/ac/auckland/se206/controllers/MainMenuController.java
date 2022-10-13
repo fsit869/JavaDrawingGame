@@ -2,12 +2,14 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
 
 /** This is the controller for the main menu */
 public class MainMenuController implements ControllerInterface {
+  @FXML private Label profileLabel;
   @FXML private ImageView profileImageView;
 
   @FXML private Button startButton;
@@ -30,7 +32,7 @@ public class MainMenuController implements ControllerInterface {
     exitButton.toBack();
     // Setup required objects
     this.gameModel = GameModel.getInstance();
-    //    profileNameLabel.setText(gameModel.getProfile().getUsername());
+    profileLabel.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
 
     // Try load profile picture
