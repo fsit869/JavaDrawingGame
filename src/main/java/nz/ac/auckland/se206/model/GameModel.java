@@ -24,12 +24,14 @@ public class GameModel {
     INGAME,
     FINISHED
   }
+
   /** Represents the different gamemodes */
   public enum GameMode {
     ZEN,
     CLASSIC,
     HIDDEN
   }
+
   /** Represents the different view states */
   public enum ViewState {
     CANVAS,

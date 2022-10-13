@@ -42,7 +42,7 @@ public class WordsData extends Data {
 
       // Loops through all the words in the CSV file, appends all the right difficulty words into
       // file.
-      for (String[] line : onSelector()) {
+      for (String[] line : getOnSelector()) {
 
         // Append words in the right difficulty into list
         if (Difficulty.valueOf(line[1]) == difficulty) {
@@ -64,7 +64,7 @@ public class WordsData extends Data {
    * @throws IOException IO
    * @throws URISyntaxException Syntax
    */
-  private List<String[]> onSelector() throws IOException, URISyntaxException {
+  private List<String[]> getOnSelector() throws IOException, URISyntaxException {
     File file = new File(WordsData.class.getResource("/category_difficulty.csv").toURI());
     CSVReader reader = new CSVReader(new FileReader(file));
     return reader.readAll();
