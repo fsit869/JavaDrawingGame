@@ -26,7 +26,7 @@ public class ProfileFactory {
   }
 
   /**
-   * Creates the user
+   * Creates the user and puts it into the JSOn file.
    *
    * @param username of profile to create
    * @param profilePicturePath path to the profile picture of the user

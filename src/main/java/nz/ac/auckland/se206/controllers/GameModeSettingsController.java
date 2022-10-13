@@ -56,6 +56,7 @@ public class GameModeSettingsController implements ControllerInterface {
     doRefresh();
   }
 
+  /** On the instance of a refresh this function is run. */
   public void doRefresh() {
     // Create instance of object saving
     try {

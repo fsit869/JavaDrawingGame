@@ -264,7 +264,7 @@ public class ProfileStatsController implements ControllerInterface {
   /////////////////////
 
   /**
-   * Generate a list of past words
+   * Generate a list of past words that were played
    *
    * @param totalToDisplay Total past words to display
    * @return Multiline string of past words
@@ -285,7 +285,7 @@ public class ProfileStatsController implements ControllerInterface {
   }
 
   /**
-   * Generate profile statistic string
+   * Generate profile statistic string of past words
    *
    * @return Multiline string of past words
    */
@@ -300,7 +300,7 @@ public class ProfileStatsController implements ControllerInterface {
   }
 
   /**
-   * Generate best record string
+   * Generate best record string for the best record
    *
    * @return Multi line string
    */
