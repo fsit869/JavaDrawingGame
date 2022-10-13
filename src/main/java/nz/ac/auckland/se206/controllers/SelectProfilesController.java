@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This class is responsible for selecting which profile to play */
 public class SelectProfilesController implements ControllerInterface {
@@ -39,6 +40,9 @@ public class SelectProfilesController implements ControllerInterface {
   private boolean deleteMode;
   private ProfileFactory factory;
   private GameModel gameModel;
+
+  // Must initalize here else will have dup threads
+  private TextToSpeechTask textToSpeechTask = new TextToSpeechTask();
 
   /** Initialises the controller, sets the factory and the profiles */
   public void initialize() {
@@ -67,6 +71,7 @@ public class SelectProfilesController implements ControllerInterface {
     setButtons();
     setCirclesArray();
     initialize();
+    textToSpeechTask.speak("Select a profile");
   }
 
   /** Sets the text of the buttons, grabbing the usernames from the player data */

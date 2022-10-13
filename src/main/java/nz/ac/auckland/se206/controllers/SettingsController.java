@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
+import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This class is responsible for selecting settings */
 public class SettingsController implements ControllerInterface {
 
   private GameModel gameModel;
-
+  private TextToSpeechTask textToSpeechTask;
   private ProfileFactory profileFactory;
   @FXML private Button ttsOnButton;
   @FXML private Button ttsOffButton;
@@ -27,6 +28,7 @@ public class SettingsController implements ControllerInterface {
 
     // Get game settings
     this.gameModel = GameModel.getInstance();
+    this.textToSpeechTask = new TextToSpeechTask();
 
     // Set initial state of TTS buttons
     if (gameModel.getProfile().getSettingsData().getTts()) {
@@ -39,7 +41,9 @@ public class SettingsController implements ControllerInterface {
   }
 
   @Override
-  public void refresh() {}
+  public void refresh() {
+    textToSpeechTask.speak("Ya settings");
+  }
 
   private void switchTts() {
     if (gameModel.getProfile().getSettingsData().getTts() == true) {

@@ -1,11 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the main menu */
 public class MainMenuController implements ControllerInterface {
@@ -22,9 +24,11 @@ public class MainMenuController implements ControllerInterface {
   @FXML private Button exitButton;
 
   private GameModel gameModel;
+  private TextToSpeechTask textToSpeechTask;
 
   /** On the start of the controller this function is run. */
   public void initialize() {
+    // Configure buttons
     startButton.toBack();
     statsButton.toBack();
     changeProfileButton.toBack();
@@ -32,6 +36,7 @@ public class MainMenuController implements ControllerInterface {
     exitButton.toBack();
     // Setup required objects
     this.gameModel = GameModel.getInstance();
+    this.textToSpeechTask = new TextToSpeechTask();
     profileLabel.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
 
@@ -52,6 +57,9 @@ public class MainMenuController implements ControllerInterface {
   @Override
   public void refresh() {
     initialize();
+    String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+    int randomIndex = new Random().nextInt(greetings.length);
+    textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
   }
 
   /////////////////////

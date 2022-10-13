@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
 import nz.ac.auckland.se206.profiles.entities.badges.Badge;
+import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the profile stats view */
 public class ProfileStatsController implements ControllerInterface {
@@ -40,9 +41,12 @@ public class ProfileStatsController implements ControllerInterface {
 
   private GameModel gameModel;
   private Profile profile;
+  private TextToSpeechTask textToSpeechTask;
 
   /** Init and load the stats view */
   public void initialize() {
+    // Init objects
+    this.textToSpeechTask = new TextToSpeechTask();
     gameModel = GameModel.getInstance();
     profile = gameModel.getProfile();
 
@@ -93,6 +97,7 @@ public class ProfileStatsController implements ControllerInterface {
   @Override
   public void refresh() {
     this.initialize();
+    this.textToSpeechTask.speak("Ya statz");
   }
 
   /** This method loads all the badges */
