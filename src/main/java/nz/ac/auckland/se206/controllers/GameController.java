@@ -480,14 +480,18 @@ public class GameController implements ControllerInterface {
         .getCurrentGameStateProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
+              // Determine the new state which methods should be called
               switch (newValue) {
                 case READY:
+                  // Ready
                   this.onReadyState();
                   break;
                 case INGAME:
+                  // Ingame
                   this.onInGameState();
                   break;
                 case FINISHED:
+                  // Finished
                   this.onFinishedState();
                   break;
                 default:
