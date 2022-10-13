@@ -299,7 +299,7 @@
                   </TabPane>
                   <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
                      <tabs>
-                        <Tab text="Canvas">
+                        <Tab fx:id="canvasTab" text="Canvas">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="277.0">
                                  <children>
