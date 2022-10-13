@@ -95,6 +95,7 @@ public class TimerTask extends Task<Void> {
         counter--;
       }
       if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+        // toDO update definition to make it the current word
         System.out.println("hello");
       }
       try {

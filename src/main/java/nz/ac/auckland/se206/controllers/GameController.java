@@ -182,8 +182,9 @@ public class GameController implements ControllerInterface {
     // Force refresh onReadyState. Since if changing gamemodes, still in readyState.
     onReadyState();
 
-    // If zen mode at the very end start the game
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    // If zen or learning mode at the very end start the game
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setCurrentGameState(GameModel.State.INGAME);
     }
   }
@@ -269,9 +270,6 @@ public class GameController implements ControllerInterface {
       this.timerLabel.setText("Zen mode!");
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
-    }
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
-      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
     }
   }
 
