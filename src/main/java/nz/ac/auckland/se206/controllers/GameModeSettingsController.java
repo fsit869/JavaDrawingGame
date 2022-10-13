@@ -275,7 +275,8 @@ public class GameModeSettingsController implements ControllerInterface {
           "Instructions-Zen Gamemode:\n"
               + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
       case "Learning Mode" -> instructionsTextArea.setText(
-          "Instructions-Zen Gamemode:\n" + "This is a learning mode where there is ");
+          "Instructions-Zen Gamemode:\n"
+              + "In this mode you can draw whatever you want and you will be shown the definition of the object that the computer thinks your drawing is the closest to.");
     }
   }
 
