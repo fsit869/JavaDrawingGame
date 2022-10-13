@@ -248,7 +248,7 @@ public class GameController implements ControllerInterface {
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
     }
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.wordLabel.setText(gameModel.getCurrentWordToGuess());
     } else {
       this.wordLabel.setText("Whatever you want");
