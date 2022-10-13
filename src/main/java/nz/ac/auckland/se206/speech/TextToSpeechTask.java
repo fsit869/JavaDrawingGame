@@ -16,7 +16,7 @@ public class TextToSpeechTask {
     this.gameModel = GameModel.getInstance();
   }
 
-  /** Create new speech thread */
+  /** Create a new speech thread to speak */
   private void createThread() {
     // Voice object on a different thread
     this.textToSpeech = new TextToSpeech();

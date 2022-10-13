@@ -94,9 +94,9 @@ public class FxmlSwitcher {
   }
 
   /**
-   * Display the view based on viewState
+   * Display the view based on viewState of GameModel
    *
-   * @param viewState
+   * @param viewState of the current gameModel
    */
   private void activateView(GameModel.ViewState viewState) {
     FxmlLoaderData fxmlLoaderData = viewMap.get(viewState);

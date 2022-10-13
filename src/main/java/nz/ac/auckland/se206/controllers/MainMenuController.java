@@ -21,6 +21,7 @@ public class MainMenuController implements ControllerInterface {
 
   private GameModel gameModel;
 
+  /** On the start of the controller this function is run. */
   public void initialize() {
     startButton.toBack();
     statsButton.toBack();

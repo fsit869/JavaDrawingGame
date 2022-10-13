@@ -10,7 +10,7 @@ public class FxmlLoaderData {
   private FXMLLoader fxmlLoader;
 
   /**
-   * Create a new data object
+   * Create a new data object to be loaded
    *
    * @param fxmlLoader Fxml view loader
    */
@@ -26,7 +26,7 @@ public class FxmlLoaderData {
   }
 
   /**
-   * Get the root
+   * Get the root parent view of the root
    *
    * @return Parent root view
    */
@@ -35,7 +35,7 @@ public class FxmlLoaderData {
   }
 
   /**
-   * Fxml Loader obj
+   * returns the Fxml Loader obj for
    *
    * @return loader obj
    */

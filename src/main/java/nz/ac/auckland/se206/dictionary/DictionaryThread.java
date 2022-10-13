@@ -14,8 +14,8 @@ public class DictionaryThread {
   /**
    * Constructor which creates the searching algorithm
    *
-   * @param definitionTextArea
-   * @param gameController
+   * @param definitionTextArea text area for the definition
+   * @param gameController controller of the current game
    */
   public DictionaryThread(TextArea definitionTextArea, GameController gameController) {
     this.gameModel = GameModel.getInstance();

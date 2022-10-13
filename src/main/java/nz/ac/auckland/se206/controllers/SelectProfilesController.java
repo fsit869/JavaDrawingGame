@@ -162,6 +162,11 @@ public class SelectProfilesController implements ControllerInterface {
     }
   }
 
+  /**
+   * On the instance of a profile to be deleted
+   *
+   * @param profile name to be deleted
+   */
   public void onDeleteProfile(String profile) {
     profile = profile.substring(7);
     if (profile.equals("Empty Profile!")) {
@@ -182,6 +187,11 @@ public class SelectProfilesController implements ControllerInterface {
     }
   }
 
+  /**
+   * When a profile is selected in the menu
+   *
+   * @param profile to be selected
+   */
   public void onSelectedProfile(String profile) {
     if (profile.equals("New Profile")) {
       gameModel.setCurrentViewState(GameModel.ViewState.NEWPROFILE);

@@ -19,6 +19,7 @@ public class BadgeFactory {
 
   private HashMap<BadgeEnum, Badge> badgeObjects;
 
+  /** Initialises the factory of the badge factory. Puts in the badges into it */
   public BadgeFactory() {
     this.badgeObjects = new HashMap<>();
 

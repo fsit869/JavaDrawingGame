@@ -15,6 +15,14 @@ public class DictionaryLookUp {
 
   private static final String API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+  /**
+   * Searches for a word from the API
+   *
+   * @param query of the string to search for
+   * @return WordInfo of the word
+   * @throws IOException file exception
+   * @throws WordNotFoundException if word is not found
+   */
   public static WordInfo searchWordInfo(String query) throws IOException, WordNotFoundException {
 
     // Create the HTTP request client

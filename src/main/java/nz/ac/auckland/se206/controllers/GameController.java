@@ -425,7 +425,7 @@ public class GameController implements ControllerInterface {
   }
 
   /**
-   * Set up brush settings
+   * Set up brush settings for the brush used by the user
    *
    * @param e Event of clicky
    * @param eraserMode Toggle eraser
@@ -663,7 +663,7 @@ public class GameController implements ControllerInterface {
   /**
    * Determines whether play button is disabled.
    *
-   * @param isDisabled
+   * @param isDisabled whether button is disabled
    */
   public void disablePlayButton(boolean isDisabled) {
     this.playButton.setDisable(isDisabled);

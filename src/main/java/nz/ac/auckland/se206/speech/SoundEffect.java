@@ -14,7 +14,7 @@ public class SoundEffect {
     /**
      * Enum constructor to init sound effect location
      *
-     * @param soundLocation
+     * @param soundLocation location of the sound effect
      */
     EFFECT(String soundLocation) {
       try {
@@ -29,7 +29,7 @@ public class SoundEffect {
     /**
      * Get enum value (Sound location) as string
      *
-     * @return
+     * @return string of the location
      */
     private String getSoundLocation() {
       return SOUND_LOCATION;
@@ -60,7 +60,7 @@ public class SoundEffect {
    * Play a sound effect, alongside any existing sound effects. IN parallel NOTE: There is no way to
    * stop this sound effect until it finishes.
    *
-   * @param effectToPlay
+   * @param effectToPlay the effect that should be played if called
    */
   public static void playEffectParallel(EFFECT effectToPlay) {
     AudioClip parallelClip = new AudioClip(effectToPlay.getSoundLocation());
