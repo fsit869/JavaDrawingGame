@@ -21,9 +21,6 @@ public class GameModeSettingsController implements ControllerInterface {
   private String[] accuracyDifficulties = {"Easy", "Medium", "Hard"};
 
   private String[] difficultyDifficulties = {"Easy", "Medium", "Hard", "Master"};
-
-  private String[] gameModes = {"Classic", "Hidden-word Mode", "Zen Mode"};
-
   @FXML private ComboBox<String> confidenceComboBox;
 
   @FXML private ComboBox<String> timeComboBox;
@@ -42,11 +39,15 @@ public class GameModeSettingsController implements ControllerInterface {
     timeComboBox.getItems().addAll(timeDifficulties);
     accuracyComboBox.getItems().addAll(accuracyDifficulties);
     wordDifficultyComboBox.getItems().addAll(difficultyDifficulties);
+
+    // Setup styling of the boxes
     confidenceComboBox.setStyle("-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
     timeComboBox.setStyle("-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
     accuracyComboBox.setStyle("-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
     wordDifficultyComboBox.setStyle(
         "-fx-font: 15px \"Monospac821 BT\";-fx-background-color:  #8ff7a7");
+
+    // Instruction styled
     instructionsTextArea.setStyle("-fx-text-fill: black;");
   }
 
@@ -108,6 +109,7 @@ public class GameModeSettingsController implements ControllerInterface {
   private void setGameSettings() {
     // sets confidence settings depending on users choice
     switch (confidenceComboBox.getValue()) {
+        // Easy to master levels
       case "Easy" -> gameModel
           .getProfile()
           .getSettingsData()
@@ -127,6 +129,7 @@ public class GameModeSettingsController implements ControllerInterface {
     }
     // sets accuracy settings depending on users choice
     switch (accuracyComboBox.getValue()) {
+        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
           .getProfile()
@@ -136,6 +139,7 @@ public class GameModeSettingsController implements ControllerInterface {
     }
     // sets word difficulty settings depending on users choice
     switch (wordDifficultyComboBox.getValue()) {
+        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
           .getProfile()
@@ -149,6 +153,7 @@ public class GameModeSettingsController implements ControllerInterface {
     }
     // sets time settings depending on users choice
     switch (timeComboBox.getValue()) {
+        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.EASY);
       case "Medium" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MEDIUM);
       case "Hard" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.HARD);
@@ -168,7 +173,7 @@ public class GameModeSettingsController implements ControllerInterface {
 
   /** This method is called when user presses the start game button */
   @FXML
-  public void onStartButton() throws IOException {
+  private void onStartButton() throws IOException {
     setGameSettings();
     setGameMode();
     profileFactory.saveProfile(gameModel.getProfile());
@@ -176,7 +181,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user presses the right change gamemode button */
   @FXML
-  public void onRightButton() {
+  private void onRightButton() {
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Zen Mode");
@@ -185,7 +190,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user presses the left change gamemode button */
   @FXML
-  public void onLeftButton() {
+  private void onLeftButton() {
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Zen Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Classic Mode");
@@ -194,9 +199,11 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the confidence info area */
   @FXML
-  public void onConfidenceInfoEnter() {
+  private void onConfidenceInfoEnter() {
+    // Shows info about confidence
     instructionsTextArea.setText(
         "Instructions-Confidence:\n"
+            // Below are the different modes
             + "Level EASY: You win the game if the computer is at least 1% confident that your image is the word to guess.\n"
             + "Level MEDIUM: You win the game if the computer is at least 10% confident that your image is the word to guess.\n"
             + "Level HARD: You win the game if the computer is at least 25% confident that your image is the word to guess.\n"
@@ -204,9 +211,11 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the time info area */
   @FXML
-  public void onTimeInfoEnter() {
+  private void onTimeInfoEnter() {
+    // Show the info of time setting
     instructionsTextArea.setText(
         "Instructions-Time limit:\n"
+            // Has easy to master levels
             + "Level EASY: You gets 60 seconds to draw the picture correctly.\n"
             + "Level MEDIUM: You gets 45 seconds to draw the picture correctly.\n"
             + "Level HARD: You gets 30 seconds to draw the picture correctly.\n"
@@ -214,18 +223,22 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the accuracy info area */
   @FXML
-  public void onAccuracyInfoEnter() {
+  private void onAccuracyInfoEnter() {
+    // Set the text of accuracy
     instructionsTextArea.setText(
         "Instructions-Accuracy:\n"
+            // Below is levels easy to hard
             + "Level EASY: You win the game if the word to draw is in the computer's top 3 guesses.\n"
             + "Level MEDIUM: You win the game if the word to draw is in the computer's top 2 guesses.\n"
             + "Level HARD: You win the game if the word to draw is the computer’s best guess.");
   }
   /** This method is called when user mouse enters the word difficulty info area */
   @FXML
-  public void onWordDifficultyInfoEnter() {
+  private void onWordDifficultyInfoEnter() {
+    // Set the text for difficulities
     instructionsTextArea.setText(
         "Instructions-Word Difficulty:\n"
+            // Below are the modes easy to master
             + "Level EASY: You will only get given EASY words.\n"
             + "Level MEDIUM: You will get given EASY or MEDIUM words.\n"
             + "Level HARD: You will get given EASY or MEDIUM or HARD words\n"
@@ -233,15 +246,18 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the gamemode info area */
   @FXML
-  public void onGameModeInfoEnter() {
-
+  private void onGameModeInfoEnter() {
+    // Determine which gamemode is selected and set it
     switch (this.gameModeButton.getText()) {
+        // Classic. Also show the info about the mode
       case "Classic Mode" -> instructionsTextArea.setText(
           "Instructions-Classic Gamemode:\n"
               + "The aim is to draw the image that you are told in the prompt so that the computer is able to guess that what you have drawn is the prompt. You need to achieve this before the timer runs out.");
+        // Hidden Also show the info about the mode
       case "Hidden-Word Mode" -> instructionsTextArea.setText(
           "Instructions-Hidden-Word Gamemode:\n"
               + "The word to draw will not be shown to you. Instead you will be provided the definition of the word to draw. If you get stuck and can't figure out the word use the Hint button to show the number of characters in the word.");
+        // Zen Also show the info about the mode
       case "Zen Mode" -> instructionsTextArea.setText(
           "Instructions-Zen Gamemode:\n"
               + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
@@ -249,31 +265,31 @@ public class GameModeSettingsController implements ControllerInterface {
   }
 
   @FXML
-  public void onConfidenceInfoExit() {
+  private void onConfidenceInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onTimeInfoExit() {
+  private void onTimeInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onAccuracyInfoExit() {
+  private void onAccuracyInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onWordDifficultyInfoExit() {
+  private void onWordDifficultyInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onGameModeInfoExit() {
+  private void onGameModeInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }

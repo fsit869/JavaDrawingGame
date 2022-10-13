@@ -337,7 +337,6 @@ public class GameController implements ControllerInterface {
         // Bronze
         statsData.addBadge(BadgeFactory.BadgeEnum.TIME_BRONZE);
       }
-
     }
 
     // Save win/loss and also stats accuracy
@@ -352,10 +351,10 @@ public class GameController implements ControllerInterface {
     if (currentWinStreak > 7) {
       // Gold
       statsData.addBadge(BadgeFactory.BadgeEnum.WIN_STREAK_GOLD);
-    } else if (currentWinStreak>5) {
+    } else if (currentWinStreak > 5) {
       // Silver
       statsData.addBadge(BadgeFactory.BadgeEnum.WIN_STREAK_SILVER);
-    } else if (currentWinStreak>3) {
+    } else if (currentWinStreak > 3) {
       // Bronze
       statsData.addBadge(BadgeFactory.BadgeEnum.WIN_STEAK_BRONZE);
     }
@@ -372,9 +371,6 @@ public class GameController implements ControllerInterface {
       // Bronze
       statsData.addBadge(BadgeFactory.BadgeEnum.GAME_PLAYED_BRONZE);
     }
-
-
-
 
     this.profileFactory.saveProfile(gameModel.getProfile());
   }
@@ -480,14 +476,18 @@ public class GameController implements ControllerInterface {
         .getCurrentGameStateProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
+              // Determine the new state which methods should be called
               switch (newValue) {
                 case READY:
+                  // Ready
                   this.onReadyState();
                   break;
                 case INGAME:
+                  // Ingame
                   this.onInGameState();
                   break;
                 case FINISHED:
+                  // Finished
                   this.onFinishedState();
                   break;
                 default:

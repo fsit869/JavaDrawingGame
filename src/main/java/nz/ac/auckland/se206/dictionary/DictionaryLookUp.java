@@ -17,30 +17,37 @@ public class DictionaryLookUp {
 
   public static WordInfo searchWordInfo(String query) throws IOException, WordNotFoundException {
 
+    // Create the HTTP request client
     OkHttpClient client = new OkHttpClient();
     Request request = new Request.Builder().url(API_URL + query).build();
     Response response = client.newCall(request).execute();
     ResponseBody responseBody = response.body();
 
+    // Response
     String jsonString = responseBody.string();
 
+    // Check if word exists
     try {
       JSONObject jsonObj = (JSONObject) new JSONTokener(jsonString).nextValue();
       String title = jsonObj.getString("title");
 
       throw new WordNotFoundException(query, title);
     } catch (ClassCastException e) {
+      e.printStackTrace();
     }
 
+    // Add all values of the entries
     JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
     List<WordEntry> entries = new ArrayList<WordEntry>();
 
+    // Add all defintiions
     JSONObject jsonEntryObj = jArray.getJSONObject(0);
     JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
     List<String> definitions = new ArrayList<String>();
 
     JSONObject jsonMeaningObj = jsonMeanings.getJSONObject(0);
 
+    // Lookup definitions
     JSONArray jsonDefinitions = jsonMeaningObj.getJSONArray("definitions");
     JSONObject jsonDefinitionObj = jsonDefinitions.getJSONObject(0);
     String definition = jsonDefinitionObj.getString("definition");
@@ -48,6 +55,7 @@ public class DictionaryLookUp {
       definitions.add(definition);
     }
 
+    // Return the word with all the data.
     WordEntry wordEntry = new WordEntry(definitions);
     entries.add(wordEntry);
     return new WordInfo(query, entries);

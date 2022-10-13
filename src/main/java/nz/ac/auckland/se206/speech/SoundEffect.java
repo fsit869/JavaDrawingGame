@@ -12,15 +12,6 @@ public class SoundEffect {
     private final String SOUND_LOCATION;
 
     /**
-     * Get enum value (Sound location) as string
-     *
-     * @return
-     */
-    private String getSoundLocation() {
-      return SOUND_LOCATION;
-    }
-
-    /**
      * Enum constructor to init sound effect location
      *
      * @param soundLocation
@@ -33,6 +24,15 @@ public class SoundEffect {
       } catch (NullPointerException e) {
         throw new RuntimeException(soundLocation + " Sound effect not found");
       }
+    }
+
+    /**
+     * Get enum value (Sound location) as string
+     *
+     * @return
+     */
+    private String getSoundLocation() {
+      return SOUND_LOCATION;
     }
   }
 

@@ -51,6 +51,7 @@ public class StatsData extends Data {
 
   /** Adds a badge to the profile */
   public void addBadge(BadgeFactory.BadgeEnum badgeEnum) {
+    // Get factory to add badge
     BadgeFactory factory = new BadgeFactory();
     Badge badge = factory.createBadge(badgeEnum);
     for (Badge badges : badgeList) {

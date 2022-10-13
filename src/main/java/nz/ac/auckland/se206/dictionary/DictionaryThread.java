@@ -9,7 +9,6 @@ import nz.ac.auckland.se206.model.GameModel;
 
 public class DictionaryThread {
   private GameModel gameModel;
-  private TextArea definitionTextArea;
   private Service<Void> backgroundService;
 
   /**
@@ -20,7 +19,6 @@ public class DictionaryThread {
    */
   public DictionaryThread(TextArea definitionTextArea, GameController gameController) {
     this.gameModel = GameModel.getInstance();
-    this.definitionTextArea = definitionTextArea;
 
     // Create the reusable service to search dictonary.
     this.backgroundService =

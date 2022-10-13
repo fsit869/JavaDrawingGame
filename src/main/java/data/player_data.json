@@ -3,14 +3,25 @@
   "username": "dd",
   "profilePicturePath": "file:/D:/Files/UniWork/Workspace/206/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
   "statsData": {
-    "bestTime": 6,
-    "bestAccuracy": 5,
-    "totalGames": 10,
-    "wins": 1,
-    "losses": 9,
-    "currentStreak": 1,
+    "bestTime": 4,
+    "bestAccuracy": 6,
+    "totalGames": 14,
+    "wins": 2,
+    "losses": 12,
+    "currentStreak": 0,
     "bestStreak": 1,
-    "badgeList": []
+    "badgeList": [
+      {
+        "name": "Games Played",
+        "description": "10-19 Games played",
+        "tier": "SILVER"
+      },
+      {
+        "name": "Best Time",
+        "description": "Finished drawing in less than 5 secs",
+        "tier": "GOLD"
+      }
+    ]
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -23,10 +34,7 @@
         "bee",
         "bench",
         "binoculars",
-        "birthday cake",
         "bowtie",
-        "bracelet",
-        "brain",
         "bread",
         "bridge",
         "broom",
@@ -46,7 +54,6 @@
         "fan",
         "finger",
         "fish",
-        "flower",
         "fork",
         "giraffe",
         "grapes",
@@ -54,7 +61,6 @@
         "hat",
         "helicopter",
         "hexagon",
-        "hot air balloon",
         "house",
         "ice cream",
         "key",
@@ -65,9 +71,7 @@
         "line",
         "octagon",
         "paintbrush",
-        "palm tree",
         "paper clip",
-        "peanut",
         "pillow",
         "pineapple",
         "pizza",
@@ -78,11 +82,9 @@
         "shoe",
         "skull",
         "snail",
-        "snake",
         "snowman",
         "stairs",
         "star",
-        "strawberry",
         "syringe",
         "table",
         "teddy-bear",
@@ -101,6 +103,15 @@
       "M": []
     },
     "wordsPlayed": [
+      "flower",
+      "birthday cake",
+      "peanut",
+      "strawberry",
+      "hot air balloon",
+      "brain",
+      "snake",
+      "palm tree",
+      "bracelet",
       "windmill",
       "fire hydrant",
       "microphone",
