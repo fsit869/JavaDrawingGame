@@ -247,7 +247,6 @@ public class TimerTask extends Task<Void> {
     // loops through the top 100 and sees if word is in it
     for (Classifications.Classification i : yes) {
       if (i.getClassName().equals(gameModel.getCurrentWordToGuess())) {
-        System.out.println(yes.indexOf(i) / 10 + 1);
         return yes.indexOf(i) / 10 + 1;
       }
     }

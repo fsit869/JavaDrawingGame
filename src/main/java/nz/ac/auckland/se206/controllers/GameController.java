@@ -34,6 +34,7 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private int timerMax;
   // FXML Components
+  @FXML private Tab canvasTab;
   @FXML private Button playButton;
   @FXML private ImageView correctImage;
   @FXML private ImageView wrongImage;
@@ -163,6 +164,11 @@ public class GameController implements ControllerInterface {
 
     // Force refresh onReadyState. Since if changing gamemodes, still in readyState.
     onReadyState();
+
+    // If zen mode at the very end start the game
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
+    }
   }
 
   /** Handles bindings for the timer thread. */
@@ -220,10 +226,10 @@ public class GameController implements ControllerInterface {
     // If zen mode dont show timer
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       this.timerLabel.setText("Zen mode!");
-      this.wordLabel.setText(gameModel.getCurrentWordToGuess());
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
     }
+
     this.wordLabel.setText(gameModel.getCurrentWordToGuess());
     // If hidden mode search for definition
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
@@ -239,7 +245,6 @@ public class GameController implements ControllerInterface {
     // If zen mode dont show timer
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       this.timerLabel.setText("Zen mode!");
-      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
     }
@@ -249,6 +254,7 @@ public class GameController implements ControllerInterface {
   private void onInGameState() {
     // Set UI and timer
     this.canvas.setDisable(false);
+    this.inGamePaneMenu.getSelectionModel().select(canvasTab);
 
     if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.textToSpeech.speak(

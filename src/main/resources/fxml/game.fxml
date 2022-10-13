@@ -299,7 +299,7 @@
                   </TabPane>
                   <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
-                        <Tab text="Canvas">
+                        <Tab fx:id="canvasTab" text="Canvas">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="277.0">
                                  <children>
@@ -327,12 +327,12 @@
                                              </graphic></RadioButton>
                                        </buttons>
                                     </ButtonBar>
-                                    <Button layoutX="26.0" layoutY="112.0" mnemonicParsing="false" onAction="#onClear" prefHeight="41.0" prefWidth="98.0" text="Clear canvas" />
-                                    <ColorPicker fx:id="colourPicker" layoutX="26.0" layoutY="56.0" prefHeight="40.0" prefWidth="107.0">
+                                    <Button layoutX="27.0" layoutY="101.0" mnemonicParsing="false" onAction="#onClear" prefHeight="41.0" prefWidth="105.0" style="-fx-background-radius: 3em;" text="Clear canvas" />
+                                    <ColorPicker fx:id="colourPicker" layoutX="26.0" layoutY="56.0" prefHeight="40.0" prefWidth="107.0" style="-fx-background-radius: 3em;">
                                        <value>
                                           <Color />
                                        </value></ColorPicker>
-                                    <Button layoutX="144.0" layoutY="80.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveCanvas" prefHeight="64.0" prefWidth="156.0" style="-fx-background-radius: 3em;" text="Save">
+                                    <Button layoutX="150.0" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveCanvas" prefHeight="91.0" prefWidth="143.0" style="-fx-background-radius: 3em;" text="Save">
                                        <graphic>
                                           <ImageView fitHeight="36.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -341,7 +341,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="hintButton" layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#onHintButton" prefHeight="40.0" prefWidth="107.0" text="Hint" />
+                                    <Button fx:id="hintButton" layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#onHintButton" prefHeight="40.0" prefWidth="107.0" style="-fx-background-radius: 3em;" text="Hint" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -350,8 +350,22 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="giveUpButton" cancelButton="true" layoutX="160.0" layoutY="61.0" mnemonicParsing="false" onAction="#onGiveUpButton" prefHeight="47.0" prefWidth="80.0" text="Give up :(" textFill="RED" />
-                                    <Button fx:id="zenNextWordButton" layoutX="47.0" layoutY="61.0" mnemonicParsing="false" onAction="#onZenNextWord" prefHeight="47.0" prefWidth="80.0" text="Next Word" />
+                                    <Button fx:id="giveUpButton" cancelButton="true" contentDisplay="TOP" layoutX="160.0" layoutY="33.0" mnemonicParsing="false" onAction="#onGiveUpButton" prefHeight="114.0" prefWidth="115.0" style="-fx-background-radius: 6em;" text="Give up :(" textFill="RED">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/surrender.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Button fx:id="zenNextWordButton" contentDisplay="TOP" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#onZenNextWord" prefHeight="114.0" prefWidth="129.0" style="-fx-background-radius: 6em;" text="Next Word" textFill="#00b50c">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/start.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </AnchorPane>
                           </content>
