@@ -3,13 +3,13 @@
   "username": "dd",
   "profilePicturePath": "file:/D:/Files/UniWork/Workspace/206/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
   "statsData": {
-    "bestTime": 15,
-    "bestAccuracy": 0,
-    "totalGames": 9,
-    "wins": 0,
+    "bestTime": 6,
+    "bestAccuracy": 5,
+    "totalGames": 10,
+    "wins": 1,
     "losses": 9,
-    "currentStreak": 0,
-    "bestStreak": 0,
+    "currentStreak": 1,
+    "bestStreak": 1,
     "badgeList": []
   },
   "wordsData": {
@@ -45,7 +45,6 @@
         "eye",
         "fan",
         "finger",
-        "fire hydrant",
         "fish",
         "flower",
         "fork",
@@ -64,7 +63,6 @@
         "light bulb",
         "lightning",
         "line",
-        "microphone",
         "octagon",
         "paintbrush",
         "palm tree",
@@ -97,13 +95,15 @@
         "umbrella",
         "vase",
         "wheel",
-        "windmill",
         "wine bottle"
       ],
       "H": [],
       "M": []
     },
     "wordsPlayed": [
+      "windmill",
+      "fire hydrant",
+      "microphone",
       "hammer",
       "book",
       "calculator",

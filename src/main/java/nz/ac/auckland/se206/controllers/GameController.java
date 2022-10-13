@@ -28,6 +28,7 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
+import nz.ac.auckland.se206.profiles.entities.badges.BadgeFactory;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
@@ -323,10 +324,20 @@ public class GameController implements ControllerInterface {
     System.out.println("saving");
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {
-      statsData.setBestTime(timerMax - Integer.parseInt(this.timerLabel.getText()));
-    } else {
-      // When player loses they run out of time.
-      statsData.setBestTime(timerMax);
+      int time = timerMax - Integer.parseInt(this.timerLabel.getText());
+      statsData.setBestTime(time);
+
+      if (time < 5) {
+        // Gold
+        statsData.addBadge(BadgeFactory.BadgeEnum.TIME_GOLD);
+      } else if (time < 20) {
+        // Silver
+        statsData.addBadge(BadgeFactory.BadgeEnum.TIME_SILVER);
+      } else if (time < 30) {
+        // Bronze
+        statsData.addBadge(BadgeFactory.BadgeEnum.TIME_BRONZE);
+      }
+
     }
 
     // Save win/loss and also stats accuracy
@@ -335,8 +346,35 @@ public class GameController implements ControllerInterface {
       statsData.setBestAccuracy(accuracyValue);
     } else {
       statsData.addLosses();
-      statsData.setBestAccuracy(0);
     }
+
+    int currentWinStreak = statsData.getCurrentStreak();
+    if (currentWinStreak > 7) {
+      // Gold
+      statsData.addBadge(BadgeFactory.BadgeEnum.WIN_STREAK_GOLD);
+    } else if (currentWinStreak>5) {
+      // Silver
+      statsData.addBadge(BadgeFactory.BadgeEnum.WIN_STREAK_SILVER);
+    } else if (currentWinStreak>3) {
+      // Bronze
+      statsData.addBadge(BadgeFactory.BadgeEnum.WIN_STEAK_BRONZE);
+    }
+
+    // Total games played badge
+    int totalGamesPlayed = statsData.getTotalGames();
+    if (totalGamesPlayed > 20) {
+      // Gold
+      statsData.addBadge(BadgeFactory.BadgeEnum.GAMES_PLAYED_GOLD);
+    } else if (totalGamesPlayed > 10) {
+      // Silver
+      statsData.addBadge(BadgeFactory.BadgeEnum.GAMED_PLAYED_SILVER);
+    } else if (totalGamesPlayed > 4) {
+      // Bronze
+      statsData.addBadge(BadgeFactory.BadgeEnum.GAME_PLAYED_BRONZE);
+    }
+
+
+
 
     this.profileFactory.saveProfile(gameModel.getProfile());
   }
