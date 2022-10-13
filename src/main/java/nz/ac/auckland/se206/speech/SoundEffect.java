@@ -5,7 +5,7 @@ import javafx.scene.media.AudioClip;
 
 public class SoundEffect {
   /** Register sound effects as enums with values */
-  public enum EFFECT {
+  public enum SOUND {
     TEST("/sounds/mixkit-alert-quick-chime-766.wav"),
     TEST_TWO("/sounds/mixkit-security-facility-breach-alarm-994.wav");
 
@@ -16,7 +16,7 @@ public class SoundEffect {
      *
      * @param soundLocation location of the sound effect
      */
-    EFFECT(String soundLocation) {
+    SOUND(String soundLocation) {
       try {
         this.SOUND_LOCATION = SoundEffect.class.getResource(soundLocation).toURI().toString();
       } catch (URISyntaxException e) {
@@ -36,7 +36,7 @@ public class SoundEffect {
     }
   }
 
-  private static AudioClip audioClip = new AudioClip(EFFECT.TEST.getSoundLocation());
+  private static AudioClip audioClip = new AudioClip(SOUND.TEST.getSoundLocation());
 
   /**
    * Stop previous sound effect and play new sound effect. Differs from playEffectParallel as this
@@ -45,7 +45,7 @@ public class SoundEffect {
    *
    * @param effectToPlay Enum effect to play
    */
-  public static void playEffectOverride(EFFECT effectToPlay) {
+  public static void playEffectOverride(SOUND effectToPlay) {
     audioClip.stop();
     audioClip = new AudioClip(effectToPlay.getSoundLocation());
     audioClip.play();
@@ -62,7 +62,7 @@ public class SoundEffect {
    *
    * @param effectToPlay the effect that should be played if called
    */
-  public static void playEffectParallel(EFFECT effectToPlay) {
+  public static void playEffectParallel(SOUND effectToPlay) {
     AudioClip parallelClip = new AudioClip(effectToPlay.getSoundLocation());
     parallelClip.play();
   }
