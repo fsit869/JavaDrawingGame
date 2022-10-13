@@ -34,6 +34,7 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class GameController implements ControllerInterface {
   private int timerMax;
   // FXML Components
+  @FXML private Tab canvasTab;
   @FXML private Button playButton;
   @FXML private ImageView correctImage;
   @FXML private ImageView wrongImage;
@@ -253,6 +254,7 @@ public class GameController implements ControllerInterface {
   private void onInGameState() {
     // Set UI and timer
     this.canvas.setDisable(false);
+    this.inGamePaneMenu.getSelectionModel().select(canvasTab);
 
     if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.textToSpeech.speak(

@@ -297,7 +297,7 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-                  <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab fx:id="canvasTab" text="Canvas">
                            <content>
