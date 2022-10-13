@@ -64,6 +64,10 @@ public class GameController implements ControllerInterface {
 
   @FXML private ImageView confidenceTick;
 
+  @FXML private ImageView confidenceCross;
+
+  @FXML private ImageView accuracyCross;
+
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread;
@@ -152,12 +156,24 @@ public class GameController implements ControllerInterface {
       this.wordLabel.setFont(Font.font("System", 20));
 
       // Enable dictonary textfield for hidden mode
-      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)
+          || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         this.definitionTextArea.setVisible(true);
         this.topAnchorPane.setPrefHeight(190);
         this.definitionTextArea.setLayoutY(170);
         this.hintButton.setVisible(true);
         this.wordLabel.setFont(Font.font("System", 25));
+        if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+          this.wordLabel.setText("whatever you want");
+          this.accuracyLabel.setVisible(false);
+          this.confidenceLabel.setVisible(false);
+          this.accuracyTick.setVisible(false);
+          this.confidenceTick.setVisible(false);
+          this.accuracyCross.setVisible(false);
+          this.confidenceCross.setVisible(false);
+          this.giveUpButton.setText("Menu");
+          this.hintButton.setVisible(false);
+        }
       } else {
         this.definitionTextArea.setVisible(false);
       }
@@ -220,7 +236,9 @@ public class GameController implements ControllerInterface {
     this.wrongImage.setVisible(false);
 
     // Set game variables
-    this.gameModel.generateWord();
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      this.gameModel.generateWord();
+    }
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
 
@@ -230,8 +248,11 @@ public class GameController implements ControllerInterface {
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
     }
-
-    this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+    } else {
+      this.wordLabel.setText("Whatever you want");
+    }
     // If hidden mode search for definition
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
@@ -243,11 +264,14 @@ public class GameController implements ControllerInterface {
       this.disablePlayButton(false);
     }
 
-    // If zen mode dont show timer
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    // If Learning mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.timerLabel.setText("Zen mode!");
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
+    }
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      this.gameModel.setCurrentGameState(GameModel.State.INGAME);
     }
   }
 
@@ -284,7 +308,8 @@ public class GameController implements ControllerInterface {
     canvas.setOnMouseDragged(e -> {});
 
     // TTS the end game and win/lose diagoue only if not zen mode
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        || !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
@@ -571,7 +596,8 @@ public class GameController implements ControllerInterface {
   @FXML
   private void onGiveUpButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.onMenuButton();
     }
   }

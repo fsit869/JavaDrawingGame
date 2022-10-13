@@ -76,6 +76,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case CLASSIC -> gameModeButton.setText("Classic Mode");
       case HIDDEN -> gameModeButton.setText("Hidden-Word Mode");
       case ZEN -> gameModeButton.setText("Zen Mode");
+      case LEARNING -> gameModeButton.setText("Learning Mode");
     }
 
     // init accuracy combobox
@@ -131,7 +132,7 @@ public class GameModeSettingsController implements ControllerInterface {
     }
     // sets accuracy settings depending on users choice
     switch (accuracyComboBox.getValue()) {
-      // Easy to master levels
+        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
           .getProfile()
@@ -141,7 +142,7 @@ public class GameModeSettingsController implements ControllerInterface {
     }
     // sets word difficulty settings depending on users choice
     switch (wordDifficultyComboBox.getValue()) {
-      // Easy to master levels
+        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
           .getProfile()
@@ -155,7 +156,7 @@ public class GameModeSettingsController implements ControllerInterface {
     }
     // sets time settings depending on users choice
     switch (timeComboBox.getValue()) {
-      // Easy to master levels
+        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.EASY);
       case "Medium" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MEDIUM);
       case "Hard" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.HARD);
@@ -170,6 +171,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case "Classic Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.CLASSIC);
       case "Hidden-Word Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.HIDDEN);
       case "Zen Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.ZEN);
+      case "Learning Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.LEARNING);
     }
   }
 
@@ -188,7 +190,8 @@ public class GameModeSettingsController implements ControllerInterface {
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Zen Mode");
-      case "Zen Mode" -> gameModeButton.setText("Classic Mode");
+      case "Zen Mode" -> gameModeButton.setText("Learning Mode");
+      case "Learning Mode" -> gameModeButton.setText("Classic Mode");
     }
   }
 
@@ -196,9 +199,10 @@ public class GameModeSettingsController implements ControllerInterface {
   @FXML
   private void onLeftButton() {
     switch (gameModeButton.getText()) {
-      case "Classic Mode" -> gameModeButton.setText("Zen Mode");
+      case "Classic Mode" -> gameModeButton.setText("Learning Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Classic Mode");
       case "Zen Mode" -> gameModeButton.setText("Hidden-Word Mode");
+      case "Learning Mode" -> gameModeButton.setText("Zen Mode");
     }
   }
 
@@ -258,18 +262,20 @@ public class GameModeSettingsController implements ControllerInterface {
   private void onGameModeInfoEnter() {
     // Determine which gamemode is selected and set it
     switch (this.gameModeButton.getText()) {
-      // Classic. Also show the info about the mode
+        // Classic. Also show the info about the mode
       case "Classic Mode" -> instructionsTextArea.setText(
           "Instructions-Classic Gamemode:\n"
               + "The aim is to draw the image that you are told in the prompt so that the computer is able to guess that what you have drawn is the prompt. You need to achieve this before the timer runs out.");
-      // Hidden Also show the info about the mode
+        // Hidden Also show the info about the mode
       case "Hidden-Word Mode" -> instructionsTextArea.setText(
           "Instructions-Hidden-Word Gamemode:\n"
               + "The word to draw will not be shown to you. Instead you will be provided the definition of the word to draw. If you get stuck and can't figure out the word use the Hint button to show the number of characters in the word.");
-      // Zen Also show the info about the mode
+        // Zen Also show the info about the mode
       case "Zen Mode" -> instructionsTextArea.setText(
           "Instructions-Zen Gamemode:\n"
               + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
+      case "Learning Mode" -> instructionsTextArea.setText(
+          "Instructions-Zen Gamemode:\n" + "This is a learning mode where there is ");
     }
   }
 

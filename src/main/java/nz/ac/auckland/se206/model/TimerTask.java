@@ -81,17 +81,22 @@ public class TimerTask extends Task<Void> {
             // If zen mode dont show timer label
             if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
               timerLabel.setText("Zen mode!");
+            } else if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+              timerLabel.setText("Learning mode!");
             } else {
               timerLabel.setText(String.valueOf(counter));
             }
             predicationTextArea.setText(stringBuilder.toString());
           });
 
-      // If zen mode dont decrement timer.
-      if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      // If zen mode or learning mode dont decrement timer.
+      if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+          && !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         counter--;
       }
-
+      if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+        System.out.println("hello");
+      }
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
@@ -147,11 +152,14 @@ public class TimerTask extends Task<Void> {
     }
 
     // Check won
-    if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing()) {
+    if (getWinCondition(predictions, this.accuracy)
+        && canvasController.isStartedDrawing()
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setPlayerWon(true);
 
       // If zen mode dont transition
-      if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+          || !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         gameModel.setCurrentGameState(GameModel.State.FINISHED);
       }
     }
@@ -208,6 +216,7 @@ public class TimerTask extends Task<Void> {
             this.canvasController.setCorrectImageVisible(false);
             this.canvasController.setWrongImageVisible(true);
           }
+
           return false;
         }
       }

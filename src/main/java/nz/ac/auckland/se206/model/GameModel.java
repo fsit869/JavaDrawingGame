@@ -29,7 +29,8 @@ public class GameModel {
   public enum GameMode {
     ZEN,
     CLASSIC,
-    HIDDEN
+    HIDDEN,
+    LEARNING,
   }
 
   /** Represents the different view states */

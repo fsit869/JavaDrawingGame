@@ -232,7 +232,7 @@
                   <Image url="@../images/cross.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="436.0" layoutY="280.0">
+            <ImageView fx:id="accuracyCross" fitHeight="17.0" fitWidth="15.0" layoutX="436.0" layoutY="280.0">
                <image>
                   <Image url="@../images/icons/remove.png" />
                </image>
@@ -242,7 +242,7 @@
                   <Image url="@../images/icons/check.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="562.0" layoutY="280.0">
+            <ImageView fx:id="confidenceCross" fitHeight="17.0" fitWidth="15.0" layoutX="562.0" layoutY="280.0">
                <image>
                   <Image url="@../images/icons/remove.png" />
                </image>
