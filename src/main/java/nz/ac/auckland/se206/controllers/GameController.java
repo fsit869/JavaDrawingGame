@@ -605,10 +605,13 @@ public class GameController implements ControllerInterface {
    * @param isMet Boolean met
    */
   public void setAccuracyLabelMet(boolean isMet) {
+    // Determine whether accuracy on condition is achieved
     if (isMet) {
+      // Pass
       this.accuracyLabel.setTextFill(Color.GREEN);
       this.accuracyTick.setVisible(true);
     } else {
+      // Fail
       this.accuracyLabel.setTextFill(Color.RED);
       this.accuracyTick.setVisible(false);
     }
@@ -620,10 +623,13 @@ public class GameController implements ControllerInterface {
    * @param isMet Boolean met
    */
   public void setConfidenceLabelMet(boolean isMet) {
+    // Set whether confidence is achieved
     if (isMet) {
+      // Pass
       this.confidenceLabel.setTextFill(Color.GREEN);
       this.confidenceTick.setVisible(true);
     } else {
+      // Fail
       this.confidenceLabel.setTextFill(Color.RED);
       this.confidenceTick.setVisible(false);
     }

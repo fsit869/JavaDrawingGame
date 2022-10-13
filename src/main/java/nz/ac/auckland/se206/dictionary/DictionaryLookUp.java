@@ -45,11 +45,11 @@ public class DictionaryLookUp {
     }
 
     // Add all values of the entries
-    JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
+    JSONArray jsonArray = (JSONArray) new JSONTokener(jsonString).nextValue();
     List<WordEntry> entries = new ArrayList<WordEntry>();
 
     // Add all defintiions
-    JSONObject jsonEntryObj = jArray.getJSONObject(0);
+    JSONObject jsonEntryObj = jsonArray.getJSONObject(0);
     JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
     List<String> definitions = new ArrayList<String>();
 
