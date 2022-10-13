@@ -33,6 +33,7 @@ public class DictionaryLookUp {
 
       throw new WordNotFoundException(query, title);
     } catch (ClassCastException e) {
+      e.printStackTrace();
     }
 
     // Add all values of the entries

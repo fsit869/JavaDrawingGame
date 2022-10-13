@@ -21,9 +21,6 @@ public class GameModeSettingsController implements ControllerInterface {
   private String[] accuracyDifficulties = {"Easy", "Medium", "Hard"};
 
   private String[] difficultyDifficulties = {"Easy", "Medium", "Hard", "Master"};
-
-  private String[] gameModes = {"Classic", "Hidden-word Mode", "Zen Mode"};
-
   @FXML private ComboBox<String> confidenceComboBox;
 
   @FXML private ComboBox<String> timeComboBox;
@@ -176,7 +173,7 @@ public class GameModeSettingsController implements ControllerInterface {
 
   /** This method is called when user presses the start game button */
   @FXML
-  public void onStartButton() throws IOException {
+  private void onStartButton() throws IOException {
     setGameSettings();
     setGameMode();
     profileFactory.saveProfile(gameModel.getProfile());
@@ -184,7 +181,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user presses the right change gamemode button */
   @FXML
-  public void onRightButton() {
+  private void onRightButton() {
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Zen Mode");
@@ -193,7 +190,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user presses the left change gamemode button */
   @FXML
-  public void onLeftButton() {
+  private void onLeftButton() {
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Zen Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Classic Mode");
@@ -202,7 +199,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the confidence info area */
   @FXML
-  public void onConfidenceInfoEnter() {
+  private void onConfidenceInfoEnter() {
     // Shows info about confidence
     instructionsTextArea.setText(
         "Instructions-Confidence:\n"
@@ -214,7 +211,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the time info area */
   @FXML
-  public void onTimeInfoEnter() {
+  private void onTimeInfoEnter() {
     // Show the info of time setting
     instructionsTextArea.setText(
         "Instructions-Time limit:\n"
@@ -226,7 +223,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the accuracy info area */
   @FXML
-  public void onAccuracyInfoEnter() {
+  private void onAccuracyInfoEnter() {
     // Set the text of accuracy
     instructionsTextArea.setText(
         "Instructions-Accuracy:\n"
@@ -237,7 +234,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the word difficulty info area */
   @FXML
-  public void onWordDifficultyInfoEnter() {
+  private void onWordDifficultyInfoEnter() {
     // Set the text for difficulities
     instructionsTextArea.setText(
         "Instructions-Word Difficulty:\n"
@@ -249,7 +246,7 @@ public class GameModeSettingsController implements ControllerInterface {
   }
   /** This method is called when user mouse enters the gamemode info area */
   @FXML
-  public void onGameModeInfoEnter() {
+  private void onGameModeInfoEnter() {
     // Determine which gamemode is selected and set it
     switch (this.gameModeButton.getText()) {
       // Classic. Also show the info about the mode
@@ -268,31 +265,31 @@ public class GameModeSettingsController implements ControllerInterface {
   }
 
   @FXML
-  public void onConfidenceInfoExit() {
+  private void onConfidenceInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onTimeInfoExit() {
+  private void onTimeInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onAccuracyInfoExit() {
+  private void onAccuracyInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onWordDifficultyInfoExit() {
+  private void onWordDifficultyInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
 
   @FXML
-  public void onGameModeInfoExit() {
+  private void onGameModeInfoExit() {
     instructionsTextArea.setText(
         "Hover over the i to see instructions on how to play certain gamemodes or game difficulties");
   }
