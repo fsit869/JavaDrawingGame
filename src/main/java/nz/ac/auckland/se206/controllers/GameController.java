@@ -48,6 +48,7 @@ public class GameController implements ControllerInterface {
   @FXML private RadioButton brushRadioButton;
   @FXML private AnchorPane winLoseDialogue;
   @FXML private Text winLoseText;
+  @FXML private Label drawLabel;
   @FXML private Label timerLabel;
   @FXML private Label wordLabel;
   @FXML private Canvas canvas;
@@ -65,6 +66,11 @@ public class GameController implements ControllerInterface {
 
   @FXML private ImageView confidenceTick;
 
+  @FXML private ImageView confidenceCross;
+
+  @FXML private ImageView accuracyCross;
+  @FXML private ImageView clockImageView;
+  @FXML private ImageView bookImageView;
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread;
@@ -106,7 +112,12 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
-                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this);
+                timerMax,
+                timerLabel,
+                predictionTextArea,
+                gameModel,
+                GameController.this,
+                dictionaryThread);
           }
         };
     this.setupStateBindings();
@@ -133,6 +144,9 @@ public class GameController implements ControllerInterface {
 
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       // If zen mode setup view
+      this.setDrawLabel(true);
+      this.bookImageView.setVisible(false);
+      this.clockImageView.setVisible(true);
       this.giveUpButton.setText("Menu");
       this.zenNextWordButton.setVisible(true);
       this.colourPicker.setVisible(true);
@@ -143,6 +157,9 @@ public class GameController implements ControllerInterface {
       this.wordLabel.setFont(Font.font("System", 20));
     } else {
       // If classic/Hidden mode setup view
+      this.setDrawLabel(true);
+      this.bookImageView.setVisible(false);
+      this.clockImageView.setVisible(true);
       this.colourPicker.setVisible(false);
       this.zenNextWordButton.setVisible(false);
       this.giveUpButton.setText("Give up");
@@ -153,12 +170,26 @@ public class GameController implements ControllerInterface {
       this.wordLabel.setFont(Font.font("System", 20));
 
       // Enable dictonary textfield for hidden mode
-      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)
+          || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         this.definitionTextArea.setVisible(true);
         this.topAnchorPane.setPrefHeight(190);
         this.definitionTextArea.setLayoutY(170);
         this.hintButton.setVisible(true);
         this.wordLabel.setFont(Font.font("System", 25));
+        if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+          this.clockImageView.setVisible(false);
+          this.bookImageView.setVisible(true);
+          this.wordLabel.setText("whatever you want");
+          this.accuracyLabel.setVisible(false);
+          this.confidenceLabel.setVisible(false);
+          this.accuracyTick.setVisible(false);
+          this.confidenceTick.setVisible(false);
+          this.accuracyCross.setVisible(false);
+          this.confidenceCross.setVisible(false);
+          this.giveUpButton.setText("Menu");
+          this.hintButton.setVisible(false);
+        }
       } else {
         this.definitionTextArea.setVisible(false);
       }
@@ -167,8 +198,9 @@ public class GameController implements ControllerInterface {
     // Force refresh onReadyState. Since if changing gamemodes, still in readyState.
     onReadyState();
 
-    // If zen mode at the very end start the game
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    // If zen or learning mode at the very end start the game
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setCurrentGameState(GameModel.State.INGAME);
     }
   }
@@ -221,7 +253,13 @@ public class GameController implements ControllerInterface {
     this.wrongImage.setVisible(false);
 
     // Set game variables
-    this.gameModel.generateWord();
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      // This value does not matter. Prevents first word being null
+      this.gameModel.setCurrentWordToGuess("Impossible word to guess");
+    } else {
+      this.gameModel.generateWord();
+    }
+
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
 
@@ -231,8 +269,11 @@ public class GameController implements ControllerInterface {
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
     }
-
-    this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      this.wordLabel.setText(gameModel.getCurrentWordToGuess());
+    } else {
+      this.wordLabel.setText("Whatever you want");
+    }
     // If hidden mode search for definition
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
@@ -244,8 +285,9 @@ public class GameController implements ControllerInterface {
       this.disablePlayButton(false);
     }
 
-    // If zen mode dont show timer
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    // If Learning or zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)
+        || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       this.timerLabel.setText("Zen mode!");
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
@@ -258,11 +300,14 @@ public class GameController implements ControllerInterface {
     this.canvas.setDisable(false);
     this.inGamePaneMenu.getSelectionModel().select(canvasTab);
 
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.textToSpeech.speak(
           String.format("Start drawing a %s", gameModel.getCurrentWordToGuess()));
     } else {
-      this.textToSpeech.speak(String.format("Start drawing"));
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+        this.textToSpeech.speak(String.format("Start drawing"));
+      }
     }
 
     // Set to brush
@@ -285,7 +330,8 @@ public class GameController implements ControllerInterface {
     canvas.setOnMouseDragged(e -> {});
 
     // TTS the end game and win/lose diagoue only if not zen mode
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
@@ -574,7 +620,8 @@ public class GameController implements ControllerInterface {
   @FXML
   private void onGiveUpButton(ActionEvent actionEvent) {
     this.gameModel.setCurrentGameState(GameModel.State.FINISHED);
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.onMenuButton();
     }
   }
@@ -609,7 +656,7 @@ public class GameController implements ControllerInterface {
    */
   public void setAccuracyLabelMet(boolean isMet) {
     // Determine whether accuracy on condition is achieved
-    if (isMet) {
+    if (isMet && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       // Pass
       this.accuracyLabel.setTextFill(Color.GREEN);
       this.accuracyTick.setVisible(true);
@@ -676,5 +723,26 @@ public class GameController implements ControllerInterface {
    */
   public void disablePlayButton(boolean isDisabled) {
     this.playButton.setDisable(isDisabled);
+  }
+  /**
+   * Set wordLabel to have a certain text
+   *
+   * @param word word to set wordlabel to
+   */
+  public void setWordLabel(String word) {
+    this.wordLabel.setText(word);
+  }
+
+  /**
+   * Determines whether drawlabel is visible
+   *
+   * @param isDraw determines what the text should say
+   */
+  public void setDrawLabel(Boolean isDraw) {
+    if (isDraw) {
+      this.drawLabel.setText("Draw");
+    } else {
+      this.drawLabel.setText("I think It's a");
+    }
   }
 }

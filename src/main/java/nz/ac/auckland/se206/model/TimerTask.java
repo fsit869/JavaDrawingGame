@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.speech.SoundEffect;
+import nz.ac.auckland.se206.dictionary.DictionaryThread;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
@@ -24,6 +25,8 @@ public class TimerTask extends Task<Void> {
   private StringBuilder stringBuilder;
   private GameModel gameModel;
   private GameController canvasController;
+  private DictionaryThread dictonaryThread;
+  private int dictonaryCounter;
 
   /**
    * Initialize a new timer thread and anything related to it
@@ -39,7 +42,8 @@ public class TimerTask extends Task<Void> {
       Label label,
       TextArea predictionTextArea,
       GameModel gameModel,
-      GameController canvasController) {
+      GameController canvasController,
+      DictionaryThread dictonaryThread) {
     this.timerTotal = timerTotal;
     this.counter = timerTotal;
     this.timerLabel = label;
@@ -47,6 +51,8 @@ public class TimerTask extends Task<Void> {
     this.stringBuilder = new StringBuilder();
     this.gameModel = gameModel;
     this.canvasController = canvasController;
+    this.dictonaryThread = dictonaryThread;
+    this.dictonaryCounter = 0;
   }
 
   /**
@@ -82,19 +88,22 @@ public class TimerTask extends Task<Void> {
             // If zen mode dont show timer label
             if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
               timerLabel.setText("Zen mode!");
+            } else if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+              timerLabel.setText("Learning mode!");
             } else {
               timerLabel.setText(String.valueOf(counter));
             }
             predicationTextArea.setText(stringBuilder.toString());
           });
 
-      // If zen mode dont decrement timer.
-      if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+      // If zen mode or learning mode dont decrement timer.
+      if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+          && !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         counter--;
       }
-
       try {
         Thread.sleep(1000);
+        this.dictonaryCounter++;
       } catch (InterruptedException e) {
         if (this.isCancelled()) {
           break;
@@ -148,13 +157,37 @@ public class TimerTask extends Task<Void> {
     }
 
     // Check won
-    if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing()) {
+    if (getWinCondition(predictions, this.accuracy)
+        && canvasController.isStartedDrawing()
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setPlayerWon(true);
       // If zen mode dont transition
       if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
         gameModel.setCurrentGameState(GameModel.State.FINISHED);
       }
     }
+
+    // Only do this every 2 seconds. To prevent it from spamming
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)
+        && this.dictonaryCounter % 2 == 0) {
+      // Get top prediction
+      String currentTopPredictionWord = predictions.get(0).getClassName().replace("_", " ");
+      ;
+
+      // If different from previous prediction change it.
+      if (gameModel.getCurrentWordToGuess().equals(currentTopPredictionWord)) {
+        // Same word. We ignore it
+      } else {
+        // Different word. Change it start defining
+        if (canvasController.isStartedDrawing()) {
+          canvasController.setWordLabel(currentTopPredictionWord);
+          canvasController.setDrawLabel(false);
+          gameModel.setCurrentWordToGuess(currentTopPredictionWord);
+          this.dictonaryThread.startDefining();
+        }
+      }
+    }
+
     this.gameModel.setPlayerWon(false);
   }
 
@@ -195,7 +228,8 @@ public class TimerTask extends Task<Void> {
         this.canvasController.setAccuracyLabelMet(true);
 
         // Check if confidence is met
-        if (probabilityValue >= this.confidence) {
+        if (probabilityValue >= this.confidence
+            && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
           this.canvasController.setConfidenceLabelMet(true);
           this.canvasController.setAccuracyValue(probabilityValue);
           this.canvasController.setCorrectImageVisible(true);
@@ -208,6 +242,7 @@ public class TimerTask extends Task<Void> {
             this.canvasController.setCorrectImageVisible(false);
             this.canvasController.setWrongImageVisible(true);
           }
+
           return false;
         }
       }

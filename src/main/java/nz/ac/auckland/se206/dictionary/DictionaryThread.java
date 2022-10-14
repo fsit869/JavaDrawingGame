@@ -11,6 +11,8 @@ public class DictionaryThread {
   private GameModel gameModel;
   private Service<Void> backgroundService;
 
+  private String wordToDefine;
+
   /**
    * Constructor which creates the searching algorithm
    *

@@ -79,6 +79,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case CLASSIC -> gameModeButton.setText("Classic Mode");
       case HIDDEN -> gameModeButton.setText("Hidden-Word Mode");
       case ZEN -> gameModeButton.setText("Zen Mode");
+      case LEARNING -> gameModeButton.setText("Learning Mode");
     }
 
     // init accuracy combobox
@@ -173,6 +174,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case "Classic Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.CLASSIC);
       case "Hidden-Word Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.HIDDEN);
       case "Zen Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.ZEN);
+      case "Learning Mode" -> gameModel.setCurrentGameMode(GameModel.GameMode.LEARNING);
     }
   }
 
@@ -195,7 +197,8 @@ public class GameModeSettingsController implements ControllerInterface {
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Zen Mode");
-      case "Zen Mode" -> gameModeButton.setText("Classic Mode");
+      case "Zen Mode" -> gameModeButton.setText("Learning Mode");
+      case "Learning Mode" -> gameModeButton.setText("Classic Mode");
     }
     textToSpeechTask.speak(gameModeButton.getText());
   }
@@ -206,9 +209,10 @@ public class GameModeSettingsController implements ControllerInterface {
     SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     // Select game mode left
     switch (gameModeButton.getText()) {
-      case "Classic Mode" -> gameModeButton.setText("Zen Mode");
+      case "Classic Mode" -> gameModeButton.setText("Learning Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Classic Mode");
       case "Zen Mode" -> gameModeButton.setText("Hidden-Word Mode");
+      case "Learning Mode" -> gameModeButton.setText("Zen Mode");
     }
     textToSpeechTask.speak(gameModeButton.getText());
   }
@@ -281,6 +285,9 @@ public class GameModeSettingsController implements ControllerInterface {
       case "Zen Mode" -> instructionsTextArea.setText(
           "Instructions-Zen Gamemode:\n"
               + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
+      case "Learning Mode" -> instructionsTextArea.setText(
+          "Instructions-Zen Gamemode:\n"
+              + "In this mode you can draw whatever you want and you will be shown the definition of the object that the computer thinks your drawing is the closest to.");
     }
   }
 
