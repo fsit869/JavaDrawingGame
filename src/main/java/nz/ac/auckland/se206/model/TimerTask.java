@@ -136,16 +136,21 @@ public class TimerTask extends Task<Void> {
 
   /** This method handles the progress bar of the word in the game. */
   private void handlePredictionRating() {
+    // Case where player has not started drawing
     if (!canvasController.isStartedDrawing()) {
       progressBar.setProgress(0);
       directionsText.setText("You got this!");
       return;
     }
+
+    // Calculates how much of the bar should be filled
     double predRating = 1.1 - (double) generatePredictionRating() / 10;
     if (progressBar.getProgress() != predRating) {
+      // Getting closer or further to top 10?
       directionsText.setText(
           progressBar.getProgress() >= predRating ? "Getting Further..." : "Getting Closer!!!");
     } else if (progressBar.getProgress() == 1) {
+      // case where already in top 10
       directionsText.setText("Top 10!");
     }
     progressBar.setProgress(predRating);
