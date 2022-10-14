@@ -70,7 +70,7 @@ public class GameController implements ControllerInterface {
 
   private GraphicsContext graphic;
 
-  private DictionaryThread dictionaryThread;
+  private static DictionaryThread dictionaryThread;
 
   // Model layer objects
   private GameModel gameModel;
@@ -258,7 +258,7 @@ public class GameController implements ControllerInterface {
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
       this.disablePlayButton(true);
-      dictionaryThread.startDefining();
+      dictionaryThread.startDefining(gameModel.getCurrentWordToGuess());
       this.wordLabel.setText("???");
 
     } else {
@@ -697,5 +697,9 @@ public class GameController implements ControllerInterface {
    */
   public void disablePlayButton(boolean isDisabled) {
     this.playButton.setDisable(isDisabled);
+  }
+
+  public static DictionaryThread getDictionaryThread() {
+    return dictionaryThread;
   }
 }

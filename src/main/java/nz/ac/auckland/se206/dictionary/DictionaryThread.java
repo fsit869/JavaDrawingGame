@@ -11,6 +11,8 @@ public class DictionaryThread {
   private GameModel gameModel;
   private Service<Void> backgroundService;
 
+  private String wordToDefine;
+
   /**
    * Constructor which creates the searching algorithm
    *
@@ -29,8 +31,8 @@ public class DictionaryThread {
               @Override
               protected Void call() {
                 updateProgress(0, 1);
-                String query = gameModel.getCurrentWordToGuess();
-
+                String query = wordToDefine;
+                System.out.println(wordToDefine);
                 String textToDisplay;
                 try {
                   // Search for word and update to label
@@ -62,7 +64,8 @@ public class DictionaryThread {
   }
 
   /** Method that is called to start searching definition of a word and upate it to the textArea */
-  public void startDefining() {
+  public void startDefining(String query) {
+    this.wordToDefine = query;
     this.backgroundService.cancel();
     this.backgroundService.reset();
     this.backgroundService.start();

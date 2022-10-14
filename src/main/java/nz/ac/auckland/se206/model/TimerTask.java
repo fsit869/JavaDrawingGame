@@ -8,6 +8,7 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.controllers.GameController;
+import nz.ac.auckland.se206.dictionary.DictionaryThread;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
@@ -23,6 +24,8 @@ public class TimerTask extends Task<Void> {
   private StringBuilder stringBuilder;
   private GameModel gameModel;
   private GameController canvasController;
+
+  private DictionaryThread dictionaryThread;
 
   /**
    * Initialize a new timer thread and anything related to it
@@ -46,6 +49,7 @@ public class TimerTask extends Task<Void> {
     this.stringBuilder = new StringBuilder();
     this.gameModel = gameModel;
     this.canvasController = canvasController;
+    this.dictionaryThread = GameController.getDictionaryThread();
   }
 
   /**
@@ -54,7 +58,7 @@ public class TimerTask extends Task<Void> {
    * @return Void, Nothing.
    */
   @Override
-  protected Void call() {
+  protected Void call() throws TranslateException {
     while (true) {
       // Break if asked to cancel
       if (this.isCancelled()) {
@@ -93,10 +97,6 @@ public class TimerTask extends Task<Void> {
       if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
           && !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         counter--;
-      }
-      if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
-        // toDO update definition to make it the current word
-        System.out.println("hello");
       }
       try {
         Thread.sleep(1000);
@@ -158,11 +158,15 @@ public class TimerTask extends Task<Void> {
         && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setPlayerWon(true);
 
-      // If zen mode dont transition
+      // If zen or learning mode dont transition
       if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
           || !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         gameModel.setCurrentGameState(GameModel.State.FINISHED);
       }
+    }
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      String word = predictions.get(0).getClassName();
+      dictionaryThread.startDefining(word);
     }
     this.gameModel.setPlayerWon(false);
   }
