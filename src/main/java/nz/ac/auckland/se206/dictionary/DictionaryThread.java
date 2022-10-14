@@ -31,8 +31,8 @@ public class DictionaryThread {
               @Override
               protected Void call() {
                 updateProgress(0, 1);
-                String query = wordToDefine;
-                System.out.println(wordToDefine);
+                String query = gameModel.getCurrentWordToGuess();
+
                 String textToDisplay;
                 try {
                   // Search for word and update to label
@@ -64,8 +64,7 @@ public class DictionaryThread {
   }
 
   /** Method that is called to start searching definition of a word and upate it to the textArea */
-  public void startDefining(String query) {
-    this.wordToDefine = query;
+  public void startDefining() {
     this.backgroundService.cancel();
     this.backgroundService.reset();
     this.backgroundService.start();

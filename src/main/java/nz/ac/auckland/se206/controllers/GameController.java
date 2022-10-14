@@ -70,7 +70,7 @@ public class GameController implements ControllerInterface {
 
   private GraphicsContext graphic;
 
-  private static DictionaryThread dictionaryThread;
+  private DictionaryThread dictionaryThread;
 
   // Model layer objects
   private GameModel gameModel;
@@ -109,7 +109,7 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
-                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this);
+                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this, dictionaryThread);
           }
         };
     this.setupStateBindings();
@@ -237,9 +237,14 @@ public class GameController implements ControllerInterface {
     this.wrongImage.setVisible(false);
 
     // Set game variables
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      // This value does not matter. Prevents first word being null
+      this.gameModel.setCurrentWordToGuess("Impossible word to guess");
+    } else {
       this.gameModel.generateWord();
     }
+
+
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
 
@@ -258,15 +263,15 @@ public class GameController implements ControllerInterface {
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
       this.definitionTextArea.setText("Searching for definition. Please wait");
       this.disablePlayButton(true);
-      dictionaryThread.startDefining(gameModel.getCurrentWordToGuess());
+      dictionaryThread.startDefining();
       this.wordLabel.setText("???");
 
     } else {
       this.disablePlayButton(false);
     }
 
-    // If Learning mode dont show timer
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+    // If Learning or zen mode dont show timer
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING) || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       this.timerLabel.setText("Zen mode!");
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
@@ -697,9 +702,5 @@ public class GameController implements ControllerInterface {
    */
   public void disablePlayButton(boolean isDisabled) {
     this.playButton.setDisable(isDisabled);
-  }
-
-  public static DictionaryThread getDictionaryThread() {
-    return dictionaryThread;
   }
 }

@@ -38,10 +38,9 @@ public class DictionaryLookUp {
     try {
       JSONObject jsonObj = (JSONObject) new JSONTokener(jsonString).nextValue();
       String title = jsonObj.getString("title");
-
       throw new WordNotFoundException(query, title);
     } catch (ClassCastException e) {
-      e.printStackTrace();
+      System.out.println("all goods");
     }
 
     // Add all values of the entries

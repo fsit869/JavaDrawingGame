@@ -24,8 +24,8 @@ public class TimerTask extends Task<Void> {
   private StringBuilder stringBuilder;
   private GameModel gameModel;
   private GameController canvasController;
-
-  private DictionaryThread dictionaryThread;
+  private DictionaryThread dictonaryThread;
+  private int dictonaryCounter;
 
   /**
    * Initialize a new timer thread and anything related to it
@@ -41,7 +41,9 @@ public class TimerTask extends Task<Void> {
       Label label,
       TextArea predictionTextArea,
       GameModel gameModel,
-      GameController canvasController) {
+      GameController canvasController,
+      DictionaryThread dictonaryThread
+  ) {
     this.timerTotal = timerTotal;
     this.counter = timerTotal;
     this.timerLabel = label;
@@ -49,7 +51,8 @@ public class TimerTask extends Task<Void> {
     this.stringBuilder = new StringBuilder();
     this.gameModel = gameModel;
     this.canvasController = canvasController;
-    this.dictionaryThread = GameController.getDictionaryThread();
+    this.dictonaryThread = dictonaryThread;
+    this.dictonaryCounter = 0;
   }
 
   /**
@@ -58,7 +61,7 @@ public class TimerTask extends Task<Void> {
    * @return Void, Nothing.
    */
   @Override
-  protected Void call() throws TranslateException {
+  protected Void call() {
     while (true) {
       // Break if asked to cancel
       if (this.isCancelled()) {
@@ -95,11 +98,12 @@ public class TimerTask extends Task<Void> {
 
       // If zen mode or learning mode dont decrement timer.
       if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
-          && !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+          || !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         counter--;
       }
       try {
         Thread.sleep(1000);
+        this.dictonaryCounter++;
       } catch (InterruptedException e) {
         if (this.isCancelled()) {
           break;
@@ -153,21 +157,30 @@ public class TimerTask extends Task<Void> {
     }
 
     // Check won
-    if (getWinCondition(predictions, this.accuracy)
-        && canvasController.isStartedDrawing()
-        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+    if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing() && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setPlayerWon(true);
 
-      // If zen or learning mode dont transition
-      if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
-          || !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      // If zen mode dont transition
+      if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
         gameModel.setCurrentGameState(GameModel.State.FINISHED);
       }
     }
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
-      String word = predictions.get(0).getClassName();
-      dictionaryThread.startDefining(word);
+
+    // Only do this every 2 seconds. To prevent it from spamming
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING) && this.dictonaryCounter%2==0) {
+      // Get top prediction
+      String currentTopPredictionWord = predictions.get(0).getClassName().replace("_", " ");;
+
+      // If different from previous prediction change it.
+      if (gameModel.getCurrentWordToGuess().equals(currentTopPredictionWord)) {
+        // Same word. We ignore it
+      } else {
+        // Different word. Change it start defining
+        gameModel.setCurrentWordToGuess(currentTopPredictionWord);
+        this.dictonaryThread.startDefining();
+      }
     }
+
     this.gameModel.setPlayerWon(false);
   }
 

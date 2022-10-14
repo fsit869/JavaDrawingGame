@@ -90,7 +90,7 @@ public class GameModel {
     }
   }
 
-  /** Generate a new word for the game */
+  /** Generate a new word for the game AND SET IT */
   public void generateWord() {
     // Need a random number for randomisation of difficulty
     Random random = new Random();
