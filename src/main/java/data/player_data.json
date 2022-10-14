@@ -4,12 +4,12 @@
   "profilePicturePath": "file:/D:/Files/UniWork/Workspace/206/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
   "statsData": {
     "bestTime": 4,
-    "bestAccuracy": 6,
-    "totalGames": 14,
-    "wins": 2,
-    "losses": 12,
+    "bestAccuracy": 14,
+    "totalGames": 23,
+    "wins": 8,
+    "losses": 15,
     "currentStreak": 0,
-    "bestStreak": 1,
+    "bestStreak": 4,
     "badgeList": [
       {
         "name": "Games Played",
@@ -20,31 +20,46 @@
         "name": "Best Time",
         "description": "Finished drawing in less than 5 secs",
         "tier": "GOLD"
+      },
+      {
+        "name": "Best Time",
+        "description": "Finished drawing in less than 20 secs",
+        "tier": "SILVER"
+      },
+      {
+        "name": "Best Time",
+        "description": "Finished drawing in less than 30 secs",
+        "tier": "BRONZE"
+      },
+      {
+        "name": "Win Streak",
+        "description": "3-4 win streak",
+        "tier": "BRONZE"
+      },
+      {
+        "name": "Games Played",
+        "description": "20+ Games played",
+        "tier": "GOLD"
       }
     ]
   },
   "wordsData": {
     "wordsNotPlayed": {
       "E": [
-        "airplane",
         "ant",
         "anvil",
         "backpack",
         "bed",
-        "bee",
         "bench",
         "binoculars",
         "bowtie",
-        "bread",
         "bridge",
-        "broom",
         "bucket",
         "cannon",
         "car",
         "carrot",
         "cat",
         "chair",
-        "chandelier",
         "clock",
         "diamond",
         "donut",
@@ -55,14 +70,11 @@
         "finger",
         "fish",
         "fork",
-        "giraffe",
         "grapes",
-        "grass",
         "hat",
         "helicopter",
         "hexagon",
         "house",
-        "ice cream",
         "key",
         "knife",
         "lantern",
@@ -73,7 +85,6 @@
         "paintbrush",
         "paper clip",
         "pillow",
-        "pineapple",
         "pizza",
         "rainbow",
         "scissors",
@@ -84,25 +95,34 @@
         "snail",
         "snowman",
         "stairs",
-        "star",
         "syringe",
         "table",
         "teddy-bear",
         "telephone",
-        "television",
         "tennis racquet",
-        "traffic light",
-        "tree",
-        "triangle",
         "umbrella",
         "vase",
-        "wheel",
         "wine bottle"
       ],
       "H": [],
       "M": []
     },
     "wordsPlayed": [
+      "chandelier",
+      "broom",
+      "wheel",
+      "airplane",
+      "bread",
+      "giraffe",
+      "traffic light",
+      "ice cream",
+      "grass",
+      "tree",
+      "star",
+      "pineapple",
+      "bee",
+      "television",
+      "triangle",
       "flower",
       "birthday cake",
       "peanut",
@@ -189,14 +209,20 @@
   "username": "gf",
   "profilePicturePath": "file:/D:/Files/UniWork/Workspace/206/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
   "statsData": {
-    "bestTime": 60,
-    "bestAccuracy": 0,
-    "totalGames": 0,
-    "wins": 0,
-    "losses": 0,
-    "currentStreak": 0,
-    "bestStreak": 0,
-    "badgeList": []
+    "bestTime": 6,
+    "bestAccuracy": 3,
+    "totalGames": 2,
+    "wins": 1,
+    "losses": 1,
+    "currentStreak": 1,
+    "bestStreak": 1,
+    "badgeList": [
+      {
+        "name": "Best Time",
+        "description": "Finished drawing in less than 20 secs",
+        "tier": "SILVER"
+      }
+    ]
   },
   "wordsData": {
     "wordsNotPlayed": {
@@ -305,7 +331,6 @@
         "pizza",
         "rabbit",
         "rainbow",
-        "scissors",
         "scorpion",
         "screwdriver",
         "sheep",
@@ -324,7 +349,6 @@
         "sun",
         "swan",
         "sword",
-        "syringe",
         "table",
         "teapot",
         "teddy-bear",
@@ -337,7 +361,6 @@
         "traffic light",
         "tree",
         "triangle",
-        "umbrella",
         "vase",
         "wheel",
         "windmill",
@@ -348,6 +371,9 @@
       "M": []
     },
     "wordsPlayed": [
+      "scissors",
+      "umbrella",
+      "syringe",
       "key",
       "hot dog"
     ]

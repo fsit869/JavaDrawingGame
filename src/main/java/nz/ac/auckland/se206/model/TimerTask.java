@@ -83,20 +83,10 @@ public class TimerTask extends Task<Void> {
           () -> {
             try {
               handlePredictions();
+              handlePredictionRating();
             } catch (TranslateException e) {
               e.printStackTrace();
             }
-            double predRating = 1.1 - (double) generatePredictionRating() / 10;
-            if (progressBar.getProgress() != predRating) {
-              directionsText.setText(
-                  progressBar.getProgress() >= predRating
-                      ? "Getting Further..."
-                      : "Getting Closer!!!");
-            } else if (predRating == 0.1) {
-              directionsText.setText("Top 10!");
-            }
-            progressBar.setProgress(predRating);
-
             // If zen mode dont show timer label
             if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
               timerLabel.setText("Zen mode!");
@@ -142,6 +132,23 @@ public class TimerTask extends Task<Void> {
   public void succeeded() {
     updateMessage("The task finishedd successfully.");
     super.succeeded();
+  }
+
+  /** This method handles the progress bar of the word in the game. */
+  private void handlePredictionRating() {
+    if (!canvasController.isStartedDrawing()) {
+      progressBar.setProgress(0);
+      directionsText.setText("You got this!");
+      return;
+    }
+    double predRating = 1.1 - (double) generatePredictionRating() / 10;
+    if (progressBar.getProgress() != predRating) {
+      directionsText.setText(
+          progressBar.getProgress() >= predRating ? "Getting Further..." : "Getting Closer!!!");
+    } else if (predRating == 0.1) {
+      directionsText.setText("Top 10!");
+    }
+    progressBar.setProgress(predRating);
   }
 
   /**
