@@ -5,9 +5,9 @@
   "statsData": {
     "bestTime": 4,
     "bestAccuracy": 6,
-    "totalGames": 14,
+    "totalGames": 17,
     "wins": 2,
-    "losses": 12,
+    "losses": 15,
     "currentStreak": 0,
     "bestStreak": 1,
     "badgeList": [
@@ -28,7 +28,6 @@
       "E": [
         "airplane",
         "ant",
-        "anvil",
         "backpack",
         "bed",
         "bee",
@@ -45,10 +44,8 @@
         "cat",
         "chair",
         "chandelier",
-        "clock",
         "diamond",
         "donut",
-        "door",
         "duck",
         "eye",
         "fan",
@@ -95,14 +92,17 @@
         "tree",
         "triangle",
         "umbrella",
-        "vase",
-        "wheel",
-        "wine bottle"
+        "wheel"
       ],
       "H": [],
       "M": []
     },
     "wordsPlayed": [
+      "clock",
+      "vase",
+      "door",
+      "wine bottle",
+      "anvil",
       "flower",
       "birthday cake",
       "peanut",
