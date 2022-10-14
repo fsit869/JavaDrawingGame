@@ -6,7 +6,9 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.GameController;
 import nz.ac.auckland.se206.dictionary.DictionaryThread;
 
@@ -16,7 +18,8 @@ public class TimerTask extends Task<Void> {
 
   private int accuracy;
   private int confidence;
-
+  private Text directionsText;
+  private ProgressBar progressBar;
   private int timerTotal;
   private int counter;
   private Label timerLabel;
@@ -37,12 +40,16 @@ public class TimerTask extends Task<Void> {
    * @param canvasController The canvas to get image from
    */
   public TimerTask(
+      ProgressBar progressBar,
+      Text directionsText,
       int timerTotal,
       Label label,
       TextArea predictionTextArea,
       GameModel gameModel,
       GameController canvasController,
       DictionaryThread dictonaryThread) {
+    this.progressBar = progressBar;
+    this.directionsText = directionsText;
     this.timerTotal = timerTotal;
     this.counter = timerTotal;
     this.timerLabel = label;
@@ -80,10 +87,10 @@ public class TimerTask extends Task<Void> {
           () -> {
             try {
               handlePredictions();
+              handlePredictionRating();
             } catch (TranslateException e) {
               e.printStackTrace();
             }
-            generatePredictionRating();
             // If zen mode dont show timer label
             if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
               timerLabel.setText("Zen mode!");
@@ -132,6 +139,28 @@ public class TimerTask extends Task<Void> {
   public void succeeded() {
     updateMessage("The task finishedd successfully.");
     super.succeeded();
+  }
+
+  /** This method handles the progress bar of the word in the game. */
+  private void handlePredictionRating() {
+    // Case where player has not started drawing
+    if (!canvasController.isStartedDrawing()) {
+      progressBar.setProgress(0);
+      directionsText.setText("You got this!");
+      return;
+    }
+
+    // Calculates how much of the bar should be filled
+    double predRating = 1.1 - (double) generatePredictionRating() / 10;
+    if (progressBar.getProgress() != predRating) {
+      // Getting closer or further to top 10?
+      directionsText.setText(
+          progressBar.getProgress() >= predRating ? "Getting Further..." : "Getting Closer!!!");
+    } else if (progressBar.getProgress() == 1) {
+      // case where already in top 10
+      directionsText.setText("Top 10!");
+    }
+    progressBar.setProgress(predRating);
   }
 
   /**

@@ -65,11 +65,18 @@ public class GameController implements ControllerInterface {
 
   @FXML private ImageView confidenceTick;
 
+  @FXML private ProgressBar progressBar;
+
+  @FXML private Text directionText;
+
   @FXML private ImageView confidenceCross;
 
   @FXML private ImageView accuracyCross;
+
   @FXML private ImageView clockImageView;
+
   @FXML private ImageView bookImageView;
+
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread;
@@ -111,6 +118,8 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
+                progressBar,
+                directionText,
                 timerMax,
                 timerLabel,
                 predictionTextArea,
