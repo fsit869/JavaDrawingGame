@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +17,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This class is responsible for selecting which profile to play */
 public class SelectProfilesController implements ControllerInterface {
@@ -39,12 +42,14 @@ public class SelectProfilesController implements ControllerInterface {
   private boolean deleteMode;
   private ProfileFactory factory;
   private GameModel gameModel;
+  private TextToSpeechTask textToSpeechTask;
 
   /** Initialises the controller, sets the factory and the profiles */
   public void initialize() {
     setButtonsArray();
     setCirclesArray();
     this.deleteMode = false;
+    this.textToSpeechTask = new TextToSpeechTask();
     // Initialise the profile factory
     try {
       this.factory = new ProfileFactory();
@@ -159,6 +164,9 @@ public class SelectProfilesController implements ControllerInterface {
       current.setDisable(true);
     } else {
       onSelectedProfile(current.getText());
+      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+      int randomIndex = new Random().nextInt(greetings.length);
+      textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
     }
   }
 

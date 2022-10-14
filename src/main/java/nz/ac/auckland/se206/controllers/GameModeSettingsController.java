@@ -8,11 +8,12 @@ import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.SettingsData;
+import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 public class GameModeSettingsController implements ControllerInterface {
 
   private GameModel gameModel;
-
+  private TextToSpeechTask textToSpeechTask;
   private ProfileFactory profileFactory;
   private String[] confidenceDifficulties = {"Easy", "Medium", "Hard", "Master"};
 
@@ -36,6 +37,7 @@ public class GameModeSettingsController implements ControllerInterface {
   public void initialize() {
     doRefresh();
     // init comboboxes items
+    this.textToSpeechTask = new TextToSpeechTask();
     confidenceComboBox.getItems().addAll(confidenceDifficulties);
     timeComboBox.getItems().addAll(timeDifficulties);
     accuracyComboBox.getItems().addAll(accuracyDifficulties);
@@ -179,27 +181,32 @@ public class GameModeSettingsController implements ControllerInterface {
     setGameSettings();
     setGameMode();
     profileFactory.saveProfile(gameModel.getProfile());
+    textToSpeechTask.speak("Lesh go");
     gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
   }
 
   /** This method is called when user presses the right change gamemode button */
   @FXML
   private void onRightButton() {
+    // Select game mode right
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Zen Mode");
       case "Zen Mode" -> gameModeButton.setText("Classic Mode");
     }
+    textToSpeechTask.speak(gameModeButton.getText());
   }
 
   /** This method is called when user presses the left change gamemode button */
   @FXML
   private void onLeftButton() {
+    // Select game mode left
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Zen Mode");
       case "Hidden-Word Mode" -> gameModeButton.setText("Classic Mode");
       case "Zen Mode" -> gameModeButton.setText("Hidden-Word Mode");
     }
+    textToSpeechTask.speak(gameModeButton.getText());
   }
 
   /** This method is called when user mouse enters the confidence info area */
