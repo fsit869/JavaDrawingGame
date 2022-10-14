@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,7 +30,7 @@ public class SelectProfilesController implements ControllerInterface {
 
   @FXML private Circle circleSix;
   @FXML private ToggleButton deleteButton;
-  @FXML private Button guest;
+  @FXML private Button profileSix;
   @FXML private Button profileOne;
   @FXML private Button profileTwo;
   @FXML private Button profileThree;
@@ -77,13 +76,28 @@ public class SelectProfilesController implements ControllerInterface {
 
   /** Sets the text of the buttons, grabbing the usernames from the player data */
   public void setButtons() {
+    boolean isVacant = false;
     String prepend = "";
     if (this.deleteMode) {
       prepend = "DELETE ";
     }
-    for (int i = 0; i < this.profiles.size() - 1; i++) {
+    for (int i = 0; i < this.profiles.size(); i++) {
+      // Makes sure the profiles are visible
+      this.arrButtons[i].setVisible(true);
+      this.arrButtons[i].setDisable(false);
+      this.arrCircles[i].setVisible(true);
+      this.arrCircles[i].setDisable(false);
+
+      // Check if the non-profiles have been reached
+      if (isVacant) {
+        this.arrButtons[i].setVisible(false);
+        this.arrButtons[i].setDisable(true);
+        this.arrCircles[i].setVisible(false);
+        this.arrCircles[i].setDisable(true);
+      }
+
       // Check if there is a profile in the spot
-      if (!profiles.get(i).getUsername().equals("")) {
+      if (!profiles.get(i).getUsername().equals("") && !isVacant) {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
         try {
           Image image =
@@ -101,6 +115,7 @@ public class SelectProfilesController implements ControllerInterface {
           this.arrCircles[i].setFill(new ImagePattern(image));
         }
       } else {
+        isVacant = true;
         // If the profile doesn't exist, default images are shown.
         Image image =
             new Image(
@@ -112,15 +127,6 @@ public class SelectProfilesController implements ControllerInterface {
         this.arrButtons[i].setDisable(this.deleteMode);
       }
     }
-    // Configuring the guest profile
-    this.arrButtons[5].setText(profiles.get(5).getUsername());
-    this.arrButtons[5].setDisable(this.deleteMode);
-    this.arrCircles[5].setFill(
-        new ImagePattern(
-            new Image(
-                this.deleteMode
-                    ? "file:src/main/resources/images/icons/invalid.png"
-                    : "file:src/main/resources/images/default_profile_picture.png")));
   }
 
   /** Configures the circles for the profiles into an array */
@@ -144,7 +150,7 @@ public class SelectProfilesController implements ControllerInterface {
     this.arrButtons[2] = profileThree;
     this.arrButtons[3] = profileFour;
     this.arrButtons[4] = profileFive;
-    this.arrButtons[5] = guest;
+    this.arrButtons[5] = profileSix;
   }
 
   /////////////////////

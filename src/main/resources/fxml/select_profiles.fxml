@@ -80,7 +80,7 @@
                                        </padding>
                                             </Button>
                                     <Circle fx:id="circleFive" fill="DODGERBLUE" layoutX="54.0" layoutY="326.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                            <Button fx:id="guest" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="369.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.68" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Guest">
+                                            <Button fx:id="profileSix" alignment="BASELINE_LEFT" layoutX="36.0" layoutY="369.0" mnemonicParsing="false" onAction="#onProfileButton" opacity="0.68" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: yellow; -fx-background-radius: 200;" text="Guest">
                                                 <font>
                                                     <Font size="24.0" />
                                                 </font>
