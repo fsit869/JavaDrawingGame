@@ -42,8 +42,7 @@ public class TimerTask extends Task<Void> {
       TextArea predictionTextArea,
       GameModel gameModel,
       GameController canvasController,
-      DictionaryThread dictonaryThread
-  ) {
+      DictionaryThread dictonaryThread) {
     this.timerTotal = timerTotal;
     this.counter = timerTotal;
     this.timerLabel = label;
@@ -98,7 +97,7 @@ public class TimerTask extends Task<Void> {
 
       // If zen mode or learning mode dont decrement timer.
       if (!gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
-          || !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+          && !gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
         counter--;
       }
       try {
@@ -157,7 +156,9 @@ public class TimerTask extends Task<Void> {
     }
 
     // Check won
-    if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing() && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+    if (getWinCondition(predictions, this.accuracy)
+        && canvasController.isStartedDrawing()
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setPlayerWon(true);
 
       // If zen mode dont transition
@@ -167,9 +168,11 @@ public class TimerTask extends Task<Void> {
     }
 
     // Only do this every 2 seconds. To prevent it from spamming
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING) && this.dictonaryCounter%2==0) {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)
+        && this.dictonaryCounter % 2 == 0) {
       // Get top prediction
-      String currentTopPredictionWord = predictions.get(0).getClassName().replace("_", " ");;
+      String currentTopPredictionWord = predictions.get(0).getClassName().replace("_", " ");
+      ;
 
       // If different from previous prediction change it.
       if (gameModel.getCurrentWordToGuess().equals(currentTopPredictionWord)) {
