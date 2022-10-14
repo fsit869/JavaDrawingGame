@@ -145,7 +145,7 @@ public class TimerTask extends Task<Void> {
     if (progressBar.getProgress() != predRating) {
       directionsText.setText(
           progressBar.getProgress() >= predRating ? "Getting Further..." : "Getting Closer!!!");
-    } else if (predRating == 0.1) {
+    } else if (progressBar.getProgress() == 1) {
       directionsText.setText("Top 10!");
     }
     progressBar.setProgress(predRating);
