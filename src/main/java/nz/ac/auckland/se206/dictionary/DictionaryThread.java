@@ -41,7 +41,6 @@ public class DictionaryThread {
                   gameController.disablePlayButton(false);
                 } catch (WordNotFoundException e) {
                   // Word not found
-                  e.printStackTrace();
                   textToDisplay = "No definitions found for " + query;
                 } catch (Exception e) {
                   // Unknown error
