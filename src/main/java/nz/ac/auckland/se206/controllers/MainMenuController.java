@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -93,6 +94,6 @@ public class MainMenuController implements ControllerInterface {
   /** This method is called when user clicks to exit the game */
   @FXML
   private void onExitButton() {
-    System.exit(0);
+    Platform.exit();
   }
 }

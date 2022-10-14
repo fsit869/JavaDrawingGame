@@ -1,11 +1,12 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.FxmlSwitcher;
+import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.profiles.ProfileFactory;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -29,14 +30,24 @@ public class App extends Application {
     stage.setTitle("Quick Draw 206 version!");
     stage.getIcons().add(new Image("images/pencil.png"));
     stage.setResizable(false);
-    // Force close all threads
-    stage.setOnCloseRequest(
-        new EventHandler<WindowEvent>() {
-          @Override
-          public void handle(WindowEvent event) {
-            System.exit(0);
-          }
-        });
+
     stage.show();
+  }
+
+  /**
+   * Called when app is closed. Ensures profile is saved before closing
+   */
+  @Override
+  public void stop() {
+    try {
+      // Save the profile
+      ProfileFactory profileFactory = new ProfileFactory();
+      profileFactory.saveProfile(GameModel.getInstance().getProfile());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    // Exit app
+    System.exit(0);
   }
 }
