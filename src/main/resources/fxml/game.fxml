@@ -34,7 +34,7 @@
          <children>
             <Label fx:id="wordLabel" layoutX="342.0" layoutY="120.0" text="wordToDraw" textAlignment="CENTER">
                <graphic>
-                  <Label text="Draw ">
+                  <Label fx:id="drawLabel" text="Draw ">
                      <graphic>
                         <ImageView fx:id="drawHintImageView" fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -53,7 +53,7 @@
                   <Font size="20.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="clockImageView" fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/stopwatch.png" />
                      </image>
@@ -111,6 +111,11 @@
                </font>
             </Label>
             <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" visible="false" wrapText="true" />
+            <ImageView fx:id="bookImageView" fitHeight="47.0" fitWidth="45.0" layoutX="65.0" layoutY="113.0">
+               <image>
+                  <Image url="@../images/book2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="304.0" prefWidth="602.0">
@@ -233,7 +238,7 @@
                   <Image url="@../images/cross.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="436.0" layoutY="280.0">
+            <ImageView fx:id="accuracyCross" fitHeight="17.0" fitWidth="15.0" layoutX="436.0" layoutY="280.0">
                <image>
                   <Image url="@../images/icons/remove.png" />
                </image>
@@ -243,7 +248,7 @@
                   <Image url="@../images/icons/check.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="562.0" layoutY="280.0">
+            <ImageView fx:id="confidenceCross" fitHeight="17.0" fitWidth="15.0" layoutX="562.0" layoutY="280.0">
                <image>
                   <Image url="@../images/icons/remove.png" />
                </image>
