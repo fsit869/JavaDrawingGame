@@ -11,7 +11,6 @@ import nz.ac.auckland.se206.speech.TextToSpeechTask;
 public class SettingsController implements ControllerInterface {
 
   private GameModel gameModel;
-  private TextToSpeechTask textToSpeechTask;
   private ProfileFactory profileFactory;
   @FXML private Button ttsOnButton;
   @FXML private Button ttsOffButton;
@@ -28,7 +27,6 @@ public class SettingsController implements ControllerInterface {
 
     // Get game settings
     this.gameModel = GameModel.getInstance();
-    this.textToSpeechTask = new TextToSpeechTask();
 
     // Set initial state of TTS buttons
     if (gameModel.getProfile().getSettingsData().getTts()) {
@@ -42,7 +40,6 @@ public class SettingsController implements ControllerInterface {
 
   @Override
   public void refresh() {
-    textToSpeechTask.speak("Ya settings");
   }
 
   private void switchTts() {

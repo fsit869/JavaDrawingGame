@@ -57,7 +57,6 @@ public class GameModeSettingsController implements ControllerInterface {
   @Override
   public void refresh() {
     doRefresh();
-    textToSpeechTask.speak("Configure your level");
   }
 
   /** On the instance of a refresh this function is run. */

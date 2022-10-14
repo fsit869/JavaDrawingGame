@@ -25,7 +25,7 @@ public class MainMenuController implements ControllerInterface {
   @FXML private Button exitButton;
 
   private GameModel gameModel;
-  private TextToSpeechTask textToSpeechTask;
+
 
   /** On the start of the controller this function is run. */
   public void initialize() {
@@ -37,7 +37,6 @@ public class MainMenuController implements ControllerInterface {
     exitButton.toBack();
     // Setup required objects
     this.gameModel = GameModel.getInstance();
-    this.textToSpeechTask = new TextToSpeechTask();
     profileLabel.setText(gameModel.getProfile().getUsername());
     String defaultUrl = profileImageView.getImage().getUrl();
 
@@ -58,9 +57,6 @@ public class MainMenuController implements ControllerInterface {
   @Override
   public void refresh() {
     initialize();
-    String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
-    int randomIndex = new Random().nextInt(greetings.length);
-    textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
   }
 
   /////////////////////
