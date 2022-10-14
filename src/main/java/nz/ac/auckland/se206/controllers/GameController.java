@@ -29,6 +29,7 @@ import nz.ac.auckland.se206.model.TimerTask;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
 import nz.ac.auckland.se206.profiles.entities.badges.BadgeFactory;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the game. */
@@ -288,12 +289,14 @@ public class GameController implements ControllerInterface {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
+        SoundEffect.playEffectOverride(SoundEffect.SOUND.WIN);
         this.winLoseText.setFill(Color.GREEN);
         this.correctImage.setVisible(true);
         this.wrongImage.setVisible(false);
       } else {
         this.textToSpeech.speak("Nice Try");
         this.winLoseText.setText("You Lose");
+        SoundEffect.playEffectOverride(SoundEffect.SOUND.LOSE);
         this.winLoseText.setFill(Color.RED);
         this.correctImage.setVisible(false);
         this.wrongImage.setVisible(true);

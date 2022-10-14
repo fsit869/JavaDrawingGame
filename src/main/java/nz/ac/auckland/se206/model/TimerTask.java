@@ -8,6 +8,7 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.controllers.GameController;
+import nz.ac.auckland.se206.speech.SoundEffect;
 
 /** Represents a timer on a different task and any actions to be done on it. */
 public class TimerTask extends Task<Void> {
@@ -149,7 +150,6 @@ public class TimerTask extends Task<Void> {
     // Check won
     if (getWinCondition(predictions, this.accuracy) && canvasController.isStartedDrawing()) {
       this.gameModel.setPlayerWon(true);
-
       // If zen mode dont transition
       if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
         gameModel.setCurrentGameState(GameModel.State.FINISHED);

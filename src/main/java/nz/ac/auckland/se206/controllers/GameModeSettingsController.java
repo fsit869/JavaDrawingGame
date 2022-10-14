@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.SettingsData;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 public class GameModeSettingsController implements ControllerInterface {
@@ -178,6 +179,7 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user presses the start game button */
   @FXML
   private void onStartButton() throws IOException {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     setGameSettings();
     setGameMode();
     profileFactory.saveProfile(gameModel.getProfile());
@@ -188,6 +190,7 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user presses the right change gamemode button */
   @FXML
   private void onRightButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     // Select game mode right
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Hidden-Word Mode");
@@ -200,6 +203,7 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user presses the left change gamemode button */
   @FXML
   private void onLeftButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     // Select game mode left
     switch (gameModeButton.getText()) {
       case "Classic Mode" -> gameModeButton.setText("Zen Mode");
@@ -313,6 +317,7 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
   private void onBackToMenuButton() throws IOException {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     setGameMode();
     setGameSettings();
     profileFactory.saveProfile(gameModel.getProfile());

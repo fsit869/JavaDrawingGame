@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.entities.Profile;
 import nz.ac.auckland.se206.profiles.entities.StatsData;
 import nz.ac.auckland.se206.profiles.entities.badges.Badge;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the profile stats view */
@@ -335,6 +336,7 @@ public class ProfileStatsController implements ControllerInterface {
    */
   @FXML
   private void onBackToMenuButton(ActionEvent actionEvent) {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
 
@@ -345,6 +347,7 @@ public class ProfileStatsController implements ControllerInterface {
    */
   @FXML
   private void onFullListButton(ActionEvent actionEvent) {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     // Box info
     Alert fullWordDialogue = new Alert(Alert.AlertType.INFORMATION);
     fullWordDialogue.setTitle("Past words");

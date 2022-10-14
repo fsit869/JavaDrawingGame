@@ -7,7 +7,11 @@ public class SoundEffect {
   /** Register sound effects as enums with values */
   public enum SOUND {
     TEST("/sounds/mixkit-alert-quick-chime-766.wav"),
-    TEST_TWO("/sounds/mixkit-security-facility-breach-alarm-994.wav");
+    TEST_TWO("/sounds/mixkit-security-facility-breach-alarm-994.wav"),
+    CLICK("/sounds/mixkit-select-click-1109.wav"),
+    WIN("/sounds/mixkit-achievement-bell-600.wav"),
+    LOSE("/sounds/mixkit-losing-bleeps-2026.wav")
+    ;
 
     private final String SOUND_LOCATION;
 

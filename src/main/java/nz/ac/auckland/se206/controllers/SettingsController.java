@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This class is responsible for selecting settings */
@@ -64,6 +65,7 @@ public class SettingsController implements ControllerInterface {
   @FXML
   private void onTtsOnButton() {
     if (gameModel.getProfile().getSettingsData().getTts() == false) {
+      SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
       switchTts();
     }
   }
@@ -71,6 +73,7 @@ public class SettingsController implements ControllerInterface {
   @FXML
   private void onTtsOffButton() {
     if (gameModel.getProfile().getSettingsData().getTts() == true) {
+      SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
       switchTts();
     }
   }
@@ -78,6 +81,7 @@ public class SettingsController implements ControllerInterface {
   /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
   private void onBackToMenuButton() throws IOException {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }
