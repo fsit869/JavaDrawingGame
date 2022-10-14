@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.model.GameModel;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This is the controller for the main menu */
@@ -66,30 +67,35 @@ public class MainMenuController implements ControllerInterface {
   /** This method is called when user clicks start to switch to the canvas view */
   @FXML
   private void onStartButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     gameModel.setCurrentViewState(GameModel.ViewState.GAMEMODESETTINGS);
   }
 
   /** This method is called when user clicks the settings button to go to settings */
   @FXML
   private void onSettingsButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     gameModel.setCurrentViewState(GameModel.ViewState.SETTINGS);
   }
 
   /** This method is called when user clicks to change profile picture */
   @FXML
   private void onChangeProfileButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
 
   /** This method is called when user clicks to see their stats */
   @FXML
   private void onStatsButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     gameModel.setCurrentViewState(GameModel.ViewState.PROFILESTATS);
   }
 
   /** This method is called when user clicks to exit the game */
   @FXML
   private void onExitButton() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     Platform.exit();
   }
 }

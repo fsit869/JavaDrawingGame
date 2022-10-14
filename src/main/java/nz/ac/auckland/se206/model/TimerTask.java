@@ -10,6 +10,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.GameController;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.dictionary.DictionaryThread;
 
 /** Represents a timer on a different task and any actions to be done on it. */
@@ -189,7 +190,6 @@ public class TimerTask extends Task<Void> {
         && canvasController.isStartedDrawing()
         && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.gameModel.setPlayerWon(true);
-
       // If zen mode dont transition
       if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
         gameModel.setCurrentGameState(GameModel.State.FINISHED);

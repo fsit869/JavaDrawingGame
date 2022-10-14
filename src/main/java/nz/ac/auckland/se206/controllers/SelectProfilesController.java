@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This class is responsible for selecting which profile to play */
@@ -157,6 +158,7 @@ public class SelectProfilesController implements ControllerInterface {
    */
   @FXML
   private void onProfileButton(ActionEvent actionEvent) {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     Button current = (Button) actionEvent.getTarget();
     // Check if button is creating new profile
     if (this.deleteMode) {
@@ -218,6 +220,7 @@ public class SelectProfilesController implements ControllerInterface {
   /** On toggle changes the page into deleteMode or toggles it off */
   @FXML
   private void onDeleteModeToggle() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     this.deleteMode = !deleteMode;
     promptText.setText(this.deleteMode ? "Delete a Profile!" : "Select a Profile!");
     setButtons();

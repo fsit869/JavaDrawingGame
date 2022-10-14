@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.profiles.entities.Profile;
+import nz.ac.auckland.se206.speech.SoundEffect;
 
 /** This class is responsible for creating a new profile */
 public class NewProfileController implements ControllerInterface {
@@ -47,6 +48,7 @@ public class NewProfileController implements ControllerInterface {
   /** This method is called when user clicks to choose a profile picture */
   @FXML
   private void onChooseProfilePicture() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     // Open file load dialogue
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
@@ -66,6 +68,7 @@ public class NewProfileController implements ControllerInterface {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onCreateNewProfile() throws IOException {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     String username = usernameTextField.getText().trim();
     if (verifyUsername(username)) {
       // Obtain the profile path
@@ -130,6 +133,7 @@ public class NewProfileController implements ControllerInterface {
   /** This method is called when user clicks to create a new profile */
   @FXML
   private void onBackToProfiles() {
+    SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
   }
 }
