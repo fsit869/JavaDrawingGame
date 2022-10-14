@@ -179,8 +179,12 @@ public class TimerTask extends Task<Void> {
         // Same word. We ignore it
       } else {
         // Different word. Change it start defining
-        gameModel.setCurrentWordToGuess(currentTopPredictionWord);
-        this.dictonaryThread.startDefining();
+        if (canvasController.isStartedDrawing()) {
+          canvasController.setWordLabel(currentTopPredictionWord);
+          canvasController.setDrawLabel(false);
+          gameModel.setCurrentWordToGuess(currentTopPredictionWord);
+          this.dictonaryThread.startDefining();
+        }
       }
     }
 

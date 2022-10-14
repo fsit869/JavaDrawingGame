@@ -47,6 +47,7 @@ public class GameController implements ControllerInterface {
   @FXML private RadioButton brushRadioButton;
   @FXML private AnchorPane winLoseDialogue;
   @FXML private Text winLoseText;
+  @FXML private Label drawLabel;
   @FXML private Label timerLabel;
   @FXML private Label wordLabel;
   @FXML private Canvas canvas;
@@ -67,7 +68,8 @@ public class GameController implements ControllerInterface {
   @FXML private ImageView confidenceCross;
 
   @FXML private ImageView accuracyCross;
-
+  @FXML private ImageView clockImageView;
+  @FXML private ImageView bookImageView;
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread;
@@ -141,6 +143,9 @@ public class GameController implements ControllerInterface {
 
     if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       // If zen mode setup view
+      this.setDrawLabel(true);
+      this.bookImageView.setVisible(false);
+      this.clockImageView.setVisible(true);
       this.giveUpButton.setText("Menu");
       this.zenNextWordButton.setVisible(true);
       this.colourPicker.setVisible(true);
@@ -151,6 +156,9 @@ public class GameController implements ControllerInterface {
       this.wordLabel.setFont(Font.font("System", 20));
     } else {
       // If classic/Hidden mode setup view
+      this.setDrawLabel(true);
+      this.bookImageView.setVisible(false);
+      this.clockImageView.setVisible(true);
       this.colourPicker.setVisible(false);
       this.zenNextWordButton.setVisible(false);
       this.giveUpButton.setText("Give up");
@@ -169,6 +177,8 @@ public class GameController implements ControllerInterface {
         this.hintButton.setVisible(true);
         this.wordLabel.setFont(Font.font("System", 25));
         if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+          this.clockImageView.setVisible(false);
+          this.bookImageView.setVisible(true);
           this.wordLabel.setText("whatever you want");
           this.accuracyLabel.setVisible(false);
           this.confidenceLabel.setVisible(false);
@@ -710,5 +720,26 @@ public class GameController implements ControllerInterface {
    */
   public void disablePlayButton(boolean isDisabled) {
     this.playButton.setDisable(isDisabled);
+  }
+  /**
+   * Set wordLabel to have a certain text
+   *
+   * @param word word to set wordlabel to
+   */
+  public void setWordLabel(String word) {
+    this.wordLabel.setText(word);
+  }
+
+  /**
+   * Determines whether drawlabel is visible
+   *
+   * @param isDraw determines what the text should say
+   */
+  public void setDrawLabel(Boolean isDraw) {
+    if (isDraw) {
+      this.drawLabel.setText("Draw");
+    } else {
+      this.drawLabel.setText("I think It's a");
+    }
   }
 }
