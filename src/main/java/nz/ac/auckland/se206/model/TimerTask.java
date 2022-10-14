@@ -224,7 +224,8 @@ public class TimerTask extends Task<Void> {
         this.canvasController.setAccuracyLabelMet(true);
 
         // Check if confidence is met
-        if (probabilityValue >= this.confidence) {
+        if (probabilityValue >= this.confidence
+            && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
           this.canvasController.setConfidenceLabelMet(true);
           this.canvasController.setAccuracyValue(probabilityValue);
           this.canvasController.setCorrectImageVisible(true);

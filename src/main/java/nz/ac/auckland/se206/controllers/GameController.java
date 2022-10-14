@@ -109,7 +109,12 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
-                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this, dictionaryThread);
+                timerMax,
+                timerLabel,
+                predictionTextArea,
+                gameModel,
+                GameController.this,
+                dictionaryThread);
           }
         };
     this.setupStateBindings();
@@ -244,7 +249,6 @@ public class GameController implements ControllerInterface {
       this.gameModel.generateWord();
     }
 
-
     this.gameModel.setPlayerWon(false);
     this.startedDrawing = false;
 
@@ -271,7 +275,8 @@ public class GameController implements ControllerInterface {
     }
 
     // If Learning or zen mode dont show timer
-    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING) || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)
+        || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
       this.timerLabel.setText("Zen mode!");
     } else {
       this.timerLabel.setText(String.valueOf(timerMax));
@@ -284,11 +289,14 @@ public class GameController implements ControllerInterface {
     this.canvas.setDisable(false);
     this.inGamePaneMenu.getSelectionModel().select(canvasTab);
 
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       this.textToSpeech.speak(
           String.format("Start drawing a %s", gameModel.getCurrentWordToGuess()));
     } else {
-      this.textToSpeech.speak(String.format("Start drawing"));
+      if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)) {
+        this.textToSpeech.speak(String.format("Start drawing"));
+      }
     }
 
     // Set to brush
@@ -312,7 +320,7 @@ public class GameController implements ControllerInterface {
 
     // TTS the end game and win/lose diagoue only if not zen mode
     if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
-        || !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       if (this.gameModel.isPlayerWon()) {
         this.textToSpeech.speak("Winner");
         this.winLoseText.setText("You Win!");
@@ -635,7 +643,7 @@ public class GameController implements ControllerInterface {
    */
   public void setAccuracyLabelMet(boolean isMet) {
     // Determine whether accuracy on condition is achieved
-    if (isMet) {
+    if (isMet && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       // Pass
       this.accuracyLabel.setTextFill(Color.GREEN);
       this.accuracyTick.setVisible(true);
