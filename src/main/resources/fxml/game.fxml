@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -252,6 +253,12 @@
                   <Image url="@../images/icons/check.png" />
                </image>
             </ImageView>
+            <ProgressBar fx:id="progressBar" layoutX="60.0" layoutY="288.0" prefHeight="18.0" prefWidth="282.0" progress="0.0" style="-fx-background-color: green;" />
+            <Text fx:id="directionText" layoutX="60.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Luck!" wrappingWidth="282.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="522.0" spacing="10.0">

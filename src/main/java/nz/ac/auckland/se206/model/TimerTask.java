@@ -6,7 +6,9 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.GameController;
 
 /** Represents a timer on a different task and any actions to be done on it. */
@@ -16,6 +18,9 @@ public class TimerTask extends Task<Void> {
   private int accuracy;
   private int confidence;
 
+  private Text directionsText;
+
+  private ProgressBar progressBar;
   private int timerTotal;
   private int counter;
   private Label timerLabel;
@@ -34,11 +39,15 @@ public class TimerTask extends Task<Void> {
    * @param canvasController The canvas to get image from
    */
   public TimerTask(
+      ProgressBar progressBar,
+      Text directionsText,
       int timerTotal,
       Label label,
       TextArea predictionTextArea,
       GameModel gameModel,
       GameController canvasController) {
+    this.progressBar = progressBar;
+    this.directionsText = directionsText;
     this.timerTotal = timerTotal;
     this.counter = timerTotal;
     this.timerLabel = label;
@@ -77,7 +86,17 @@ public class TimerTask extends Task<Void> {
             } catch (TranslateException e) {
               e.printStackTrace();
             }
-            generatePredictionRating();
+            double predRating = 1.1 - (double) generatePredictionRating() / 10;
+            if (progressBar.getProgress() != predRating) {
+              directionsText.setText(
+                  progressBar.getProgress() >= predRating
+                      ? "Getting Further..."
+                      : "Getting Closer!!!");
+            } else if (predRating == 0.1) {
+              directionsText.setText("Top 10!");
+            }
+            progressBar.setProgress(predRating);
+
             // If zen mode dont show timer label
             if (gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
               timerLabel.setText("Zen mode!");

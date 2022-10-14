@@ -64,6 +64,10 @@ public class GameController implements ControllerInterface {
 
   @FXML private ImageView confidenceTick;
 
+  @FXML private ProgressBar progressBar;
+
+  @FXML private Text directionText;
+
   private GraphicsContext graphic;
 
   private DictionaryThread dictionaryThread;
@@ -105,7 +109,13 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
-                timerMax, timerLabel, predictionTextArea, gameModel, GameController.this);
+                progressBar,
+                directionText,
+                timerMax,
+                timerLabel,
+                predictionTextArea,
+                gameModel,
+                GameController.this);
           }
         };
     this.setupStateBindings();
