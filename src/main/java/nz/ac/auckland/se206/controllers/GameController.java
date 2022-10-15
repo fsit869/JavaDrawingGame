@@ -163,6 +163,8 @@ public class GameController implements ControllerInterface {
       this.topAnchorPane.setMaxHeight(167);
       this.definitionTextArea.setLayoutY(0);
       this.hintButton.setVisible(false);
+      this.accuracyLabel.setVisible(true);
+      this.accuracyCross.setVisible(true);
       this.wordLabel.setFont(Font.font("System", 20));
     } else {
       // If classic/Hidden mode setup view
@@ -177,6 +179,10 @@ public class GameController implements ControllerInterface {
       this.definitionTextArea.setLayoutY(0);
       this.hintButton.setVisible(false);
       this.wordLabel.setFont(Font.font("System", 20));
+      this.accuracyLabel.setVisible(true);
+      this.accuracyCross.setVisible(true);
+      this.confidenceCross.setVisible(true);
+      this.confidenceLabel.setVisible(true);
 
       // Enable dictonary textfield for hidden mode
       if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)
@@ -751,7 +757,7 @@ public class GameController implements ControllerInterface {
     if (isDraw) {
       this.drawLabel.setText("Draw");
     } else {
-      this.drawLabel.setText("I think It's a");
+      this.drawLabel.setText("I think It's ");
     }
   }
 }

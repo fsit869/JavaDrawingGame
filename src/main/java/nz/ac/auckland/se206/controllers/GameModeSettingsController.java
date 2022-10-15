@@ -224,10 +224,10 @@ public class GameModeSettingsController implements ControllerInterface {
     instructionsTextArea.setText(
         "Instructions-Confidence:\n"
             // Below are the different modes
-            + "Level EASY: You win the game if the computer is at least 1% confident that your image is the word to guess.\n"
-            + "Level MEDIUM: You win the game if the computer is at least 10% confident that your image is the word to guess.\n"
-            + "Level HARD: You win the game if the computer is at least 25% confident that your image is the word to guess.\n"
-            + "Level MASTER: You win the game if the computer is at least 50% confident that your image is the word to guess.");
+            + "Level EASY: You win the game if the computer thinks your drawing is the word to draw.\n"
+            + "Level MEDIUM: You win the game if the computer thinks your drawing is the word to draw and not bad.\n"
+            + "Level HARD: You win the game if the computer thinks your drawing is the word to draw and is good.\n"
+            + "Level MASTER: You win the game if the computer thinks your drawing is the word to draw and is very good.");
   }
 
   /** This method is called when user mouse enters the time info area */
