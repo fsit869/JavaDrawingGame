@@ -66,4 +66,8 @@ public class ProfileFactory {
   public void saveProfile(Profile profile) throws IOException {
     profileRepository.saveProfile(profile);
   }
+
+  public void sortProfiles() throws IOException {
+    profileRepository.sortProfiles();
+  }
 }

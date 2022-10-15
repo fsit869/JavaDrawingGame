@@ -127,6 +127,15 @@ public class SelectProfilesController implements ControllerInterface {
         this.arrButtons[i].setDisable(this.deleteMode);
       }
     }
+    // Configuring the guest profile
+    this.arrButtons[0].setText(profiles.get(0).getUsername());
+    this.arrButtons[0].setDisable(this.deleteMode);
+    this.arrCircles[0].setFill(
+        new ImagePattern(
+            new Image(
+                this.deleteMode
+                    ? "file:src/main/resources/images/icons/invalid.png"
+                    : "file:src/main/resources/images/default_profile_picture.png")));
   }
 
   /** Configures the circles for the profiles into an array */
@@ -195,6 +204,7 @@ public class SelectProfilesController implements ControllerInterface {
       // Attempt to delete selected profile to delete
       try {
         factory.deleteProfile(factory.selectProfile(profile));
+        factory.sortProfiles();
         this.profiles = factory.getAllProfiles();
         setButtons();
       } catch (IOException e) {
