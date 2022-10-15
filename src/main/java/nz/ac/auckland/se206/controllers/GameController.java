@@ -376,7 +376,8 @@ public class GameController implements ControllerInterface {
     this.timerService.reset();
 
     // Handle saving user profile stats. If zen mode dont save
-    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)) {
+    if (!this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.ZEN)
+        && !this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
       try {
         this.saveProfileStats();
       } catch (IOException | TranslateException e) {

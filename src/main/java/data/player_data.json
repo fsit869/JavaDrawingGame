@@ -173,7 +173,7 @@
   }
 },
 {
-  "username": "asdfa",
+  "username": "s",
   "profilePicturePath": "file:/C:/Users/kapst/quick-draw-beta-final-team-19/target/classes/images/default_profile_picture.png",
   "statsData": {
     "bestTime": 60,
@@ -244,6 +244,7 @@
         "feather",
         "finger",
         "fire hydrant",
+        "fireplace",
         "fish",
         "flashlight",
         "flower",
@@ -292,7 +293,6 @@
         "pizza",
         "rabbit",
         "rainbow",
-        "scissors",
         "scorpion",
         "screwdriver",
         "sheep",
@@ -334,7 +334,7 @@
       "M": []
     },
     "wordsPlayed": [
-      "fireplace"
+      "scissors"
     ]
   },
   "settingsData": {
