@@ -166,7 +166,7 @@ public class GameController implements ControllerInterface {
       this.accuracyLabel.setVisible(true);
       this.accuracyCross.setVisible(true);
       this.confidenceCross.setVisible(true);
-      this.accuracyCross.setVisible(true);
+      this.confidenceLabel.setVisible(true);
       this.wordLabel.setFont(Font.font("System", 20));
     } else {
       // If classic/Hidden mode setup view
