@@ -81,7 +81,7 @@ public class SelectProfilesController implements ControllerInterface {
     if (this.deleteMode) {
       prepend = "DELETE ";
     }
-    for (int i = 0; i < this.profiles.size(); i++) {
+    for (int i = 0; i < 6; i++) {
       // Makes sure the profiles are visible
       this.arrButtons[i].setVisible(true);
       this.arrButtons[i].setDisable(false);
@@ -178,10 +178,11 @@ public class SelectProfilesController implements ControllerInterface {
     // Check if button is creating new profile
     if (this.deleteMode) {
       onDeleteProfile(current.getText());
-      current.setDisable(true);
     } else {
+      // Speaks a random message to the user
       onSelectedProfile(current.getText());
       String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+      // Randomised number
       int randomIndex = new Random().nextInt(greetings.length);
       textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
     }

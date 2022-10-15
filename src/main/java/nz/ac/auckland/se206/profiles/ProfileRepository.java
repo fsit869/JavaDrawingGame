@@ -105,27 +105,36 @@ public class ProfileRepository {
     throw new IndexOutOfBoundsException("All 5 user slots are taken");
   }
 
+  /**
+   * Sorts the profile so that the empty profiles are in the end
+   *
+   * @throws IOException file exception
+   */
   protected void sortProfiles() throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     StringBuilder json = new StringBuilder("[\n");
     FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json");
+
+    // List for the currently populated files
     List<Profile> existingProfiles = new ArrayList<>();
 
+    // Adds existing profiles into list
     for (Profile profile : this.profiles) {
       if (!profile.getUsername().equals("")) {
         existingProfiles.add(profile);
       }
     }
 
+    // sets the profiles if they are existing, else set to empty profile
     for (int i = 0; i < profiles.size(); i++) {
       if (i < existingProfiles.size()) {
         profiles.set(i, existingProfiles.get(i));
       } else {
-        System.out.println("index:" + i + " content:" + profiles.get(i).getUsername());
-        profiles.get(i).setUsername("");
+        profiles.set(i, profiles.get(6));
       }
     }
 
+    // Saves changes to a JSON format
     for (int i = 0; i < profiles.size(); i++) {
       json.append(gson.toJson(profiles.get(i), Profile.class));
       if (i != profiles.size() - 1) {
