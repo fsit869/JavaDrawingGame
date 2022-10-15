@@ -179,12 +179,7 @@ public class SelectProfilesController implements ControllerInterface {
     if (this.deleteMode) {
       onDeleteProfile(current.getText());
     } else {
-      // Speaks a random message to the user
       onSelectedProfile(current.getText());
-      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
-      // Randomised number
-      int randomIndex = new Random().nextInt(greetings.length);
-      textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
     }
   }
 
@@ -227,10 +222,20 @@ public class SelectProfilesController implements ControllerInterface {
       gameModel.setProfile(factory.selectProfile(profile));
       gameModel.getProfile().resetData();
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
+      // Speaks a random message to the user
+      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+      // Randomised number
+      int randomIndex = new Random().nextInt(greetings.length);
+      textToSpeechTask.speak(greetings[randomIndex]);
     } else {
       // Selects the chosen profile and changes to the page.
       gameModel.setProfile(factory.selectProfile(profile));
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
+      // Speaks a random message to the user
+      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+      // Randomised number
+      int randomIndex = new Random().nextInt(greetings.length);
+      textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
     }
   }
 
