@@ -261,8 +261,8 @@
                   <Image url="@../images/icons/check.png" />
                </image>
             </ImageView>
-            <ProgressBar fx:id="progressBar" layoutX="60.0" layoutY="288.0" prefHeight="18.0" prefWidth="282.0" progress="0.0" style="-fx-background-color: green;" />
-            <Text fx:id="directionText" layoutX="60.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Luck!" wrappingWidth="282.0">
+            <ProgressBar fx:id="progressBar" layoutX="60.0" layoutY="268.0" prefHeight="30.0" prefWidth="282.0" progress="0.0" style="-fx-background-color: green;" />
+            <Text fx:id="directionText" layoutX="68.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good Luck!" wrappingWidth="282.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -273,7 +273,7 @@
          <children>
             <Pane>
                <children>
-                  <TextArea layoutX="14.0" layoutY="14.0" prefHeight="175.0" prefWidth="282.0" style="-fx-background-color: red;" text="If you are seeing this text then this pane is incorrectly configured.&#10;&#10;There are 3 tab panes. One for each game state. Default they are all set to invisible. You must set one tab pane visible for the state you are in." wrapText="true">
+                  <TextArea layoutX="14.0" layoutY="24.0" prefHeight="175.0" prefWidth="282.0" style="-fx-background-color: red;" text="If you are seeing this text then this pane is incorrectly configured.&#10;&#10;There are 3 tab panes. One for each game state. Default they are all set to invisible. You must set one tab pane visible for the state you are in." wrapText="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
