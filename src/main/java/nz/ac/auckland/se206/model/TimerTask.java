@@ -10,7 +10,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.GameController;
-import nz.ac.auckland.se206.speech.SoundEffect;
 import nz.ac.auckland.se206.dictionary.DictionaryThread;
 
 /** Represents a timer on a different task and any actions to be done on it. */
