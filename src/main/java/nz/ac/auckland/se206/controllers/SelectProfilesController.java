@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,7 +30,7 @@ public class SelectProfilesController implements ControllerInterface {
 
   @FXML private Circle circleSix;
   @FXML private ToggleButton deleteButton;
-  @FXML private Button guest;
+  @FXML private Button profileSix;
   @FXML private Button profileOne;
   @FXML private Button profileTwo;
   @FXML private Button profileThree;
@@ -77,13 +76,28 @@ public class SelectProfilesController implements ControllerInterface {
 
   /** Sets the text of the buttons, grabbing the usernames from the player data */
   public void setButtons() {
+    boolean isVacant = false;
     String prepend = "";
     if (this.deleteMode) {
       prepend = "DELETE ";
     }
-    for (int i = 0; i < this.profiles.size() - 1; i++) {
+    for (int i = 0; i < 6; i++) {
+      // Makes sure the profiles are visible
+      this.arrButtons[i].setVisible(true);
+      this.arrButtons[i].setDisable(false);
+      this.arrCircles[i].setVisible(true);
+      this.arrCircles[i].setDisable(false);
+
+      // Check if the non-profiles have been reached
+      if (isVacant) {
+        this.arrButtons[i].setVisible(false);
+        this.arrButtons[i].setDisable(true);
+        this.arrCircles[i].setVisible(false);
+        this.arrCircles[i].setDisable(true);
+      }
+
       // Check if there is a profile in the spot
-      if (!profiles.get(i).getUsername().equals("")) {
+      if (!profiles.get(i).getUsername().equals("") && !isVacant) {
         this.arrButtons[i].setText(prepend + profiles.get(i).getUsername());
         try {
           Image image =
@@ -101,6 +115,7 @@ public class SelectProfilesController implements ControllerInterface {
           this.arrCircles[i].setFill(new ImagePattern(image));
         }
       } else {
+        isVacant = true;
         // If the profile doesn't exist, default images are shown.
         Image image =
             new Image(
@@ -113,9 +128,9 @@ public class SelectProfilesController implements ControllerInterface {
       }
     }
     // Configuring the guest profile
-    this.arrButtons[5].setText(profiles.get(5).getUsername());
-    this.arrButtons[5].setDisable(this.deleteMode);
-    this.arrCircles[5].setFill(
+    this.arrButtons[0].setText(profiles.get(0).getUsername());
+    this.arrButtons[0].setDisable(this.deleteMode);
+    this.arrCircles[0].setFill(
         new ImagePattern(
             new Image(
                 this.deleteMode
@@ -144,7 +159,7 @@ public class SelectProfilesController implements ControllerInterface {
     this.arrButtons[2] = profileThree;
     this.arrButtons[3] = profileFour;
     this.arrButtons[4] = profileFive;
-    this.arrButtons[5] = guest;
+    this.arrButtons[5] = profileSix;
   }
 
   /////////////////////
@@ -163,12 +178,8 @@ public class SelectProfilesController implements ControllerInterface {
     // Check if button is creating new profile
     if (this.deleteMode) {
       onDeleteProfile(current.getText());
-      current.setDisable(true);
     } else {
       onSelectedProfile(current.getText());
-      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
-      int randomIndex = new Random().nextInt(greetings.length);
-      textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
     }
   }
 
@@ -189,6 +200,7 @@ public class SelectProfilesController implements ControllerInterface {
       // Attempt to delete selected profile to delete
       try {
         factory.deleteProfile(factory.selectProfile(profile));
+        factory.sortProfiles();
         this.profiles = factory.getAllProfiles();
         setButtons();
       } catch (IOException e) {
@@ -210,10 +222,20 @@ public class SelectProfilesController implements ControllerInterface {
       gameModel.setProfile(factory.selectProfile(profile));
       gameModel.getProfile().resetData();
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
+      // Speaks a random message to the user
+      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+      // Randomised number
+      int randomIndex = new Random().nextInt(greetings.length);
+      textToSpeechTask.speak(greetings[randomIndex]);
     } else {
       // Selects the chosen profile and changes to the page.
       gameModel.setProfile(factory.selectProfile(profile));
       gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
+      // Speaks a random message to the user
+      String[] greetings = {"Ni Hao", "welcome", "Kia Ora"};
+      // Randomised number
+      int randomIndex = new Random().nextInt(greetings.length);
+      textToSpeechTask.speak(greetings[randomIndex] + " " + gameModel.getProfile().getUsername());
     }
   }
 

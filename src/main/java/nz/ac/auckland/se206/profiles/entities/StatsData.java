@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.profiles.entities;
 
 // model of what will be stored as user data in a profile
 
+import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se206.profiles.entities.badges.Badge;
 import nz.ac.auckland.se206.profiles.entities.badges.BadgeFactory;
@@ -120,5 +121,8 @@ public class StatsData extends Data {
     // Concurrent wins
     this.currentStreak = 0;
     this.bestStreak = 0;
+
+    // badges
+    this.badgeList = new ArrayList<>();
   }
 }

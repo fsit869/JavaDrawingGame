@@ -66,4 +66,13 @@ public class ProfileFactory {
   public void saveProfile(Profile profile) throws IOException {
     profileRepository.saveProfile(profile);
   }
+
+  /**
+   * Sorts the profile so that the empty profiles are in the end
+   *
+   * @throws IOException file exception
+   */
+  public void sortProfiles() throws IOException {
+    profileRepository.sortProfiles();
+  }
 }
