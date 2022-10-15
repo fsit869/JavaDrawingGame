@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import nz.ac.auckland.se206.model.GameModel;
 import nz.ac.auckland.se206.profiles.ProfileFactory;
 import nz.ac.auckland.se206.speech.SoundEffect;
-import nz.ac.auckland.se206.speech.TextToSpeechTask;
 
 /** This class is responsible for selecting settings */
 public class SettingsController implements ControllerInterface {
@@ -40,8 +39,7 @@ public class SettingsController implements ControllerInterface {
   }
 
   @Override
-  public void refresh() {
-  }
+  public void refresh() {}
 
   private void switchTts() {
     if (gameModel.getProfile().getSettingsData().getTts() == true) {

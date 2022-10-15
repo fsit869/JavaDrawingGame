@@ -109,6 +109,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case HARD -> wordDifficultyComboBox.setValue("Hard");
       case MASTER -> wordDifficultyComboBox.setValue("Master");
     }
+    disableUiIfLearning();
   }
 
   /** Sets the game settings into the players profile */
@@ -201,6 +202,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case "Learning Mode" -> gameModeButton.setText("Classic Mode");
     }
     textToSpeechTask.speak(gameModeButton.getText());
+    disableUiIfLearning();
   }
 
   /** This method is called when user presses the left change gamemode button */
@@ -215,6 +217,7 @@ public class GameModeSettingsController implements ControllerInterface {
       case "Learning Mode" -> gameModeButton.setText("Zen Mode");
     }
     textToSpeechTask.speak(gameModeButton.getText());
+    disableUiIfLearning();
   }
 
   /** This method is called when user mouse enters the confidence info area */
@@ -329,5 +332,22 @@ public class GameModeSettingsController implements ControllerInterface {
     setGameSettings();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
+  }
+
+  /** This method disables the comboboxes if it is in learning mode */
+  private void disableUiIfLearning() {
+    if (this.gameModeButton.getText().equals("Learning Mode")) {
+      // Is learning mode
+      this.confidenceComboBox.setDisable(true);
+      this.accuracyComboBox.setDisable(true);
+      this.timeComboBox.setDisable(true);
+      this.wordDifficultyComboBox.setDisable(true);
+    } else {
+      // Not learning mode
+      this.confidenceComboBox.setDisable(false);
+      this.accuracyComboBox.setDisable(false);
+      this.timeComboBox.setDisable(false);
+      this.wordDifficultyComboBox.setDisable(false);
+    }
   }
 }

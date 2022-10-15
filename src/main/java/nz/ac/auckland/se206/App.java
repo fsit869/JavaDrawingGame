@@ -34,9 +34,7 @@ public class App extends Application {
     stage.show();
   }
 
-  /**
-   * Called when app is closed. Ensures profile is saved before closing
-   */
+  /** Called when app is closed. Ensures profile is saved before closing */
   @Override
   public void stop() {
     try {

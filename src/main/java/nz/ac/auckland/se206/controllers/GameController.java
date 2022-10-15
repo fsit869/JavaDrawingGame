@@ -165,6 +165,8 @@ public class GameController implements ControllerInterface {
       this.hintButton.setVisible(false);
       this.accuracyLabel.setVisible(true);
       this.accuracyCross.setVisible(true);
+      this.confidenceCross.setVisible(true);
+      this.confidenceLabel.setVisible(true);
       this.wordLabel.setFont(Font.font("System", 20));
     } else {
       // If classic/Hidden mode setup view
@@ -257,13 +259,14 @@ public class GameController implements ControllerInterface {
     this.canvas.setDisable(true);
     this.onClear();
 
+    // Configure what is visible for UI's
     this.predictionTextArea.setText("Your predictions will show up here");
     this.readyPaneMenu.setVisible(true);
     this.endGamePaneMenu.setVisible(false);
     this.winLoseDialogue.setVisible(false);
     this.setAccuracyLabelMet(false);
     this.setConfidenceLabelMet(false);
-
+    this.disableUiForLearning();
     this.correctImage.setVisible(false);
     this.wrongImage.setVisible(false);
 
@@ -758,6 +761,19 @@ public class GameController implements ControllerInterface {
       this.drawLabel.setText("Draw");
     } else {
       this.drawLabel.setText("I think It's ");
+    }
+  }
+
+  /** This method disables certain UI if it is in learning mode */
+  private void disableUiForLearning() {
+    if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+      // Learning mode disable it
+      this.directionText.setVisible(false);
+      this.progressBar.setVisible(false);
+    } else {
+      // Not learning mode. Enable these
+      this.directionText.setVisible(true);
+      this.progressBar.setVisible(true);
     }
   }
 }

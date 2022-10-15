@@ -10,8 +10,7 @@ public class SoundEffect {
     TEST_TWO("/sounds/mixkit-security-facility-breach-alarm-994.wav"),
     CLICK("/sounds/mixkit-select-click-1109.wav"),
     WIN("/sounds/mixkit-achievement-bell-600.wav"),
-    LOSE("/sounds/mixkit-losing-bleeps-2026.wav")
-    ;
+    LOSE("/sounds/mixkit-losing-bleeps-2026.wav");
 
     private final String SOUND_LOCATION;
 
