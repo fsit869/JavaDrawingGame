@@ -58,7 +58,8 @@ public class ProfileFactory {
   }
 
   /**
-   * Saves a profile that is parsed into the function, rewrites the entire JSON file.
+   * Saves a profile that is parsed into the function, rewrites the entire JSON file. IMPORTANT:
+   * CREATE NEW FACTORY BEFORE USING
    *
    * @param profile the profile to save
    * @throws IOException IO

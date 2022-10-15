@@ -185,6 +185,7 @@ public class GameModeSettingsController implements ControllerInterface {
     SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     setGameSettings();
     setGameMode();
+    this.profileFactory = new ProfileFactory();
     profileFactory.saveProfile(gameModel.getProfile());
     textToSpeechTask.speak("Lesh go");
     gameModel.setCurrentViewState(GameModel.ViewState.CANVAS);
@@ -330,6 +331,7 @@ public class GameModeSettingsController implements ControllerInterface {
     SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     setGameMode();
     setGameSettings();
+    this.profileFactory = new ProfileFactory();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }

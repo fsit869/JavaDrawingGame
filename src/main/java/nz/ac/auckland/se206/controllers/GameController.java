@@ -388,6 +388,7 @@ public class GameController implements ControllerInterface {
   /** Saves the profile information and win/loss */
   private void saveProfileStats() throws IOException, TranslateException {
     StatsData statsData = this.gameModel.getProfile().getStatsData();
+    this.profileFactory = new ProfileFactory();
     System.out.println("saving");
     // Save fastest time only if won.
     if (gameModel.isPlayerWon()) {

@@ -80,6 +80,7 @@ public class SettingsController implements ControllerInterface {
   @FXML
   private void onBackToMenuButton() throws IOException {
     SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
+    this.profileFactory = new ProfileFactory();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);
   }

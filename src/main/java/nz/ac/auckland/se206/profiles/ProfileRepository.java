@@ -155,6 +155,10 @@ public class ProfileRepository {
    * @throws IOException IO
    */
   protected void saveProfile(Profile saveProfile) throws IOException {
+    for (Profile profile : this.profiles) {
+      System.out.println("saving: " + profile.getUsername());
+    }
+
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     StringBuilder json = new StringBuilder("[\n");
     FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json");
@@ -213,5 +217,9 @@ public class ProfileRepository {
     // Writes to the JSON file
     fileWriter.write(String.valueOf(json));
     fileWriter.close();
+
+    for (Profile profile : this.profiles) {
+      System.out.println("deletion: " + profile.getUsername());
+    }
   }
 }
