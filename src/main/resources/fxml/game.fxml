@@ -110,7 +110,10 @@
                   <Font name="Eras Medium ITC" size="21.0" />
                </font>
             </Label>
-            <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" visible="false" wrapText="true" />
+            <TextArea fx:id="definitionTextArea" editable="false" focusTraversable="false" layoutX="22.0" layoutY="106.0" mouseTransparent="true" prefHeight="60.0" prefWidth="575.0" stylesheets="@../css/gamesettingstextarea.css" visible="false" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></TextArea>
             <ImageView fx:id="bookImageView" fitHeight="47.0" fitWidth="45.0" layoutX="65.0" layoutY="113.0">
                <image>
                   <Image url="@../images/book2.png" />
@@ -275,13 +278,13 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TabPane fx:id="readyPaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" visible="false">
+                  <TabPane fx:id="readyPaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab text="READY">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="277.0">
                                  <children>
-                                    <Button layoutX="206.0" layoutY="45.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onMenuButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em;">
+                                    <Button layoutX="206.0" layoutY="45.0" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#onMenuButton" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 2em; -fx-background-color: dodgerblue;">
                                        <font>
                                           <Font name="Eras Medium ITC" size="22.0" />
                                        </font>
@@ -292,7 +295,7 @@
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
-                                    <Button fx:id="playButton" layoutX="14.0" layoutY="45.0" maxHeight="80.0" maxWidth="182.0" minHeight="80.0" minWidth="130.0" mnemonicParsing="false" onAction="#onStartGameButton" prefHeight="80.0" prefWidth="182.0" style="-fx-background-radius: 2em;" text="PLAY">
+                                    <Button fx:id="playButton" layoutX="14.0" layoutY="45.0" maxHeight="80.0" maxWidth="182.0" minHeight="80.0" minWidth="130.0" mnemonicParsing="false" onAction="#onStartGameButton" prefHeight="80.0" prefWidth="182.0" style="-fx-background-radius: 2em; -fx-background-color: #00ff2f;" text="PLAY">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -309,7 +312,7 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-                  <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" visible="false">
+                  <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab fx:id="canvasTab" text="Canvas">
                            <content>
@@ -339,12 +342,12 @@
                                              </graphic></RadioButton>
                                        </buttons>
                                     </ButtonBar>
-                                    <Button layoutX="27.0" layoutY="101.0" mnemonicParsing="false" onAction="#onClear" prefHeight="41.0" prefWidth="105.0" style="-fx-background-radius: 3em;" text="Clear canvas" />
-                                    <ColorPicker fx:id="colourPicker" layoutX="26.0" layoutY="56.0" prefHeight="40.0" prefWidth="107.0" style="-fx-background-radius: 3em;">
+                                    <Button layoutX="27.0" layoutY="101.0" mnemonicParsing="false" onAction="#onClear" prefHeight="41.0" prefWidth="105.0" style="-fx-background-radius: 3em; -fx-background-color: yellow;" text="Clear canvas" />
+                                    <ColorPicker fx:id="colourPicker" layoutX="26.0" layoutY="56.0" prefHeight="40.0" prefWidth="107.0" style="-fx-background-radius: 3em; -fx-background-color: yellow;">
                                        <value>
                                           <Color />
                                        </value></ColorPicker>
-                                    <Button layoutX="150.0" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveCanvas" prefHeight="91.0" prefWidth="143.0" style="-fx-background-radius: 3em;" text="Save">
+                                    <Button layoutX="150.0" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveCanvas" prefHeight="91.0" prefWidth="143.0" style="-fx-background-radius: 3em; -fx-background-color: yellow;" text="Save">
                                        <graphic>
                                           <ImageView fitHeight="36.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -353,7 +356,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="hintButton" layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#onHintButton" prefHeight="40.0" prefWidth="107.0" style="-fx-background-radius: 3em;" text="Hint" />
+                                    <Button fx:id="hintButton" layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#onHintButton" prefHeight="40.0" prefWidth="107.0" style="-fx-background-radius: 3em; -fx-background-color: yellow;" text="Hint" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -362,7 +365,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="giveUpButton" cancelButton="true" contentDisplay="TOP" layoutX="160.0" layoutY="33.0" mnemonicParsing="false" onAction="#onGiveUpButton" prefHeight="114.0" prefWidth="115.0" style="-fx-background-radius: 6em;" text="Give up :(" textFill="RED">
+                                    <Button fx:id="giveUpButton" cancelButton="true" contentDisplay="TOP" layoutX="160.0" layoutY="33.0" mnemonicParsing="false" onAction="#onGiveUpButton" prefHeight="114.0" prefWidth="115.0" style="-fx-background-radius: 6em; -fx-background-color: lightblue;" text="Give up :(" textFill="RED">
                                        <graphic>
                                           <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -370,7 +373,7 @@
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
-                                    <Button fx:id="zenNextWordButton" contentDisplay="TOP" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#onZenNextWord" prefHeight="114.0" prefWidth="129.0" style="-fx-background-radius: 6em;" text="Next Word" textFill="#00b50c">
+                                    <Button fx:id="zenNextWordButton" contentDisplay="TOP" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#onZenNextWord" prefHeight="114.0" prefWidth="129.0" style="-fx-background-radius: 6em; -fx-background-color: #00ff2f;" text="Next Word" textFill="#00b50c">
                                        <graphic>
                                           <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -384,21 +387,22 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-                  <TabPane fx:id="endGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: black; -fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" visible="false">
+                  <TabPane fx:id="endGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab text="End Game">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="277.0">
                                  <children>
-                                    <Button layoutX="32.0" layoutY="96.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveCanvas" prefHeight="64.0" prefWidth="156.0" style="-fx-background-radius: 3em;" text="Save">
+                                    <Button layoutX="32.0" layoutY="96.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveCanvas" prefHeight="64.0" prefWidth="156.0" style="-fx-background-radius: 3em; -fx-background-color: dodgerblue;" text="Save">
                                        <graphic>
                                           <ImageView fitHeight="36.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/floppy-disk.png" />
                                              </image>
                                           </ImageView>
-                                       </graphic></Button>
-                                    <Button layoutX="199.0" layoutY="96.0" maxHeight="80.0" maxWidth="80.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onMenuButton" prefHeight="64.0" prefWidth="64.0" style="-fx-background-radius: 2em;">
+                                       </graphic>
+                                    </Button>
+                                    <Button layoutX="199.0" layoutY="96.0" maxHeight="80.0" maxWidth="80.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onMenuButton" prefHeight="64.0" prefWidth="64.0" style="-fx-background-radius: 2em; -fx-background-color: dodgerblue;">
                                        <font>
                                           <Font name="Eras Medium ITC" size="22.0" />
                                        </font>
@@ -410,7 +414,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button layoutX="33.0" layoutY="14.0" maxHeight="80.0" maxWidth="238.0" minHeight="71.0" minWidth="130.0" mnemonicParsing="false" onAction="#onNewGameButton" prefHeight="71.0" prefWidth="238.0" style="-fx-background-radius: 2em;" text="New Game">
+                                    <Button layoutX="33.0" layoutY="14.0" maxHeight="80.0" maxWidth="238.0" minHeight="71.0" minWidth="130.0" mnemonicParsing="false" onAction="#onNewGameButton" prefHeight="71.0" prefWidth="238.0" style="-fx-background-radius: 2em; -fx-background-color: #00ff2f;" text="New Game">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -430,7 +434,10 @@
                   </TabPane>
                </children>
             </Pane>
-            <TextArea fx:id="predictionTextArea" editable="false" prefHeight="251.0" prefWidth="200.0" style="-fx-border-color: #757761;" text="P1:Textarea&#10;p2&#10;p3&#10;p4&#10;p5&#10;p6&#10;p7&#10;p8&#10;p9&#10;p10" />
+            <TextArea fx:id="predictionTextArea" editable="false" prefHeight="251.0" prefWidth="200.0" style="-fx-border-color: black;" stylesheets="@../css/gametextarea.css" text="P1:Textarea&#10;p2&#10;p3&#10;p4&#10;p5&#10;p6&#10;p7&#10;p8&#10;p9&#10;p10" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></TextArea>
          </children>
          <VBox.margin>
             <Insets />

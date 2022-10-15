@@ -1,0 +1,15 @@
+
+.text-area .content {
+   -fx-background-color:  #ffcc00;
+   -fx-border-color: orange ;
+   -fx-border-width: 2;
+   -fx-font-color: white;
+}
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 1;
+    -fx-opacity: 0;
+}
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}
