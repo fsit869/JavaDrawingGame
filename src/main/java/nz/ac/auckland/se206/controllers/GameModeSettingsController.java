@@ -182,9 +182,11 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user presses the start game button */
   @FXML
   private void onStartButton() throws IOException {
+    // play sound effect
     SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     setGameSettings();
     setGameMode();
+    // save profile
     this.profileFactory = new ProfileFactory();
     profileFactory.saveProfile(gameModel.getProfile());
     textToSpeechTask.speak("Lesh go");
@@ -328,9 +330,11 @@ public class GameModeSettingsController implements ControllerInterface {
   /** This method is called when user clicks the main menu button to go back to main menu */
   @FXML
   private void onBackToMenuButton() throws IOException {
+    // play sound effect
     SoundEffect.playEffectOverride(SoundEffect.SOUND.CLICK);
     setGameMode();
     setGameSettings();
+    // save current profile
     this.profileFactory = new ProfileFactory();
     profileFactory.saveProfile(gameModel.getProfile());
     gameModel.setCurrentViewState(GameModel.ViewState.MAINMENU);

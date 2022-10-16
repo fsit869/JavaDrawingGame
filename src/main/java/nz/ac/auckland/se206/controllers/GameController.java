@@ -119,6 +119,7 @@ public class GameController implements ControllerInterface {
           @Override
           protected Task<Void> createTask() {
             return new TimerTask(
+                // everything that is needed inside TimerTask
                 progressBar,
                 directionText,
                 timerMax,
@@ -163,6 +164,7 @@ public class GameController implements ControllerInterface {
       this.topAnchorPane.setMaxHeight(167);
       this.definitionTextArea.setLayoutY(0);
       this.hintButton.setVisible(false);
+      // turn on accuracy and confidence labels
       this.accuracyLabel.setVisible(true);
       this.accuracyCross.setVisible(true);
       this.confidenceCross.setVisible(true);
@@ -181,6 +183,7 @@ public class GameController implements ControllerInterface {
       this.definitionTextArea.setLayoutY(0);
       this.hintButton.setVisible(false);
       this.wordLabel.setFont(Font.font("System", 20));
+      // turn on accuracy and confidence labels
       this.accuracyLabel.setVisible(true);
       this.accuracyCross.setVisible(true);
       this.confidenceCross.setVisible(true);
@@ -189,6 +192,7 @@ public class GameController implements ControllerInterface {
       // Enable dictonary textfield for hidden mode
       if (this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.HIDDEN)
           || this.gameModel.getCurrentGameMode().equals(GameModel.GameMode.LEARNING)) {
+        // set up hidden/learning mode view
         this.definitionTextArea.setVisible(true);
         this.topAnchorPane.setPrefHeight(190);
         this.definitionTextArea.setLayoutY(170);
@@ -198,6 +202,7 @@ public class GameController implements ControllerInterface {
           this.clockImageView.setVisible(false);
           this.bookImageView.setVisible(true);
           this.wordLabel.setText("whatever you want");
+          // turn off accuracy and confidence labels for learning mode
           this.accuracyLabel.setVisible(false);
           this.confidenceLabel.setVisible(false);
           this.accuracyTick.setVisible(false);
