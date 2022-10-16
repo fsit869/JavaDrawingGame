@@ -12,7 +12,7 @@ public class SoundEffect {
     WIN("/sounds/mixkit-achievement-bell-600.wav"),
     LOSE("/sounds/mixkit-losing-bleeps-2026.wav");
 
-    private final String SOUND_LOCATION;
+    private String soundLocation;
 
     /**
      * Enum constructor to init sound effect location
@@ -21,7 +21,7 @@ public class SoundEffect {
      */
     SOUND(String soundLocation) {
       try {
-        this.SOUND_LOCATION = SoundEffect.class.getResource(soundLocation).toURI().toString();
+        this.soundLocation = SoundEffect.class.getResource(soundLocation).toURI().toString();
       } catch (URISyntaxException e) {
         throw new RuntimeException("Unexpected error with sound effect " + soundLocation);
       } catch (NullPointerException e) {
@@ -35,7 +35,7 @@ public class SoundEffect {
      * @return string of the location
      */
     private String getSoundLocation() {
-      return SOUND_LOCATION;
+      return soundLocation;
     }
   }
 
