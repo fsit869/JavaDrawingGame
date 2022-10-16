@@ -43,7 +43,7 @@ public class FxmlSwitcher {
 
     // Setup inital view
     this.rootScene =
-        new Scene(this.viewMap.get(GameModel.ViewState.SELECTPROFILES).getRoot(), 642, 750);
+        new Scene(this.viewMap.get(GameModel.ViewState.SELECTPROFILES).getRoot(), 642, 780);
     this.gameModel.setCurrentViewState(GameModel.ViewState.SELECTPROFILES);
     this.setupViewStateBindings();
   }

@@ -273,12 +273,12 @@
          <children>
             <Pane>
                <children>
-                  <TextArea layoutX="14.0" layoutY="24.0" prefHeight="175.0" prefWidth="282.0" style="-fx-background-color: red;" text="If you are seeing this text then this pane is incorrectly configured.&#10;&#10;There are 3 tab panes. One for each game state. Default they are all set to invisible. You must set one tab pane visible for the state you are in." wrapText="true">
+                  <TextArea layoutX="14.0" layoutY="24.0" prefHeight="182.0" prefWidth="282.0" style="-fx-background-color: red;" text="If you are seeing this text then this pane is incorrectly configured.&#10;&#10;There are 3 tab panes. One for each game state. Default they are all set to invisible. You must set one tab pane visible for the state you are in." wrapText="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TabPane fx:id="readyPaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
+                  <TabPane fx:id="readyPaneMenu" maxHeight="220.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab text="READY">
                            <content>
@@ -312,11 +312,11 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-                  <TabPane fx:id="inGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
+                  <TabPane fx:id="inGamePaneMenu" maxHeight="220.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab fx:id="canvasTab" text="Canvas">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="277.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="300.0">
                                  <children>
                                     <ButtonBar buttonMinWidth="140.0" layoutX="7.0" layoutY="6.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="166.0">
                                        <buttons>
@@ -387,7 +387,7 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-                  <TabPane fx:id="endGamePaneMenu" maxHeight="200.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
+                  <TabPane fx:id="endGamePaneMenu" maxHeight="220.0" maxWidth="404.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="302.0" style="-fx-border-color: #757761; -fx-background-color: #ffcc00;" tabClosingPolicy="UNAVAILABLE" visible="false">
                      <tabs>
                         <Tab text="End Game">
                            <content>
@@ -434,7 +434,7 @@
                   </TabPane>
                </children>
             </Pane>
-            <TextArea fx:id="predictionTextArea" editable="false" prefHeight="251.0" prefWidth="200.0" style="-fx-border-color: black;" stylesheets="@../css/gametextarea.css" text="P1:Textarea&#10;p2&#10;p3&#10;p4&#10;p5&#10;p6&#10;p7&#10;p8&#10;p9&#10;p10" wrapText="true">
+            <TextArea fx:id="predictionTextArea" editable="false" maxHeight="208.0" minHeight="208.0" prefHeight="208.0" prefWidth="200.0" style="-fx-border-color: black;" stylesheets="@../css/gametextarea.css" text="P1:Textarea&#10;p2&#10;p3&#10;p4&#10;p5&#10;p6&#10;p7&#10;p8&#10;p9&#10;p10" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></TextArea>
