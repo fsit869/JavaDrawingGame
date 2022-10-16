@@ -749,6 +749,7 @@ public class GameController implements ControllerInterface {
   public void disablePlayButton(boolean isDisabled) {
     this.playButton.setDisable(isDisabled);
   }
+
   /**
    * Set wordLabel to have a certain text
    *

@@ -113,8 +113,9 @@ public class GameModel {
         }
       }
       case MASTER -> difficulty = WordsData.Difficulty.H;
-        // In the case that settings data is null
+
       default -> difficulty = null;
+        // In the case that settings data is null
     }
     ;
     try {

@@ -116,52 +116,63 @@ public class GameModeSettingsController implements ControllerInterface {
   private void setGameSettings() {
     // sets confidence settings depending on users choice
     switch (confidenceComboBox.getValue()) {
-        // Easy to master levels
       case "Easy" -> gameModel
+          // Easy level
           .getProfile()
           .getSettingsData()
           .setConfidence(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
+          // Medium level
           .getProfile()
           .getSettingsData()
           .setConfidence(SettingsData.Levels.MEDIUM);
       case "Hard" -> gameModel
+          // Hard level
           .getProfile()
           .getSettingsData()
           .setConfidence(SettingsData.Levels.HARD);
       case "Master" -> gameModel
+          // Master level
           .getProfile()
           .getSettingsData()
           .setConfidence(SettingsData.Levels.MASTER);
     }
     // sets accuracy settings depending on users choice
     switch (accuracyComboBox.getValue()) {
-        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
+          // Medium level
           .getProfile()
           .getSettingsData()
           .setAccuracy(SettingsData.Levels.MEDIUM);
-      case "Hard" -> gameModel.getProfile().getSettingsData().setAccuracy(SettingsData.Levels.HARD);
+      case "Hard" -> gameModel
+          // Hard level
+          .getProfile()
+          .getSettingsData()
+          .setAccuracy(SettingsData.Levels.HARD);
     }
     // sets word difficulty settings depending on users choice
     switch (wordDifficultyComboBox.getValue()) {
-        // Easy to master levels
       case "Easy" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.EASY);
       case "Medium" -> gameModel
+          // Medium level
           .getProfile()
           .getSettingsData()
           .setSetting(SettingsData.Levels.MEDIUM);
       case "Hard" -> gameModel.getProfile().getSettingsData().setSetting(SettingsData.Levels.HARD);
       case "Master" -> gameModel
+          // Master level
           .getProfile()
           .getSettingsData()
           .setSetting(SettingsData.Levels.MASTER);
     }
     // sets time settings depending on users choice
     switch (timeComboBox.getValue()) {
-        // Easy to master levels
-      case "Easy" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.EASY);
+      case "Easy" -> gameModel
+          // Easy level
+          .getProfile()
+          .getSettingsData()
+          .setTime(SettingsData.Levels.EASY);
       case "Medium" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MEDIUM);
       case "Hard" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.HARD);
       case "Master" -> gameModel.getProfile().getSettingsData().setTime(SettingsData.Levels.MASTER);
@@ -279,19 +290,22 @@ public class GameModeSettingsController implements ControllerInterface {
   private void onGameModeInfoEnter() {
     // Determine which gamemode is selected and set it
     switch (this.gameModeButton.getText()) {
-        // Classic. Also show the info about the mode
       case "Classic Mode" -> instructionsTextArea.setText(
+          // Classic. Also show the info about the mode
           "Instructions-Classic Gamemode:\n"
               + "The aim is to draw the image that you are told in the prompt so that the computer is able to guess that what you have drawn is the prompt. You need to achieve this before the timer runs out.");
-        // Hidden Also show the info about the mode
+
       case "Hidden-Word Mode" -> instructionsTextArea.setText(
+          // Hidden Also show the info about the mode
           "Instructions-Hidden-Word Gamemode:\n"
               + "The word to draw will not be shown to you. Instead you will be provided the definition of the word to draw. If you get stuck and can't figure out the word use the Hint button to show the number of characters in the word.");
-        // Zen Also show the info about the mode
+
       case "Zen Mode" -> instructionsTextArea.setText(
+          // Zen Also show the info about the mode
           "Instructions-Zen Gamemode:\n"
               + "This is an endless mode where there is no timer. Spend as much time as you want to perfect your drawing then either save your masterpiece or press next word to generate a new word to draw.");
       case "Learning Mode" -> instructionsTextArea.setText(
+          // Learning Also show the info about the mode
           "Instructions-Zen Gamemode:\n"
               + "In this mode you can draw whatever you want and you will be shown the definition of the object that the computer thinks your drawing is the closest to.");
     }
