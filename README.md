@@ -2,6 +2,9 @@
 
 ### Quick, Draw! 
 
+JavaFX drawing app built in SOFTENG206.
+Team collaboration between 2 others. 
+
 **Requirements**
 
 - Java JDK 17.0.2 (download
